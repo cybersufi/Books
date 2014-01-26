@@ -1,0 +1,1914 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html style="cursor: url(&quot;chrome://grabanddrag/skin/grab.png&quot;)
+ 10 4, move ! important;" xml:lang="en" 
+xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Rules-of-thumb for monitoring Sun Solaris statistics</title>
+<meta http-equiv="PICS-Label" content="(PICS-1.1 
+&quot;http://www.icra.org/ratingsv02.html&quot; l gen true r (cz 1 lz 1 
+nz 1 oz 1 vz 1) &quot;http://www.rsac.org/ratingsv01.html&quot; l gen 
+true r (n 0 s 0 v 0 l 0) &quot;http://www.classify.org/safesurf/&quot; l
+ gen true r (SS~~000 1))">
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="http://www.ibm.com/favicon.ico">
+<meta name="Owner" content="developerWorks Content/Raleigh/IBM">
+<meta name="DC.Language" scheme="rfc1766" content="en">
+<meta name="IBM.Country" content="ZZ">
+<meta name="Security" content="Public">
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.PageAttributes" content="sid=1003">
+<meta name="Source" content="v16 Template Generator">
+<meta name="Robots" content="index,follow">
+<meta name="Abstract" content="This article focuses on performance of 
+the Sun Solaris operating system, and interpretation of operating 
+statistics. It also suggests some possible OS tuning changes that may 
+help performance.">
+<meta name="Description" content="This article focuses on performance of
+ the Sun Solaris operating system, and interpretation of operating 
+statistics. It also suggests some possible OS tuning changes that may 
+help performance.">
+<meta name="Keywords" content="Lotus Domino, Domino server, Sun Solaris,
+ server monitoring, operating statistics, Domino statistics, dddlsca">
+<meta name="DC.Date" scheme="iso8601" content="2002-07-01">
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT316">
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="BA.0080">
+<meta scheme="IBM_WTMCategory" name="IBM.WTMCategory" 
+content="SOFDCLOTZZ">
+<meta name="DC.Rights" content="© Copyright&nbsp;IBM 
+Corporation&nbsp;2002">
+<meta name="IBM.Effective" scheme="W3CDTF" content="2002-07-01">
+<meta name="title" content="Rules-of-thumb for monitoring Sun Solaris 
+statistics">
+
+<!-- HEADER_SCRIPTS_AND_CSS_INCLUDE -->
+<link 
+href="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/all.css"
+ media="all" rel="stylesheet" title="www" type="text/css">
+<link 
+href="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/screen.css"
+ media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link 
+href="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/screen-uas.css"
+ media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link 
+href="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/screen-fonts.css"
+ media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link 
+href="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/handheld.css"
+ media="handheld" rel="stylesheet" title="www" type="text/css">
+<link 
+href="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/print.css"
+ media="print" rel="stylesheet" title="www" type="text/css">
+<link 
+href="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/overlay.css"
+ media="screen,projection" rel="stylesheet" title="www" type="text/css">
+
+<!-- dW-specific CSS -->
+<link 
+href="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/dw-screen.css"
+ media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link 
+href="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/jquery.css"
+ media="screen,projection" rel="stylesheet" title="www" type="text/css">
+
+<script src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/ibmcommon.js" type="text/javascript">//</script><link
+ title="IBM Search" 
+href="http://www.ibm.com/search/opensearch/description.xml" 
+type="application/opensearchdescription+xml" rel="search">
+<script src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/dynamicnav.js" type="text/javascript">//</script>
+
+<!-- dW functional JS -->
+<script language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/urltactic.js" type="text/javascript"></script>
+<!-- Rating_START -->
+<script language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/artrating.js" type="text/javascript"></script>
+<style type="text/css">
+.metavalue {
+  display: none;
+}
+</style>
+<!-- Rating_END --><!-- RESERVED_HEADER_INCLUDE -->
+<script language="javascript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/ajax1.js" type="text/javascript"></script>
+<script language="javascript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/search_counter-maverick.js" type="text/javascript"></script>
+<script language="javascript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/request_referer_capture-maverick.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ setDefaultQuery('');
+ //-->
+</script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ function openNewWindow(url,tar,arg){window.open(url,tar,arg);}
+ //-->
+</script>
+<!-- Include file support -->
+<script language="JavaScript" type="text/javascript">
+(function($) {
+	jQuery.extend({
+		getInc: function(u,d){
+			if(u==null)return;
+			jQuery.ajax({
+	    		type: "GET",
+			url: u,
+			dataType: "text",
+	        	success: function(t) {
+				jQuery(d).html(t);
+			},
+			async: true
+			});
+		}
+	});
+})(jQuery);
+</script>
+<script charset="UTF-8" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/flash-detect.js" type="text/javascript" id="flashdetect"></script><script charset="UTF-8" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/usen-utf8.js" type="text/javascript" id="mhMenu"></script><script charset="UTF-8" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/Controller" type="text/javascript" id="dynavEA"></script><script charset="UTF-8" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/Controller_002" type="text/javascript" id="wiBundle"></script></head><body
+ id="ibm-com">
+<div id="ibm-top" class="ibm-landing-page">
+
+<!-- MASTHEAD_BEGIN -->
+<div class="ibm-access"><a href="#ibm-content">Skip to main content</a></div>
+<div id="ibm-masthead"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/print-header.gif"
+ id="ibm-print-masthead" height="32" width="510">
+<div id="ibm-logo"><a href="http://www.ibm.com/"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/ibm-logo.gif"
+ alt="IBM®" height="50" width="110"></a></div>
+<ul id="ibm-geo"><li id="ibm-country" class="ibm-first">Country/region</li><li
+ id="ibm-change-country">[ <a 
+href="http://www.ibm.com/developerworks/country/">select</a> ]</li></ul>
+  <form id="ibm-search-form" 
+action="//www.ibm.com/developerworks/search/searchResults.jsp" 
+method="get" name="form1"><input name="searchType" value="1" 
+type="hidden"><input name="searchSite" value="dW" type="hidden"><p>
+<span id="ibm-search-scope">
+<label for="sn"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt="Search in:" height="1" width="1"></label>
+<select name="searchScope" id="sn">
+<option value="dW" selected="selected">All of dW</option>
+<option value="dW">-----------------</option>
+<option value="aixunix">&nbsp;AIX and UNIX</option>
+<option value="db2">&nbsp;Information Mgmt</option>
+<option value="lotus">&nbsp;Lotus</option>
+<option value="rdd">&nbsp;Rational</option>
+<option value="tivoli">&nbsp;Tivoli</option>  
+<option value="WSDD">&nbsp;WebSphere</option>
+<option value="dW">-----------------</option> 
+<option value="javaZ">&nbsp;Java technology</option> 
+<option value="linuxZ">&nbsp;Linux</option> 
+<option value="opensrcZ">&nbsp;Open source</option>
+<option value="webservZ">&nbsp;SOA/Web services</option>
+<option value="webarchZ">&nbsp;Web development</option>  
+<option value="xmlZ">&nbsp;XML</option>
+<option value="dW">-----------------</option>
+<option value="forums">&nbsp;dW forums</option> 
+<option value="dW">-----------------</option>
+<option value="aI">University</option>
+<option value="dW">-----------------</option>
+<option value="aW">alphaWorks</option>
+<option value="dW">-----------------</option>
+<option value="all">All of IBM</option>
+</select>
+</span>
+
+<label for="q"><img alt="Search for:" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ height="1" width="1"></label><input name="query" maxlength="100" id="q"
+ type="text"><input id="ibm-search" class="ibm-btn-search" name="Search"
+ value="Search" type="submit"></p></form>
+<div id="ibm-site-name">
+<!-- IBM site name container -->
+</div>
+<div id="ibm-universal-nav">
+<ul><li id="ibm-unav-home" class="ibm-first"><a 
+href="http://www.ibm.com/us/en/">Home</a></li><li 
+id="ibm-unav-solutions"><a class=" ibm-unav-has-child" 
+href="http://www.ibm.com/solutions/us/en/">Solutions</a><div 
+id="gi-d82e8473" class="ibm-unav-menu"><span id="gi-d82e8473-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li class=" ibm-mhdyn-rule"><a
+ id="gi-e8c42398-trigger" 
+href="http://www.ibm.com/smarterplanet/us/en/?cm_re=masthead-_-solutions-_-asmarterplanet">A
+ smarter planet</a><div id="gi-e8c42398" class="ibm-unav-menu 
+ibm-mhdyn-rule"><span id="gi-e8c42398-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-8dfc4c08-trigger" class=" 
+ibm-unav-menu-has-child" href="javascript:void(0);">By industry</a><div 
+id="gi-8dfc4c08" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-8dfc4c08-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/industries/aerodefense/?cm_re=masthead-_-business-_-ind-aerodef">Aerospace
+ and defense</a></li><li><a 
+href="http://www.ibm.com/industries/automotive/?cm_re=masthead-_-business-_-ind-auto">Automotive</a></li><li><a
+ 
+href="http://www.ibm.com/industries/financialservices/banking/?cm_re=masthead-_-business-_-ind-banking">Banking</a></li><li><a
+ 
+href="http://www.ibm.com/industries/chemicalspetroleum/?cm_re=masthead-_-business-_-ind-chem">Chemicals
+ and petroleum</a></li><li><a 
+href="http://www.ibm.com/industries/construction/?cm_re=masthead-_-solutions-_-ind-construction">Construction</a></li><li><a
+ 
+href="http://www.ibm.com/industries/consumerproducts/?cm_re=masthead-_-business-_-ind-consumer">Consumer
+ products</a></li><li><a 
+href="http://www.ibm.com/industries/education/?cm_re=masthead-_-business-_-ind-edu">Education</a></li><li><a
+ 
+href="http://www.ibm.com/industries/electronics/?cm_re=masthead-_-business-_-ind-elec">Electronics</a></li><li><a
+ 
+href="http://www.ibm.com/industries/utilities/?cm_re=masthead-_-business-_-ind-energy">Energy
+ and utilities</a></li><li><a 
+href="http://www.ibm.com/industries/financialservices/financialmarkets/?cm_re=masthead-_-business-_-ind-finance">Financial
+ markets</a></li><li><a 
+href="http://www.ibm.com/industries/forestpaper/?cm_re=masthead-_-solutions-_-ind-forestpaper">Forest
+ and paper</a></li><li><a 
+href="http://www.ibm.com/industries/government/?cm_re=masthead-_-business-_-ind-gov">Government</a></li><li><a
+ 
+href="http://www.ibm.com/industries/healthcare/?cm_re=masthead-_-solutions-_-ind-health">Healthcare</a></li><li><a
+ 
+href="http://www.ibm.com/industries/financialservices/insurance/?cm_re=masthead-_-business-_-ind-ins">Insurance</a></li><li><a
+ 
+href="http://www.ibm.com/services/gbs/lifesciences?cm_re=masthead-_-solutions-_-ind-lifesci">Life
+ sciences</a></li><li><a 
+href="http://www.ibm.com/industries/media/?cm_re=masthead-_-business-_-ind-media">Media
+ and entertainment</a></li><li><a 
+href="http://www.ibm.com/industries/metalsmining/?cm_re=masthead-_-solutions-_-ind-metalsmining">Metals
+ and mining</a></li><li><a 
+href="http://www.ibm.com/industries/retail/?cm_re=masthead-_-business-_-ind-retail">Retail</a></li><li><a
+ 
+href="http://www.ibm.com/industries/telecom/?cm_re=masthead-_-business-_-ind-tele">Telecommunications</a></li><li><a
+ 
+href="http://www.ibm.com/industries/travel/?cm_re=masthead-_-business-_-ind-travel">Travel
+ and transportation</a></li><li><a 
+href="http://www.ibm.com/wholesaledistribution/?cm_re=masthead-_-business-_-ind-wholesale">Wholesale
+ distribution</a></li><li><a 
+href="http://www.ibm.com/businesscenter/smb/us/en/industries?cm_re=masthead-_-business-_-ind-medbus">Medium
+ business industries</a></li></ul></div></li><li class=" 
+ibm-place-holder"><a id="gi-8e4b9f52-trigger" class=" 
+ibm-unav-menu-has-child" href="javascript:void(0);">By business need</a><div
+ id="gi-8e4b9f52" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-8e4b9f52-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/software/data/db2bi/?cm_re=masthead-_-business-_-bzn-busint">Business
+ intelligence</a></li><li><a 
+href="http://www.ibm.com/services/crm/?cm_re=masthead-_-business-_-bzn-crm">Customer
+ relationship management</a></li><li><a 
+href="http://www.ibm.com/solutions/erp/?cm_re=masthead-_-business-_-bzn-erp">Enterprise
+ resource planning</a></li><li><a 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_financialmgmt.html?re=bcs_home&amp;cm_re=masthead-_-business-_-bzn-finmgmt">Financial
+ management</a></li><li><a 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_humancapitalmgmt.html?re=bcs_home&amp;cm_re=masthead-_-business-_-bzn-humancap">Human
+ capital management</a></li><li><a 
+href="http://www.ibm.com/software/plm/?cm_re=masthead-_-business-_-bzn-plm">Product
+ lifecycle management</a></li><li><a 
+href="http://www.ibm.com/security/?cm_re=masthead-_-business-_-bzn-sec">Security</a></li><li><a
+ 
+href="http://www.ibm.com/software/solutions/sensors/?cm_re=masthead-_-business-_-bzn-sensors">Sensors</a></li><li><a
+ 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_strategyplanning.html?re=bcs_home&amp;cm_re=masthead-_-business-_-bzn-strat">Strategy
+ and change</a></li><li><a 
+href="http://www.ibm.com/services/scm/?cm_re=masthead-_-business-_-bzn-scm">Supply
+ chain management</a></li></ul></div></li><li class=" ibm-place-holder"><a
+ id="gi-52b70a41-trigger" class=" ibm-unav-menu-has-child" 
+href="javascript:void(0);">By IT issue</a><div id="gi-52b70a41" 
+class="ibm-unav-menu ibm-place-holder"><span id="gi-52b70a41-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/itsolutions/business-process-management/?cm_re=masthead-_-business-_-bzn-bpm">Business
+ process management</a></li><li><a 
+href="http://www.ibm.com/itsolutions/collaboration/?cm_re=masthead-_-business-_-bzn-collab">Collaboration</a></li><li><a
+ 
+href="http://www.ibm.com/itsolutions/content-management//?cm_re=masthead-_-business-_-bzn-content">Content
+ management</a></li><li><a 
+href="http://www.ibm.com/itsolutions/it-cost/?cm_re=masthead-_-business-_-bzn-cost">Cost
+ management</a></li><li><a 
+href="http://www.ibm.com/itsolutions/data/?cm_re=masthead-_-business-_-bzn-data">Data
+ management</a></li><li><a 
+href="http://www.ibm.com/itsolutions/disaster-recovery/?cm_re=masthead-_-business-_-bzn-recovery">Disaster
+ recovery</a></li><li><a 
+href="http://www.ibm.com/itsolutions/distribution-management/?cm_re=masthead-_-business-_-bzn-disman">Distribution
+ management</a></li><li><a 
+href="http://www.ibm.com/itsolutions/energy-efficiency/?cm_re=masthead-_-business-_-bzn-energy">Energy
+ efficiency</a></li><li><a 
+href="http://www.ibm.com/itsolutions/eai/?cm_re=masthead-_-business-_-bzn-eai">Enterprise
+ application integration</a></li><li><a 
+href="http://www.ibm.com/itsolutions/enterprisearchitecture/">Enterprise
+ architecture</a></li><li><a 
+href="http://www.ibm.com/itsolutions/compliance/?cm_re=masthead-_-business-_-bzn-compliance">Regulatory
+ compliance</a></li><li><a 
+href="http://www.ibm.com/security?cm_re=masthead-_-business-_-bzn-security">Security</a></li><li><a
+ 
+href="http://www.ibm.com/itsolutions/systems-management/?cm_re=masthead-_-business-_-bzn-sysman">Systems
+ management</a></li><li><a 
+href="http://www.ibm.com/itsolutions/virtualization/?cm_re=masthead-_-business-_-bzn-virtual">Virtualization</a></li><li><a
+ 
+href="http://www.ibm.com/itsolutions/portals/?cm_re=masthead-_-business-_-bzn-wrkforce">Workforce
+ productivity</a></li></ul></div></li><li class=" ibm-mhdyn-rule"><a 
+id="gi-9fe30c57-trigger" class=" ibm-unav-menu-has-child" 
+href="javascript:void(0);">By Business Partner</a><div id="gi-9fe30c57" 
+class="ibm-unav-menu ibm-mhdyn-rule"><span id="gi-9fe30c57-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/solutions/cisco/us/en/?cm_re=masthead-_-business-_-bp-cisco">IBM
+ and Cisco</a></li><li><a 
+href="http://www.ibm.com/solutions/oracle/us/en/?cm_re=masthead-_-business-_-bp-oracle">IBM
+ and Oracle</a></li><li><a 
+href="http://www.ibm.com/solutions/sap/us/en/?cm_re=masthead-_-business-_-bp-sap">IBM
+ and SAP</a></li><li><a 
+href="http://www.ibm.com/solutions/alliance/us/en/?cm_re=masthead-_-business-_-bp-more">More
+ alliance partners</a></li><li><a 
+href="http://www-304.ibm.com/jct09002c/gsdod/showcase.do?cm_re=masthead-_-business-_-bp-select">Select
+ Business Partners</a></li></ul></div></li><li><a 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_index.html?cm_re=masthead-_-business-_-busconsult">Business
+ consulting</a></li><li><a 
+href="http://www.ibm.com/cloud?cm_re=masthead-_-solutions-_-cloud">Cloud
+ computing</a></li><li><a 
+href="http://www.ibm.com/systems/dynamicinfrastructure/?cm_re=masthead-_-business-_-di">Dynamic
+ infrastructure</a></li><li><a 
+href="http://www.ibm.com/financing/us/?cm_re=masthead-_-business-_-financing">Financing</a></li><li><a
+ href="http://www.ibm.com/green/?cm_re=masthead-_-business-_-green">Green:
+ energy, environment &amp; sustainability</a></li><li class=" 
+ibm-mhdyn-rule"><a id="gi-fb64c37c-trigger" 
+href="http://www.ibm.com/soa?pgel=ibmhzn&amp;cm_re=masthead-_-business-_-soa">Service
+ oriented architecture (SOA)</a><div id="gi-fb64c37c" 
+class="ibm-unav-menu ibm-mhdyn-rule"><span id="gi-fb64c37c-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-mhdyn-rule"><a id="gi-c20de2c1-trigger" 
+href="http://www-01.ibm.com/finder/businesscenter/us/en/businessstrategies_topic.wss?cm_re=masthead-_-business-_-sol4mb">Small
+ and medium business</a><div id="gi-c20de2c1" class="ibm-unav-menu 
+ibm-mhdyn-rule"><span id="gi-c20de2c1-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li><a 
+href="http://www.ibm.com/businesssolutions/us/en/?cm_re=masthead-_-business-_-more">More</a></li></ul></div></li><li
+ id="ibm-unav-services"><a class=" ibm-unav-has-child" 
+href="http://www.ibm.com/technologyservices/us/en/">Services</a><div 
+id="gi-c1c3a69c" class="ibm-unav-menu"><span id="gi-c1c3a69c-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li class=" ibm-mhdyn-rule"><a
+ id="gi-d36a1149-trigger" class=" ibm-unav-menu-has-child" 
+href="javascript:void(0);">IT services</a><div id="gi-d36a1149" 
+class="ibm-unav-menu ibm-mhdyn-rule"><span id="gi-d36a1149-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/services/us/index.wss">All IT services</a></li><li><a
+ 
+href="http://www.ibm.com/services/continuity/?cm_re=masthead-_-itservices-_-buscont">Business
+ continuity and resiliency services</a></li><li><a 
+href="http://www.ibm.com/services/enduser/?cm_re=masthead-_-itservices-_-enduser">End-user
+ services</a></li><li><a 
+href="http://www.ibm.com/services/integratedcommunications/?cm_re=masthead-_-itservices-_-communications">Integrated
+ communications services</a></li><li><a 
+href="http://www.ibm.com/services/itsaconsulting/?cm_re=masthead-_-itservices-_-strategy">IT
+ strategy and architecture services</a></li><li><a 
+href="http://www.ibm.com/services/maintenance/?cm_re=masthead-_-itservices-_-maint">Maintenance
+ and technical support services</a></li><li><a 
+href="http://www.ibm.com/services/middleware/?cm_re=masthead-_-itservices-_-middleware">Middleware
+ services</a></li><li><a 
+href="http://www.ibm.com/services/security/?cm_re=masthead-_-itservices-_-security">Security
+ services</a></li><li><a 
+href="http://www.ibm.com/services/server/?cm_re=masthead-_-itservices-_-server">Server
+ services</a></li><li><a 
+href="http://www.ibm.com/services/siteandfacilities/?cm_re=masthead-_-itservices-_-site">Site
+ and facilities services</a></li><li><a 
+href="http://www.ibm.com/services/storage/?cm_re=masthead-_-itservices-_-storage">Storage
+ and data services</a></li><li><a 
+href="http://www.ibm.com/services/us/index.wss/allservices">IT services 
+A-Z</a></li></ul></div></li><li class=" ibm-mhdyn-rule"><a 
+id="gi-fda79e86-trigger" class=" ibm-unav-menu-has-child" 
+href="javascript:void(0);">Business consulting</a><div id="gi-fda79e86" 
+class="ibm-unav-menu ibm-mhdyn-rule"><span id="gi-fda79e86-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_index.html?cm_re=masthead-_-itservices-_-busconsult">All
+ business consulting</a></li><li><a 
+href="http://www.ibm.com/gbs/bao?cm_re=masthead-_-itservices-_-bao">Business
+ analytics and optimization</a></li><li><a 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_salesmrktingservices.html?re=bcs_home">Customer
+ relationship management</a></li><li><a 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_financialmgmt.html?re=bcs_home">Financial
+ management</a></li><li><a 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_humancapitalmgmt.html?re=bcs_home">Human
+ capital management</a></li><li><a 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_strategyplanning.html?re=bcs_home">Strategy
+ and change</a></li><li><a 
+href="http://www.ibm.com/services/us/gbs/bus/html/bcs_supplychainprocurement.html?re=bcs_home">Supply
+ chain management</a></li></ul></div></li><li class=" ibm-mhdyn-rule"><a
+ id="gi-511f4c8f-trigger" class=" ibm-unav-menu-has-child" 
+href="javascript:void(0);">Application services</a><div id="gi-511f4c8f"
+ class="ibm-unav-menu ibm-mhdyn-rule"><span id="gi-511f4c8f-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/services/applications?cm_re=masthead-_-business-_-apps-allappserv">All
+ application services</a></li><li><a 
+href="http://www.ibm.com/services/us/gbs/app/html/gbs_app_custom_appdev_sysinteg.html?cm_re=masthead-_-business-_-apps-appdev">Custom
+ application development and system integration</a></li><li><a 
+href="http://www.ibm.com/services/us/gbs/app/html/gbs_app_appmanagement.html?cm_re=masthead-_-business-_-apps-appmgmt">Application
+ management</a></li></ul></div></li><li class=" ibm-mhdyn-rule"><a 
+id="gi-2137e0b5-trigger" class=" ibm-unav-menu-has-child" 
+href="javascript:void(0);">Outsourcing services</a><div id="gi-2137e0b5"
+ class="ibm-unav-menu ibm-mhdyn-rule"><span id="gi-2137e0b5-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/services/us/index.wss/offerfamily/aod/a1028600">Applications
+ outsourcing</a></li><li><a 
+href="http://www.ibm.com/services/us/index.wss/offerfamily/igs/a1001429">Business
+ process outsourcing</a></li><li><a 
+href="http://www.ibm.com/services/us/index.wss/offerfamily/gts/a1029385">IT
+ outsourcing and hosting</a></li></ul></div></li><li class=" 
+ibm-mhdyn-rule"><a id="gi-c145c9e3-trigger" 
+href="http://www.ibm.com/training">Training</a><div id="gi-c145c9e3" 
+class="ibm-unav-menu ibm-mhdyn-rule"><span id="gi-c145c9e3-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-mhdyn-rule"><a id="gi-69e26412-trigger" 
+href="http://www-01.ibm.com/finder/businesscenter/us/en/itsolutionsservices_topic.wss?cm_re=masthead-_-itservices-_-medbus">Small
+ and medium business</a><div id="gi-69e26412" class="ibm-unav-menu 
+ibm-mhdyn-rule"><span id="gi-69e26412-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-mhdyn-rule"><a id="gi-aee6eb2a-trigger" class=" 
+ibm-unav-menu-has-child" href="javascript:void(0);">Other services</a><div
+ id="gi-aee6eb2a" class="ibm-unav-menu ibm-mhdyn-rule"><span 
+id="gi-aee6eb2a-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/financing/us/recovery/?cm_re=masthead-_-itservices-_-asset">Asset
+ recovery</a></li><li><a 
+href="http://www.ibm.com/software/sw-services/?cm_re=masthead-_-itservices-_-software">Software
+ services</a></li></ul></div></li><li><a 
+href="http://www.ibm.com/technologyservices/us/en/?cm_re=masthead-_-itservices-_-more">More</a></li></ul></div></li><li
+ id="ibm-unav-products"><a class=" ibm-unav-has-child" 
+href="http://www.ibm.com/products/us/en/">Products</a><div 
+id="gi-64d563ab" class="ibm-unav-menu"><span id="gi-64d563ab-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li class=" 
+ibm-place-holder"><a id="gi-7c5e9eac-trigger" 
+href="http://www.ibm.com/products/specialoffers/us/en/index.html?cm_re=masthead-_-products-_-promo">Special
+ offers</a><div id="gi-7c5e9eac" class="ibm-unav-menu ibm-place-holder"><span
+ id="gi-7c5e9eac-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-c02d4be0-trigger" class=" 
+ibm-unav-menu-has-child" href="javascript:void(0);">Software</a><div 
+id="gi-c02d4be0" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-c02d4be0-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/software?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-allsoftware">Software
+ overview</a></li><li><a 
+href="http://www.ibm.com/software/products/us/en/?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-swprodfinder">Products</a></li><li
+ class=" ibm-mhdyn-rule"><a id="gi-100c76e7-trigger" 
+href="http://www14.software.ibm.com/webapp/download/byproduct.jsp?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-trials">Trials
+ and demos</a><div id="gi-100c76e7" class="ibm-unav-menu ibm-mhdyn-rule"><span
+ id="gi-100c76e7-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li><a 
+href="http://www.ibm.com/software/data?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-infomgmt">Information
+ Management</a></li><li><a 
+href="http://www.ibm.com/software/data/cognos/?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-cognos">-
+ Cognos</a></li><li><a 
+href="http://www.ibm.com/software/data/management/?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-db2">-
+ DB2</a></li><li><a 
+href="http://www.ibm.com/software/data/content-management/?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-filenet">-
+ ECM (including FileNet)</a></li><li><a 
+href="http://www.ibm.com/software/data/informix/?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-informix">-
+ Informix</a></li><li><a 
+href="http://www.ibm.com/software/data/infosphere/?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-infosphere">-
+ InfoSphere</a></li><li><a 
+href="http://www.ibm.com/software/lotus?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-lotus">Lotus</a></li><li><a
+ 
+href="http://www.ibm.com/software/rational?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-rational">Rational</a></li><li><a
+ 
+href="http://www.ibm.com/software/tivoli?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-tivoli">Tivoli</a></li><li><a
+ 
+href="http://www.ibm.com/software/websphere?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-websphere">WebSphere</a></li><li><a
+ 
+href="http://www.ibm.com/software/os/systemz/en_US/?pgel=ibmhzn&amp;cm_re=masthead-_-products-_-sw-sysz">System
+ z software</a></li></ul></div></li><li class=" ibm-place-holder"><a 
+id="gi-dc07be0c-trigger" class=" ibm-unav-menu-has-child" 
+href="javascript:void(0);">Storage</a><div id="gi-dc07be0c" 
+class="ibm-unav-menu ibm-place-holder"><span id="gi-dc07be0c-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/storage/?cm_re=masthead-_-products-_-stg-allstorage">All
+ storage</a></li><li><a 
+href="http://www.ibm.com/storage/disk/?cm_re=masthead-_-products-_-stg-disk">Disk
+ systems</a></li><li><a 
+href="http://www.ibm.com/storage/tape/?cm_re=masthead-_-products-_-stg-tape">Tape
+ systems</a></li><li><a 
+href="http://www.ibm.com/storage/snetwork/?cm_re=masthead-_-products-_-stg-san">Storage
+ area networks</a></li><li><a 
+href="http://www.ibm.com/totalstorage/nas/?cm_re=masthead-_-products-_-stg-nas">Network
+ attached storage</a></li><li><a 
+href="http://www.ibm.com/storage/software/?cm_re=masthead-_-products-_-stg-storagesoft">Storage
+ software</a></li><li><a 
+href="http://www.ibm.com/pc/ww/hdd/hddredirect.html?cm_re=masthead-_-products-_-stg-hdd">Hard
+ drives/microdrives</a></li><li><a 
+href="http://www.ibm.com/systems/storage/product/?cm_re=masthead-_-products-_-stg-storagea2z">Storage
+ A to Z</a></li></ul></div></li><li class=" ibm-mhdyn-rule"><a 
+id="gi-afbee0-trigger" class=" ibm-unav-menu-has-child" 
+href="javascript:void(0);">Servers &amp; systems</a><div id="gi-afbee0" 
+class="ibm-unav-menu ibm-mhdyn-rule"><span id="gi-afbee0-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/systems/?cm_re=masthead-_-products-_-sys-allsystems">All
+ servers and systems</a></li><li><a 
+href="http://www.ibm.com/systems/power/?cm_re=masthead-_-products-_-sys-power">Power
+ Systems</a></li><li><a 
+href="http://www.ibm.com/systems/i/?cm_re=masthead-_-products-_-sys-iseries">System
+ i (iSeries)</a></li><li><a 
+href="http://www.ibm.com/systems/p/?cm_re=masthead-_-products-_-sys-pseries">System
+ p (pSeries)</a></li><li><a 
+href="http://www.ibm.com/systems/z/?cm_re=masthead-_-products-_-sys-zseries">System
+ z (Mainframe)</a></li><li><a 
+href="http://www.ibm.com/systems/x/?cm_re=masthead-_-products-_-sys-xseries">System
+ x (xSeries)</a></li><li><a 
+href="http://www.ibm.com/systems/bladecenter/?cm_re=masthead-_-products-_-sys-blade">BladeCenter</a></li><li
+ class=" ibm-mhdyn-rule"><a id="gi-fe928777-trigger" 
+href="http://www.ibm.com/systems/clusters/?cm_re=masthead-_-products-_-sys-cluster">Cluster
+ systems</a><div id="gi-fe928777" class="ibm-unav-menu ibm-mhdyn-rule"><span
+ id="gi-fe928777-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li><a 
+href="http://www.ibm.com/systems/hardware/browse/unix/?cm_re=masthead-_-products-_-sys-unix">UNIX
+ servers</a></li><li class=" ibm-mhdyn-rule"><a id="gi-caba0ef2-trigger"
+ 
+href="http://www.ibm.com/systems/hardware/browse/linux/?cm_re=masthead-_-products-_-sys-linux">Linux
+ servers</a><div id="gi-caba0ef2" class="ibm-unav-menu ibm-mhdyn-rule"><span
+ id="gi-caba0ef2-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li><a 
+href="http://www.ibm.com/systems/hardware/browse/inpro/?cm_re=masthead-_-products-_-sys-intel">Intel
+ processor-based servers</a></li><li class=" ibm-mhdyn-rule"><a 
+id="gi-ee37b2a6-trigger" 
+href="http://www.ibm.com/systems/hardware/browse/amdpro/?cm_re=masthead-_-products-_-sys-amd">AMD
+ processor-based servers</a><div id="gi-ee37b2a6" class="ibm-unav-menu 
+ibm-mhdyn-rule"><span id="gi-ee37b2a6-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li><a 
+href="http://www.ibm.com/systems/oem?cm_re=masthead-_-products-_-oemsys">OEM
+ systems</a></li></ul></div></li><li class=" ibm-place-holder"><a 
+id="gi-e2982496-trigger" 
+href="http://www.ibm.com/services/us/index.wss/offerfamily/iss/a1029097?cm_re=masthead-_-products-_-iss">Internet
+ security</a><div id="gi-e2982496" class="ibm-unav-menu 
+ibm-place-holder"><span id="gi-e2982496-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-63761a4f-trigger" 
+href="http://www.ibm.com/shop/pc">Personal computers</a><div 
+id="gi-63761a4f" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-63761a4f-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-51a904cf-trigger" 
+href="http://www.ibm.com/products/retail/?cm_re=masthead-_-products-_-pos">Point
+ of sale</a><div id="gi-51a904cf" class="ibm-unav-menu ibm-place-holder"><span
+ id="gi-51a904cf-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-430818f8-trigger" 
+href="http://www.infoprint.com/us">Printing systems from InfoPrint</a><div
+ id="gi-430818f8" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-430818f8-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-6097a8dc-trigger" 
+href="http://www.ibm.com/technology/?cm_re=masthead-_-products-_-chips">Semiconductors</a><div
+ id="gi-6097a8dc" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-6097a8dc-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-mhdyn-rule"><a id="gi-c6f043b8-trigger" 
+href="http://www.ibm.com/shop/americas/content/home/store_IBMPublicUSA/en_US/Upgrades.html?cm_re=masthead-_-products-_-upgrades">Upgrades,
+ accessories &amp; parts</a><div id="gi-c6f043b8" class="ibm-unav-menu 
+ibm-mhdyn-rule"><span id="gi-c6f043b8-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-mhdyn-rule"><a id="gi-924bbad1-trigger" 
+href="http://www.ibm.com/shop/usedsystems">Certified used systems &amp; 
+storage</a><div id="gi-924bbad1" class="ibm-unav-menu ibm-mhdyn-rule"><span
+ id="gi-924bbad1-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-mhdyn-rule"><a id="gi-b41e4d22-trigger" 
+href="http://www.ibm.com/community/?cm_re=masthead-_-products-_-promo">Communities</a><div
+ id="gi-b41e4d22" class="ibm-unav-menu ibm-mhdyn-rule"><span 
+id="gi-b41e4d22-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-92ea28fc-trigger" 
+href="http://www.ibm.com/businesscenter/smb/us/en/smallbusiness?cm_re=masthead-_-products-_-smallbus">Small
+ business products</a><div id="gi-92ea28fc" class="ibm-unav-menu 
+ibm-place-holder"><span id="gi-92ea28fc-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-mhdyn-rule"><a id="gi-e0dc75f3-trigger" class=" 
+ibm-unav-menu-has-child" href="javascript:void(0);">Medium business 
+products</a><div id="gi-e0dc75f3" class="ibm-unav-menu ibm-mhdyn-rule"><span
+ id="gi-e0dc75f3-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/finder/businesscenter/us/en/hardware_topic.wss?cm_re=masthead-_-products-_-med-hardware">Hardware</a></li><li><a
+ 
+href="http://www.ibm.com/finder/businesscenter/us/en/software_topic.wss?cm_re=masthead-_-products-_-med-software">Software</a></li></ul></div></li><li
+ class=" ibm-place-holder"><a id="gi-76a68e2c-trigger" 
+href="http://www.ibm.com/products/us/?cm_re=masthead-_-products-_-more">More</a><div
+ id="gi-76a68e2c" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-76a68e2c-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li></ul></div></li><li
+ id="ibm-unav-support"><a class=" ibm-unav-has-child" 
+href="http://www.ibm.com/support/us/en/">Support &amp; downloads</a><div
+ id="gi-b858314e" class="ibm-unav-menu"><span id="gi-b858314e-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li class=" 
+ibm-place-holder"><a id="gi-b0b2b9b4-trigger" class=" 
+ibm-unav-menu-has-child" href="javascript:void(0);">Download</a><div 
+id="gi-b0b2b9b4" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-b0b2b9b4-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/products/finder/us/finders?pg=ddfinder&amp;cm_re=other-_-suprcn-_-download">Fixes,
+ updates and drivers</a></li><li><a 
+href="http://www14.software.ibm.com/webapp/download/byproduct.jsp?pgel=ibmhzn1&amp;cm_re=masthead-_-supdl-_-dl-trials">Trials
+ and demos</a></li></ul></div></li><li class=" ibm-place-holder"><a 
+id="gi-79eded2-trigger" 
+href="http://www.ibm.com/support/troubleshooting/en_US?cm_re=masthead-_-supdl-_-troubleshoot">Troubleshoot</a><div
+ id="gi-79eded2" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-79eded2-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-ba9d4f1-trigger" 
+href="http://www.ibm.com/support/advsrch.wss?rs=0&amp;loc=en_US&amp;cm_re=masthead-_-supdl-_-search">Search</a><div
+ id="gi-ba9d4f1" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-ba9d4f1-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-5291be05-trigger" 
+href="http://www.ibm.com/support/documentation/en_US?cm_re=masthead-_-supdl-_-documentation">Documentation</a><div
+ id="gi-5291be05" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-5291be05-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-e6a8edbf-trigger" 
+href="http://www.ibm.com/support/forums/en_US?cm_re=masthead-_-supdl-_-forums">Forums
+ &amp; communities</a><div id="gi-e6a8edbf" class="ibm-unav-menu 
+ibm-place-holder"><span id="gi-e6a8edbf-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-b1e2811e-trigger" 
+href="http://www.ibm.com/support/plan/en_US?cm_re=masthead-_-supdl-_-plan">Plan</a><div
+ id="gi-b1e2811e" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-b1e2811e-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-551ee9fb-trigger" 
+href="http://www.ibm.com/support/install/en_US?cm_re=masthead-_-supdl-_-install">Install</a><div
+ id="gi-551ee9fb" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-551ee9fb-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-f05c2207-trigger" 
+href="http://www.ibm.com/support/use/en_US?cm_re=masthead-_-supdl-_-use">Use</a><div
+ id="gi-f05c2207" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-f05c2207-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-77a2770-trigger" 
+href="http://www.ibm.com/support/electronic/uprtransition.wss?category=2&amp;locale=en_us&amp;cm_re=masthead-_-supdl-_-request">Open
+ a technical service request</a><div id="gi-77a2770" 
+class="ibm-unav-menu ibm-place-holder"><span id="gi-77a2770-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-mhdyn-rule"><a id="gi-4bd1dc5e-trigger" class=" 
+ibm-unav-menu-has-child" href="javascript:void(0);">Support by product</a><div
+ id="gi-4bd1dc5e" class="ibm-unav-menu ibm-mhdyn-rule"><span 
+id="gi-4bd1dc5e-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="http://www.ibm.com/software/support/?cm_re=masthead-_-supdl-_-sbp-software">Software</a></li><li><a
+ 
+href="http://www.ibm.com/systems/support?cm_re=masthead-_-supdl-_-sbp-systems">Servers
+ and systems</a></li><li><a 
+href="http://www.ibm.com/systems/support/supportsite.wss/brandmain?brandind=5345868&amp;cm_re=masthead-_-supdl-_-sbp-storage">System
+ storage</a></li><li><a 
+href="http://www.infoprintsolutionscompany.com/internet/wwsites.nsf/vwwebpublished/sm_home_us?opendocument&amp;cm_re=masthead-_-supdl-_-sbp-print">Printing
+ systems from InfoPrint</a></li><li><a 
+href="http://www.lenovo.com/support/?cm_re=masthead-_-supdl-_-sbp-lenovo">Lenovo
+ ThinkPads and ThinkCentres</a></li></ul></div></li><li class=" 
+ibm-mhdyn-rule"><a id="gi-287a4a3e-trigger" 
+href="http://www.ibm.com/support/operations/us/en?cm_re=masthead-_-supdl-_-getadmin">Customer
+ support</a><div id="gi-287a4a3e" class="ibm-unav-menu ibm-mhdyn-rule"><span
+ id="gi-287a4a3e-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-f487357-trigger" 
+href="http://www.ibm.com/support/us/en/?cm_re=masthead-_-supdl-_-more">More</a><div
+ id="gi-f487357" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-f487357-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li></ul></div></li><li
+ id="ibm-unav-myibm"><a class=" ibm-unav-has-child" 
+href="http://www.ibm.com/account/us/en/">My IBM</a><div id="gi-7251008f"
+ class="ibm-unav-menu"><span id="gi-7251008f-ehb" 
+class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li class=" 
+ibm-place-holder"><a id="gi-be8c2559-trigger" 
+href="http://www.ibm.com/account/myaccounts/us/en/?cm_re=masthead-_-myibm-_-myacct">My
+ accounts</a><div id="gi-be8c2559" class="ibm-unav-menu 
+ibm-place-holder"><span id="gi-be8c2559-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-8024c016-trigger" 
+href="https://www.ibm.com/account/myibm/profile.do?cc=us&amp;lc=&amp;cm_re=masthead-_-myibm-_-myprofile">My
+ profile</a><div id="gi-8024c016" class="ibm-unav-menu ibm-place-holder"><span
+ id="gi-8024c016-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-myinterest"><a id="gi-f1a7f03f-trigger" 
+href="https://www.ibm.com/account/myibm/myinterestView.do?cc=us&amp;lc=en&amp;cm_re=masthead-_-myibm-_-myinterests">My
+ interests</a><div id="gi-f1a7f03f" class="ibm-unav-menu ibm-myinterest"><span
+ id="gi-f1a7f03f-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-e834bc5e-trigger" 
+href="http://www.ibm.com/account/mycommunity/us/en/?cm_re=masthead-_-myibm-_-community">My
+ community spaces</a><div id="gi-e834bc5e" class="ibm-unav-menu 
+ibm-place-holder"><span id="gi-e834bc5e-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-5ed90e53-trigger" 
+href="https://www.ibm.com/systems/support/myview/subscription/css.wss/folders?methodName=listMyFolders&amp;cm_re=masthead-_-myibm-_-tech">My
+ technical support</a><div id="gi-5ed90e53" class="ibm-unav-menu 
+ibm-place-holder"><span id="gi-5ed90e53-ehb" class="ibm-unav-menu-ehb"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-990da0f6-trigger" class=" 
+ibm-unav-menu-has-child" href="javascript:void(0)">My customer support</a><div
+ id="gi-990da0f6" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-990da0f6-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul><li><a 
+href="https://www-132.ibm.com/webapp/wcs/stores/servlet/OrderItemDisplay?langId=-1&amp;storeId=1&amp;catalogId=-840&amp;krypto=g3mOZ2uZQalqnkMCJkVJ1Q%3D%3D&amp;ddkey=OrderItemDisplay&amp;cm_re=masthead-_-myibm-_-cs-cart">Shopping
+ cart</a></li><li><a 
+href="http://www.ibm.com/support/operations/us/en/contracts?cm_re=masthead-_-myibm-_-cs-contracts">Contracts</a></li><li><a
+ 
+href="http://www.ibm.com/support/operations/us/en/orderdelivery?cm_re=masthead-_-myibm-_-cs-orders">Orders
+ and delivery</a></li><li><a 
+href="http://www.ibm.com/support/operations/us/en/inventory?cm_re=masthead-_-myibm-_-cs-inventory">Inventory
+ and maintenance</a></li><li><a 
+href="http://www.ibm.com/support/operations/us/en/invoicespayments?cm_re=masthead-_-myibm-_-cs-invoices">Invoices
+ and payments</a></li><li><a 
+href="http://www.ibm.com/support/operations/us/en/learnmore3a?cm_re=masthead-_-myibm-_-cs-self">Self-service
+ tools</a></li><li><a 
+href="http://www.ibm.com/support/operations/us?cm_re=masthead-_-myibm-_-cs-more">More
+ customer support</a></li></ul></div></li><li class=" ibm-mhdyn-rule"><a
+ id="gi-25e3cd47-trigger" 
+href="http://www-931.ibm.com/bin/subscriptions/welcome.cgi?cl=usen&amp;cm_re=masthead-_-myibm-_-subscriptions">Subscriptions</a><div
+ id="gi-25e3cd47" class="ibm-unav-menu ibm-mhdyn-rule"><span 
+id="gi-25e3cd47-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li><li class="
+ ibm-place-holder"><a id="gi-ad32ccb8-trigger" 
+href="http://www.ibm.com/account/us/en/?cm_re=masthead-_-myibm-_-more">More</a><div
+ id="gi-ad32ccb8" class="ibm-unav-menu ibm-place-holder"><span 
+id="gi-ad32ccb8-ehb" class="ibm-unav-menu-ehb"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ alt=""></span><a class="ibm-access"></a><ul></ul></div></li></ul></div></li></ul>
+</div>
+</div>
+<!-- MASTHEAD_END -->
+
+<div id="ibm-pcon">
+
+<!-- CONTENT_BEGIN -->
+<div id="ibm-content">
+
+<!-- Navigation_Trail_BEGIN -->
+<!-- &nbsp; -->
+      <div id="ibm-content-head"><ul id="ibm-navigation-trail"><li 
+class="ibm-first"><a href="http://www.ibm.com/developerworks/">developerWorks</a></li><li><a
+ href="http://www.ibm.com/developerworks/lotus/">Lotus</a></li><li><a 
+href="http://www.ibm.com/developerworks/views/lotus/library.jsp">Technical
+ library</a></li></ul></div>
+<!-- Navigation_Trail_END -->
+
+<!-- dW_Summary Area_START -->
+<div id="dw-summary-article">
+
+<div class="dw-content-head">
+<h1>Rules-of-thumb for monitoring Sun Solaris statistics</h1><p>
+</p></div>
+
+<div class="ibm-container-body ibm-two-column">
+
+<div class="ibm-column ibm-first">
+<div class="author"><a class="dwauthor" rel="#authortip1" 
+href="#author1">Harry Murray</a>, Software Engineer, Iris Associates</div><div
+ style="display: none;" id="authortip1" class="dwauthor-onload-state 
+ibm-no-print">Harry Murray has worked on the Domino Performance team for
+ four years. Prior to that, he worked on the Compaq Computer Application
+ Systems Engineering Performance team.</div>
+<p></p>
+<p><b>Summary:</b>&nbsp; This article focuses on performance of the Sun 
+Solaris operating system, and  interpretation of operating statistics. 
+It also suggests some possible OS tuning changes  that may help 
+performance.</p>
+
+<div id="dw-tag-content" class="ibm-no-print"></div><div 
+id="dw-moretags-access" class="ibm-access"></div>
+<p class="ibm-no-print"></p><div id="dw-tag-this" class="ibm-no-print"><a
+ class="ibm-external-link" onclick="jQuery.launchTagThisWindow(); return
+ false;" href="#">Tag this!</a></div><div id="interestShow" 
+class="ibm-no-print"><div id="dw-interest-anon"><a id="intAnonBtn" 
+class="ibm-external-link" href="">Update My dW interests</a> (<a 
+class="dw-interest" 
+href="https://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=loginpage&amp;d=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flotus%2Flibrary%2Fls-Rules_SunSol%2F">Log
+ in</a> | <a class="dw-interest" href="#overlay" 
+onclick="ibmCommon.Overlays.show('dwmyinterestadd', this);return false;">What's
+ this?</a>) <a class="ibm-access" href="#dwmyinterestaddhelp">Skip to 
+help for Update My dW interests</a></div></div>
+</div>
+
+<div class="ibm-column ibm-second">
+<p class="leading"><b>Date:</b>&nbsp; 01 Jul  2002
+<br><b>Level: </b>&nbsp;Intermediate
+
+
+
+
+
+
+
+
+
+<br>
+<br><b>Activity:</b>&nbsp; 7227 views
+<br><b>Comments:</b> &nbsp; <span id="nCmts">0&nbsp;(<a 
+href="#icomments">Add comments</a>)</span>
+<!-- Rating_Area_Begin -->
+<!-- Ensure that div id is based on input id and ends with -widget -->	
+<input id="art-rating" name="ratinga" value="4" type="hidden"></p><div 
+id="art-rating-widget"><a href="javascript:void(0);"><img alt="1 star" 
+title="Click to rate 1 star" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/avg-star-on.gif"
+ height="20" width="20"></a><a href="javascript:void(0);"><img alt="2 
+stars" title="Click to rate 2 stars" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/avg-star-on.gif"
+ height="20" width="20"></a><a href="javascript:void(0);"><img alt="3 
+stars" title="Click to rate 3 stars" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/avg-star-on.gif"
+ height="20" width="20"></a><a href="javascript:void(0);"><img alt="4 
+stars" title="Click to rate 4 stars" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/avg-star-on.gif"
+ height="20" width="20"></a><a href="javascript:void(0);"><img alt="5 
+stars" title="Click to rate 5 stars" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/star-off.gif"
+ height="20" width="20"></a><span id="rateTxt">  Average rating (based 
+on 41 votes)</span></div>
+<script language="JavaScript" type="text/javascript">
+// <![CDATA[
+   // widget div id and article id as args
+   window.artRating.init('art-rating-widget');
+// ]]>
+</script>
+<!-- Rating_Area_End -->
+
+</div>
+
+</div>
+</div>
+<!-- dW_Summary_Area_END -->
+
+<!-- CONTENT_BODY -->
+<div id="ibm-content-body">
+
+<!-- MAIN_COLUMN_BEGIN -->
+<div id="ibm-content-main">
+
+<!-- Related_Searches_Area -->
+<!-- Related_Searches_Area_Begin -->
+<script type="text/javascript" language="javascript">
+	     capture_referrer();
+</script>
+
+<div id="dw-related-searches-article" style="display: none;">
+<div class="ibm-container ibm-alternate-two">
+<div class="ibm-container-body">
+
+<!--  START : HTML FOR ARTICLE SEARCH -->
+  <div id="article_results" style="display: block;"></div>
+<!--  END : HTML FOR ARTICLE SEARCH -->
+
+</div>
+</div>
+</div>
+<!-- Related_Searches_Area_End -->
+<!-- MAIN_COLUMN_CONTAINER_BEGIN -->
+<div class="ibm-container">
+
+<!-- MAIN_COLUMN_CONTENT_BEGIN -->
+<p>
+				Ensuring that your Domino server is running at peak performance is a
+ daunting task. You need to monitor both the Domino statistics and the 
+operating system (OS) statistics, and you need to know how to interpret 
+those statistics to make sure that no system resources are restricting 
+performance. You may also need to try to
+<i>tune</i>	for the workload running on the server. The art of tuning 
+involves making sure that OS settings and Domino settings provide the 
+best performance.
+			</p><p>
+				The column this month focuses on monitoring the OS statistics for 
+Sun Solaris. It helps you with the interpretation of those statistics 
+and also suggests some possible OS tuning changes that may help 
+performance. This is the second part of a series on performance 
+monitoring and performance tuning tips. The first part of the series 
+covered the
+<a 
+href="https://www.ibm.com/developerworks/lotus/library/ls-Rules_WinNT2000/index.html">Windows
+ operating system</a>, and in the future, we'll cover the AIX operating 
+system (IBM UNIX).
+			</p><p>We have attempted to extract the most important OS statistics 
+and resource usage bottleneck thresholds from the written information 
+available and from Domino performance engineers. We also work very 
+closely with Sun engineers and appreciate their many ideas, which we've 
+incorporated here. We'll tell you only what you need to know to make 
+sure your system has no resource bottlenecks and what standard tools you
+ can use to accomplish this (for at least the majority of situations). 
+We'll also include some OS tuning possibilities as options to pursue as 
+well as a list of references in case you want to dig deeper.</p><p>For 
+this article, we assume that you have a basic knowledge of the Sun 
+Solaris OS. The performance monitoring tools that we discuss are the 
+ones shipped with Solaris. We also discuss the Domino Platform 
+statistics, which offer an alternate way to monitor OS statistics.</p><p>We
+ are attempting to put a stake in the ground based on what has worked 
+for us. We hope this stimulates discussion that will help to further 
+refine these ideas. Please let us know what has worked well for you so 
+that we can modify our recommendations if necessary. These 
+recommendations might also need modification as the OS and Domino change
+ and as we do more performance analysis. We're hoping that the result 
+will be a simple set of rules-of-thumb that can serve as a guide to 
+ensuring optimal performance from your servers.</p><p><a name="N1004C"><span
+ class="atitle">Guidelines for monitoring system performance and tuning 
+systems</span></a></p><p>Before focusing on Sun Solaris, let's review 
+some of the fundamental ideas about monitoring system performance and 
+tuning systems that we discussed in the first article:
+			</p><ul type="disc"><li>Before you concern yourself with bottlenecks,
+ you need to set up your system optimally. Bottlenecks may disappear 
+after properly setting up your system. For example, if the pagefile is 
+too small or on a slow disk, the CPU may be high trying to compensate 
+for this problem.</li><li>You most certainly want to extract the best 
+performance from your servers. This will ensure the best response time 
+for your users and minimize the number of servers needed.</li><li>It's 
+important to collect performance data to establish a baseline before 
+tuning or making either software or hardware changes to the server. This
+ will help determine what effect the change has on performance. It's 
+also best, if possible, to make only one change at a time and then to 
+monitor its effect on performance. The baseline is also needed to 
+compare future trends in resource usage.</li><li>You should collect 
+performance data on a daily, weekly, and monthly basis for trend 
+analysis. This allows you to pro-actively solve problems before they 
+result in degraded response times for users. If data is being collected 
+when a problem occurs, it will make it easier to determine the cause of 
+the problem. You should maintain the historical data for capacity 
+planning.</li><li>When collecting data, collect only the minimum amount 
+of data needed to determine if there is a problem and to determine 
+trends. We'll list the minimum statistics to collect to be able to 
+detect if a system is in trouble or headed for trouble. Initially, you 
+can collect data at intervals of every five minutes or longer during 
+peak time. If a problem surfaces, you then may need to collect more 
+detailed performance data.</li><li>Remember that the resources are all 
+interrelated. A bottleneck in one will affect the others. For example, 
+if you don't have enough memory, you will see higher CPU because the CPU
+ needs to work harder page swapping.</li><li>Also remember that you 
+should not need to change OS tuning parameters unless you have a 
+specific problem. You might adversely affect performance if you are not 
+careful. It's logical to expect that, if there were a tuning setting 
+that would "magically" improve performance, then the OS vender would 
+have shipped it that way. If you do make changes, make them one at a 
+time and check the performance impact prior to making another change.</li><li>The
+ important categories of statistics to monitor are CPU, disk I/O, 
+memory, network, and Domino statistics. Domino statistics will not be 
+covered in this article with the exception of the Domino Platform stats.</li></ul><div
+ class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link 
+ibm-back-to-top"><a href="#ibm-pcon" class="ibm-anchor-up-link">Back to 
+top</a></p><p><a name="N10067"><span class="atitle">UNIX performance 
+monitoring tools</span></a></p><p>Next, let's take a look at the tools 
+and statistics for Solaris and Domino Platform stats. Some of the 
+standard UNIX tools shipped with UNIX that are used to monitor the 
+performance of the system resources are:
+			</p><ul type="disc"><li>vmstat, which is one of the simplest and most
+ useful tools because it reports important data in the categories of 
+CPU, memory utilization , and disk-I/O</li><li>iostat, which is also 
+important because you can use it in conjunction with vmstat to determine
+ if there is a disk bottleneck</li><li>netstat, which is used to monitor
+ critical network activity</li><li>sar, or system activity reporter, 
+which you can use to record a large set of system statistics that 
+includes time stamping of the statistics. (This tool is most useful for 
+capacity planning and trend analysis. It does not collect network 
+stats.)</li></ul><p>You can run these four tools from the OS prompt. For
+ example, to use vmstat:</p><p><code>$ vmstat 300</code></p><p>In this 
+case, data is averaged and output over 5 minute intervals (300 seconds) 
+for an indefinite period of time.</p><p>To capture the output to a file,
+ use:</p><p><code>$ vmstat 300 &gt; vmstat.out</code></p><p>To send both
+ to the screen and to an output file, use:</p><p><code>$ vmstat 300 tee 
+vmstat.out</code></p><p>(Unlike with Intel, there is minimal additional 
+overhead incurred when sending output to the screen on the latest 
+UltraSPARC-III.)</p><p>You can use the UNIX man pages to get help on the
+ various switches and definitions of terms. For example:</p><p><code>$ 
+man vmstat</code></p><p>It's relatively easy to create a UNIX shell 
+script that automatically runs a few of the utilities at the desired 
+interval. Here's a sample script; note that the &amp; sets the tool to 
+run in the background. (Note that you could run each of these commands 
+manually at the OS prompt.)</p><table border="0" cellpadding="0" 
+cellspacing="0" width="65%"><tbody><tr><td class="code-outline"><pre class="displaycode">#!/bin/csh
+vmstat 300 &gt;vmstat.out &amp;
+iostat -xtc 300 &gt;iostat.out &amp;
+netstat -i 300 &gt;netstat.out &amp;</pre></td></tr></tbody></table><br><p>
+				The following sections provides more details about these tools and 
+the statistics that are important to monitor. The acceptable range for 
+the important statistics are discussed later in the
+<a href="#Resource%20bottleneck%20threshold%20rul">Resource bottleneck 
+threshold rules-of-thumb</a>	section.
+			</p><p><a name="N100A6"><span class="smalltitle">Details about vmstat</span></a></p><p>vmstat
+ is one of the simplest and most useful tools because it reports 
+important data in the categories of CPU, memory utilization, and 
+disk-I/O. To see the system activity for 3 seconds with a 1 second 
+reporting interval use:</p><p><code>vmstat 1 3</code></p><p>The 
+following is an example of the results of doing a vmstat 1 3. The bolded
+ columns (r, b, sr, us, and sy) are most important. (Note that the first
+ output line of the data is really the accumulated statistics since the 
+system startup. That line is not included in the examples in this 
+article.)</p><br><a name="N100B5"><b>Figure 1. Sample vmstat results</b></a><br><img
+ alt="Sample vmstat results" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/figure1.jpg"
+ height="108" width="396"><br><p>In the process (procs) group of 
+statistics, there are two important stats, r and b:
+			</p><ul type="disc"><li>r is the number of processes in the CPU run 
+queue.</li><li>b is the number of processes blocked for resources I/O, 
+paging, and so forth.</li></ul><p>In the memory group of statistics, the
+ important stat is sr:
+			</p><ul type="disc"><li>sr is the number of pages scanned and can be 
+an indicator of a RAM shortage.</li></ul><p>The cpu group of statistics 
+gives a breakdown of the percentage usage of CPU time. On MP systems, 
+this is an average across all processors.
+			</p><ul type="disc"><li>us is the percentage of user CPU time.</li><li>sy
+ is the percentage of system CPU time.</li></ul><p><a name="N100DB"><span
+ class="smalltitle">Details about iostat</span></a></p><p>To see the 
+system activity over 300 seconds with a 1 second reporting interval use:</p><p><code>iostat
+ 300 2</code></p><p>You can add the switch -x to provide extended 
+statistics, which makes the output more readable because each disk has 
+its own line. You can also add the -c switch to report the percentage of
+ time the system has spent in user mode, in system mode, waiting for 
+I/O, and idling. The following is an example of the results of doing a 
+iostat with these switches, specifically:</p><p><code>iostat -cx 300 1</code></p><p>The
+ bolded columns (svc_t, %b, us, sy, and wt) are most important.</p><br><a
+ name="N100F1"><b>Figure 2. Results of iostat -cx 300 1</b></a><br><img 
+alt="Results of iostat -cx 300 1" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/figure2.jpg"
+ height="108" width="396"><br><p>In the extended device group of 
+statistics, there are two important stats, svc_t and % b:
+			</p><ul type="disc"><li>svc_t is the average service time, in 
+milliseconds, of the disk.</li><li>%b is the percent of time the disk is
+ busy (transactions in progress).</li></ul><p>In the cpu group of 
+statistics, there are three important statistics, us, sy, and wt:
+			</p><ul type="disc"><li>us and sy are the percent CPU for user and 
+system respectively.</li><li>wt is the wait on I/O times for the cpu.</li></ul><p><a
+ name="N1010F"><span class="smalltitle">Details about netstat</span></a></p><p>The
+ netstat command can show you how healthy your network is. Using the -i 
+switch summarizes all the network interfaces. Another switch that can be
+ useful is the -s switch, which lists all the protocols. The following 
+is an example of the results of doing a netstat -i:</p><br><a 
+name="N10117"><b>Figure 3. Sample results of netstat -i</b></a><br><img 
+alt="Sample results of netstat -i" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/figure3.jpg"
+ height="108" width="396"><br><p>The column colls indicates the number 
+of collisions of the network packets. If there are no collisions, then 
+the network is probably not experiencing a performance problem. (Note 
+that you will not see collisions on servers on switched networks.)</p><p>Because
+ netstat's viewpoint is that of just one node on the network, it's 
+usefulness is limited in assessing over all Domino server performance. A
+ single 100 Mb/s pipe can
+			 deliver requests and absorb responses much faster than all but the 
+very largest Domino servers can handle. Network issues are best viewed 
+from the perspective of the entire network using network sniffer 
+hardware or software.</p><p><a name="N10125"><span class="smalltitle">Domino
+ Platform stats</span></a></p><p>Domino Platform stats let you capture 
+OS statistics such as CPU utilization from within Domino. As a Domino 
+systems administrator, you may find it easier to collect these 
+statistics using Domino rather than the OS tools.</p><p>The Platform 
+stats are integrated into Domino Monitoring (Events4.nsf) and Reports 
+(Statrep.nsf). You can set thresholds and alarms for server resource 
+usages within Domino. Platform stats are available via the server 
+console, the new Domino 6 Administration client, and the Web client. 
+Both Domino statistics and OS statistics can be collected together, both
+ in real-time and for historical trend analysis. Platform stats are 
+grouped into five categories: logical disk, memory, network, CPU, and 
+miscellaneous system stats. For some stats, average, minimum, and peak 
+values are calculated.</p><p>Platform stats were introduced for Solaris 
+in Domino 5.0.2. Domino R5 supports Solaris 2.6 through 8. Domino 6 
+supports Solaris 8.</p><p>Note that in R5, you need to include the 
+following NOTES.INI setting to activate Platform stats:</p><p>Platform_Statistics_Enabled=1</p><p>
+			When you issue a "show stat platform" command in Domino 6 on Solaris,
+ over 150 statistics are generated. (The naming convention for the 
+statistics that are reported is the same across platforms to make it 
+easier for you to support multiple server platforms.) Some of the 
+particularly interesting statistics include:</p><p>	
+Platform.LogicalDisk.10.PctUtil.Avg = 0 <br>
+			Platform.LogicalDisk.10.ServiceTimeinmsecs.Avg = 0 <br>
+			Platform.Memory.ScanRatePagesPerSec.Avg = 0 <br>
+			Platform.Network.3.PctCollisionRate = 0 <br>
+			Platform.Network.3.PctUtilBandwidth = Not Available <br>
+			Platform.System.PctCombinedCpuUtil.Avg = 20.7</p><p>
+				See the
+<a 
+href="https://www.ibm.com/developerworks/lotus/library/ls-Rules_SunSol/side1.html">Domino
+ 6 Platform stats</a>	sidebar for a complete listing of the reported 
+statistics.
+			</p><p>When you issue a "show stat platform" command in Domino R5 on 
+Solaris, fewer statistics are reported. Some of the particularly 
+interesting reported statistics include:</p><p>Platform.LogicalDisk._Total.1._Total.1.PctTime.avg
+ = .1 <br>
+			Platform.LogicalDisk._Total.1._Total.1.ServiceTime.avg = 49.8 <br>
+			Platform.Memory.PagesPerSec.avg = 86.7 <br>
+			Platform.System.TotalUtil.avg = 99</p><p>
+				See the <a 
+href="https://www.ibm.com/developerworks/lotus/library/ls-Rules_SunSol/side2.html">Domino
+ R5 Platform stats</a> sidebar for a complete listing of the reported 
+statistics.
+			</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link 
+ibm-back-to-top"><a href="#ibm-pcon" class="ibm-anchor-up-link">Back to 
+top</a></p><p><a name="#Resource bottleneck threshold rul"><span 
+class="atitle">Resource bottleneck threshold rules-of-thumb</span></a></p><p>This
+ section attempts to establish rules-of-thumb to determine if important 
+system resources are on the verge of being a bottleneck and limiting 
+server performance.</p><p><a name="N1015F"><span class="smalltitle">Disk
+ bottlenecks</span></a></p><p>Disk bottlenecks are the most likely 
+bottlenecks. Here are the thresholds you should look for using the 
+different monitoring tools.</p><p>Using iostat:
+			</p><ul type="disc"><li>The significant bottleneck threshold is %b 
+(percent time disk busy) &gt; 20% AND (20 ms &lt; svc_t (ServiceTime) 
+&lt; 30 ms)</li><li>The critical bottleneck threshold is %b (percent 
+time disk busy) &gt; 20% AND ( svc_t (ServiceTime) &gt; 30 ms)</li></ul><p>Using
+ vmstat:
+			</p><ul type="disc"><li>A significant bottleneck threshold occurs if b
+ (processes blocked for resources) approaches r (# in run queue)</li><li>A
+ critical bottleneck threshold occurs if b (processes blocked for 
+resources) = or &gt; r (# in run queue)</li></ul><p>The relevant Domino 
+R5 Platform stats are:
+			</p><ul type="disc"><li>Platform.LogicalDisk._Total.1._Total.1.PctTime.avg</li><li>Platform.LogicalDisk._Total.1._Total.1.ServiceTime.avg</li></ul><p>The
+ relevant Domino 6 Platform stats are:
+			</p><ul type="disc"><li>Platform.LogicalDisk.#.PctUtil.avg</li><li>Platform.LogicalDisk.#.ServiceTimeinmsec.avg</li></ul><p><a
+ name="N1018E"><span class="smalltitle">Memory bottlenecks</span></a></p><p>Here
+ are the memory bottleneck thresholds you should look for using the 
+different monitoring tools.</p><p>	According to the book, <i>Sun 
+performance and Tuning, Java and the Internet</i>, by Adrian Cockcroft 
+and Richard Pettit, using vmstat:
+			</p><ul type="disc"><li>A significant bottleneck threshold occurs if 
+sr (free page scan rate) &gt; 200 scans/second</li><li>A critical 
+bottleneck threshold occurs if sr (free page scan rate) &gt; 300 
+scans/second</li></ul><p>(Note that the last point could indicate 
+thrashing because active and inactive pages will be stolen from the 
+Process Working Set.)</p><p>You can also issue the command vmstat -s to 
+show paging. The si and so columns are pages swapped in and out.</p><p>The
+ relevant Domino R5 Platform stat is:
+			</p><ul type="disc"><li>Platform.Memory.PagesPerSec.avg</li></ul><p>The
+ relevant Domino 6 Platform stat is:
+			</p><ul type="disc"><li>Platform.Memory.ScanRatePagesPerSec.avg</li></ul><p>Note
+ however, that for Solaris 2.6 and 7 systems running Domino, we see very
+ high scan rates, upwards of 4000 pages per second at the high end. 
+Despite Cockcroft's guideline we think such rates are perfectly normal 
+for an application that uses the file system heavily. Unfortunately, the
+ high scanning rates caused by file system activity will completely mask
+ any other scanning sources.</p><p>The file system in Solaris 8 
+generates little or no page scanning. Any scanning that does occur must 
+arise from somewhere else. A few bursts here and there are no cause for 
+alarm, but sustained scanning probably means something's not right. 
+Sustained scanning at low rates may mean that NSF_Buffer_Pool_Size 
+should be reduced a little. Try reducing it in 50 MB steps. High rates 
+may mean that more RAM is needed or that the system is very badly 
+mistuned.</p><p>A low (relatively speaking) scan rate does not prove 
+that you've got the optimal amount of RAM. Domino scales its own memory 
+use to the RAM size and may avoid scanning and paging, but it might 
+still benefit from larger caches and so on if more RAM were made 
+available.</p><p><a name="N101BC"><span class="smalltitle">CPU 
+bottlenecks</span></a></p><p>Here are the CPU bottleneck thresholds you 
+should look for using the different monitoring tools.</p><p>Using 
+vmstat:
+			</p><ul type="disc"><li>A significant bottleneck occurs if process r 
+(run queue) is &gt; 2 times the # of CPUs, and/or %CPU &gt;75%</li><li>A
+ critical bottleneck occurs if "sy" (% CPU system time) is greater than 
+.25 "us" (user/application % CPU time) and/or %CPU &gt;85%</li></ul><p>The
+ relevant Domino R5 Platform stat is:
+			</p><ul type="disc"><li>Platform.System.TotalUtil.avg</li></ul><p>The
+ relevant Domino 6 Platform stats are:
+			</p><ul type="disc"><li>Platform.System.CPUQueueLen.avg</li><li>Platform.System.PctCombinedCpuUtil.avg
+ (total CPU utilization average)</li></ul><p>When you run "uptime" at 
+the OS prompt, it gives the load average, which is the sum of the run 
+queue length and number of jobs currently on the CPUs. It gives an 
+average over 1 minute, 5 minute, and 15 minute periods. This can be used
+ as an average run queue length to see if you need more CPU power.</p><p><a
+ name="N101E1"><span class="smalltitle">Network bottlenecks</span></a></p><p>Here
+ are the network bottleneck thresholds you should look for using the 
+different monitoring tools.</p><p>Using netstat, when collisions are 
+greater than 5 percent of the packets sent, you are starting to 
+experience network saturation. That is colls / packets &gt;5%.</p><p>Domino
+ R5 Platform stats do not have a network stat available.</p><p>The 
+relevant Domino 6 Platform stats are:
+			</p><ul type="disc"><li>Platform.Network.#.PctCollisionRate</li><li>Platform.Network.#.PctUtilBandwidth</li></ul><p>Note
+ that this last statistic is an example of a stat that is calculated 
+from other stats.</p><p>Remember that you will not have collisions if 
+you have a switched network. In that case, you should determine if the 
+byte rate is approaching saturation. If you are running Domino 6, you 
+can use the Platform stat Platform.Network.#.PctUtilBandwidth. A value 
+over 30 percent may indicate that the network is near saturation. If you
+ are running R5, then you can compute the percent network utilization or
+ obtain it from a network sniffer. The command netstat -i discussed 
+previously, will give you output bytes and input bytes so that you can 
+compute the percent utilization.</p><div class="ibm-alternate-rule"><hr></div><p
+ class="ibm-ind-link ibm-back-to-top"><a href="#ibm-pcon" 
+class="ibm-anchor-up-link">Back to top</a></p><p><a name="N101FA"><span 
+class="atitle">A few tuning tips</span></a></p><p>
+				It's worth repeating that usually the best performance is achieved 
+using the default OS settings. However, after collecting good 
+performance baseline data, you can try making changes to the /etc/system
+ file
+<i>one at a time</i>	to see if they improve performance. Note that you 
+will need to reboot the machine after changing a parameter. You can find
+ a discussion of most of the recommended settings in the white paper, "<a
+ 
+href="http://www.lotus.com/ldd/notesua.nsf/572150f5ef0dfb1385256cb8005224be/d27807f65c35c6bd00256c30005bf843?OpenDocument">Domino
+ 5 on Solaris: Common Tuning Tips</a>."
+			</p><p>
+				The following recommendations apply to Domino servers handling large
+ amounts of HTTP traffic, for example, WebMail or iNotes Web Access. 
+They'll have little or no effect on systems devoted primarily to NRPC. 
+These tuning recommendations can be found in the white paper, "<a 
+href="http://www.lotus.com/products/r5web.nsf/4efced3d866c2c2d852566cc0050ffd5/2219a9a41858eb5b85256bbb006afe9f?OpenDocument">Capacity
+ Planning of Lotus Domino Server on Sun Enterprise Servers for iNotes 
+Web Access</a>."
+			</p><p><a name="N1020E"><span class="smalltitle">Listen backlog</span></a></p><p>Increase
+ the size of the listen backlog. Backlog specifies the maximum size the 
+queue of pending connections can grow to. By using a bigger backlog, the
+ Domino server can deal with bursts of traffic more gracefully by 
+queuing requests. The size of the listen backlog can be increased as 
+follows:
+			</p><ul type="disc"><li>
+					Increase the size of the TCP listen queues by executing the 
+following commands as root:
+					<p>
+
+					/usr/bin/ndd -set/dev/tcp tcp_conn_req_max_q 4096 <br>
+					/usr/bin/ndd -set/dev/tcp tcp_conn_req_max_q0 4096</p></li><li>
+					Add the following line to the httpd.cnf file in the Notes data 
+directory before bringing up the Domino server:
+					<p>
+
+					listenbacklog 4096</p></li></ul><p><a name="N10223"><span 
+class="smalltitle">Segmap percent</span></a></p><p>Segmap percent 
+determines the amount of kernel virtual address space reserved for file 
+I/O operations. Increasing the segmap percent results in a reduction of 
+virtual-to-physical memory mappings/unmappings and crosscalls. Note 
+that, although Domino is a 32-bit application, it can be hosted on 
+64-bit Solaris and can take advantage of the 64-bit kernel virtual 
+address space for caching the file system data.</p><p>Segmap percent can
+ be increased by adding the following line to the /etc/system file and 
+then rebooting the system:</p><p>set segmap_percent=32</p><p>Increase 
+the buffering in the streams device driver to deal with the bursts in 
+network traffic more gracefully. To increase it, add the following line 
+to the /etc/system file and then reboot:</p><p>set sq_max_size=512</p><p><a
+ name="N10232"><span class="smalltitle">File descriptor limit</span></a></p><p>Domino
+ requires a large number of file descriptors to manage databases and 
+user connections, and the default file descriptor limit is 1024. The 
+file descriptor limit must be increased to support a large number of 
+HTTP requests to the Domino server. Sun recommends changing this 
+parameter to 8192. To set this parameter, you must append the following 
+line to the /etc/system file to increase the number of file descriptors 
+for the Domino server:</p><p>set rlim_fd_max=8192</p><p>After making any
+ change to the /etc/system file, reboot Solaris so that the new settings
+ take effect.</p><p>Note that this recommendation is only valid for 
+stateless protocols such as HTTP. For other protocols, such as NRPC, Sun
+ recommends that you append the following line to the file /etc/system 
+to increase the number of file descriptors for the Domino server:</p><p>set
+ rlim_fd_max=65536</p><p>After making this or any change in the 
+/etc/system file, reboot Solaris to have the new settings take effect.</p><p>In
+ addition, if you upgrade to a new version of Solaris, any line added to
+ /etc/system should be removed and added again only after verifying that
+ it is still valid.</p><p>Also, if you run older application software 
+and Domino on the same Solaris server, make sure that this setting does 
+not affect the older applications. Such programs may have problems 
+managing a large number of files and may need to be run on a different 
+server. Consider consulting your support analyst regarding the system 
+commands that are needed to document file descriptor limit modifications
+ to accommodate older applications.</p><div class="ibm-alternate-rule"><hr></div><p
+ class="ibm-ind-link ibm-back-to-top"><a href="#ibm-pcon" 
+class="ibm-anchor-up-link">Back to top</a></p><p><a name="N10247"><span 
+class="atitle">Conclusion</span></a></p><p>The rules-of-thumb for 
+performance tuning are constantly changing as the OS, applications, and 
+our knowledge changes. This article presents a snapshot of what the 
+Domino Performance team thinks is important at this point. Hopefully, it
+ has given you some new and helpful ideas. As always, we appreciate 
+hearing from you, especially if you have drawn conclusions different 
+from ours based on your experience. Look for rules of thumb for other 
+operating systems in future Performance Perspective columns.</p><!-- CMA ID: 12851 -->
+ <!-- Site ID: 1 --><!--XSLT stylesheet used to transform this file: dw-document-html-6.0.xsl-->
+<br>
+<p><a name="resources"><span class="atitle">Resources</span></a></p><ul><li><a
+ href="http://www-10.lotus.com/ldd/today.nsf/perf?OpenView">More 
+Performance Perspectives</a><br><br></li><li><i>Sun Performance and 
+Tuning</i>,
+<i>Java and the Internet</i>, 2nd edition, by Adrian Cockcroft &amp; 
+Richard Pettit, Prentice Hall, 1998. ISBN:O130952494
+				<br><br></li><li><i>Solaris Internals, Core Kernel Architecture</i>,
+ by Jim Mauro and Richard McDougal, Prentice Hall, 2000. ISBN: 
+0130224960
+				<br><br></li><li>
+					IBM Redbook:
+<a 
+href="http://publib-b.boulder.ibm.com/Redbooks.nsf/9445fa5b416f6e32852569ae006bb65f/7a98d2e4b033351c85256a50004af2fc?OpenDocument">Lotus
+ Domino for R5 Sun Solaris</a>	(SG24-5969-1)
+				<br><br></li><li>
+					The
+<a href="http://www.sun.com/lotus">Sun and Lotus Software page</a>	of 
+the Sun Web site
+				<br><br></li><li>
+					The
+<a href="http://www.lotus.com/dominosolaris">Domino for Sun Solaris page</a>
+	of Lotus.com
+				<br><br></li><li>
+					The
+<a href="http://www.ibm.com/developerworks/lotus/performance/">Lotus 
+Performance Zone</a><br><br></li><li>
+					The
+<a href="http://www.notesbench.org/">NotesBench Consortium</a>	Web site
+				<br><br></li><li>
+					Information on the
+<a href="http://www.sun.com/sun-on-net/performance/priority_paging.html">priority
+ paging patch</a>	on the Sun Web site
+				<br><br></li><li>
+					Sun patches and patch clusters at
+<a href="http://www.sunsolve.sun.com/">SunSolve Online</a>	on the Sun 
+Web site
+				<br><br></li><li>
+					Sun product
+<a href="http://docs.sun.com/">documentation and help</a>	on the Sun Web
+ site
+				<br><br></li></ul>
+<p><a name="author"><span class="atitle">About the author</span></a></p><div
+ class="ibm-container ibm-portrait-module ibm-alternate-two"><div 
+class="ibm-container-body"><p><a name="author1"></a>Harry Murray has 
+worked on the Domino Performance team for four years. Prior to that, he 
+worked on the Compaq Computer Application Systems Engineering 
+Performance team.</p></div></div>
+<!-- MAIN_COLUMN_CONTENT_END -->
+
+<!-- INLINE_COMMENTS_START -->
+<p class="ibm-no-print"><span class="atitle"><a name="icomments">Comments</a></span></p>
+<div id="dw-icomments-container" class="ibm-no-print">
+<div class="ibm-alternate-rule"><hr></div>
+<div class="ibm-alternate-rule"><hr></div>
+<!-- Comment_Script -->
+<a id="comments" 
+href="https://www.ibm.com/developerworks/lotus/library/ls-Rules_SunSol/comments"></a>
+<script language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/insertcomment.js" type="text/javascript">//</script>
+<div id="threadShow"><div id="cmtTog" style=""><p><span id="numCmts">0</span>&nbsp;comments
+ <span class="dw-bar">|</span> <a 
+href="https://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=loginpage&amp;lang=&amp;d=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flotus%2Flibrary%2Fls-Rules_SunSol%2F%23icomments"
+ style="display: none;" class="loginLk">Sign in</a><a id="addCmtLk" 
+class="dw-icomment-link">Add comment</a><a class="dw-icomment-report" 
+href="http://www.ibm.com/developerworks/forums/forum.jspa?forumID=1317">Report
+ inappropriate content</a></p><div class="ibm-alternate-rule"><hr></div><div
+ style="display: none;" id="commentForm"><div class="ibm-container"><h2>Add
+ a comment</h2><div class="ibm-container-body"><p>The field indicated 
+with an asterisk (<span class="ibm-required">*</span>) is required to 
+complete this transaction.</p><span id="infoCmt"></span><div 
+class="ibm-rule"><hr></div><form method="post" action="" 
+class="ibm-column-form" enctype="multipart/form-data" focus="name" 
+name="form"><p><label for="newCmt">Comment:<span class="ibm-required">*</span></label><br><textarea
+ name="newCmt" id="newCmt" cols="120" rows="4"></textarea></p><div 
+class="ibm-alternate-rule"><hr></div><p class="ibm-buttons-row"><input 
+value="Post" name="postCmt" class="ibm-btn-arrow-sec" id="postCmt" 
+type="button"><span class="ibm-sep">&nbsp;</span><input value="Clear 
+comment" name="clearCmt" class="ibm-btn-cancel-sec" id="clearCmt" 
+type="button"><span class="ibm-sep">&nbsp;</span><input value="Cancel" 
+name="cancelCmt" class="ibm-btn-cancel-sec" id="cancelCmt" type="button"></p></form></div></div></div><div
+ id="cmtSect"><div class="comment"><div class="dw-icomment-container"><table
+ class="dw-icomment-body" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td><p>Be
+ the first to add a comment</p></td></tr></tbody></table></div></div></div><div
+ id="paging"><p><a style="display: none;" id="lastCmts" 
+class="dw-icomment-link">Show 5 most recent comments</a><span 
+style="display: none;" id="cmtDivider"> <span class="dw-bar">|</span> </span><a
+ style="display: none;" id="nextCmts" class="dw-icomment-link">Show next
+ 5 comments</a><span style="display: none;" id="cmtDivider2"> <span 
+class="dw-bar">|</span> </span><a style="display: none;" 
+id="viewAllCmts" class="dw-icomment-link">Show all comments</a></p></div><p><a
+ 
+href="https://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=loginpage&amp;lang=&amp;d=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flotus%2Flibrary%2Fls-Rules_SunSol%2F%23icomments"
+ style="display: none;" class="loginLk">Sign in</a><a id="addCmtLk2" 
+href="#icomments">Add comment</a></p><div class="ibm-alternate-rule"><hr></div><div
+ class="ibm-alternate-rule"><hr></div></div></div>
+<script language="JavaScript" type="text/javascript">
+// <![CDATA[
+ jQuery('threadShow').insertComment('95%',5,'nCmts','icomments');
+// ]]>
+</script>
+</div>
+<!-- INLINE_COMMENTS_END -->
+
+<p class="ibm-ind-link ibm-back-to-top"><a class="ibm-anchor-up-link" 
+href="#ibm-pcon">Back to top</a></p>
+<p><a href="http://www.ibm.com/developerworks/ibm/trademarks/">Trademarks</a>
+ &nbsp;|&nbsp; <a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/terms/">My 
+developerWorks terms and conditions</a></p>
+
+<!-- Overlays -->
+<!-- Zone/Leaf_Interest_Overlay_Start -->
+<div class="ibm-common-overlay ibm-no-print" id="dwmyinterestadd">
+<div class="ibm-head"><p><a class="ibm-common-overlay-close" 
+href="#close">Close [x]</a></p></div>
+<div class="ibm-body">
+<div class="ibm-main">
+<a class="ibm-access" name="dwmyinterestaddhelp">Help: Update or add to 
+My dW interests</a>   
+<div class="ibm-title"><h1>What's this?</h1></div>
+<div class="ibm-container ibm-alternate">
+<p>This little timesaver lets you update your My developerWorks profile 
+with just one click!  The general subject of this content (AIX and UNIX,
+ Information Management, Lotus, Rational, Tivoli, WebSphere, Java, 
+Linux, Open source, SOA and Web services, Web development, or XML) will 
+be added to the interests section of your profile, if it's not there 
+already.  You only need to be logged in to My developerWorks.</p>
+<p>And what's the point of adding your interests to your profile?  
+That's how you find other users with the same interests as yours, and 
+see what they're reading and contributing to the community.  Your 
+interests also help us recommend relevant developerWorks content to you.</p>
+<p><a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/profiles/home.do?lang=en">View
+ your My developerWorks profile</a></p>
+<p class="ibm-access"><a href="#interestShow">Return from help</a></p>
+</div> 
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+
+<div class="ibm-common-overlay ibm-no-print" id="dwmyinterestremove">
+<div class="ibm-head"><p><a class="ibm-common-overlay-close" 
+href="#close">Close [x]</a></p></div>
+<div class="ibm-body">
+<div class="ibm-main">
+<a class="ibm-access" name="dwmyinterestremovehelp">Help: Remove from My
+ dW interests</a> 
+<div class="ibm-title"><h1>What's this?</h1></div>
+<div class="ibm-container ibm-alternate">
+<p>Removing this interest does not alter your profile, but rather 
+removes this piece of content from a list of all content for which 
+you've indicated interest.  In a future enhancement to My 
+developerWorks, you'll be able to see a record of that content.</p>
+<p><a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/profiles/home.do?lang=en">View
+ your My developerWorks profile</a></p>
+<p class="ibm-access"><a href="#interestShow">Return from help</a></p>
+</div> 
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Zone/Leaf_Interest_Overlay_End --></div>
+<!-- MAIN_COLUMN_CONTAINER_END -->
+
+<!-- Rating_Meta_BEGIN -->
+<!--Rating_Meta_BEGIN--><div class="metavalue">static.content.url=http://www.ibm.com/developerworks/js/artrating/</div><div
+ class="metavalue">SITE_ID=1</div><div class="metavalue">Zone=Lotus</div><div
+ class="metavalue">ArticleID=12851</div><div class="metavalue">ArticleTitle=Rules-of-thumb
+ for monitoring Sun Solaris statistics</div><div class="metavalue">publish-date=07012002</div><div
+ class="metavalue">author1-email=</div><div class="metavalue">author1-email-cc=</div><script language="javascript" type="text/javascript">document.write('<div class="metavalue">url='+location.href+'</div>');</script><div
+ class="metavalue">url=https://www.ibm.com/developerworks/lotus/library/ls-Rules_SunSol/</div><!--Rating_Meta_END-->
+<!-- Rating_Meta_END -->
+
+</div>
+<!-- MAIN_COLUMN_END-->
+
+<!-- RIGHT_COLUMN_BEGIN -->
+<div id="ibm-content-sidebar">
+
+<!-- RIGHT_COLUMN_CONTENT_BEGIN --> 
+<div class="ibm-container"><h2>Table of contents</h2><div 
+class="ibm-container-body"><img alt="" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/c.gif"
+ height="1" width="1"><ul class="ibm-bullet-list"><li><a 
+class="ibm-feature-link" href="#N1004C">Guidelines for monitoring system
+ performance and tuning systems</a></li><li><a class="ibm-feature-link" 
+href="#N10067">UNIX performance monitoring tools</a></li><li><a 
+class="ibm-feature-link" 
+href="##Resource%20bottleneck%20threshold%20rul">Resource bottleneck 
+threshold rules-of-thumb</a></li><li><a class="ibm-feature-link" 
+href="#N101FA">A few tuning tips</a></li><li><a class="ibm-feature-link"
+ href="#N10247">Conclusion</a></li><li><a class="ibm-feature-link" 
+href="#resources">Resources</a></li><li><a class="ibm-feature-link" 
+href="#author">About the author</a></li><li><a class="ibm-feature-link" 
+href="#icomments">Comments</a></li></ul></div></div>
+<!--XSLT stylesheet used to transform this content: s-danube.xsl--><div 
+class="ibm-container"><h2>Local resources</h2><div 
+class="ibm-container-body"><img 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/spot-danube.jpg"
+ alt="" border="0" height="58" width="188"><ul class="ibm-bullet-list"><li><a
+ 
+href="http://www.ibm.com/developerworks/cn/?S_TACT=105AGY81&amp;S_CMP=danube_as_as"
+ class="ibm-feature-link">developerWorks 中国</a></li><li><a 
+href="http://www.ibm.com/developerworks/jp/?S_TACT=105AGY81&amp;S_CMP=danube_as_as"
+ class="ibm-feature-link">developerWorks Japan</a></li><li><a 
+href="http://www.ibm.com/developerworks/kr/?S_TACT=105AGY81&amp;S_CMP=danube_as_as"
+ class="ibm-feature-link">developerWorks 한국</a></li><li><a 
+href="http://www.ibm.com/developerworks/vn/?S_TACT=105AGY81&amp;S_CMP=danube_as_as"
+ class="ibm-feature-link">developerWorks Vietnam</a></li><li><a 
+href="http://www.ibm.com/developerworks/views/global/techbriefing.jsp?end_no=100&amp;lcl_sort_order=desc&amp;sort_order=asc&amp;expand=&amp;start_no=1&amp;show_all=false&amp;geo_by=Asia+Pacific&amp;sort_by=Date&amp;search_by=&amp;topic_by=All+Topics&amp;show_abstract=true?S_TACT=105AGY81&amp;S_CMP=danube_as_as"
+ class="ibm-feature-link">Technical Briefings in Asia</a></li></ul></div></div>
+<!--XSLT stylesheet used to transform this content: s-community.xsl--><div
+ class="ibm-container"><h2>My developerWorks community</h2><div 
+class="ibm-container-body"><p>Interact, share, and communicate with 
+developers worldwide.</p><div class="ibm-rule"><hr></div><ul 
+class="ibm-bullet-list"><li><a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/homepage/web/getuserpref?ca=dma-"
+ class="ibm-feature-link">My Home</a></li><li><a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/profiles/home.do?lang=en&amp;ca=dma-"
+ class="ibm-feature-link">Profiles</a></li><li><a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/groups/service/html/allcommunities?ca=dma-"
+ class="ibm-feature-link">Groups</a></li><li><a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/blogs/?ca=dma-"
+ class="ibm-feature-link">Blogs</a></li><li><a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/bookmarks/?ca=dma-"
+ class="ibm-feature-link">Bookmarks</a></li><li><a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/activities/service/html/mainpage?ca=dma-"
+ class="ibm-feature-link">Activities</a></li><li><a 
+href="http://www.ibm.com/developerworks/spaces/?ca=dma-" 
+class="ibm-feature-link">Spaces</a></li><li><a 
+href="http://www.ibm.com/developerworks/forums/index.html?ca=dma-" 
+class="ibm-feature-link">Forums</a></li><li><a 
+href="http://www.ibm.com/developerworks/wikis/dashboard.action?ca=dma-" 
+class="ibm-feature-link">Wikis</a></li><li><a 
+href="http://www.ibm.com/developerworks/podcast/?ca=dma-" 
+class="ibm-feature-link">Podcasts</a></li><li><a 
+href="http://www.ibm.com/developerworks/exchange/dw_index.jspa?ca=dma-" 
+class="ibm-feature-link">Exchange</a></li></ul><div class="ibm-rule"><hr></div><p
+ class="ibm-ind-link"><a 
+href="https://www.ibm.com/developerworks/mydeveloperworks/?ca=dma-" 
+class="ibm-forward-link">My developerWorks overview</a></p></div></div>
+<!-- Tagging_Start -->
+<div id="dw-tag-cloud-container" class="ibm-container"><h2>Tags</h2>
+<div id="dw-tag-help"><a class="dwauthor" rel="#tagtip" id="dwtagtip"><img
+ alt="Help" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/help_icon.gif"
+ align="top" height="16" width="16"></a></div>
+<div style="display: none;" id="tagtip" class="dwauthor-onload-state 
+ibm-no-print">Use the <strong>search field</strong> to find all types of
+ content in My developerWorks with that tag.<p>Use the <strong>slider 
+bar</strong> to see more or fewer tags.</p><p><strong>Popular tags</strong>
+ shows the top tags for this particular content zone (for example, Java 
+technology, Linux, WebSphere).</p><p><strong>My tags</strong> shows your
+ tags for this particular content zone (for example, Java technology, 
+Linux, WebSphere).</p></div>
+<div class="ibm-access">Use the search field to find all types of 
+content in My developerWorks with that tag.  <em>Popular tags</em> shows
+ the top tags for this particular content zone (for example, Java 
+technology, Linux, WebSphere).  <em>My tags</em> shows your tags for 
+this particular content zone (for example, Java technology, Linux, 
+WebSphere).</div>
+<div class="ibm-container-body">
+<div class="dw-tag-search"><form 
+action="//www.ibm.com/developerworks/mydeveloperworks/bookmarks/html?lang=en"
+ method="get" id="actualtagform" onsubmit="popupform(this, 'join')">
+<p><label for="tagfield"><strong>Search all tags</strong></label><input 
+id="tagfield" name="tag" maxlength="20" size="17" type="text">&nbsp;<input
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/short-btn.gif"
+ class="ibm-btn-view" alt="submit search" title="submit search" 
+value="Search" type="image"></p></form></div>
+<div class="ibm-rule"><hr></div>
+<div id="dw-tag-select">
+<div id="dw-tag-select-popular"><p><strong>Popular article tags</strong>&nbsp;|&nbsp;<br><a
+ id="a-my" href="javascript:;">My article tags</a><a 
+href="#dw-tag-access" class="ibm-access">Skip to tags list</a></p></div>
+<div id="dw-tag-select-my" class="dw-hidetag"><p><a id="a-popular" 
+href="javascript:;">Popular article tags</a>&nbsp;|&nbsp;<br><strong>My 
+article tags</strong></p><a href="#dw-tag-access" class="ibm-access">Skip
+ to tags list</a></div><div id="dw-tag-access" class="ibm-access"><h2>Popular
+ tags</h2><ul>
+					
+										
+				<li class="f1-1">
+					
+					<a title="1" class="lotusF1 my" 
+href="javascript:launchTagWindow('/developerworks/mydeveloperworks/bookmarks/html?tag=documentation&amp;lang=en')">
+					documentation
+					<span class="ibm-access">(1)</span>					
+					</a>&nbsp;
+				</li>
+								
+					
+										
+				<li class="f2-1">
+					
+					<a title="1" class="lotusF1 my" 
+href="javascript:launchTagWindow('/developerworks/mydeveloperworks/bookmarks/html?tag=lotus&amp;lang=en')">
+					lotus
+					<span class="ibm-access">(1)</span>					
+					</a>&nbsp;
+				</li>
+								
+					
+					
+			</ul><p>End of Popular tags</p><h2>My tags</h2><div 
+id="dw-tag-access-my" class="ibm-access"><center>To access My Tags, 
+please <a 
+href="https://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=auth&amp;d=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flotus%2Flibrary%2Fls-Rules_SunSol%2F">sign
+ in</a><p>Read Popular tags</p></center><br></div><p>End of My tags</p></div>
+<div id="dw-tag-cloud">
+	<div id="dogearTagCloud">
+		<div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content
+ ui-corner-all" id="content-slider"><a style="left: 0%;" 
+class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a></div>
+		<div id="ui-slider-scale"><p><span class="content-slider-more">More</span><span
+ class="content-slider-less">Less</span></p></div>
+	    <div id="cloud-container">
+			<ul>
+					
+										
+				<li class="f1-1">
+					
+					<a title="1" class="lotusF1 my" 
+href="javascript:launchTagWindow('/developerworks/mydeveloperworks/bookmarks/html?tag=documentation&amp;lang=en')">
+					documentation
+					<span class="ibm-access">(1)</span>					
+					</a>&nbsp;
+				</li>
+								
+					
+										
+				<li class="f2-1">
+					
+					<a title="1" class="lotusF1 my" 
+href="javascript:launchTagWindow('/developerworks/mydeveloperworks/bookmarks/html?tag=lotus&amp;lang=en')">
+					lotus
+					<span class="ibm-access">(1)</span>					
+					</a>&nbsp;
+				</li>
+								
+					
+					
+			</ul>
+		</div>
+		<div class="ibm-rule"><hr></div><p>View as <strong>cloud</strong>&nbsp;|
+ <a id="alist" class="lotusAction" href="javascript:;">list</a></p>
+		</div> 
+
+		
+		
+			<div class="lotusChunk dw-hidetag" id="dogearTagList">
+			<div id="list-container">
+				<ul class="lotusList lotusEditable lotusTags lotusMeta">
+				
+					
+					
+						
+						
+			
+						
+							<li>				
+								<a title="1" class="lotusLeft my" 
+href="javascript:launchTagWindow('/developerworks/mydeveloperworks/bookmarks/html?tag=documentation&amp;lang=en')">documentation</a>
+								1
+							</li>
+					
+				
+			
+					
+					
+						
+						
+			
+						
+							<li>				
+								<a title="1" class="lotusLeft my" 
+href="javascript:launchTagWindow('/developerworks/mydeveloperworks/bookmarks/html?tag=lotus&amp;lang=en')">lotus</a>
+								1
+							</li>
+					
+				
+			
+				
+			</ul>
+			</div>		
+			<div class="ibm-rule"><hr></div><p>View as <a id="acloud" 
+class="lotusAction" href="javascript:;">cloud</a>&nbsp;| <strong>list</strong></p>
+			</div></div>  
+</div>   
+</div>
+</div>
+<!-- Tagging_End -->
+<!-- Dig_Deeper -->
+<div class="ibm-container"><h2>Dig deeper into Lotus on developerWorks</h2><div
+ class="ibm-container-body"><ul class="ibm-link-list"><li 
+class="ibm-first"><a href="http://www.ibm.com/developerworks/lotus/" 
+class="ibm-forward-link">Overview</a></li><li><a 
+href="http://www.ibm.com/developerworks/lotus/newto/" 
+class="ibm-forward-link">New to Lotus</a></li><li><a 
+href="http://www.ibm.com/developerworks/lotus/products/" 
+class="ibm-forward-link">Products</a></li><li><a 
+href="http://www.ibm.com/developerworks/lotus/downloads/" 
+class="ibm-forward-link">Downloads</a></li><li><a 
+href="http://www.ibm.com/developerworks/lotus/demos/" 
+class="ibm-forward-link">Live demos</a></li><li><a 
+href="http://www.ibm.com/developerworks/views/lotus/library.jsp" 
+class="ibm-forward-link">Technical library (articles, tutorials, and 
+more)</a></li><li><a 
+href="http://www.ibm.com/developerworks/lotus/training/" 
+class="ibm-forward-link">Training</a></li><li><a 
+href="http://www.ibm.com/developerworks/lotus/support/" 
+class="ibm-forward-link">Support</a></li><li><a 
+href="http://www.ibm.com/developerworks/lotus/community/" 
+class="ibm-forward-link">Forums and community</a></li><li><a 
+href="http://www.ibm.com/developerworks/views/lotus/events.jsp" 
+class="ibm-forward-link">Events</a></li></ul></div></div>
+<!-- High_Visibility_Offer -->
+<!--XSLT stylesheet used to transform this content: s-highvisibilityoffer.xsl--><div
+ class="ibm-container"><h2>Impact 2010</h2><div 
+class="ibm-container-body"><img alt="Redefine how you work smarter at 
+work: Impact 2010 May 2-7 Las Vegas, NV" 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/hivis-w-impact2010.jpg"
+ border="0" height="70" width="188"><p class="ibm-ind-link"><a 
+href="http://www-01.ibm.com/software/websphere/events/impact/" 
+class="ibm-forward-link">Redefine how you work smarter at work: Impact 
+2010 May 2-7 Las Vegas, NV</a></p></div></div>
+<!-- Special_Offers -->
+<div class="ibm-container"><h2>Special offers</h2><div 
+class="ibm-container-body"><p class="dw-special-offers"><a 
+href="http://www.ibm.com/developerworks/downloads/wasdb2wsmq/cloud.html?ca=dth-cloudaws&amp;S_TACT=105AGX01&amp;S_CMP=TILE&amp;ca=dti-tileindami&amp;utm_source=ibm&amp;utm_medium=catalog&amp;utm_campaign=link"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/tile_v16_ami.gif"
+ alt="        IBM Industry Application Image on Amazon EC2
+      " border="0" height="50" width="158"></a></p><p 
+class="dw-special-offers"><a 
+href="http://www.ibmpressbooks.com/bookstore/product.asp?isbn=9780137000531?S_TACT=105AGX01&amp;S_CMP=TILE&amp;ca=dti-tilepresslotusconnect&amp;ca=dth-l"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/tile_v16_connectpress.gif"
+ alt="        Make social networking pay off! 35% off: IBM0531
+      " border="0" height="50" width="158"></a></p><p 
+class="dw-special-offers"><a 
+href="http://www.ibm.com/developerworks/downloads/ls/dominodesigner/learn.html?S_TACT=105AGX01&amp;S_CMP=TILE&amp;ca=dti-tiledominodesigner&amp;ca=dth-l"><img
+ 
+src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/tile_v16_domdesigner.gif"
+ alt="        No Charge Download Lotus Domino Designer
+      " border="0" height="50" width="158"></a></p><div class="ibm-rule"><hr></div><p
+ class="ibm-ind-link"><a class="ibm-forward-link" 
+href="http://www.ibm.com/developerworks/downloads/?ca=dti-tilemoreoffers">Trial
+ software offers</a></p></div></div>
+<!-- RIGHT_COLUMN_CONTENT_END -->
+
+</div>
+<!-- RIGHT_COLUMN_END -->
+
+<!-- CONTENT_BODY_END -->
+</div>
+
+</div>
+<!-- CONTENT_END -->
+
+ <!-- END_IBM-PCON -->
+</div>
+
+<!-- FOOTER_BEGIN -->
+<div id="ibm-page-tools">
+<!-- IBM page tools container -->
+</div>
+<div id="ibm-footer">
+<ul>
+<li class="ibm-first"><a href="http://www.ibm.com/ibm/">About IBM</a></li>
+<li><a href="http://www.ibm.com/privacy/">Privacy</a></li>
+<li><a href="http://www.ibm.com/contact/">Contact</a></li>
+<li><a href="http://www.ibm.com/legal/">Terms of use</a></li>
+<li><a 
+href="http://www.ibm.com/ibm/syndication/us/en/?cm_re=footer-_-ibmfeeds-_-top_level">IBM
+ Feeds</a></li></ul>
+</div><div id="ibm-social-tools"><ul><li><a rel="print" href="#" 
+title="Print this page" class="ibm-share-print"></a></li><li><a 
+rel="email" href="#" title="E-mail this page" class="ibm-share-email"></a></li><li><a
+ rel="digg" 
+href="http://digg.com/submit?phase=2&amp;url=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flotus%2Flibrary%2Fls-Rules_SunSol%2F&amp;title=Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics"
+ title="Digg" class="ibm-share-digg"></a></li><li><a rel="facebook" 
+href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flotus%2Flibrary%2Fls-Rules_SunSol%2F&amp;t=Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics"
+ title="Facebook" class="ibm-share-facebook"></a></li><li><a 
+rel="twitter" 
+href="http://twitter.com/home?status=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flotus%2Flibrary%2Fls-Rules_SunSol%2F%20-%20Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics"
+ title="Twitter" class="ibm-share-twitter"></a></li><li><a 
+rel="delicious" 
+href="http://delicious.com/post?url=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flotus%2Flibrary%2Fls-Rules_SunSol%2F&amp;title=Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics"
+ title="Delicious" class="ibm-share-delicious"></a></li><li><a 
+rel="linkedin" 
+href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flotus%2Flibrary%2Fls-Rules_SunSol%2F&amp;title=Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics"
+ title="Linked In" class="ibm-share-linkedin"></a></li></ul></div>
+<!-- FOOTER_END -->
+
+ <!-- END_IBM-TOP -->
+<div id="ibm-overlay-top"></div></div>
+ 
+ <!-- SCRIPTS_INCLUDE_BEGIN -->
+<!-- JQuery start -->
+<script type="text/javascript" language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/jquery_003.js"></script>
+<script type="text/javascript" language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/jquery.js"></script>
+<script type="text/javascript" language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/jquery_002.js"></script>
+<script type="text/javascript" language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/ui_002.js"></script>
+<script type="text/javascript" language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/ui.js"></script>
+<script type="text/javascript" language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/dwjquerytags.js"></script>
+<script type="text/javascript" language="JavaScript">
+	jQuery.noConflict();     
+	// Put all your code in your document ready area
+	jQuery(document).ready(function(jQuery) {
+	// Do jQuery stuff using jQuery 
+	jQuery('a.dwauthor').cluetip({
+		local: true,
+		showTitle: false,
+		positionBy: 'bottomTop',
+		sticky: true,	
+		mouseOutClose: true,
+		closeText: '<img src="//www.ibm.com/developerworks/js/jquery/cluetip98/i/x.gif" alt="Close" />',
+		arrows: false,
+		dropShadow: true,
+		cluetipClass: 'dwbasic'
+		});   	
+	});
+ </script>
+ <!-- JQuery end -->
+ <!-- Overlay js -->
+<script language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/overlay.js" type="text/javascript"></script>
+<!-- My dW Interest article -->
+<script language="JavaScript" src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/showinterest.js" type="text/javascript">//</script>
+<script language="JavaScript" type="text/javascript">
+        // <![CDATA[
+			var contentId = '';
+			var contentAreas = '';
+			var caArr = [];
+			contentId = '12851';
+			contentAreas = 'lotus';
+			if(contentAreas != ''){caArr = contentAreas.split(',');}
+			var loginLink = 'https://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=loginpage&d=' + encodeURIComponent(window.location);jQuery('interestShow').showInterest(contentId,'dw-article',{'int_tops':[11,418],'int_prods':[144], 'int_prod_fam':[64],'int_cont_area':caArr},
+'<div id="dw-interest-anon"><a id="intAnonBtn" class="ibm-external-link" href="">Update My dW interests</a> (<a class="dw-interest" href="' + loginLink + '">Log in</a> | <a class="dw-interest" href="#overlay" onclick="ibmCommon.Overlays.show(\'dwmyinterestadd\', this);return false;">What\'s this?</a>) <a class="ibm-access" href="#dwmyinterestaddhelp">Skip to help for Update My dW interests</a></div>',
+'<div id="dw-interest-add"><a id="intSelectBtn" class="ibm-external-link" href="">Add to My dW interests</a> (<a class="dw-interest" href="#overlay" onclick="ibmCommon.Overlays.show(\'dwmyinterestadd\', this);return false;">What\'s this?</a>) <a class="ibm-access" href="#dwmyinterestaddhelp">Skip to help for Add to My dW interests</a></div>',
+'<div id="dw-interest-remove">Added to My dW interests (<a class="dw-interest" href="https://www.ibm.com/developerworks/mydeveloperworks/profiles/html/myProfileView.do?lang=en">Edit</a>)</div>'
+);
+// ]]>
+</script>
+<!-- SCRIPTS_INCLUDE_END -->
+
+<div id="ibm-metrics">
+<script src="Rules-of-thumb%20for%20monitoring%20Sun%20Solaris%20statistics_files/stats.js" type="text/javascript">//</script>
+</div>
+
+<div style="position: absolute; z-index: 95; display: none;" 
+id="cluetip-waitimage"></div><div style="z-index: 96; display: none; 
+position: absolute;" id="cluetip"><div style="z-index: 95; opacity: 0.1;
+ top: 1px; left: 1px; position: absolute; background-color: rgb(0, 0, 
+0);"></div><div style="z-index: 94; opacity: 0.1; top: 2px; left: 2px; 
+position: absolute; background-color: rgb(0, 0, 0);"></div><div 
+style="z-index: 93; opacity: 0.1; top: 3px; left: 3px; position: 
+absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 
+92; opacity: 0.1; top: 4px; left: 4px; position: absolute; 
+background-color: rgb(0, 0, 0);"></div><div style="z-index: 91; opacity:
+ 0.1; top: 5px; left: 5px; position: absolute; background-color: rgb(0, 
+0, 0);"></div><div style="z-index: 90; opacity: 0.1; top: 6px; left: 
+6px; position: absolute; background-color: rgb(0, 0, 0);"></div><div 
+style="position: relative; z-index: 97;" id="cluetip-outer"><h3 
+id="cluetip-title"></h3><div id="cluetip-inner"></div></div><div 
+id="cluetip-extra"></div><div style="z-index: 97;" id="cluetip-arrows" 
+class="cluetip-arrows"></div></div></body></html>
