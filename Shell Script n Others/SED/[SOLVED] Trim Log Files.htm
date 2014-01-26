@@ -1,0 +1,1669 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0078)http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/ -->
+<HTML xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en"><HEAD><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- <BASE href="http://www.linuxquestions.org/questions/"> --><BASE href="."><!--[if IE]></base><![endif]-->
+	<LINK rel="canonical" href="./[SOLVED] Trim Log Files_files/[SOLVED] Trim Log Files.htm">
+
+<META name="generator" content="vBulletin 3.8.5">
+
+<META name="keywords" content="Trim,Log,Files,Trim Log Files, Linux,how to,tutorial,operating system,linux,red hat,mandrake,security,linux help,installation,question,forum">
+<META name="description" content="[ Log in to get rid of this advertisement] I log certain activity on my server and I want to trim the files. I know of several ways to do this if I">
+
+
+<!-- CSS Stylesheet -->
+<STYLE type="text/css" id="vbulletin_css">
+/**
+* vBulletin 3.8.5 CSS
+* Style: 'LQ Style - child of default'; Style ID: 7
+*/
+@import url("http://static.linuxquestions.org/questions/clientscript/vbulletin_css/style-671e4546-00007.css");
+</STYLE>
+<LINK rel="stylesheet" type="text/css" href="./[SOLVED] Trim Log Files_files/vbulletin_important.css">
+
+
+<!-- / CSS Stylesheet -->
+
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/yahoo-dom-event.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/connection-min.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+<!--
+var SESSIONURL = "";
+var SECURITYTOKEN = "guest";
+var IMGDIR_MISC = "http://c0491962.cdn.cloudfiles.rackspacecloud.com/images/questions/images/misc";
+var vb_disable_ajax = parseInt("0", 10);
+// -->
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/vbulletin_global.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/vbulletin_menu.js"></SCRIPT>
+<LINK rel="shortcut icon" href="http://www.linuxquestions.org/favicon.ico" type="image/x-icon">
+<LINK rel="alternate" type="application/rss+xml" title="LQ Latest Threads" href="http://www.linuxquestions.org/syndicate/lqlatest.xml">
+<LINK rel="alternate" type="application/rss+xml" title="LQ News and Articles" href="http://www.linuxquestions.org/syndicate/lqnews.rss">
+<LINK rel="alternate" type="application/rss+xml" title="LQ Zero Reply Threads" href="http://www.linuxquestions.org/syndicate/lqnoreplies.xml">
+<LINK rel="search" type="application/opensearchdescription+xml" title="LinuxQuestions.org" href="http://static.linuxquestions.org/lq-osd.xml">
+
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/spcjs.php"></SCRIPT><SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/spc.php"></SCRIPT><SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/fl.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/post_thanks-min.js"></SCRIPT>		
+			<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/helpfulanswers-min.js"></SCRIPT>
+		
+	
+	<TITLE>[SOLVED] Trim Log Files</TITLE>
+	<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/vbulletin_post_loader.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+//<![CDATA[
+
+window.google_analytics_uacct = "UA-71419-4";
+window.google_analytics_domain_name="www.linuxquestions.org";
+
+
+//]]>
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/ga.js"></SCRIPT></HEAD><BODY onload="">
+<SCRIPT type="text/javascript"><!--
+var _gaq = _gaq || [];
+_gaq.push(
+['_setDomainName', 'www.linuxquestions.org'],
+['_setAccount', 'UA-71419-4'],
+['_setVar', 'usergroup-1-Unregistered / Not Logged In'],
+['_trackPageview']
+);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+document.documentElement.firstChild.appendChild(ga);
+})();
+//-->
+</SCRIPT>
+
+<!-- logo -->
+<A name="top"></A>
+<TABLE border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+<TBODY><TR>
+    <TD align="left"><A href="http://www.linuxquestions.org/questions/"><IMG src="./[SOLVED] Trim Log Files_files/LinuxQuestions.png" border="0" alt="LinuxQuestions.org" title="LinuxQuestions.org"></A></TD>
+    <TD align="right">
+     <DIV align="right">Go Job Hunting at the <A href="http://www.linuxquestions.org/jobs/">LQ Job Marketplace</A></DIV>
+    </TD>
+</TR>
+</TBODY></TABLE>
+<!-- /logo -->
+
+<!-- content table -->
+<!-- open content container -->
+
+<DIV align="center">
+	<DIV class="page" style="width:100%; text-align:left">
+		<DIV style="padding:0px 0px 0px 0px" align="left">
+
+
+
+
+
+<DIV class="vbmenu_popup" id="vbbloglinks_menu" style="display:none;margin-top:3px" align="left">
+	<TABLE cellpadding="4" cellspacing="1" border="0">
+	<TBODY><TR>
+		<TD class="thead"><A href="http://www.linuxquestions.org/questions/blog/">Blogs</A></TD>
+	</TR>
+	
+	<TR>
+		<TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/blog/recent-entries/">Recent Entries</A></TD>
+	</TR>
+	<TR>
+		<TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/blog/best-entries/">Best Entries</A></TD>
+	</TR>
+	<TR>
+		<TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/blog/best-blogs/">Best Blogs</A></TD>
+	</TR>
+	<TR>
+		<TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/blog/all/">Blog List</A></TD>
+	</TR>
+	
+	<TR>
+		<TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/questions/blog_search.php?do=search">Search Blogs</A></TD>
+	</TR>
+	
+	</TBODY></TABLE>
+</DIV>
+<SCRIPT type="text/javascript">
+<!--
+function log_out()
+{
+    ht = document.getElementsByTagName("html");
+    ht[0].style.filter = "progid:DXImageTransform.Microsoft.BasicImage(grayscale=1)";
+    if (confirm('Are you sure you want to log out?'))
+    {
+        return true;
+    }
+    else
+    {
+        ht[0].style.filter = "";
+        return false;
+    }
+}
+//-->
+</SCRIPT>
+<DIV style="text-align:center;margin-bottom:15px" align="center"> 
+<SCRIPT type="text/javascript"><!--// <![CDATA[
+    OA_show(108599);
+// ]]> --></SCRIPT><SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-4420048478783872";
+/* LQ Main - Top Leaderboard */
+google_ad_slot = "2731986808";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/show_ads.js">
+</SCRIPT><SCRIPT src="./[SOLVED] Trim Log Files_files/expansion_embed.js"></SCRIPT><SCRIPT src="./[SOLVED] Trim Log Files_files/test_domain.js"></SCRIPT><SCRIPT>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</SCRIPT><INS style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><INS style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><IFRAME allowtransparency="true" frameborder="0" height="90" hspace="0" id="google_ads_frame1" marginheight="0" marginwidth="0" name="google_ads_frame" scrolling="no" src="./[SOLVED] Trim Log Files_files/ads(2).htm" style="left:0;position:absolute;top:0" vspace="0" width="728"></IFRAME></INS></INS><DIV id="beacon_9a447d163a" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><IMG src="./[SOLVED] Trim Log Files_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></DIV>
+<NOSCRIPT></NOSCRIPT>
+</DIV>
+<!-- START: LQ Table Top -->
+<TABLE cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<TBODY><TR>
+<TD class="page" valign="top">
+<!-- END: LQ Table Top -->
+<!-- nav buttons bar -->
+<DIV align="center">
+	<TABLE class="tborder" cellpadding="3" cellspacing="0" border="0" width="100%" align="center" style="border-top-width:0px">
+	<TBODY><TR align="center">
+		<TD class="vbmenu_control"><A href="http://www.linuxquestions.org/" accesskey="1">Home</A></TD>
+		<TD class="vbmenu_control"><A href="http://www.linuxquestions.org/questions/">Forums</A></TD>
+		<TD class="vbmenu_control"><A href="http://www.linuxquestions.org/hcl/">HCL</A></TD>
+		<TD class="vbmenu_control"><A href="http://www.linuxquestions.org/reviews/">Reviews</A></TD>
+		<TD class="vbmenu_control"><A href="http://www.linuxquestions.org/linux/answers/">Tutorials</A></TD>
+		<TD class="vbmenu_control"><A href="http://www.linuxquestions.org/linux/articles/">Articles</A></TD>
+		
+			<TD class="vbmenu_control"><A href="http://www.linuxquestions.org/questions/register.php" rel="nofollow">Register</A></TD>
+		
+				
+			
+				<TD id="navbar_search" class="vbmenu_control" style="cursor: pointer; "><A href="http://www.linuxquestions.org/questions/search.php" accesskey="4" rel="nofollow">Search</A> <SCRIPT type="text/javascript"> vbmenu_register("navbar_search"); </SCRIPT> <IMG src="./[SOLVED] Trim Log Files_files/menu_open.gif" border="0" title="" alt=""></TD>
+			
+			
+		
+		
+	</TR>
+	</TBODY></TABLE>
+</DIV>
+<!-- / nav buttons bar -->
+
+
+<!-- NAVBAR POPUP MENUS -->
+	
+	
+	<!-- header quick search form -->
+	<DIV class="vbmenu_popup" id="navbar_search_menu" style="display:none">
+		<TABLE cellpadding="4" cellspacing="1" border="0">
+		<TBODY><TR>
+			<TD class="thead">Search Forums</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option" title="nohilite">
+			<FORM action="http://www.linuxquestions.org/questions/search.php" method="post">
+				<INPUT type="hidden" name="do" value="process">
+				<INPUT type="hidden" name="showposts" value="1">
+				<INPUT type="hidden" name="quicksearch" value="1">
+				<INPUT type="hidden" name="s" value="">
+	<INPUT type="hidden" name="securitytoken" value="guest">
+				<INPUT type="text" class="bginput" name="query" size="20"><INPUT type="submit" class="button" value="Go"><BR>
+			</FORM>
+			</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/search.php" accesskey="4" rel="nofollow">Advanced Search</A></TD>
+		</TR>
+
+		<TR>
+			<TD class="thead">Search Tags</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option" title="nohilite"><FORM action="http://www.linuxquestions.org/questions/search.php" method="post"><INPUT type="text" class="bginput" name="tag" size="20"><INPUT type="hidden" name="do" value="process"><INPUT type="hidden" name="posttags" value="1"><INPUT type="hidden" name="s" value="">
+	<INPUT type="hidden" name="securitytoken" value="guest"><INPUT type="submit" class="button" value="Go"><BR></FORM>
+			</TD>
+		</TR>
+
+		<TR>
+			<TD class="thead">Search LQ Wiki</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option" title="nohilite">
+            <FORM action="http://wiki.linuxquestions.org/wiki/Special:Search">
+              <INPUT name="fulltext" value="Search" type="hidden">              <INPUT name="search" class="bginput" type="text" size="20"><INPUT type="submit" class="button" value="Go"><BR>
+            </FORM>
+			</TD>
+		</TR>
+
+		<TR>
+			<TD class="thead">Search Tutorials/Articles</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option" title="nohilite">
+		<FORM action="http://www.linuxquestions.org/linux/search/node" method="post">
+			<INPUT name="op" value="Search" type="hidden">
+			<INPUT class="bginput" name="edit[keys]" size="20" type="text"><INPUT type="submit" class="button" value="Go"><BR>
+		</FORM>
+			</TD>
+		</TR>
+
+		<TR>
+			<TD class="thead">Search HCL</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option" title="nohilite">
+
+		<FORM method="get" action="http://www.linuxquestions.org/hcl/showcat.php">
+			<INPUT name="cat" value="all" type="hidden">
+			<INPUT name="stype" value="1" type="hidden">
+			<INPUT name="si" size="20" class="bginput" type="text"><INPUT type="submit" class="button" value="Go"><BR>
+		</FORM>
+			</TD>
+		</TR>
+		<TR>
+			<TD class="thead">Search Reviews</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option" title="nohilite">
+		<FORM method="get" action="http://www.linuxquestions.org/reviews/showcat.php">
+			<INPUT name="cat" value="all" type="hidden">
+			<INPUT name="stype" value="1" type="hidden">
+			<INPUT name="si" size="20" class="bginput" type="text"><INPUT type="submit" class="button" value="Go"><BR>
+		</FORM>
+			</TD>
+		</TR>
+
+		<TR>
+			<TD class="thead">Search Bookmarks</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option" title="nohilite">
+		<FORM action="http://www.linuxquestions.org/bookmarks/search/" method="post">
+			<INPUT type="hidden" name="range" value="all">
+			<INPUT name="terms" size="20" class="bginput" type="text"><INPUT type="submit" class="button" value="Go"><BR>
+		</FORM>
+			</TD>
+		</TR>
+
+		<TR>
+			<TD class="thead">Search ISOs</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option" title="nohilite">
+		<FORM method="get" action="http://iso.linuxquestions.org/search.php">
+			<INPUT name="query" size="20" class="bginput" type="text"><INPUT type="submit" class="button" value="Go"><BR>
+		</FORM>
+			</TD>
+		</TR>
+		</TBODY></TABLE>
+	</DIV>
+	<!-- / header quick search form -->
+	
+
+	
+<!-- / NAVBAR POPUP MENUS -->
+
+<!-- PAGENAV POPUP -->
+
+	<DIV class="vbmenu_popup" id="pagenav_menu" style="display:none">
+		<TABLE cellpadding="4" cellspacing="1" border="0">
+		<TBODY><TR>
+			<TD class="thead" nowrap="nowrap">Go to Page...</TD>
+		</TR>
+		<TR>
+			<TD class="vbmenu_option" title="nohilite">
+			<FORM action="http://www.linuxquestions.org/questions/" method="get" onsubmit="return this.gotopage()" id="pagenav_form">
+				<INPUT type="text" class="bginput" id="pagenav_itxt" style="font-size:11px" size="4">
+				<INPUT type="button" class="button" id="pagenav_ibtn" value="Go">
+			</FORM>
+			</TD>
+		</TR>
+		</TBODY></TABLE>
+	</DIV>
+
+<!-- / PAGENAV POPUP -->
+
+
+<!-- breadcrumb, login, pm info -->
+<TABLE class="tborder" cellpadding="3" cellspacing="1" border="0" width="100%" align="center" style="border-top:0px">
+<TBODY><TR>
+	<TD class="alt1" width="100%">
+		
+			<TABLE cellpadding="0" cellspacing="0" border="0">
+			<TBODY><TR valign="bottom">
+				<TD><A href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/#" onclick="history.back(1); return false;"><IMG src="./[SOLVED] Trim Log Files_files/navbits_start.gif" alt="Go Back" border="0" title="Go Back"></A></TD>
+				<TD>&nbsp;</TD>
+				<TD width="100%"><SPAN class="navbar"><A href="http://www.linuxquestions.org/" accesskey="1">LinuxQuestions.org</A></SPAN> 
+
+<SPAN class="navbar">&gt; <A href="http://www.linuxquestions.org/questions/" accesskey="1">Forums</A></SPAN> 
+
+
+	<SPAN class="navbar">&gt; <A href="http://www.linuxquestions.org/questions/linux-forums-50/">Linux Forums</A></SPAN>
+
+
+	<SPAN class="navbar">&gt; <A href="http://www.linuxquestions.org/questions/linux-server-73/">Linux - Server</A></SPAN>
+
+</TD>
+			</TR>
+			<TR>
+				<TD class="navbar" style="font-size:10pt; padding-top:1px" colspan="3"><A href="http://www.linuxquestions.org/questions/"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/navbits_finallink.gif" alt="Reload this Page" border="0" title="Reload this Page"></A> <STRONG>
+	[SOLVED] Trim Log Files
+
+</STRONG></TD>
+			</TR>
+			</TBODY></TABLE>			
+		
+	</TD>	
+	
+	
+		
+		<TD class="alt2" nowrap="nowrap" style="padding:0px">
+			
+		<!-- login form -->
+		<FORM action="http://www.linuxquestions.org/questions/login.php" method="post" onsubmit="md5hash(vb_login_password, vb_login_md5password, vb_login_md5password_utf, 0)">
+		<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/vbulletin_md5.js"></SCRIPT>
+		<TABLE cellpadding="0" cellspacing="3" border="0">
+		<TBODY><TR>
+			<TD class="smallfont">User Name</TD>
+			<TD><INPUT type="text" class="bginput" style="font-size: 11px" name="vb_login_username" id="navbar_username" size="10" accesskey="u" tabindex="101" value="User Name" onfocus="if (this.value == &#39;User Name&#39;) this.value = &#39;&#39;;"></TD>
+			<TD class="smallfont" colspan="2" nowrap="nowrap"><LABEL for="cb_cookieuser_navbar"><INPUT type="checkbox" name="cookieuser" value="1" tabindex="103" id="cb_cookieuser_navbar" accesskey="c" checked="checked">Remember Me?</LABEL></TD>
+		</TR>
+		<TR>
+			<TD class="smallfont">Password</TD>
+			<TD><INPUT type="password" class="bginput" style="font-size: 11px" name="vb_login_password" size="10" accesskey="p" tabindex="102"></TD>
+			<TD><INPUT type="submit" class="button" value="Log in" tabindex="104" title="Enter your username and password in the boxes provided to login, or click the &#39;register&#39; button to create a profile for yourself." accesskey="s"></TD>
+		</TR>
+		</TBODY></TABLE>
+		<INPUT type="hidden" name="s" value="">
+	<INPUT type="hidden" name="securitytoken" value="guest">
+		<INPUT type="hidden" name="do" value="login">		
+		<INPUT type="hidden" name="vb_login_md5password">
+		<INPUT type="hidden" name="vb_login_md5password_utf">
+		</FORM>
+		<!-- / login form -->
+			
+		</TD>
+		
+		
+	
+</TR>
+</TBODY></TABLE>
+<!-- / breadcrumb, login, pm info -->
+
+
+	<TABLE class="tborder" cellpadding="3" cellspacing="1" border="0" width="100%" align="center" style="border-top:0px">
+	<TBODY><TR>
+		<TD class="alt1" width="100%"><STRONG>Linux - Server</STRONG> <SPAN class="smallfont">This forum is for the discussion of Linux Software used in a server related context.</SPAN></TD>
+	</TR>
+	</TBODY></TABLE>
+
+
+
+
+	<BR>
+	<TABLE class="tborder" cellpadding="3" cellspacing="1" border="0" width="100%" align="center">
+	<TBODY><TR>
+		<TD class="thead">Notices</TD>
+	</TR>
+	<TR>
+		<TD class="alt1"><DIV class="navbar_notice" id="navbar_notice_1">
+	Welcome to <STRONG>LinuxQuestions.org</STRONG>, a friendly and active Linux Community. <BR><BR>
+You are currently viewing LQ as a guest.  By joining our community you will have the ability to post topics, receive our newsletter, use the advanced search, subscribe to threads and access many other special features. Registration is quick, simple and absolutely free. <A href="http://www.linuxquestions.org/questions/register.php"><STRONG>Join our community</STRONG></A> today!<BR><BR>
+<STRONG>Note that registered members see fewer ads, and ContentLink is completely disabled once you log in.</STRONG><BR><BR>
+Are you new to LinuxQuestions.org?  Visit the following links:<BR>
+<A href="http://www.linuxquestions.org/linux/answers/LinuxQuestions_org/How_to_Use_LinuxQuestions_org">Site Howto</A> |
+<A href="http://www.linuxquestions.org/questions/faq.php">Site FAQ</A> |
+<A href="http://www.linuxquestions.org/linux/sitemap.html">Sitemap</A> | 
+<A href="http://www.linuxquestions.org/questions/register.php">Register Now</A>
+<BR><BR>If you have any problems with the registration process or your account login, please <A href="http://www.linuxquestions.org/questions/sendmessage.php">contact us</A>.  If you need to reset your password, <A rel="nofollow" href="http://www.linuxquestions.org/questions/login.php?do=lostpw">click here</A>.<BR><BR>
+<STRONG>Having a problem logging in? Please visit <A href="http://www.linuxquestions.org/removecookies.php">this page</A> to clear all LQ-related cookies.</STRONG>
+</DIV><DIV class="navbar_notice" id="navbar_notice_17">
+	Check out <A href="http://linuxexchange.org/" target="_blank">LinuxExchange.org</A> - StackOverflow for Linux and Open Source.
+</DIV></TD>
+	</TR>
+	</TBODY></TABLE>
+
+
+
+	<BR>
+
+<!-- <div style="text-align:center;margin-bottom:15px"> 
+google_leaderboard_white_text
+</div>-->
+<DIV class="KonaBody">
+
+
+
+
+
+
+
+<A name="poststop" id="poststop"></A>
+
+<!-- controls above postbits -->
+<TABLE cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:3px">
+<TBODY><TR valign="bottom">
+	
+		<TD class="smallfont"><A href="http://www.linuxquestions.org/questions/newreply.php?do=newreply&noquote=1&p=3685677" rel="nofollow"><IMG src="./[SOLVED] Trim Log Files_files/reply.gif" alt="Reply" border="0" title="Reply"></A></TD>
+	
+	
+</TR>
+</TBODY></TABLE>
+<!-- / controls above postbits -->
+
+<!-- toolbar -->
+<TABLE class="tborder" cellpadding="3" cellspacing="1" border="0" width="100%" align="center" style="border-bottom-width:0px">
+<TBODY><TR>
+	<TD class="tcat" width="100%">
+		<DIV class="smallfont">
+		
+		
+		&nbsp;
+		</DIV>
+	</TD>
+	<TD class="vbmenu_control" id="threadtools" nowrap="nowrap" style="cursor: pointer; ">
+		<A rel="nofollow" href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/?nojs=1#goto_threadtools">Thread Tools</A>
+		<SCRIPT type="text/javascript"> vbmenu_register("threadtools"); </SCRIPT> <IMG src="./[SOLVED] Trim Log Files_files/menu_open.gif" border="0" title="" alt="">
+	</TD>
+
+<TD class="vbmenu_control" id="linkbacktools" nowrap="nowrap" style="cursor: pointer; ">
+	<A rel="nofollow" href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/?nojs=1#links">LinkBack</A>
+	<SCRIPT type="text/javascript"> vbmenu_register("linkbacktools"); </SCRIPT> <IMG src="./[SOLVED] Trim Log Files_files/menu_open.gif" border="0" title="" alt="">
+</TD>
+ <!-- $vbseo_linkback_menu -->
+	
+		<TD class="vbmenu_control" id="threadsearch" nowrap="nowrap" style="cursor: pointer; ">
+			<A rel="nofollow" href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/?nojs=1#goto_threadsearch">Search this Thread</A>
+			<SCRIPT type="text/javascript"> vbmenu_register("threadsearch"); </SCRIPT> <IMG src="./[SOLVED] Trim Log Files_files/menu_open.gif" border="0" title="" alt="">
+		</TD>
+	
+	
+	
+	
+</TR>
+</TBODY></TABLE>
+<!-- / toolbar -->
+
+
+
+
+
+
+
+<DIV id="posts"><!-- post #3685677 -->
+
+	<!-- open content container -->
+
+<DIV align="center">
+	<DIV class="page" style="width:100%; text-align:left">
+		<DIV style="padding:0px 0px 0px 0px" align="left">
+
+	<DIV id="edit3685677" style="padding:0px 0px 3px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<TABLE id="post3685677" class="tborder" cellpadding="3" cellspacing="0" border="0" width="100%" align="center">
+<TBODY><TR>
+	
+		<TD colspan="2" class="thead" style="font-weight:normal; border: 1px solid #FFFFFF; border-right: 0px">		
+			<!-- status icon and date -->
+			<A name="post3685677"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/post_old.gif" alt="Old" border="0" title="Old"></A>
+			09-16-2009, 02:39 PM
+			
+			<!-- / status icon and date -->				
+		</TD>
+		<TD class="thead" style="font-weight:normal; border: 1px solid #FFFFFF; border-left: 0px" align="right">
+			&nbsp;
+		
+			#<A href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/#post3685677" rel="nofollow" id="postcount3685677" name="1"><STRONG>1</STRONG></A>
+			
+		
+		</TD>
+	
+</TR>
+<TR valign="top">
+	<TD class="alt2" width="175" style="border: 1px solid #FFFFFF; border-top: 0px; border-bottom: 0px">
+			
+			<DIV id="postmenu_3685677">
+				
+				<A rel="nofollow" class="bigusername" href="http://www.linuxquestions.org/questions/user/doby48-430389/"><!-- google_ad_section_start(weight=ignore) -->doby48<!-- google_ad_section_end --></A>
+				<SCRIPT type="text/javascript"> vbmenu_register("postmenu_3685677", true); </SCRIPT>
+				
+			</DIV>
+			<DIV class="smallfont">LQ Newbie</DIV>
+			
+			
+			
+			
+			
+			<DIV class="smallfont">
+				&nbsp;<BR>
+				<DIV>Registered: Sep 2008</DIV>
+				<DIV>Location: Minnesota (USA)</DIV>
+				<DIV>Distribution: Fedora, Slackware</DIV>
+				
+				<DIV>
+					Posts: 16
+				</DIV>
+				 
+<!--	<div>Thanks: 3</div> 
+	<div> -->
+		
+			
+				Thanked: 0
+			
+		
+	</DIV>
+
+				
+				
+				
+				<DIV>    </DIV>
+								
+	</TD>
+	
+	<TD colspan="2" class="alt2" id="td_post_3685677" style="border-right: 1px solid #FFFFFF">
+	
+		
+		
+			<!-- icon and title -->
+			<DIV class="smallfont">
+				
+				<STRONG><!-- google_ad_section_start -->Trim Log Files<!-- google_ad_section_end --></STRONG>
+			</DIV>
+			<HR size="1" style="color:#FFFFFF">
+			<!-- / icon and title -->
+		
+		
+
+		<!-- message -->
+
+
+<DIV style="float: right; margin-left: 5px; margin-bottom: 5px; margin-top: -3px; margin-right: -3px">
+<SCRIPT type="text/javascript">
+  netseer_ad_width = 300;  
+  netseer_ad_height = 250;  
+  netseer_banner_id = 63;  
+  netseer_banner_text_color = "#002285";
+  netseer_network_id = 1040;
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/contextlinks.js">
+</SCRIPT><IFRAME name="netseer_ads_frame" width="300" height="250" src="./[SOLVED] Trim Log Files_files/BannerServer.htm" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no"></IFRAME>
+<BR>[<A href="http://www.linuxquestions.org/questions/lqlogin.php">Log in</A> to <STRONG>get rid</STRONG> of this advertisement]
+</DIV>
+
+		<DIV id="post_message_3685677"><!-- google_ad_section_start -->I log certain activity on my server and I want to trim the files. I know of several ways to do this if I want to keep a running archive, wipe out files etc but what I am looking to do is to keep the most recent 25000 lines and delete the rest. I was going to use $split --lines=25000 but the problem is that the oldest logs are at the beginning of the file so when using split then there may be only one file (aa) or there may be two files (aa and ab). I cant just rename aa as that is the oldest data and I cant rename ab as that <A href="http://www.linuxquestions.org/questions/#" style="text-decoration: underline !important;position:static;" class="kLink" target="undefined" id="KonaLink0"><FONT style="color: blue !important; font-family:Verdana, Arial, Helvetica, sans-serif;font-weight:normal;font-size:13px;position:static;" color="blue"><SPAN class="kLink" style="color: blue !important; font-family:Verdana, Arial, Helvetica, sans-serif;font-weight:normal;font-size:13px;position:static;">file</SPAN></FONT></A> may or may not exists as some logs may be under 25000 lines. Any other thoughts or any ways to use split in reverse order (bottom to top)?<BR>
+<BR>
+EDIT: the log file I am starting out with would be area_logs.log for example and I want to keep this file running with the latest 25000 lines. In the example above if I ran split and came up with area_logs.log then I would rename the latest file back to this file name. Hopefully that all makes sense as I need the running active log to be the lates entries and anything beyond that can be deleted, no need to archive the data.<!-- google_ad_section_end --></DIV>
+		<!-- / message -->
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- edit note -->
+			<DIV class="smallfont">			<HR size="1" style="color:#FFFFFF">
+				<EM>
+				Last edited by doby48; 09-16-2009 at <SPAN class="time">02:40 PM</SPAN>..
+				
+				</EM>
+			</DIV>
+		<!-- / edit note -->
+		
+	
+	</TD>
+</TR>
+<TR>
+	<TD class="alt2" style="border: 1px solid #FFFFFF; border-top: 0px">
+
+<IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/icon_linux.gif" alt="linux" title="linux">
+		<IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/forum_old.gif" alt="doby48 is offline" border="0" title="doby48 is offline">
+
+
+						
+		
+		
+		&nbsp;
+	</TD>
+	<TD id="lqtags_3685677" class="alt2" valign="bottom">
+	
+        &nbsp;
+	
+	</TD>
+	
+	<TD class="alt2" align="right" style="border: 1px solid #FFFFFF; border-left: 0px; border-top: 0px">
+	
+		<!-- controls -->
+	
+		
+		
+		
+			<A href="http://www.linuxquestions.org/questions/newreply.php?do=newreply&p=3685677" rel="nofollow"><IMG src="./[SOLVED] Trim Log Files_files/quote.gif" alt="Reply With Quote" border="0" title="Reply With Quote"></A>
+		
+		
+		
+		
+		
+			
+		
+		
+				
+			
+		
+		
+		<!-- / controls -->
+	</TD>
+</TR>
+</TBODY></TABLE>
+
+<DIV align="center"><!-- lq_leader_afterpost --> </DIV>
+
+
+
+<!-- post 3685677 popup menu -->
+<DIV class="vbmenu_popup" id="postmenu_3685677_menu" style="display:none">
+	<TABLE cellpadding="4" cellspacing="1" border="0">
+	<TBODY><TR>
+		<TD class="thead">doby48</TD>
+	</TR>
+	
+	<TR><TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/questions/user/doby48-430389/">View Public Profile</A></TD></TR>
+	
+	<TR><TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/blog/doby48-430389/">View LQ Blog</A></TD></TR>
+	<TR><TD class="vbmenu_option"><A href="http://www.linuxquestions.org/bookmarks/user/doby48">View Bookmarks</A></TD></TR>
+	<TR><TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/reviews/showcat.php?cat=myprod&ppuser=430389">View Review Entries</A></TD></TR>
+	<TR><TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/hcl/showcat.php?cat=myprod&ppuser=430389">View HCL Entries</A></TD></TR>
+	
+	
+	
+	
+	
+	
+	
+		<TR><TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/search.php?do=finduser&u=430389" rel="nofollow">Find More Posts by doby48</A></TD></TR>
+	
+	
+	
+	</TBODY></TABLE>
+</DIV>
+<!-- / post 3685677 popup menu -->
+
+
+	</DIV>
+	
+		</DIV>
+	</DIV>
+</DIV>
+
+<!-- / close content container -->
+
+<!-- / post #3685677 --><!-- post #3685722 -->
+
+	<!-- open content container -->
+
+<DIV align="center">
+	<DIV class="page" style="width:100%; text-align:left">
+		<DIV style="padding:0px 0px 0px 0px" align="left">
+
+	<DIV id="edit3685722" style="padding:0px 0px 3px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<TABLE id="post3685722" class="tborder" cellpadding="3" cellspacing="0" border="0" width="100%" align="center">
+<TBODY><TR>
+	
+		<TD colspan="2" class="thead" style="font-weight:normal; border: 1px solid #FFFFFF; border-right: 0px">		
+			<!-- status icon and date -->
+			<A name="post3685722"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/post_old.gif" alt="Old" border="0" title="Old"></A>
+			09-16-2009, 03:00 PM
+			
+			<!-- / status icon and date -->				
+		</TD>
+		<TD class="thead" style="font-weight:normal; border: 1px solid #FFFFFF; border-left: 0px" align="right">
+			&nbsp;
+		
+			#<A href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/#post3685722" rel="nofollow" id="postcount3685722" name="2"><STRONG>2</STRONG></A>
+			
+		
+		</TD>
+	
+</TR>
+<TR valign="top">
+	<TD class="alt1" width="175" style="border: 1px solid #FFFFFF; border-top: 0px; border-bottom: 0px">
+			
+			<DIV id="postmenu_3685722">
+				
+				<A rel="nofollow" class="bigusername" href="http://www.linuxquestions.org/questions/user/doby48-430389/"><!-- google_ad_section_start(weight=ignore) -->doby48<!-- google_ad_section_end --></A>
+				<SCRIPT type="text/javascript"> vbmenu_register("postmenu_3685722", true); </SCRIPT>
+				
+			</DIV>
+			<DIV class="smallfont">LQ Newbie</DIV>
+			
+			
+			
+			
+			
+			<DIV class="smallfont">
+				&nbsp;<BR>
+				<DIV>Registered: Sep 2008</DIV>
+				<DIV>Location: Minnesota (USA)</DIV>
+				<DIV>Distribution: Fedora, Slackware</DIV>
+				
+				<DIV>
+					Posts: 16
+				</DIV>
+				 
+<!--	<div>Thanks: 3</div> 
+	<div> -->
+		
+			
+				Thanked: 0
+			
+		
+	</DIV>
+<!-- Threadauthor -->
+
+
+<BR><STRONG>Original Poster</STRONG>
+<!-- / Threadauthor -->
+				
+				
+				
+				<DIV>    </DIV>
+								
+	</TD>
+	
+	<TD colspan="2" class="alt1" id="td_post_3685722" style="border-right: 1px solid #FFFFFF">
+	
+		
+		
+		
+
+		<!-- message -->
+
+
+		<DIV id="post_message_3685722"><!-- google_ad_section_start -->Figured this out, I was going about this the wrong way. Using tail I get what I was looking for:<BR>
+<DIV style="margin:20px; margin-top:5px">
+	<DIV class="smallfont" style="margin-bottom:2px">Code:</DIV>
+	<PRE class="bbcodeblock" dir="ltr" style="
+		margin: 0px;
+		margin-right: -99999px;
+		padding: 3px;
+		border: 1px inset;
+		width: 98%;
+		height: 34px;
+		text-align: left;
+		overflow: auto">$tail --lines=25000 area_log.log &gt; area_log_new.log</PRE>
+</DIV>followed by <BR>
+<DIV style="margin:20px; margin-top:5px">
+	<DIV class="smallfont" style="margin-bottom:2px">Code:</DIV>
+	<PRE class="bbcodeblock" dir="ltr" style="
+		margin: 0px;
+		margin-right: -99999px;
+		padding: 3px;
+		border: 1px inset;
+		width: 98%;
+		height: 34px;
+		text-align: left;
+		overflow: auto">$mv area_log_new.log area_log.log</PRE>
+</DIV><!-- google_ad_section_end --></DIV>
+		<!-- / message -->
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- edit note -->
+			<DIV class="smallfont">			<HR size="1" style="color:#FFFFFF">
+				<EM>
+				Last edited by doby48; 09-16-2009 at <SPAN class="time">03:07 PM</SPAN>..
+				
+				</EM>
+			</DIV>
+		<!-- / edit note -->
+		
+	
+	</TD>
+</TR>
+<TR>
+	<TD class="alt1" style="border: 1px solid #FFFFFF; border-top: 0px">
+
+<IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/icon_linux.gif" alt="linux" title="linux">
+		<IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/forum_old.gif" alt="doby48 is offline" border="0" title="doby48 is offline">
+
+
+						
+		
+		
+		&nbsp;
+	</TD>
+	<TD id="lqtags_3685722" class="alt1" valign="bottom">
+	
+        &nbsp;
+	
+	</TD>
+	
+	<TD class="alt1" align="right" style="border: 1px solid #FFFFFF; border-left: 0px; border-top: 0px">
+	
+		<!-- controls -->
+	
+		
+		
+		
+			<A href="http://www.linuxquestions.org/questions/newreply.php?do=newreply&p=3685722" rel="nofollow"><IMG src="./[SOLVED] Trim Log Files_files/quote.gif" alt="Reply With Quote" border="0" title="Reply With Quote"></A>
+		
+		
+		
+		
+		
+			
+		
+		
+				
+					
+			<DIV id="helpfulanswers_box_3685722">		
+								
+				
+							
+					
+				
+					
+					
+					
+					
+				
+				
+				
+				
+			</DIV>			
+			
+		
+		
+		<!-- / controls -->
+	</TD>
+</TR>
+</TBODY></TABLE>
+
+
+
+<!-- post 3685722 popup menu -->
+<DIV class="vbmenu_popup" id="postmenu_3685722_menu" style="display:none">
+	<TABLE cellpadding="4" cellspacing="1" border="0">
+	<TBODY><TR>
+		<TD class="thead">doby48</TD>
+	</TR>
+	
+	<TR><TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/questions/user/doby48-430389/">View Public Profile</A></TD></TR>
+	
+	<TR><TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/blog/doby48-430389/">View LQ Blog</A></TD></TR>
+	<TR><TD class="vbmenu_option"><A href="http://www.linuxquestions.org/bookmarks/user/doby48">View Bookmarks</A></TD></TR>
+	<TR><TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/reviews/showcat.php?cat=myprod&ppuser=430389">View Review Entries</A></TD></TR>
+	<TR><TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/hcl/showcat.php?cat=myprod&ppuser=430389">View HCL Entries</A></TD></TR>
+	
+	
+	
+	
+	
+	
+	
+		<TR><TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/search.php?do=finduser&u=430389" rel="nofollow">Find More Posts by doby48</A></TD></TR>
+	
+	
+	
+	</TBODY></TABLE>
+</DIV>
+<!-- / post 3685722 popup menu -->
+
+
+	</DIV>
+	
+		</DIV>
+	</DIV>
+</DIV>
+
+<!-- / close content container -->
+
+<!-- / post #3685722 --><!-- post #3685767 -->
+
+	<!-- open content container -->
+
+<DIV align="center">
+	<DIV class="page" style="width:100%; text-align:left">
+		<DIV style="padding:0px 0px 0px 0px" align="left">
+
+	<DIV id="edit3685767" style="padding:0px 0px 3px 0px">
+	
+
+
+
+<TABLE id="post3685767" class="tborder" cellpadding="3" cellspacing="0" border="0" width="100%" align="center">
+<TBODY><TR>
+	
+		<TD colspan="2" class="thead" style="font-weight:normal; border: 1px solid #FFFFFF; border-right: 0px">		
+			<!-- status icon and date -->
+			<A name="post3685767"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/post_old.gif" alt="Old" border="0" title="Old"></A>
+			09-16-2009, 03:23 PM
+			
+			<!-- / status icon and date -->				
+		</TD>
+		<TD class="thead" style="font-weight:normal; border: 1px solid #FFFFFF; border-left: 0px" align="right">
+			&nbsp;
+		
+			#<A href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/#post3685767" rel="nofollow" id="postcount3685767" name="3"><STRONG>3</STRONG></A>
+			
+		
+		</TD>
+	
+</TR>
+<TR valign="top">
+	<TD class="alt2" width="175" style="border: 1px solid #FFFFFF; border-top: 0px; border-bottom: 0px">
+			
+			<DIV id="postmenu_3685767">
+				
+				<A rel="nofollow" class="bigusername" href="http://www.linuxquestions.org/questions/user/colucix-55489/"><!-- google_ad_section_start(weight=ignore) -->colucix<!-- google_ad_section_end --></A>
+				<SCRIPT type="text/javascript"> vbmenu_register("postmenu_3685767", true); </SCRIPT>
+				
+			</DIV>
+			<DIV class="smallfont">Guru</DIV>
+			
+			
+			
+			
+			
+			<DIV class="smallfont">
+				&nbsp;<BR>
+				<DIV>Registered: Sep 2003</DIV>
+				<DIV>Location: Bologna, Italia</DIV>
+				<DIV>Distribution: OpenSUSE 11.1 CentOS 5.4 VectorLinux 6.0</DIV>
+				
+				<DIV>
+					Posts: 5,659
+				</DIV>
+				 
+<!--	<div>Thanks: 60</div> 
+	<div> -->
+		
+			
+				Thanked: 592
+			
+		
+	</DIV>
+
+				
+				
+				
+				<DIV>    </DIV>
+								
+	</TD>
+	
+	<TD colspan="2" class="alt2" id="td_post_3685767" style="border-right: 1px solid #FFFFFF">
+	
+		
+		
+		
+
+		<!-- message -->
+
+
+		<DIV id="post_message_3685767"><!-- google_ad_section_start -->You can avoid to write a temporary file if you use sed with -i option to edit the file in place. You have only to choose a way to calculate the last line you want to delete, that is the total number of lines minus 25000. Here is two examples:<BR>
+<DIV style="margin:20px; margin-top:5px">
+	<DIV class="smallfont" style="margin-bottom:2px">Code:</DIV>
+	<PRE class="bbcodeblock" dir="ltr" style="
+		margin: 0px;
+		margin-right: -99999px;
+		padding: 3px;
+		border: 1px inset;
+		width: 98%;
+		height: 50px;
+		text-align: left;
+		overflow: auto">$ sed -i "1,$(($(cat area_log.log|wc -l)-25000))d" area_log.log
+$ sed -i "1,$(awk 'END{print NR-25000}' area_log.log)d" area_log.log</PRE>
+</DIV>Edit: I just figured out you can do that using sed commands only:<BR>
+<DIV style="margin:20px; margin-top:5px">
+	<DIV class="smallfont" style="margin-bottom:2px">Code:</DIV>
+	<PRE class="bbcodeblock" dir="ltr" style="
+		margin: 0px;
+		margin-right: -99999px;
+		padding: 3px;
+		border: 1px inset;
+		width: 98%;
+		height: 34px;
+		text-align: left;
+		overflow: auto">sed -i -e :a -e '$q;N;25001,$D;ba' area_log.log</PRE>
+</DIV>Taken from "USEFUL ONE-LINE SCRIPTS FOR SED" at <A href="http://sed.sourceforge.net/sed1line.txt" target="_blank">http://sed.sourceforge.net/sed1line.txt</A><!-- google_ad_section_end --></DIV>
+		<!-- / message -->
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- edit note -->
+			<DIV class="smallfont">			<HR size="1" style="color:#FFFFFF">
+				<EM>
+				Last edited by colucix; 09-16-2009 at <SPAN class="time">03:31 PM</SPAN>..
+				
+				</EM>
+			</DIV>
+		<!-- / edit note -->
+		
+	
+	</TD>
+</TR>
+<TR>
+	<TD class="alt2" style="border: 1px solid #FFFFFF; border-top: 0px">
+
+<IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/icon_linuxsuse.gif" alt="linuxsuse" title="linuxsuse">
+		<IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/forum_old.gif" alt="colucix is offline" border="0" title="colucix is offline">
+
+
+						
+		
+		
+		&nbsp;
+	</TD>
+	<TD id="lqtags_3685767" class="alt2" valign="bottom">
+	
+        &nbsp;
+	
+	</TD>
+	
+	<TD class="alt2" align="right" style="border: 1px solid #FFFFFF; border-left: 0px; border-top: 0px">
+	
+		<!-- controls -->
+	
+		
+		
+		
+			<A href="http://www.linuxquestions.org/questions/newreply.php?do=newreply&p=3685767" rel="nofollow"><IMG src="./[SOLVED] Trim Log Files_files/quote.gif" alt="Reply With Quote" border="0" title="Reply With Quote"></A>
+		
+		
+		
+		
+		
+			
+		
+		
+				
+					
+			<DIV id="helpfulanswers_box_3685767">		
+								
+				
+							
+					
+				
+					
+					
+					
+					
+				
+				
+				
+				
+			</DIV>			
+			
+		
+		
+		<!-- / controls -->
+	</TD>
+</TR>
+</TBODY></TABLE>
+
+
+
+<!-- post 3685767 popup menu -->
+<DIV class="vbmenu_popup" id="postmenu_3685767_menu" style="display:none">
+	<TABLE cellpadding="4" cellspacing="1" border="0">
+	<TBODY><TR>
+		<TD class="thead">colucix</TD>
+	</TR>
+	
+	<TR><TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/questions/user/colucix-55489/">View Public Profile</A></TD></TR>
+	
+	<TR><TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/blog/colucix-55489/">View LQ Blog</A></TD></TR>
+	<TR><TD class="vbmenu_option"><A href="http://www.linuxquestions.org/bookmarks/user/colucix">View Bookmarks</A></TD></TR>
+	<TR><TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/reviews/showcat.php?cat=myprod&ppuser=55489">View Review Entries</A></TD></TR>
+	<TR><TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/hcl/showcat.php?cat=myprod&ppuser=55489">View HCL Entries</A></TD></TR>
+	
+	
+	
+	
+	
+	
+	
+		<TR><TD class="vbmenu_option"><A href="http://www.linuxquestions.org/questions/search.php?do=finduser&u=55489" rel="nofollow">Find More Posts by colucix</A></TD></TR>
+	
+	
+	
+	</TBODY></TABLE>
+</DIV>
+<!-- / post 3685767 popup menu -->
+
+
+	</DIV>
+	
+		</DIV>
+	</DIV>
+</DIV>
+
+<!-- / close content container -->
+
+<!-- / post #3685767 --><DIV id="lastpost"></DIV></DIV>
+
+<DIV align="center"><SCRIPT type="text/javascript"><!--// <![CDATA[
+    OA_show(109471);
+// ]]> --></SCRIPT><SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-4420048478783872";
+/* LQ Main - Bottom Medium Rectangle */
+google_ad_slot = "0665833758";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/show_ads.js">
+</SCRIPT><SCRIPT>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</SCRIPT><INS style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px"><INS style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px"><IFRAME allowtransparency="true" frameborder="0" height="250" hspace="0" id="google_ads_frame2" marginheight="0" marginwidth="0" name="google_ads_frame" scrolling="no" src="./[SOLVED] Trim Log Files_files/ads.htm" style="left:0;position:absolute;top:0" vspace="0" width="300"></IFRAME></INS></INS><DIV id="beacon_23e4db457c" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><IMG src="./[SOLVED] Trim Log Files_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></DIV>
+<NOSCRIPT></NOSCRIPT>&nbsp;<SCRIPT type="text/javascript"><!--// <![CDATA[
+    OA_show(109740);
+// ]]> --></SCRIPT><A href="http://d1.openx.org/ck.php?oaparams=2__bannerid=331913__zoneid=109740__OXLCA=1__cb=a9cacfab8b__r_id=4074b522c68927b6103a8cdfafc89de3__r_ts=l2foxl__oadest=http%3A%2F%2Fwww.giganews.com%2F%3Fa%3Dlinuxq" target="_blank"><IMG src="./[SOLVED] Trim Log Files_files/e59945016d8f093b834f0bae4ecd3e35.jpg" width="300" height="250" alt="Giganews 50% off" title="Giganews 50% off" border="0"></A><DIV id="beacon_a9cacfab8b" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><IMG src="./[SOLVED] Trim Log Files_files/lg(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></DIV>
+<NOSCRIPT></NOSCRIPT></DIV><BR>
+
+<!-- start content table -->
+<!-- open content container -->
+
+<DIV align="center">
+	<DIV class="page" style="width:100%; text-align:left">
+		<DIV style="padding:0px 0px 0px 0px" align="left">
+
+<!-- / start content table -->
+
+<!-- controls below postbits -->
+<TABLE cellpadding="0" cellspacing="0" border="0" width="100%">
+<TBODY><TR valign="top">
+	
+		<TD class="smallfont"><A href="http://www.linuxquestions.org/questions/newreply.php?do=newreply&noquote=1&p=3685767" rel="nofollow"><IMG src="./[SOLVED] Trim Log Files_files/reply.gif" alt="Reply" border="0" title="Reply"></A></TD>
+		
+	
+</TR>
+</TBODY></TABLE>
+<!-- / controls below postbits -->
+
+
+
+
+
+
+
+
+
+
+
+<BR>
+<BR>
+
+<!-- currently active users -->
+
+<!-- end currently active users -->
+
+
+<!-- popup menu contents -->
+<BR>
+
+<!-- thread tools menu -->
+<DIV class="vbmenu_popup" id="threadtools_menu" style="display:none">
+<FORM action="http://www.linuxquestions.org/questions/postings.php?t=755703&pollid=" method="post" name="threadadminform">
+	<TABLE cellpadding="4" cellspacing="1" border="0">
+	<TBODY><TR>
+		<TD class="thead">Thread Tools<A name="goto_threadtools"></A></TD>
+	</TR>
+	<TR>
+		<TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/printer.gif" alt="Show Printable Version" title="Show Printable Version"> <A href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703-print/" accesskey="3" rel="nofollow">Show Printable Version</A></TD>
+	</TR>
+	<TR>
+		<TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/sendtofriend.gif" alt="Email this Page" title="Email this Page"> <A href="http://www.linuxquestions.org/questions/sendmessage.php?do=sendtofriend&t=755703" rel="nofollow">Email this Page</A></TD>
+	</TR>
+	
+	
+	
+			
+	
+	
+	</TBODY></TABLE>
+</FORM>
+</DIV>
+<!-- / thread tools menu -->
+
+<!-- **************************************************** -->
+
+
+<!-- thread search menu -->
+<DIV class="vbmenu_popup" id="threadsearch_menu" style="display:none">
+<FORM action="http://www.linuxquestions.org/questions/search.php?do=process&searchthreadid=755703" method="post">
+	<TABLE cellpadding="4" cellspacing="1" border="0">
+	<TBODY><TR>
+		<TD class="thead">Search this Thread<A name="goto_threadsearch"></A></TD>
+	</TR>
+	<TR>
+		<TD class="vbmenu_option" title="nohilite">
+			<INPUT type="hidden" name="s" value="">
+			<INPUT type="hidden" name="securitytoken" value="guest">
+			<INPUT type="hidden" name="do" value="process">
+			<INPUT type="hidden" name="searchthreadid" value="755703">
+			<INPUT type="text" class="bginput" name="query" size="25"><INPUT type="submit" class="button" value="Go"><BR>
+		</TD>
+	</TR>
+	<TR>
+		<TD class="vbmenu_option"><A rel="nofollow" href="http://www.linuxquestions.org/questions/search.php?searchthreadid=755703">Advanced Search</A></TD>
+	</TR>
+	</TBODY></TABLE>
+</FORM>
+</DIV>
+<!-- / thread search menu -->
+
+
+<!-- **************************************************** -->
+
+
+
+<!-- / popup menu contents -->
+
+
+<!-- forum rules and admin links -->
+<TABLE cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<TBODY><TR valign="bottom">
+	<TD class="smallfont" align="left">
+		<TABLE class="tborder" cellpadding="3" cellspacing="1" border="0" width="210">
+<THEAD>
+<TR>
+	<TD class="thead">
+		<A style="float:right" href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/#top" onclick="return toggle_collapse(&#39;forumrules&#39;)"><IMG id="collapseimg_forumrules" src="./[SOLVED] Trim Log Files_files/collapse_thead.gif" alt="" border="0"></A>
+		Posting Rules
+	</TD>
+</TR>
+</THEAD>
+<TBODY id="collapseobj_forumrules" style="">
+<TR>
+	<TD class="alt1" nowrap="nowrap"><DIV class="smallfont">
+		
+		<DIV>You <STRONG>may not</STRONG> post new threads</DIV>
+		<DIV>You <STRONG>may not</STRONG> post replies</DIV>
+		<DIV>You <STRONG>may not</STRONG> post attachments</DIV>
+		<DIV>You <STRONG>may not</STRONG> edit your posts</DIV>
+		<HR>
+		
+		<DIV><A rel="nofollow" href="http://www.linuxquestions.org/questions/misc.php?do=bbcode" target="_blank">BB code</A> is <STRONG>On</STRONG></DIV>
+		<DIV><A rel="nofollow" href="http://www.linuxquestions.org/questions/misc.php?do=showsmilies" target="_blank">Smilies</A> are <STRONG>On</STRONG></DIV>
+		<DIV><A rel="nofollow" href="http://www.linuxquestions.org/questions/misc.php?do=bbcode#imgcode" target="_blank">[IMG]</A> code is <STRONG>Off</STRONG></DIV>
+		<DIV>HTML code is <STRONG>Off</STRONG></DIV><DIV><A rel="nofollow" href="http://www.linuxquestions.org/questions/misc.php?do=linkbacks#trackbacks" target="_blank">Trackbacks</A> are <STRONG>Off</STRONG></DIV>
+<DIV><A rel="nofollow" href="http://www.linuxquestions.org/questions/misc.php?do=linkbacks#pingbacks" target="_blank">Pingbacks</A> are <STRONG>On</STRONG></DIV>
+<DIV><A rel="nofollow" href="http://www.linuxquestions.org/questions/misc.php?do=linkbacks#refbacks" target="_blank">Refbacks</A> are <STRONG>Off</STRONG></DIV>
+		<HR>
+		<DIV><A rel="nofollow" href="http://www.linuxquestions.org/questions/misc.php?do=showrules" target="_blank">Forum Rules</A></DIV>
+	</DIV></TD>
+</TR>
+</TBODY>
+</TABLE>
+	</TD>
+	<TD class="smallfont" align="right">
+		<TABLE cellpadding="0" cellspacing="0" border="0">
+		
+		<TBODY><TR>
+			<TD>
+			
+			</TD>
+		</TR>		
+		</TBODY></TABLE>
+	</TD>
+</TR>
+</TBODY></TABLE>
+<!-- /forum rules and admin links -->
+
+<BR>
+
+
+<TABLE class="tborder" cellpadding="3" cellspacing="1" border="0" width="100%" align="center">
+<THEAD>
+	<TR>
+		<TD class="tcat" width="100%" colspan="5">
+			<A style="float:right" href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/#top" onclick="return toggle_collapse(&#39;similarthreads&#39;)"><IMG id="collapseimg_similarthreads" src="./[SOLVED] Trim Log Files_files/collapse_tcat.gif" alt="" border="0"></A>
+			Similar Threads<A name="similarthreads"></A>
+		</TD>
+	</TR>
+</THEAD>
+<TBODY id="collapseobj_similarthreads" style="">
+<TR class="thead" align="center">
+	<TD class="thead" width="40%">Thread</TD>
+	<TD class="thead" width="15%" nowrap="nowrap">Thread Starter</TD>
+	<TD class="thead" width="20%">Forum</TD>
+	<TD class="thead" width="5%">Replies</TD>
+	<TD class="thead" width="20%">Last Post</TD>
+</TR>
+<TR>
+	<TD class="alt1" align="left">
+		
+		<SPAN class="smallfont"> <A href="http://www.linuxquestions.org/questions/linux-newbie-8/firewall-log-file-how-to-make-several-different-log-files-with-iptables-686583/" title="I am a newbie to Linux, and have been trying to figure out how to set the log file names for the Firewall, and how I can have several different log..." target="_blank">Firewall log file, how to make several different log files with IPTables?</A></SPAN>
+	</TD>
+	<TD class="alt2" nowrap="nowrap"><SPAN class="smallfont">newtovanilla</SPAN></TD>
+	<TD class="alt1" nowrap="nowrap"><SPAN class="smallfont">Linux - Newbie</SPAN></TD>
+	<TD class="alt2" align="center"><SPAN class="smallfont">5</SPAN></TD>
+	<TD class="alt1" align="right"><SPAN class="smallfont">11-28-2008 <SPAN class="time">12:39 PM</SPAN></SPAN></TD>
+</TR><TR>
+	<TD class="alt1" align="left">
+		
+		<SPAN class="smallfont"> <A href="http://www.linuxquestions.org/questions/linux-newbie-8/vsftpd-and-log-files-can-i-up-the-log-level-to-see-login-attempts-632999/" title="I&#39;m trying to troubleshoot a problem with provisioning of Polycom phones.  They&#39;re set up to be provisioned by FTP, the username/pw I provided to the..." target="_blank">vsftpd and log files - can i up the log level to see login attempts?</A></SPAN>
+	</TD>
+	<TD class="alt2" nowrap="nowrap"><SPAN class="smallfont">robr</SPAN></TD>
+	<TD class="alt1" nowrap="nowrap"><SPAN class="smallfont">Linux - Newbie</SPAN></TD>
+	<TD class="alt2" align="center"><SPAN class="smallfont">3</SPAN></TD>
+	<TD class="alt1" align="right"><SPAN class="smallfont">04-04-2008 <SPAN class="time">11:38 AM</SPAN></SPAN></TD>
+</TR><TR>
+	<TD class="alt1" align="left">
+		
+		<SPAN class="smallfont"> <A href="http://www.linuxquestions.org/questions/linux-software-2/trim-audio-files-515603/" title="I am looking for a way i could automatically trim the silence off the end of a wav or mp3 files 
+i found a few programs for windows but nothing for..." target="_blank">trim audio files</A></SPAN>
+	</TD>
+	<TD class="alt2" nowrap="nowrap"><SPAN class="smallfont">dka</SPAN></TD>
+	<TD class="alt1" nowrap="nowrap"><SPAN class="smallfont">Linux - <A href="http://www.linuxquestions.org/questions/#" style="text-decoration: underline !important;position:static;" class="kLink" target="undefined" id="KonaLink1"><FONT style="color: blue !important; font-family:Verdana, Arial, Helvetica, sans-serif;font-weight:normal;font-size:11px;position:static;" color="blue"><SPAN class="kLink" style="color: blue !important; font-family:Verdana, Arial, Helvetica, sans-serif;font-weight:normal;font-size:11px;position:static;">Software</SPAN></FONT></A></SPAN></TD>
+	<TD class="alt2" align="center"><SPAN class="smallfont">1</SPAN></TD>
+	<TD class="alt1" align="right"><SPAN class="smallfont">01-02-2007 <SPAN class="time">12:17 PM</SPAN></SPAN></TD>
+</TR><TR>
+	<TD class="alt1" align="left">
+		
+		<SPAN class="smallfont"> <A href="http://www.linuxquestions.org/questions/linux-newbie-8/deleted-var-log-messages-cant-log-any-files-iptables-295441/" title="Hi 
+I have deleted the /var/log/messages file where all the log messages go into, and now when I do  
+#iptables -A INPUT -j LOG 
+the log file is..." target="_blank">Deleted /var/log/messages, can't log any files-iptables</A></SPAN>
+	</TD>
+	<TD class="alt2" nowrap="nowrap"><SPAN class="smallfont">chingyenccy</SPAN></TD>
+	<TD class="alt1" nowrap="nowrap"><SPAN class="smallfont">Linux - Newbie</SPAN></TD>
+	<TD class="alt2" align="center"><SPAN class="smallfont">7</SPAN></TD>
+	<TD class="alt1" align="right"><SPAN class="smallfont">02-27-2005 <SPAN class="time">04:03 PM</SPAN></SPAN></TD>
+</TR><TR>
+	<TD class="alt1" align="left">
+		
+		<SPAN class="smallfont"> <A href="http://www.linuxquestions.org/questions/linux-networking-3/can-log-files-be-time-stamped-such-as-ftp-login-and-transfer-log-files-27368/" title="I want to set up my log files so that they are time stamped. I especially want to do this to my samba and FTP log files so that I can see what is..." target="_blank">Can log files be time stamped? (such as FTP login and transfer log files)</A></SPAN>
+	</TD>
+	<TD class="alt2" nowrap="nowrap"><SPAN class="smallfont">bripage</SPAN></TD>
+	<TD class="alt1" nowrap="nowrap"><SPAN class="smallfont">Linux - Networking</SPAN></TD>
+	<TD class="alt2" align="center"><SPAN class="smallfont">6</SPAN></TD>
+	<TD class="alt1" align="right"><SPAN class="smallfont">08-08-2002 <SPAN class="time">10:55 PM</SPAN></SPAN></TD>
+</TR>
+</TBODY>
+</TABLE>
+
+<BR>
+
+<!-- end content table  -->
+
+		</DIV>
+	</DIV>
+</DIV>
+
+<!-- / close content container -->
+<!-- / end content table -->
+
+</DIV>
+
+<BR>
+<DIV class="smallfont" align="center">All times are GMT -5. The time now is <SPAN class="time">06:51 PM</SPAN>.</DIV>
+<BR>
+<!-- /content area table -->
+
+<FORM action="http://www.linuxquestions.org/questions/" method="get">
+<TABLE cellpadding="3" cellspacing="0" border="0" width="100%" class="page" align="center">
+<TBODY><TR>
+	
+	
+	<TD class="tfoot" align="right" width="100%">
+		<DIV class="smallfont">
+			<STRONG>
+				<A href="http://www.linuxquestions.org/questions/sendmessage.php" rel="nofollow">Contact Us</A> -
+				<A href="http://www.linuxquestions.org/linux/adinfo.html">Advertising Info</A> - 
+				<A href="http://www.linuxquestions.org/linux/rules.html">Rules</A> - 
+				<A href="http://www.cafeshops.com/linuxquestions">LQ Merchandise</A> - 
+				<A href="http://www.linuxquestions.org/linux/donation.html">Donations</A> - 
+				<A href="http://www.linuxquestions.org/linux/member.html">Contributing Member</A> - 
+				<A href="http://www.linuxquestions.org/linux/sitemap.html">LQ Sitemap</A> - 
+				<A href="http://www.linuxquestions.org/">LinuxQuestions.org</A> -
+				
+				
+				
+				<A href="http://www.linuxquestions.org/questions/">Linux Forums</A>
+			</STRONG>
+		</DIV>
+	</TD>
+</TR>
+</TBODY></TABLE>
+
+</FORM>
+
+
+<!-- START: LQ Table Bottom -->
+</TD>
+<TD width="165px" class="page" style="padding-left:5px" valign="top">
+<TABLE style="margin-bottom:5px" cellpadding="2" cellspacing="0" border="0" width="100%" class="tborder" align="center">
+<TBODY><TR><TD class="vbmenu_control">Main Menu</TD></TR>
+<TR><TD class="alt1">
+<UL class="lqrightmenu">
+<LI><A href="http://www.linuxquestions.org/questions/">Linux Forums</A></LI>
+<LI><A href="http://www.linuxquestions.org/questions/search.php">Search</A></LI>
+<LI><A href="http://www.linuxquestions.org/questions/lqtags.php">LQ Tags</A></LI>
+<LI><A href="http://www.linuxquestions.org/hcl/">Linux HCL</A></LI>
+<LI><A href="http://www.linuxquestions.org/linux/answers/">Linux Tutorials</A></LI>
+<LI><A href="http://www.linuxquestions.org/jobs">LQ Job Marketplace</A></LI>
+<LI><A href="http://wiki.linuxquestions.org/">Linux Wiki</A></LI>
+<LI><A href="http://www.linuxquestions.org/reviews/index.php/cat/2">Distro Reviews</A></LI>
+<LI><A href="http://www.linuxquestions.org/reviews/index.php/cat/15">Book Reviews</A></LI>
+<LI><A href="http://iso.linuxquestions.org/">Download Linux</A></LI>
+<LI><A href="http://www.linuxquestions.org/bookmarks/">Linux Bookmarks</A></LI>
+<LI><A href="http://www.linuxquestions.org/linux/press/">Press Releases</A></LI>
+<LI><A href="http://radio.linuxquestions.org/linux/lq-podcasts/">Linux Podcast</A></LI>
+<LI><A href="http://www.linuxquestions.org/questions/groups/">Social Groups</A></LI>
+<LI><A href="http://www.linuxquestions.org/questions/blog/">LQ Blogs</A></LI>
+<LI><A href="http://radio.linuxquestions.org/">LQ Radio</A></LI>
+<LI><A href="http://radio.linuxquestions.org/player/player.php" onclick="window.open(&#39;http://radio.linuxquestions.org/player/player.php&#39;,&#39;wimpyMP3player&#39;,&#39;width=540,height=320&#39;);return false">LQ Radio Jukebox</A></LI>
+<LI><A href="http://www.linuxquestions.org/">Home</A></LI>
+</UL>
+<DIV align="center"><A href="http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/#main_cont">(Con't)</A></DIV>
+</TD></TR>
+</TBODY></TABLE>
+<DIV style="text-align:center;margin-bottom:5px"><SCRIPT type="text/javascript"><!--// <![CDATA[
+    OA_show(108600);
+// ]]> --></SCRIPT><SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-4420048478783872";
+/* LQ Main - Side Wide Skyscraper */
+google_ad_slot = "5452649278";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/show_ads.js">
+</SCRIPT><SCRIPT>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</SCRIPT><INS style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px"><INS style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px"><IFRAME allowtransparency="true" frameborder="0" height="600" hspace="0" id="google_ads_frame3" marginheight="0" marginwidth="0" name="google_ads_frame" scrolling="no" src="./[SOLVED] Trim Log Files_files/ads(1).htm" style="left:0;position:absolute;top:0" vspace="0" width="160"></IFRAME></INS></INS><DIV id="beacon_f3b55ebae8" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><IMG src="./[SOLVED] Trim Log Files_files/lg(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></DIV>
+<NOSCRIPT></NOSCRIPT></DIV>
+
+
+<DIV style="text-align:center;margin-bottom:5px" class="alt1">
+&nbsp; <!-- unused ad --> </DIV>
+
+
+
+
+<TABLE style="margin-bottom:5px" cellpadding="2" cellspacing="0" border="0" width="100%" class="tborder" align="center">
+<TBODY><TR><TD class="vbmenu_control">My LQ</TD></TR>
+<TR><TD class="alt1"><UL class="lqrightmenu">
+<LI><A href="http://www.linuxquestions.org/questions/lqlogin.php">Login</A></LI>
+<LI><A href="http://www.linuxquestions.org/questions/register.php">Register</A></LI>
+
+</UL>
+</TD></TR>
+</TBODY></TABLE>
+
+<TABLE style="margin-bottom:5px" cellpadding="2" cellspacing="0" border="0" width="100%" class="tborder" align="center">
+<TBODY><TR><TD class="vbmenu_control">Write for LQ</TD></TR>
+<TR><TD class="alt1">
+LinuxQuestions.org is looking for people interested in writing
+Editorials, Articles, Reviews, and more. If you'd like to contribute
+content, <A href="http://www.linuxquestions.org/questions/sendmessage.php">let us know</A>.
+</TD></TR>
+</TBODY></TABLE>
+
+<TABLE style="margin-bottom:5px" cellpadding="2" cellspacing="0" border="0" width="100%" class="tborder" align="center">
+<TBODY><TR><TD class="vbmenu_control">Advertisement</TD></TR>
+<TR><TD class="alt1">
+<DIV class="smallfont" align="center">
+<SCRIPT type="text/javascript"><!--// <![CDATA[
+    OA_show(117902);
+// ]]> --></SCRIPT>Learn the basics of the Linux operating systems. Get to know what it is all about, and familiarize yourself with the practical side. Basically, if you're a complete Linux newbie and looking for a quick and easy guide to get you started this is it. <A href="http://linuxquestions.tradepub.com/free/w_make07/?p=w_make07" rel="nofollow">Click here</A> to receive your complimentary guide.
+<BR><BR>
+<A href="http://linuxquestions.tradepub.com/free/w_make07/prgm.cgi" rel="nofollow" target="_blank"><IMG src="./[SOLVED] Trim Log Files_files/w_make07c.gif" border="0" alt="Linux Book" title="Linux Book"></A><DIV id="beacon_24f0cf2a45" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><IMG src="./[SOLVED] Trim Log Files_files/lg(4).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></DIV>
+
+</DIV>
+</TD></TR>
+</TBODY></TABLE>
+
+<TABLE style="margin-bottom:5px" cellpadding="2" cellspacing="0" border="0" width="100%" class="tborder" align="center">
+<TBODY><TR><TD class="vbmenu_control" id="main_cont">Main Menu</TD></TR>
+<TR><TD class="alt1">
+<UL class="lqrightmenu">
+<LI><A href="http://www.linuxquestions.org/questions/calendar.php">LQ Calendar</A></LI>
+<LI><A href="http://www.linuxquestions.org/linux/rules.html">LQ Rules</A></LI>
+<LI><A href="http://www.linuxquestions.org/linux/sitemap.html">LQ Sitemap</A></LI>
+<LI><A href="http://www.linuxquestions.org/questions/faq.php">Site FAQ</A></LI>
+<LI><A href="http://www.linuxquestions.org/bookmarks/">Linux Links</A></LI>
+<LI><A rel="nofollow" href="http://www.linuxquestions.org/questions/search.php?do=getnew">View New Posts</A></LI>
+<LI><A rel="nofollow" href="http://www.linuxquestions.org/questions/lqsearch.php?do=getnew&daysprune=7">View Latest Posts</A></LI>
+<LI><A rel="nofollow" href="http://www.linuxquestions.org/questions/lqsearch.php?do=noreplies">Zero Reply Threads</A></LI>
+<LI><A href="http://wiki.linuxquestions.org/wiki/Special:Wantedpages">LQ Wiki Most Wanted</A></LI>
+<LI><A href="http://jeremy.linuxquestions.org/">Jeremy's Blog</A></LI>
+<LI><A href="http://www.linuxquestions.org/questions/project.php">Report LQ Bug</A></LI>
+</UL>
+</TD></TR>
+</TBODY></TABLE>
+<TABLE style="margin-bottom:5px" cellpadding="2" cellspacing="0" border="0" width="100%" class="tborder" align="center">
+<TBODY><TR><TD class="vbmenu_control">Syndicate</TD></TR>
+<TR><TD class="alt1">
+<A href="http://www.linuxquestions.org/syndicate/lqlatest.xml"><IMG src="./[SOLVED] Trim Log Files_files/rss.gif" alt="RSS1" border="0" width="16" height="16" title="RSS1"></A>&nbsp; Latest Threads<BR>
+<A href="http://www.linuxquestions.org/syndicate/lqnews.rss"><IMG src="./[SOLVED] Trim Log Files_files/rss.gif" alt="RSS1" border="0" width="16" height="16" title="RSS1"></A>&nbsp; LQ News<BR>
+<A href="http://radio.linuxquestions.org/syndicate/lqpodcast.php"><IMG src="./[SOLVED] Trim Log Files_files/rss.gif" alt="RSS2" border="0" width="16" height="16" title="RSS2"></A>&nbsp; LQ Podcast<BR>
+<A href="http://radio.linuxquestions.org/syndicate/lqradio.php"><IMG src="./[SOLVED] Trim Log Files_files/rss.gif" alt="RSS2" border="0" width="16" height="16" title="RSS2"></A>&nbsp; LQ Radio<BR>
+<DIV class="smallfont">Twitter: <A href="http://twitter.com/linuxquestions" rel="nofollow">@linuxquestions</A><BR>
+identi.ca: <A href="http://identi.ca/linuxquestions" rel="nofollow">@linuxquestions</A><BR>
+Facebook: <A href="http://www.facebook.com/LinuxQuestions.org" rel="nofollow">@linuxquestions</A>
+</DIV>
+</TD></TR>
+</TBODY></TABLE>
+</TD>
+</TR>
+</TBODY></TABLE>
+<!-- END: LQ Table Bottom -->
+
+
+		</DIV>
+	</DIV>
+</DIV>
+
+<!-- / close content container -->
+
+<DIV align="center">
+	<DIV class="smallfont" align="center">
+<A href="http://www.lqconsulting.com/">Open Source Consulting</A> |
+<A href="http://www.lqconsulting.com/services/Web/Domain-Registration">Domain Registration</A>
+</DIV><BR><BR>
+	
+	<DIV class="smallfont" align="center">
+	
+	</DIV>
+</DIV>
+
+
+<SCRIPT type="text/javascript">
+<!--
+	// Main vBulletin Javascript Initialization
+	vBulletin_init();
+//-->
+</SCRIPT>
+
+
+<SCRIPT type="text/javascript">
+var dc_UnitID = 14;
+var dc_PublisherID = 4566;
+var dc_AdLinkColor = 'blue';
+var dc_adprod='ADL';
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/KonaLibInline.js"></SCRIPT><SCRIPT language="JavaScript" src="./[SOLVED] Trim Log Files_files/generatedPublisherConfig.js"></SCRIPT><SCRIPT language="JavaScript" src="./[SOLVED] Trim Log Files_files/KonaFlashBase.js"></SCRIPT><A href="http://www.linuxquestions.org/questions/#" target="_top" id="AdLinkLayerClick"></A>
+<INPUT id="KonaImpression" style="width:0px;height:0px;visibility:hidden;display:none;" type="image">
+<INPUT id="KonaImpression1" style="width:0px;height:0px;visibility:hidden;display:none;" type="image">
+<IFRAME name="caterpilarID" id="caterpilarID" style="width:1px;height:1px;background-color:transparent;" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="" scrolling="no" allowtransparency="true">&gt;</IFRAME>
+<STYLE id="konaStyle" type="text/css">
+ span.kLink { border-top: 0px none !important;border-left: 0px none !important;border-right: 0px none !important;border-bottom:  1px solid  ;padding : 0px 0px 1px 0px !important;color:blue;background: transparent none;width: auto !important;float: none !important;display:inline !important; } 
+ a.kLink { color:blue !important ; border-bottom-style: none;text-decoration: underline;cursor: pointer;font-family: verdana;border: 0px none transparent !important;background: transparent none !important;margin: 0px 0px 0px 0px; padding:0px 0px 0px 0px !important;text-transform: none !important;display:inline !important;font-variant:normal;top:0px; right:0px;bottom:0px;left:0px; } 
+ a.kLink:link { color:blue !important ; border-bottom-style: none;text-decoration: underline;cursor: pointer;font-family: verdana;border: 0px none transparent !important;background: transparent none !important;margin: 0px 0px 0px 0px; padding:0px 0px 0px 0px !important;text-transform: none !important;display:inline !important;font-variant:normal;top:0px; right:0px;bottom:0px;left:0px; } 
+ a.kLink:hover { color:blue;text-decoration: underline;cursor: pointer;font-family: verdana;border: 0px none transparent !important;background: transparent none !important;margin: 0px 0px 0px 0px; padding:0px 0px 0px 0px !important;text-transform: none !important;display:inline !important;font-variant:normal;top:0px; right:0px;bottom:0px;left:0px; } 
+ a.kLink:visited { color:blue;text-decoration: underline;cursor: pointer; font-family: verdana;margin: 0px 0px 0px 0px; padding:0px 0px 0px 0px; } 
+ .sponsor { font-family: MS Sans Serif, Verdana; color: #AFAFAF;font-size: 9pt; cursor: default; } 
+ a.CBL { cursor:default; } 
+ a.CBL:link { cursor:default; } 
+ a.CBL:hover { cursor:default; } 
+ a.CBL:visited { cursor:default; } 
+ .KonaBody {  } </STYLE>
+
+
+<!-- temp -->
+<DIV style="display:none">
+	<!-- thread rate -->
+	
+		
+	
+	<!-- / thread rate -->
+</DIV>
+
+<DIV class="vbmenu_popup" id="linkbacktools_menu" style="display:none">
+	<TABLE cellpadding="4" cellspacing="1" border="0">
+	<TBODY><TR>
+		<TD class="thead">LinkBack<A name="goto_linkback"></A></TD>
+	</TR>
+
+	<TR>
+		<TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/linkback_url.gif" alt="LinkBack URL"> <A href="./[SOLVED] Trim Log Files_files/[SOLVED] Trim Log Files.htm" onclick="prompt(&#39;Use the following URL when referencing this thread from another forum or blog.&#39;,&#39;http://www.linuxquestions.org/questions/linux-server-73/trim-log-files-755703/&#39;);return false;">LinkBack URL</A></TD>
+	</TR>
+	<TR>
+		<TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/linkback_about.gif" alt="About LinkBacks"> <A rel="nofollow" href="http://www.linuxquestions.org/questions/misc.php?do=linkbacks">About LinkBacks</A></TD>
+	</TR>
+
+	<TR>
+		<TD class="thead">Bookmark &amp; Share</TD>
+	</TR>
+	<TR><TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/digg.gif" alt="Digg this Thread!"> <A rel="nofollow" href="http://digg.com/submit?phase=2&url=http%3A%2F%2Fwww.linuxquestions.org%2Fquestions%2Flinux-server-73%2Ftrim-log-files-755703%2F&title=Trim+Log+Files" target="_blank">Digg this Thread!</A><A name="vbseodm_0"></A></TD></TR><TR><TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/delicious.gif" alt="Add Thread to del.icio.us"> <A rel="nofollow" href="http://del.icio.us/post?url=http%3A%2F%2Fwww.linuxquestions.org%2Fquestions%2Flinux-server-73%2Ftrim-log-files-755703%2F&title=Trim+Log+Files" target="_blank">Add Thread to del.icio.us</A><A name="vbseodm_1"></A></TD></TR><TR><TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/lq_sb.gif" alt="Add Thread to LQ Bookmarks"> <A rel="nofollow" href="http://www.linuxquestions.org/bookmarks/user/?action=add&address=http%3A%2F%2Fwww.linuxquestions.org%2Fquestions%2Flinux-server-73%2Ftrim-log-files-755703%2F&title=Trim+Log+Files" target="_blank">Add Thread to LQ Bookmarks</A><A name="vbseodm_2"></A></TD></TR><TR><TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/twitter.png" alt="Share on Twitter"> <A href="http://twitter.com/home/?status='Trim+Log+Files'+at+LQ:http%3A%2F%2Fwww.linuxquestions.org%2Fquestions%2Flinux-server-73%2Ftrim-log-files-755703%2F" target="_blank">Share on Twitter</A><A name="vbseodm_3"></A></TD></TR><TR><TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/facebook.gif" alt="Share on Facebook"> <A rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.linuxquestions.org%2Fquestions%2Flinux-server-73%2Ftrim-log-files-755703%2F" target="_blank">Share on Facebook</A><A name="vbseodm_4"></A></TD></TR><TR><TD class="vbmenu_option"><IMG class="inlineimg" src="./[SOLVED] Trim Log Files_files/reddit.gif" alt="Reddit!"> <A rel="nofollow" href="http://reddit.com/submit?url=http%3A%2F%2Fwww.linuxquestions.org%2Fquestions%2Flinux-server-73%2Ftrim-log-files-755703%2F&title=Trim+Log+Files" target="_blank">Reddit!</A><A name="vbseodm_5"></A></TD></TR>
+
+	</TBODY></TABLE>
+</DIV>
+
+
+<SCRIPT type="text/javascript">
+//<![CDATA[
+
+window.orig_onload = window.onload;
+window.onload = function() {
+var cpost=document.location.hash.substring(1);var cpost2='';if(cpost){ var ispost=cpost.substring(0,4)=='post';if(ispost)cpost2='post_'+cpost.substring(4);if((cobj = fetch_object(cpost))||(cobj = fetch_object(cpost2))){cobj.scrollIntoView(true);}else if(ispost){cpostno = cpost.substring(4,cpost.length);if(parseInt(cpostno)>0){location.replace('http://www.linuxquestions.org/questions/showthread.php?p='+cpostno);};} }
+
+if(typeof window.orig_onload == "function") window.orig_onload();
+}
+
+//]]>
+</SCRIPT>
+
+<DIV id="kona_flash_preloader_wrapper" style="position: fixed; top: 5px; left: 3px; width: 1px; height: 1px; overflow-x: hidden; overflow-y: hidden; "><OBJECT type="application/x-shockwave-flash" data="http://kona.kontera.com/javascript/lib/2010_05_12/flash/konaLayer.swf" width="100" height="100" id="kona_flash_preloader" style="visibility: visible; width: 1px; height: 1px; "><PARAM name="wmode" value="transparent"><PARAM name="allowScriptAccess" value="always"><PARAM name="flashvars" value="konaSuffix=?00000000380_16_08_2009&amp;layerId=-1&amp;enablePreloader=0"></OBJECT></DIV><SPAN id="konasapn0"><SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/KonaGet.js"></SCRIPT><SCRIPT language="JavaScript" src="./[SOLVED] Trim Log Files_files/KonaSend.js"></SCRIPT><SCRIPT language="JavaScript" src="./[SOLVED] Trim Log Files_files/KonaSend(1).js"></SCRIPT><SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/ContentLink" id="sendTeRequestTag"></SCRIPT></SPAN><SPAN id="konasapn0"><SCRIPT type="text/javascript" src="./[SOLVED] Trim Log Files_files/KonaGet(1).js"></SCRIPT></SPAN></BODY></HTML>
