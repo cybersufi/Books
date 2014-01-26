@@ -1,0 +1,19 @@
+.copyright-radioselector {
+  height: 10em;
+  overflow: auto;
+}
+.copyright-footer {
+  text-align: center;
+  color: gray;
+  margin: .5em;
+}
+.copyright-image img {
+  display: inline; 
+  clear: both;
+}
+.copyright-image {
+  text-align: center;
+}
+.copyright-block {
+  text-align: center;
+}

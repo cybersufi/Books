@@ -1,0 +1,1 @@
+var cmPageUrl; if(self == top) cmPageURL = document.location.href; else cmPageURL = document.referrer;  document.write('<scr'+'ipt language="javascript" src="http://a.collective-media.net/cmadj/idgt.howtoforge.en/bottom;sz=728x90;ord=[timestamp];ord1=' +Math.floor(Math.random() * 1000000) + ';cmpgurl='+escape(escape(cmPageURL))+'?">');  document.write('</scr'+'ipt>');

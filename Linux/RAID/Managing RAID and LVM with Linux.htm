@@ -1,0 +1,1011 @@
+
+<!-- saved from url=(0044)http://www.gagme.com/greg/linux/raid-lvm.php -->
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Managing RAID and LVM with Linux</TITLE>
+<LINK rel="icon" href="http://www.gagme.com/greg/favicon.ico" type="image/gif">
+<LINK rel="stylesheet" type="text/css" href="./Managing RAID and LVM with Linux_files/style.css">
+<META name="keywords" content="fedora, core, 4, fc, fc4, tips, tricks, logical, volume, manager, redundant, array, inexpensive, disks, disc, disk, discs">
+<SCRIPT src="./Managing RAID and LVM with Linux_files/util.js"></SCRIPT>
+</HEAD><BODY>
+
+<TABLE cellpadding="0" cellspacing="0" hspace="0" vspace="0" border="0" width="100%">
+<TBODY><TR>
+<TH align="left"><A href="http://www.gagme.com/greg/" target="_top">HOME</A> &gt; MISC &gt; <A href="http://www.gagme.com/greg/linux/" target="_top">LINUX</A> &gt; RAID &amp; LVM</TH>
+<TD align="right">
+<FORM action="http://www.gagme.com/search.php" target="_top">Quick Search: <FONT size="-1"><INPUT type="text" name="query" size="15" value=""></FONT></FORM><FONT size="-1">
+</FONT></TD>
+</TR>
+</TBODY></TABLE>
+<HR width="100%">
+
+<H4>Return to <A href="http://www.gagme.com/greg/linux/">Quick Linux Tips</A></H4>
+
+<IFRAME align="right" marginwidth="0" marginheight="0" width="120" height="240" scrolling="no" frameborder="0" src="./Managing RAID and LVM with Linux_files/cm(1).htm">
+&lt;MAP NAME="boxmap-p8"&gt;&lt;AREA SHAPE="RECT" COORDS="14, 200, 103, 207" HREF="http://rcm.amazon.com/e/cm/privacy-policy.html?o=1" target=main&gt;&lt;AREA COORDS="0,0,10000,10000" HREF="http://www.amazon.com/exec/obidos/redirect-home/drivingeventscom" target=main&gt;&lt;/map&gt;&lt;img src="http://rcm-images.amazon.com/images/G/01/rcm/120x240.gif" width="120" height="240" border="0" usemap="#boxmap-p8" alt="Shop at Amazon.com"&gt;
+</IFRAME>
+<FONT size="+1"><B>Managing RAID and LVM with Linux (v0.5)</B></FONT><BR>
+<FONT size="-1">Last modified: <I>
+Monday April 28, 2008</I></FONT>
+<P>
+I hope to turn this into a general easy to follow guide to setting up
+RAID-5 and LVM on a modern Linux system.  However, for now it's basically
+a collection of my notes as I experimented on my own systems.
+Please note that my own experimentation was based on the RAID and LVM
+implementations under Fedora Core 3 &amp; 4, as wel as Red Hat Enterprise
+Linux 4, all of which are based on the 2.6 series of kernels.  These
+instructions may or may not work with other versions or distros.  I'm
+not an expert (yet) in either Software RAID or LVM so please
+use the <A href="http://www.gagme.com/greg/linux/raid-lvm.php#comments">comment section</A>
+below for corrections and comments.
+Recent changes are <FONT class="HL">highlighted in yellow</FONT>.
+</P><P>
+</P><UL>
+<LI><A href="http://www.gagme.com/greg/linux/raid-lvm.php#overview">What is RAID and LVM</A>
+</LI><LI><A href="http://www.gagme.com/greg/linux/raid-lvm.php#raid">Initial setup of a RAID-5 array</A>
+</LI><LI><A href="http://www.gagme.com/greg/linux/raid-lvm.php#lvm">Initial setup of LVM on top of RAID</A>
+</LI><LI><A href="http://www.gagme.com/greg/linux/raid-lvm.php#failure">Handling a Drive Failure</A>
+</LI><LI><A href="http://www.gagme.com/greg/linux/raid-lvm.php#glitches">Common Glitches</A>
+</LI><LI><A href="http://www.gagme.com/greg/linux/raid-lvm.php#other">Other Useful Resources</A>
+</LI><LI><A href="http://www.gagme.com/greg/linux/raid-lvm.php#expanding" class="HL">Expanding an Array/Filesytem</A>
+</LI></UL>
+
+<HR width="100%">
+
+<A name="overview"><H3>What is RAID and LVM</H3></A>
+
+<B>RAID</B> is usually defined as Redundant Array of Inexpensive disks. 
+It is normally used to spread data among several physical hard drives with
+enough redundancy that should any drive fail the data will still be
+intact.  Once created a RAID array appears to be one device which can
+be used pretty much like a regular partition.
+There are several kinds of RAID but I will only refer to
+the two most common here.
+<P>
+The first is <B>RAID-1</B> which is also known as <B>mirroring</B>.
+With <B>RAID-1</B> it's basically done with two essentially
+identical drives, each with a complete set of data.  The second,
+the one I will mostly refer to in this guide is <B>RAID-5</B> which is 
+set up using three or more drives with the data spread in a way that any
+one drive failing will not result in data loss.  The Red Hat website
+has a great overview of the
+<A href="http://www.redhat.com/docs/manuals/enterprise/RHEL-4-Manual/sysadmin-guide/s1-raid-levels.html">RAID Levels</A>.
+</P><P>
+There is one limitation with Linux Software RAID that a
+<FONT class="code">/boot</FONT>
+partition can only reside on a RAID-1 array.
+</P><P>
+Linux supports both several hardware RAID devices but also software
+RAID which allows you to use any IDE or SCSI drives as the physical
+devices.  In all cases I'll refer to software RAID.
+</P><P>
+<B>LVM</B> stands for Logical Volume Manager and
+is a way of grouping drives and/or partition in a way where
+instead of dealing with hard and fast physical partitions the data is
+managed in a virtual basis where the virtual partitions can be resized.
+The Red Hat website has a great overview of the
+<A href="http://www.redhat.com/docs/manuals/enterprise/RHEL-4-Manual/sysadmin-guide/ch-lvm-intro.html">Logical Volume Manager</A>.
+</P><P>
+There is one limitation that a <B>LVM</B> cannot be used for the
+<FONT class="code">/boot</FONT>.
+
+</P><HR width="100%">
+<A name="raid"><H3>Initial set of a RAID-5 array</H3></A>
+
+<FONT class="HL">I recommend you experiment with setting up and
+managing RAID and LVM systems before using it on an important
+filesystem.  One way I was able to do it was to take old hard drive
+and create a bunch of partitions on it (8 or so should be enough)
+and try combining them into RAID arrays.  In my testing I created two
+RAID-5 arrays each with 3 partitions.  You can then manually <B>fail</B>
+and <B>hot remove</B> the partitions from the array and then add them
+back to see how the recovery process works.  You'll get a warning
+about the partitions sharing a physical disc but you can ignore that
+since it's only for experimentation.</FONT>
+<P>
+In my case I have two systems with RAID arrays, one with two
+73G SCSI drives running RAID-1 (mirroring) and my other test
+system is configured with three 120G IDE drives running RAID-5.
+In most cases I will refer to my RAID-5 configuration as that
+will be more typical.
+</P><P>
+I have an extra IDE controller in my system to allow me to
+support the use of more than 4 IDE devices which caused a very
+odd drive assignment.  The order doesn't seem to bother the
+Linux kernel so it doesn't bother me.
+My basic configuration is as follows:
+</P><BLOCKQUOTE>
+<B>hda</B> 120G drive<BR>
+<B>hdb</B> 120G drive<BR>
+<B>hde</B> 60G boot drive not on RAID array<BR>
+<B>hdf</B> 120G drive<BR>
+<B>hdg</B> CD-ROM drive<BR>
+</BLOCKQUOTE>
+The first step is to create the physical partitions on each drive
+that will be part of the RAID array.  In my case I want to use each
+120G drive in the array in it's entirety.  All the drives are
+partitioned identically so for example, this is how
+<B>hda</B> is partitioned:
+<PRE>Disk /dev/hda: 120.0 GB, 120034123776 bytes
+16 heads, 63 sectors/track, 232581 cylinders
+Units = cylinders of 1008 * 512 = 516096 bytes
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/hda1   *           1      232581   117220792+  fd  Linux raid autodetect
+</PRE>
+So now with all three drives with a partitioned with id
+<FONT class="code">fd</FONT> <B>Linux raid autodetect</B> you can go
+ahead and combine the partitions into a RAID array:
+<PRE># /sbin/mdadm --create --verbose /dev/md0 --level=5 --raid-devices=3 \
+	/dev/hdb1 /dev/hda1 /dev/hdf1
+</PRE>
+Wow, that was easy.  That created a special device
+<FONT class="code">/dev/md0</FONT> which can be used instead of a
+physical partition.  You can check on the status of that RAID array
+with the <FONT class="code">mdadm</FONT> command:
+<PRE># /sbin/mdadm --detail /dev/md0
+        Version : 00.90.01
+  Creation Time : Wed May 11 20:00:18 2005
+     Raid Level : raid5
+     Array Size : 234436352 (223.58 GiB 240.06 GB)
+    Device Size : 117218176 (111.79 GiB 120.03 GB)
+   Raid Devices : 3
+  Total Devices : 3
+Preferred Minor : 0
+    Persistence : Superblock is persistent
+
+    Update Time : Fri Jun 10 04:13:11 2005
+          State : clean
+ Active Devices : 3
+Working Devices : 3
+ Failed Devices : 0
+  Spare Devices : 0
+
+         Layout : left-symmetric
+     Chunk Size : 64K
+
+           UUID : 36161bdd:a9018a79:60e0757a:e27bb7ca
+         Events : 0.10670
+
+    Number   Major   Minor   RaidDevice State
+       0       3        1        0      active sync   /dev/hda1
+       1       3       65        1      active sync   /dev/hdb1
+       2      33       65        2      active sync   /dev/hdf1
+</PRE>
+The important lines to see are the <B>State</B> line which should
+say <FONT class="code">clean</FONT> otherwise there might be a problem.
+At the bottom you should make sure that the <B>State</B> column always
+says <FONT class="code">active sync</FONT> which says each device is
+actively in the array.  You could potentially have a spare device
+that's on-hand should any drive should fail.  If you have a spare
+you'll see it listed as such here.
+<P>
+One thing you'll see above if you're paying attention is the fact
+that the size of the array is 240G but I have three 120G drives as
+part of the array.  That's because the extra space is used as extra
+parity data that is needed to survive the failure of one of the drives.
+
+
+</P><HR width="100%">
+<A name="lvm"><H3>Initial set of LVM on top of RAID</H3></A>
+
+Now that we have <FONT class="code">/dev/md0</FONT> device
+you can create a Logical Volume on top of it.  Why would you want
+to do that?
+If I were to build an <B>ext3</B> filesystem on top of the RAID
+device and someday wanted to increase it's capacity I wouldn't
+be able to do that without backing up the data, building a new RAID
+array and restoring my data.  Using <B>LVM</B> allows me to expand
+(or contract) the size of the filesystem without disturbing the
+existing data.
+<P>
+Anyway, here are the steps to then add this RAID array to the LVM
+system.  The first command <FONT class="code">pvcreate</FONT>
+will "initialize a disk or partition for use by LVM".  The second command
+<FONT class="code">vgcreate</FONT> will then create the Volume Group,
+in my case I called it <FONT class="code">lvm-raid</FONT>:
+</P><PRE># pvcreate /dev/md0
+# vgcreate lvm-raid /dev/md0
+</PRE>
+<FONT class="HL">
+The default value for the <B>physical extent size</B> can be too low
+for a large RAID array.  In those cases you'll need to specify the <B>-s</B>
+option with a larger than default physical extent size.  The default is
+only 4MB as of the version in Fedora Core 5.  The maximum number of
+physical extents is approximately 65k so take your maximum volume size and divide
+it by 65k then round it to the next nice round number.
+For example, to successfully
+create a 550G RAID let's figure that's approximately 550,000 megabytes and divide by
+65,000 which gives you roughly 8.46.  Round it up to the next nice round
+number and use 16M (for 16 megabytes) as the physical extent size and you'll be fine:
+<PRE class="HL"># vgcreate -s 16M &lt;volume group name&gt;
+</PRE>
+</FONT>
+Ok, you've created a blank receptacle but now you have to tell how
+many Physical Extents from the physical device (/dev/md0 in this case)
+will be allocated to this Volume Group.  In my case I wanted all the
+data from /dev/md0 to be allocated to this Volume Group.  If later I
+wanted to add additional space I would create a new RAID array and add
+that physical device to this Volume Group.
+<P>
+To find out
+how many PEs are available to me use the <FONT class="code">vgdisplay</FONT>
+command to find out how many are available and now I can create a
+Logical Volume using all (or some) of the space in the Volume Group.
+In my case I call the Logical Volume <FONT class="code">lvm0</FONT>.
+</P><PRE># vgdisplay lvm-raid
+	.
+	.
+   Free  PE / Size       57235 / 223.57 GB
+# lvcreate -l 57235 lvm-raid -n lvm0
+</PRE>
+In the end you will have a device you can use very much like
+a plain 'ol partition called <FONT class="code">/dev/lvm-raid/lvm0</FONT>.
+You can now check on the status of the Logical Volume with the
+<FONT class="code">lvdisplay</FONT> command.  The device can then
+be used to to create a filesystem on.
+<PRE># lvdisplay /dev/lvm-raid/lvm0 
+  --- Logical volume ---
+  LV Name                /dev/lvm-raid/lvm0
+  VG Name                lvm-raid
+  LV UUID                FFX673-dGlX-tsEL-6UXl-1hLs-6b3Y-rkO9O2
+  LV Write Access        read/write
+  LV Status              available
+  # open                 1
+  LV Size                223.57 GB
+  Current LE             57235
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     0
+  Block device           253:2
+# mkfs.ext3 /dev/lvm-raid/lvm0
+	.
+	.
+# mount /dev/lvm-raid/lvm0 /mnt
+# df -h /mnt
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/mapper/lvm--raid-lvm0
+                       224G   93M  224G   1% /mnt
+</PRE>
+
+
+<HR width="100%">
+<A name="failure"><H3>Handling a Drive Failure</H3></A>
+
+As everything eventually does break (some sooner than others) a drive
+in the array will fail.  It is a very good idea to run
+<FONT class="code">smartd</FONT> on all drives in your array (and probably
+ALL drives period) to be notified of a failure or a pending failure as
+soon as possible.  You can also manually fail a partition,
+meaning to take it
+out of the RAID array, with the following command:
+<PRE># /sbin/mdadm /dev/md0 -f /dev/hdb1
+mdadm: set /dev/hdb1 faulty in /dev/md0
+</PRE>
+<P>
+Once the system has determined a drive has failed or is otherwise missing
+(you can shut down and pull out a drive and reboot to similate a drive
+failure or use the command to manually fail a drive
+above
+it will show something like this in <FONT class="code">mdadm</FONT>:
+</P><PRE># /sbin/mdadm --detail /dev/md0
+     Update Time : Wed Jun 15 11:30:59 2005
+           State : clean, degraded
+  Active Devices : 2
+ Working Devices : 2
+  Failed Devices : 1
+   Spare Devices : 0
+	.
+	.
+     Number   Major   Minor   RaidDevice State
+        0       3        1        0      active sync   /dev/hda1
+        1       0        0        -      removed
+        2      33       65        2      active sync   /dev/hdf1
+</PRE>
+You'll notice in this case I had <FONT class="code">/dev/hdb</FONT>
+fail.  I replaced it with a new drive with the same capacity and was
+able to add it back to the array.  The first step is to partition
+the new drive just like when first creating the array.  Then you
+can simply add the partition back to the array and watch the status
+as the data is rebuilt onto the newly replace drive.
+<PRE># /sbin/mdadm /dev/md0 -a /dev/hdb1
+# /sbin/mdadm --detail /dev/md0
+     Update Time : Wed Jun 15 12:11:23 2005
+           State : clean, degraded, recovering
+  Active Devices : 2
+ Working Devices : 3
+  Failed Devices : 0
+   Spare Devices : 1
+
+          Layout : left-symmetric
+      Chunk Size : 64K
+
+  Rebuild Status : 2% complete
+	.
+	.
+</PRE>
+During the rebuild process the system performance may be somewhat
+impacted but the data should remain in-tact.
+
+
+<HR width="100%">
+<A name="expanding"><H3>Expanding an Array/Filesytem</H3></A>
+
+<BLOCKQUOTE class="HL">
+I'm told it's now possible to expand the size of a RAID array much as you
+could on a commercial array such as the NetApp.  The link below describes
+the procedure.  I have yet to try it but it looks promising:
+<BLOCKQUOTE>
+<B><A href="http://scotgate.org/?p=107" target="_blank">Growing a RAID5 array - http://scotgate.org/?p=107</A></B>
+</BLOCKQUOTE>
+</BLOCKQUOTE>
+<P>
+
+
+
+</P><HR width="100%">
+<A name="glitches"><H3>Common Glitches</H3></A>
+
+None yet, I've found the software RAID system to be remarkably stable.
+
+
+<HR width="100%">
+
+<A name="other"><H3>Other Useful Resources</H3></A>
+I've tried to not just copy other people's tips so I've included a list
+of other people's tips and tricks I've found to be useful.  There should
+be little or no overlap.
+
+<BLOCKQUOTE>
+<A href="http://www.shimari.com/dm-crypt-on-raid/" target="_BLANK"><B>Encrypting /home and swap over RAID with dm-crypt</B></A> - 
+Do you have important company files on your PC at home, that you can neither afford to lose, nor let fall into the wrong hands?
+This page explains how to set up encrypted RAID1 ext3 filesystems with dm-crypt, along with an encrypted RAID0 swap, on RedHat / Fedora Core 5, using the twofish encryption algorithm and dm-crypt's new ESSIV mode.
+<P>
+<!--
+<A HREF="http://www.fedoraforum.org/" TARGET="_BLANK"><B>FedoraForum - Linux Support Community</B></A> - 
+This is now the official way to get community support of the Fedora Linux
+system.  There is no official Red Hat mailing list for FC4 any more.
+<P>
+<A HREF="/greg/clickclick.cgi?http://tldp.org/HOWTO/Fedora-Multimedia-Installation-HOWTO/index.html" TARGET="_BLANK"><B>Fedora Multimedia Installation HOWTO</B></A> - 
+I discovered this great resource after I wrote this.  This document
+goes into more detail than mine so it's a great resource.
+<P>
+<A HREF="/greg/clickclick.cgi?http://www.geocities.com/randomnumbergenerator2001/#tweaking" TARGET="_BLANK"><B>Performance Tweaking</B></A> - 
+Make Linux behave more like XP and delay starting services until later to
+give the appearance of a faster booting system.
+<P>
+<A HREF="http://stanton-finley.net/fedora_core_4_installation_notes.html" TARGET="_BLANK"><B>Fedora Core 4 Linux Installation Notes</B></A> - 
+Another great set of installation notes that includes much of what I include
+here but does include a few things I don't.
+<P>
+<A HREF="http://fedora.redhat.com/docs/release-notes/fc4/" TARGET="_BLANK"><B>Official Fedora Core 4 Release Notes</B></A> - 
+These are written for a reason and worth a quick scan at least.  The release
+notes highlight what has changed since the previous version as well as some
+potential problmes you may run into.
+<P>
+-->
+</P></BLOCKQUOTE>
+
+<P>
+<P>
+
+</P><TABLE class="donate">
+<TBODY><TR><TD>
+<FONT size="+1"><B>Donate via Paypal:</B></FONT>
+All these guides are done on my personal time as a community service.
+Please consider a donation to allow me to allocate the time to put
+these together:<BR>
+<FORM action="https://www.paypal.com/cgi-bin/webscr" method="post">
+				<INPUT name="business" value="greg@gulik.org" type="hidden">
+				<INPUT name="item_name" value="Linux Tips" type="hidden">
+
+				<INPUT name="item_number" value="1" type="hidden">
+				<INPUT name="no_note" value="1" type="hidden">
+				<INPUT type="hidden" name="currency_code" value="USD">
+				<INPUT type="hidden" name="cmd" value="_xclick">
+				<INPUT name="lc" value="en" type="hidden"> 
+			
+				<INPUT name="amount" maxlength="30" size="5" type="text">
+				
+				<SELECT name="currency_code">
+				<OPTION value="USD" selected="selected">$ (USD)</OPTION>
+				<OPTION value="EUR">€ (EUR)</OPTION>
+
+				<OPTION value="GBP">£ (GBP)</OPTION>
+				<OPTION value="CAD">$ (CAD)</OPTION>
+				<OPTION value="AUD">$ (AUD)</OPTION>
+				<OPTION value="JPY">¥ (JPY)</OPTION>
+				</SELECT>
+				<INPUT value="Donate now!" type="submit">
+
+			</FORM>
+		
+</TD></TR>
+</TBODY></TABLE><TABLE class="alert">
+<TBODY><TR><TD>
+This comments section below is only for comments, suggestions or corrections
+for this guide only.  Please do not use this for general Fedora/Linux support.
+If you do require support for something other than what's described here
+I recommend using <A href="http://www.fedoraforum.org/" target="_blank">Fedora Forums</A>.
+</TD></TR>
+</TBODY></TABLE>
+
+<A name="comments"></A>
+<BR><TABLE border="0" cellpadding="3" cellspacing="0" width="100%"><TBODY><TR class="gray1" valign="TOP"><TD><A name="note"></A><SMALL>Comments From People Like You!</SMALL><BR><B>Managing RAID and LVM with Linux</B></TD><TD align="RIGHT"><A rel="nofollow" href="http://www.gagme.com/greg/add-note.php?sect=linux.raid-lvm&origurl=http://www.gagme.com/greg/linux/raid-lvm.php"><IMG src="./Managing RAID and LVM with Linux_files/notes-add.gif" border="0" alt="Add a Comment" title="Add a Comment" width="13" height="13"> <SMALL>add a comment</SMALL></A></TD></TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Jon</B><BR>
+26-Jul-2009 13:59</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+This is a great guide, I've showed it to a couple of friends who were interested in software RAID but they complained about not having a GUI. After a couple of days of searching I've found a great tutorial on howto setup a RAID array using Fedora's installer, if anybody is interested the tutorial is at <A rel="nofollow" href="http://www.optimiz3.com/installing-fedora-11-and-setting-up-a-raid-0-1-5-6-or-10-array/">http://www.optimiz3.com/installing-fedora-11-and-setting-up-a-raid-0-1-5-6-or-10-array/</A> . It's a nice tutorial for the Linux n00bs out there.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>James Cassell</B><BR>
+15-Sep-2008 21:48</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+With regard to /etc/mdadm.conf -- you can regenerate it by running:
+<BR>
+<BR>mdadm --detail --scan &gt; /etc/mdadm.conf
+<BR>
+<BR>this generates the file using UUIDs, as sascha (below) advises
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>sascha</B><BR>
+04-Jul-2008 00:18</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+@Joe - regarding /etc/mdadm.conf I find it much easier in the long run &nbsp;to specify "DEVICE partitions" and dynamically scan for the array based on the UUID. 
+<BR>
+<BR>Makes things a lot easier if you ever have to move things around as it doesn't matter where your devices end up (is it is on sda or sde?) I can literally turn off the server, swap the drives around in any order, boot up and be running with no reconfiguration.
+<BR>
+<BR>eg:
+<BR>------------BEGIN /etc/mdadm.conf--------------------
+<BR>DEVICE partitions
+<BR>ARRAY /dev/md0 level=raid1 num-devices=2 UUID=93eda5e8:13b3c1b7:72db9882:353cc100
+<BR>ARRAY /dev/md1 level=raid6 num-devices=4 UUID=d02e45eb:27fdf574:771fb23c:4aa16637
+<BR>------------END /etc/mdadm.conf--------------------
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Joe</B><BR>
+06-Jun-2008 15:34</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+This is a wonderful tutorial. &nbsp;It saved me hours of work.
+<BR>
+<BR>I have only one comment to add:
+<BR>
+<BR>For any raid array that you want to have auto-detected, you need to add some information to /etc/mdadm.conf. &nbsp;Below is a copy of mine. &nbsp;I used raid 1 for device /dev/md0 on /dev/sdb1 and /dev/sdc1. &nbsp;mdadm --detail will give you the UUID. &nbsp;My system is FC8.
+<BR>
+<BR>------------BEGIN /etc/mdadm.conf--------------------
+<BR>DEVICE /dev/sd[bc]1
+<BR>ARRAY /dev/md0 UUID=fb04f6e9:559396b2:7db8d3db:abcb5107
+<BR>------------END /etc/mdadm.conf--------------------
+<BR>
+<BR>I created a new initrd with mkinitrd adding the --force-raid-probe --force-lvm-probe options. &nbsp;The drives auto-detect and auto-mount on boot-up.
+<BR>
+<BR>Thanks for your help.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Bill</B><BR>
+03-Jun-2008 11:12</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+I've been using WinXP and mounting drives in folders to accommodate my storage requirements, but admittedly, I've been looking for alternatives.
+<BR>
+<BR>One option is Windows Home Server, as it's *extremely* easy to add storage to, and you can choose what "shares" are stored redundantly, and which ones aren't. &nbsp;Storing files twice isn't as efficient as using parity, but it's a simple solution nonetheless.
+<BR>
+<BR>Looking this over though, I put together a diagram indicating multiple options, and the last one seems best - when adding storage, add 3 drives of equal size, using R5 on them, and adding them to the logical volume.
+<BR>
+<BR>You can view the diagram here - <A rel="nofollow" href="http://images35.fotki.com/v1169/photos/8/847763/4046789/HomeRAIDSetup-vi.png">http://images35.fotki.com/v1169/photos/8/847763/4046789/HomeRAIDSetup-vi.png</A>
+<BR>
+<BR>What are your thoughts?
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>mark</B><BR>
+28-May-2008 21:58</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Thanks for this great how to article. Finally, someone who can write an easy to understand guide to do something on Linux. What a breath of fresh air!
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Dwain Blazej</B><BR>
+29-Feb-2008 14:35</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+The guide suggests increasing the physical extent size (-s) to because "The maximum number of physical extents is approximately 65k". &nbsp;That is only true if you are still using the LVM 1 meta data format.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Chris</B><BR>
+17-Oct-2007 02:23</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+You should also point out that when replacing a raid array by swapping in bigger drives and using grow that you should make the partitions on the bigger drives the size you want in the end raid array. i.e if you are replacing 300 GB drives with 750 GB drives and want the whole drive being used, make the partition on the 750 GB drive 750 GB with a tiny bit of space at the end. I just wasted 10 hours by making the partitions 300 GB... lame.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Adam Butler</B><BR>
+29-Sep-2007 18:20</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+From what I read elsewhere it is now possible to add a disk to a raid array!
+<BR>
+<BR><A rel="nofollow" href="http://scotgate.org/?p=107">http://scotgate.org/?p=107</A>
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Tim B</B><BR>
+09-Sep-2007 02:10</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Very useful guide. Have run in on my Fedora 6 Server and found some errors(?).
+<BR>lvextend -l 57235 lvm-raid -n lvm0 did not work but lvextend -l +57235 /dev/lvmraid/lvm0 did.
+<BR>Also
+<BR>ext2online seems to have been replaced with resize2fs.
+<BR>
+<BR>Apart from these easy to follow.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>xerxes</B><BR>
+15-Aug-2007 13:21</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Tried the pure lvm method as mentioned earlier. &nbsp;It's not as robust under linux. &nbsp;It has no ability as far as I know to rebuild the array, and if a drive fails, it system will not come back up cleanly because the PV &nbsp;within the LV is missing. &nbsp;I like mdadm.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Ketil</B><BR>
+24-Jul-2007 04:41</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+I have a problem. I set up a RAID-1 using Fedora Core 4. Then i tried to update the installation to Fedora7, but it failed. I ended up installing Fedora7 on my main disk, and just left the raid disks alone during the installation. Is there a way I can get the raid up and running again with the data that is on them?
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>sudhakar</B><BR>
+15-May-2007 00:36</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Excellent and superb tutorial ..
+<BR>
+<BR>Really helped me learn and work on LVM
+<BR>
+<BR>thanks .. 
+<BR>
+<BR>Sudhi
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Me</B><BR>
+20-Apr-2007 07:33</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Oh, I should also mention that when doing any steps that involve modifying the raid array (mdadm --create, mdadm --grow, or mdadm -a), you must WAIT even though the command returned right away. &nbsp;Rest assured, the raid subsystem is churning in the background.
+<BR>
+<BR>Use mdadm --detail /dev/md0 to see the progress:
+<BR>
+<BR> &nbsp; &nbsp;Rebuild Status : 82% complete
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Me</B><BR>
+19-Apr-2007 16:26</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Just to recap the info thus far:
+<BR>
+<BR>If you have LVM on top of Raid5, you can easily add another volume to the array by using the various resize functions.
+<BR>
+<BR>Here's a working example you can run as root. &nbsp;Start in a fresh directory somewhere.
+<BR>
+<BR>Steps:
+<BR>1. Create the initial array using three 100MB loopback devices
+<BR>2. Create an LVM volume
+<BR>3. Format it with reiserfs, mount it, then add a file.
+<BR>4. Create a new 100MB loopback device and expand the raid array with it.
+<BR>5. Resize raid, lvm, and reiserfs (note that this is done LIVE, while the device is still mounted)
+<BR>6. Tear down everything since this is just for practice.
+<BR>
+<BR>Be sure to step through each line individually so you understand how it works. &nbsp;Especially take care with lvcreate and lvresize. &nbsp;Be sure to use vgdisplay first to see how many extents you have available. &nbsp;In this example, you start with 49 and later add another 25.
+<BR>
+<BR>Steps 1-5: Build the array+lvm, then resize them.
+<BR>
+<BR>mkdir mnt
+<BR>dd if=/dev/zero of=raid-0 bs=10240 count=10240
+<BR>cp raid-0 raid-1
+<BR>cp raid-0 raid-2
+<BR>losetup /dev/loop0 raid-0
+<BR>losetup /dev/loop1 raid-1
+<BR>losetup /dev/loop2 raid-2 
+<BR>mdadm --create --verbose /dev/md0 -l5 -n3 /dev/loop0 /dev/loop1 /dev/loop2
+<BR>pvcreate /dev/md0
+<BR>vgcreate lvm-test /dev/md0
+<BR>vgdisplay lvm-test
+<BR>lvcreate -l 49 lvm-test -n lvm0
+<BR>mkreiserfs /dev/lvm-test/lvm0
+<BR>mount /dev/lvm-test/lvm0 mnt
+<BR>dd if=/dev/zero of=mnt/testfile.bin bs=1024 count=10240
+<BR>mdadm --grow /dev/md0 -n4 --backup-file=raidbackup
+<BR>dd if=/dev/zero of=raid-3 bs=10240 count=10240
+<BR>losetup /dev/loop3 raid-3
+<BR>mdadm -a /dev/md0 /dev/loop3
+<BR>pvresize /dev/md0
+<BR>vgdisplay lvm-test
+<BR>lvresize -l +25 /dev/lvm-test/lvm0
+<BR>resize_reiserfs -s 296M /dev/lvm-test/lvm0
+<BR>
+<BR>
+<BR>Step 6: Teardown and cleanup (destroys the array and cleans up everything you did):
+<BR>
+<BR>umount mnt
+<BR>lvremove -f lvm-test
+<BR>vgremove lvm-test
+<BR>mdadm --stop /dev/md0
+<BR>mdadm --remove /dev/md0
+<BR>losetup -d /dev/loop0
+<BR>losetup -d /dev/loop1
+<BR>losetup -d /dev/loop2 
+<BR>losetup -d /dev/loop3
+<BR>rm raid-0 raid-1 raid-2 raid-3
+<BR>rmdir mnt
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>SkaDood1</B><BR>
+23-Mar-2007 01:12</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+I agree with Nevyn sorta, but technically I think that Splinter/slashdots below method would work, and keep data fault-tolerant. This is because he is putting each of the 10x RAID arrays across 3 disks. If one disk goes down, all 10 RAIDs go down, but they are each recoverable if you did them right.
+<BR>
+<BR>This then leads to the question of, is there a means to this end? Is it really worth it? With Spinters method, there is a LOT of points of confusion, it has to be done exactly correct, you have to fully understand what you are doing and deeply plan it out, you will have to write a shell script to do it (so you have to have mastered scripting already), you have to wait a LONG time for the whole thing to run and upgrade, and if a drive fails, it may take you many many hours of agravating work to get all 10+ arrays back.
+<BR>
+<BR>I am thinking it is not worth it to me. Leave Splinter/slashdots method to unix gurus....
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Nevyn</B><BR>
+28-Feb-2007 07:10</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+I'm a tad concerned by people talking about partitioning off their hard drives. This would make the redundancy pointless wouldn't it? I.e. if 1 drive goes down, suddenly you've got a loss of several partitions when Raid 5 only has tolerance for 1 drive (/ partition) to go down.
+<BR>In which case, you might as well just use raid-0 and not have any redundancy thus increasing the amount of usuable disk space and still not being able to recover in case of a problem.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>taber</B><BR>
+02-Dec-2006 02:39</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Having alot of experience with mdadm (even raid 10 and 50 over 16 disks) I have thought about doing this but am going to experiment with a straight LVM "raid" and not use mdadm underneath as LVM supports multiple disks and striping, although what it may lack is the ability to rebuild (see: <A rel="nofollow" href="http://tldp.org/HOWTO/LVM-HOWTO/recipethreescsistripe.html).">http://tldp.org/HOWTO/LVM-HOWTO/recipethreescsistripe.html).</A>
+<BR>
+<BR>I would appreciate your thoughts and input.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Justcim</B><BR>
+07-Aug-2006 09:25</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+For those now reading this, you can actually expand a raid 5 array with mdadm for software based raid in linux. &nbsp;At least as of kernel 2.6.17 and mdadm 2.5.2 it is possible. &nbsp;One easy way to stest this is to create 4 files with dd, I created 4 100MB files named raidfile[1-4]. &nbsp;Next, use losetup to set them up as loop back devices, I used loop[0-3]. To create the initial array do:
+<BR> mdadm --create --verbose /dev/md0 -l5 -n3 /dev/loop0 /dev/loop1 /dev/loop2
+<BR>The array should now be initializing, when it is finished, increase the number of raid devices in the array by issuing the command:
+<BR>mdadm --grow /dev/md0 -n4 --backup-file=/tmp/raidbackup
+<BR>This part requires a backup file in case power is lost during the reordering of data, this backup file has to be used to assemble the raid array in that case.
+<BR>Next, to add the other drive to the array use:
+<BR> mdadm -a /dev/md0 /dev/loop4
+<BR>the new drive will then be added to the array with no data lose hopefully. &nbsp;During my testing it has worked flawlessly so far, but as for using it on a &nbsp;production box its probably not recommended unless you have backups. &nbsp;You do keep backups correct?
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Stuart Gathman</B><BR>
+07-Aug-2006 01:23</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+You can have mixed drive sizes with raid 5. &nbsp;The trick is to partition the drives into smaller partitions that can be matched in threes (or pairs for raid-1). &nbsp;When adding a drive to expand space, it may be necessary to move 1 or more partitions to the new drive. &nbsp;Simply add a same size partition on the new drive as a hot spare to the md device, then 'fail' the partition to be moved. &nbsp;When the sync is done, remove the "failed" partition from that md - it is now free to use with another md.
+<BR>
+<BR>I use partitions of around 40G for this. &nbsp;Things work out most easily if all partitions are the same size. &nbsp;AIX LVM automates this and takes it to the extreme, dividing each physical drive into thousands of partitions, each of which is moved, mirrored, raid5ed &nbsp;independently. &nbsp;The Linux LVM also divides partitions into smalller 4M or so chunks, but alas doesn't integrate with software raid, so you have to do the partitioning manually.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>hondaman</B><BR>
+11-Jun-2006 01:39</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+I have a 3-ware 9550sx controller that has online capactity expansion capabilites. &nbsp;I also am using it in a raid-5 configuration. &nbsp;I stumbled upon your page looking for answers on how to make linux see the new hard drive I just added to the array, and you said it cant be done :(
+<BR>
+<BR>Not to say youre wrong, but man, there HAS to be a way, somehow, to use the space I just added to my array!
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Michal</B><BR>
+08-Jun-2006 12:53</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Thanks Fake Rake, so to truley take advantage of a RAID-5 you have to have seperate drives for each part, but the limiting part is expansion correct? If I start with 300gb HD I can only add 300gb HDs and to add it to the RAID array with out rebuilding it is to use EVMS correct?
+<BR>
+<BR>I guess im trying to find a soultion to be able to add different size HD that will have all the HD under one grouping (so one drive letter vs 12) and the backup of RAID-5, any suggestions?
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Fake Rake</B><BR>
+08-Jun-2006 01:15</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Michael,
+<BR>
+<BR>That won't give you any benefit from the RAID array. &nbsp;If you set up a RAID made up only of partitions on the new drive, then you will lose data when that drive fails. &nbsp;Each element in the RAID array needs to be on a separate physical drive, so that one drive failing doesn't lead to any lost data.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Michal</B><BR>
+07-Jun-2006 12:11</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+This is in regards to Splinters splitting the HDs up in to smaller bits and then putting them together to expand on the raid.
+<BR>
+<BR>I noticed he split up the partitons in to equal parts because RAID-5 requires that but why split it up in to such small partitions. From this tutorial (not splinters) I can just as easily exapnd on the volume group by adding another seperate RAID array. Currently I have 3 300gb Seagate HDs where I was initally going to put those into there own RAID array. After I fill those up I was simply going to buy another HD (Does size matter?) lets say 400gb, split that up in to 4 100gb partitions create a RAID array out of that and then add it to the volume group that the original 3x300gb is in, now from my understanding this will work correct?
+<BR>
+<BR>Im still a little lost on what the benifits are to going with splinters idea, but that also could be that im really confused to moving, removing, rebuilding and adding by his method, if possible could someone simplify this?
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Tom K.</B><BR>
+04-Jun-2006 17:47</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Adding a small comment for the pvmove info. &nbsp;Kind of for my own benefit, as I come back to the page to remind myself how to do things with raid/lvm. Anyhow...
+<BR>
+<BR>For raid1, trying to do the pvmove gave me the error: "mirror: Required device-mapper target(s) not detected in your kernel". &nbsp;It seems you need the dm-mirror kernel module. &nbsp;So, the process for replacing a raid1 disk in an lvm goes like this.
+<BR>
+<BR> &nbsp;modprobe dm-mirror
+<BR> &nbsp;vgextend vg0 /dev/md4
+<BR> &nbsp;pvmove -v /dev/md1 /dev/md4
+<BR> &nbsp;vgreduce vg0 /dev/md1
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>bobdazzla</B><BR>
+30-May-2006 13:58</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Excellent guide, excellent explanations of each step. Thank you for providing this resource.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>splinter</B><BR>
+27-May-2006 02:19</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Actually, there is a cool trick to be able to extend a raid/lvm scheme (I got this from slashdot):
+<BR>
+<BR>"If you're using Linux software RAID, carve your drives into multiple partitions, build RAID arrays over those, then use LVM to weld them into a larger pool of storage. It may seem silly to break the drives up into paritions, just to put them back together again, but it buys you a great deal of flexibility down the road.
+<BR>
+<BR>Suppose, for example, that you had three 500GB drives in a RAID-5 configuration, no hot spare. That gives you 1TB of usable storage. Now suppose you're just about out of space, and you want to add another drive. How do you do it? In order to construct a new, four-disk array, you have to destroy the current array. That means you need to back up your data so that you can restore it to the new array. If there were a cheap and convenient backup solution for storing nearly a terabyte, this topic wouldn't even come up.
+<BR>
+<BR>If, instead, you had cut each 500GB drive into ten 50GB partitions, created ten RAID-5 arrays (each of three 50GB partitions) and then used LVM to place them all into a single volume group, when it comes time to upgrade, you will have another option. As long as you have *free space at least equal in size to one of the individual RAID arrays*, you can use 'pvmove' to instruct LVM to migrate all of the data off of one array, then take that array down, rebuild it with a fourth partition from the new disk, then add it back into the volume group. Do that for each array in turn and at the end of the process you'll have 1.5TB, and not only will all of your data be safely intact, your storage will have been fully available for reading and writing the whole time!
+<BR>
+<BR>Note that this process isn't particularly fast. I did it when I added a fifth 200GB disk to my file server, and it took nearly a week to complete. A backup and restore would have been faster (assuing I had something to back up to!). But it only took about 30 minutes of my time to write the script that performed the process and then I just let it run, checking on it occasionally. And my kids could watch movies the whole time.
+<BR>
+<BR>For anyone who's interested in trying it, the basic steps to reconstruct an array are as follows. This example will assume we're rebuilding /dev/md3, which is composed of /dev/hda3, /dev/hdc3 and /dev/hde3 and will be augmented with /dev/hdg3
+<BR>
+<BR> &nbsp; &nbsp;* pvmove /dev/md3 # Move all data off of /dev/md3
+<BR> &nbsp; &nbsp;* vgreduce vg /dev/md3 # Remove /dev/md3 from the volume group
+<BR> &nbsp; &nbsp;* pvremove /dev/md3 # Remove the LVM signature from /dev/md3
+<BR> &nbsp; &nbsp;* mdadm --stop /dev/md3 # Stop the array
+<BR> &nbsp; &nbsp;* mdadm --zero-superblock /dev/md3 # Remove the md signature from the disk
+<BR> &nbsp; &nbsp;* mdadm --create /dev/md3 --level=5 --raid-devices=4 /dev/hda3 /dev/hdc3 /dev/hde3 /dev/hdg3 # Create the new array
+<BR> &nbsp; &nbsp;* pvcreate /dev/md3 # Prepare /dev/md3 for LVM use
+<BR> &nbsp; &nbsp;* vgextend vg /dev/md3 # Add /dev/md3 into the array
+<BR>
+<BR>In order to make this easy, you want to make sure that you have at least one array's worth of space not only unused, but unassigned to any logical volumes. I find it's a good idea to keep about about 1.5 times that much unallocated. Then, when I run out of room in some volume, I just add the 0.5 to the logical volume, and then set about getting more storage to add in [ this is to ensure that you ALWAYS have 1 array's worth of freespace (don't accidentally go over)]."
+<BR>
+<BR>I'm currently running raid 5 on 4 320GB hdds. &nbsp;I've broken them up into 10 32GB chunks and consequently have 10 raid arrays (md1 - md11).
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>James Cook</B><BR>
+24-May-2006 01:28</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+To expand on what an earlier commenter said, you can actually expand your RAID-5 provided you use EVMS to do it. &nbsp;Midway down the EVMS FAQ page, they have a somewhat hackish way of doing so. &nbsp;The relevant Q&amp;A is:
+<BR><BLOCKQUOTE>
+<BR>Q: I have a RAID-0 or RAID-5 volume with a JFS or XFS filesystem. I would like to expand my RAID volume by adding another disk. EVMS says the RAID volume must be inactive in order to expand, but it also says that JFS and XFS must be mounted in order to expand. How can I expand my RAID volume?
+<BR>
+<BR>A: This is definitely an unfortunate catch-22. Luckily there's a pretty simple workaround. All you need to do is fool EVMS into thinking there isn't an XFS or JFS filesystem on your RAID-0 or RAID-5 volume just during the time that you want to expand it. To do this, move the appropriate plugin library (XFS and/or JFS) out of /lib/evms/x.y.z/ to some temporary location. Then run the EVMS UI, and since the XFS/JFS plugin isn't loaded, it won't detect the filesystem. Then you'll be able to expand the RAID volume. After the RAID expand is complete, you'll just need to manually expand the XFS or JFS filesystem (after mounting it). For XFS, use the xfs_growfs command. For JFS, you simply remount the filesystem using the command mount -o remount,resize /mnt/point. After this, you can move the XFS/JFS plugins back to the /lib/evms/x.y.z/ directory.
+<BR></BLOCKQUOTE>
+<BR>Taken from: <A rel="nofollow" href="http://evms.sourceforge.net/faq.html">http://evms.sourceforge.net/faq.html</A>
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Curt</B><BR>
+09-Apr-2006 12:50</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Excellent tutorial! &nbsp;*REALLY* helped. &nbsp;But I must agree with the previous comment that keeping Logical Volume and Logical Group terms straight is important and in building LVs on my test system (using your tutorial) I have learned to name Volume Groups &nbsp;vg01 or vg01 and Logical Volumes lv01 or lv02 so that there is no confusion with the commands. &nbsp;But THANK YOU for taking the time to build this page! &nbsp; WONDERFUL stuff!!!
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Tobias</B><BR>
+26-Jan-2006 09:02</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+@author:
+<BR>Fine article.
+<BR>Keep it uptodate and it's a good source in the net.
+<BR>
+<BR>Please, don't mix up Volume Group and Logical Volume.
+<BR>
+<BR>&gt; &nbsp;The second command vgcrate will then create the Logical Volume, in my case I called it lvm-raid:
+<BR>
+<BR>lvm-raid is the Volume Group.
+<BR>An important point is:
+<BR>You could (and want) to create more than one Logical Volume. LVs are the guys that you want to mount later, so I want to keep system data and user data apart, e.g.
+<BR>
+<BR>VG: myhost 120 GB
+<BR>LV: system 30 GB
+<BR>LV: user 50 GB
+<BR>
+<BR>then mount /dev/myhost/system to /
+<BR>and /dev/myhost/user to /home
+<BR>Afterwards you can still extend "user" to the maximum of 90 GB and expand the filesystem, or you can make a new LV: mp3 40 GB and mount this under /home/shared/mp3
+<BR>
+<BR>that's kind of cool flexibility.
+<BR>
+<BR>@David
+<BR>RAID makes it more difficult. Adding more discs would mean adding always a even number &nbsp;(for RAID 1) of discs to &nbsp;maintain mirroring....e.g. in fact adding always an independent RAID to the host.
+<BR>
+<BR>@John Dehls
+<BR>Try smaller partitions on the raid (i.e. several partitions on a disc, each having a RAID with the corresponding partitions on the other driver), you can then add all the /dev/mdX devices with vgextend/vgcreate to a volume group...
+<BR> 
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Lars Tobias B??rsting</B><BR>
+15-Jan-2006 17:47</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+&gt; The answer to how to expand a RAID-5 array is very simple: You can't.
+<BR>
+<BR>You can if you use EVMS.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>John Dehls</B><BR>
+03-Jan-2006 03:50</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Everything has gone fine for me until the creation of the file system. I have setup a RAID 5 array with four 400Gb disks, sda, sdb, sdc, sdd. FC4 is running of sdf. The logical volume gets created and looks fine. When I try mkfs.ext3, it runs until its about 25% finished, and then the whole system crashes. After I hit the reset button and reboot, the system spends about 3 hours resyncing md0. I have tried this now about 5 times. How do I go about debugging? Should can I make a smaller logical volume first and then expand it?
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>David</B><BR>
+13-Dec-2005 22:43</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+every thing went great. &nbsp; killer notes. suggestions 
+<BR>how to add drives to make the disk space grow. &nbsp;for example started out with 3 120 drives and want to bring it up to 4 120 drives. 
+<BR><BR><FONT color="red">
+<BR>That's something I'm working on, just don't have the time lately to experiment and get it right.</FONT>
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Dave</B><BR>
+23-Oct-2005 15:51</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Great tutorial, simple and effective. Thanks.
+</CODE>
+</TD>
+</TR><TR valign="TOP">
+<TD class="gray2" colspan="2">
+<B>Torsten K??hnel</B><BR>
+22-Oct-2005 07:20</TD>
+</TR>
+<TR class="NOTE"><TD colspan="2">
+<CODE class="NOTE">
+Thanks again! Your infos are very readable and all steps to the point. Its probaly exactly the amount of information you need to set it up the first time, and it has the instructions how to handle disk-failures. The man-pages i've seen are missing that.
+<BR>
+<BR>So hopefully everyone who is looking for how to set it up finds it !
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</CODE>
+</TD>
+</TR></TBODY></TABLE>
+</P><HR width="100%">
+
+Please
+<A href="JavaScript:makeEmailWindow("/greg/respond.php?to=default&toname=Greg+Gulik&tobl=1&subject=%2Fgreg%2Flinux%2Fraid-lvm.php");">
+E-mail Me</A> with any
+questions, comments or corrections.
+
+
+
+<CENTER>
+<IFRAME marginwidth="0" marginheight="0" width="468" height="60" scrolling="no" frameborder="0" src="./Managing RAID and LVM with Linux_files/cm.htm">
+
+
+&lt;MAP NAME="boxmap-p13"&gt;&lt;AREA SHAPE="RECT" COORDS="379, 50, 460, 57" HREF="http://rcm.amazon.com/e/cm/privacy-policy.html?o=1" target=main&gt;&lt;AREA COORDS="0,0,10000,10000" HREF="http://www.amazon.com/exec/obidos/redirect-home/drivingeventscom" target=main&gt;&lt;/map&gt;&lt;img src="http://rcm-images.amazon.com/images/G/01/rcm/468x60.gif" width="468" height="60" border="0" usemap="#boxmap-p13" alt="Shop at Amazon.com"&gt;
+</IFRAME>
+</CENTER>
+
+
+
+</BODY></HTML>

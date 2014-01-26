@@ -1,0 +1,860 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0090)http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID -->
+<HTML xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"><HEAD><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<META name="generator" content="MediaWiki 1.15.1">
+		<META name="keywords" content="Quick HOWTO : Ch26 : Linux Software RAID">
+		<LINK rel="shortcut icon" href="http://www.linuxhomenetworking.com/favicon.ico">
+		<LINK rel="search" type="application/opensearchdescription+xml" href="http://www.linuxhomenetworking.com/wiki/opensearch_desc.php" title="Linux Home Networking (en)">
+		<LINK title="Creative Commons" type="application/rdf+xml" href="http://www.linuxhomenetworking.com/wiki/index.php?title=Quick_HOWTO_:_Ch26_:_Linux_Software_RAID&action=creativecommons" rel="meta">
+		<LINK rel="copyright" href="http://creativecommons.org/licenses/by-nc-nd/2.5/">
+		<LINK rel="alternate" type="application/rss+xml" title="Linux Home Networking RSS Feed" href="http://www.linuxhomenetworking.com/wiki/index.php?title=Special:RecentChanges&feed=rss">
+		<LINK rel="alternate" type="application/atom+xml" title="Linux Home Networking Atom Feed" href="http://www.linuxhomenetworking.com/wiki/index.php?title=Special:RecentChanges&feed=atom">
+		<TITLE>Quick HOWTO : Ch26 : Linux Software RAID - Linux Home Networking</TITLE>
+		<LINK rel="stylesheet" href="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/shared.css" type="text/css" media="screen">
+		<LINK rel="stylesheet" href="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/commonPrint.css" type="text/css" media="print">
+		<LINK rel="stylesheet" href="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/main.css" type="text/css" media="screen">
+		<!--[if lt IE 5.5000]><link rel="stylesheet" href="/wiki/skins/monobook/IE50Fixes.css?207" type="text/css" media="screen" /><![endif]-->
+		<!--[if IE 5.5000]><link rel="stylesheet" href="/wiki/skins/monobook/IE55Fixes.css?207" type="text/css" media="screen" /><![endif]-->
+		<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/monobook/IE60Fixes.css?207" type="text/css" media="screen" /><![endif]-->
+		<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/monobook/IE70Fixes.css?207" type="text/css" media="screen" /><![endif]-->
+		<LINK rel="stylesheet" href="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/index.php" type="text/css">
+		<LINK rel="stylesheet" href="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/index(1).php" type="text/css" media="print">
+		<LINK rel="stylesheet" href="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/index(2).php" type="text/css">
+		<LINK rel="stylesheet" href="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/index(3).php" type="text/css">
+		<!--[if lt IE 7]><script type="text/javascript" src="/wiki/skins/common/IEFixes.js?207"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+
+		<SCRIPT type="text/javascript">/*<![CDATA[*/
+		var skin = "monobook";
+		var stylepath = "/wiki/skins";
+		var wgArticlePath = "/wiki/index.php/$1";
+		var wgScriptPath = "/wiki";
+		var wgScript = "/wiki/index.php";
+		var wgVariantArticlePath = false;
+		var wgActionPaths = {};
+		var wgServer = "http://www.linuxhomenetworking.com";
+		var wgCanonicalNamespace = "";
+		var wgCanonicalSpecialPageName = false;
+		var wgNamespaceNumber = 0;
+		var wgPageName = "Quick_HOWTO_:_Ch26_:_Linux_Software_RAID";
+		var wgTitle = "Quick HOWTO : Ch26 : Linux Software RAID";
+		var wgAction = "view";
+		var wgArticleId = "1343";
+		var wgIsArticle = true;
+		var wgUserName = null;
+		var wgUserGroups = null;
+		var wgUserLanguage = "en";
+		var wgContentLanguage = "en";
+		var wgBreakFrames = false;
+		var wgCurRevisionId = 3913;
+		var wgVersion = "1.15.1";
+		var wgEnableAPI = true;
+		var wgEnableWriteAPI = true;
+		var wgSeparatorTransformTable = ["", ""];
+		var wgDigitTransformTable = ["", ""];
+		var wgRestrictionEdit = ["sysop"];
+		var wgRestrictionMove = ["sysop"];
+		/*]]>*/</SCRIPT>
+
+		<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/wikibits.js"><!-- wikibits js --></SCRIPT><STYLE type="text/css">@import "/wiki/skins/monobook/KHTMLFixes.css";</STYLE>
+		<!-- Head Scripts -->
+		<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/ajax.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/index(4).php"><!-- site js --></SCRIPT>
+
+<!-- LinuxHomeNetworking Start -->
+
+<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/google_service.js">
+</SCRIPT>
+<SCRIPT type="text/javascript">
+  GS_googleAddAdSenseService("ca-pub-0304295028260795");
+  GS_googleEnableAllServices();
+</SCRIPT><SCRIPT src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/google_ads.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+  GA_googleAddSlot("ca-pub-0304295028260795", "w_ATF_336x280");
+  GA_googleAddSlot("ca-pub-0304295028260795", "w_ATF_728x90");
+</SCRIPT>
+<SCRIPT type="text/javascript">
+  GA_googleFetchAds();
+</SCRIPT>
+
+<!-- LinuxHomeNetworking Stop -->
+
+	<LINK type="text/css" rel="stylesheet" href="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/amazonJQ-combined-coreCSS-8516._V231938213_.css"><STYLE type="text/css">
+
+/* non-sprited */
+.ap_popover_unsprited .ap_body   .ap_left   { background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/po_left_17._V248144977_.png); }
+.ap_popover_unsprited .ap_body   .ap_right  { background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/po_right_17._V248144979_.png); }
+.ap_popover_unsprited .ap_header .ap_left   { background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/po_top_left._V265110087_.png); }
+.ap_popover_unsprited .ap_header .ap_right  { background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/po_top_right._V265110087_.png); }
+.ap_popover_unsprited .ap_header .ap_middle { background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/po_top._V265110086_.png); }
+.ap_popover_unsprited .ap_footer .ap_left   { background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/po_bottom_left._V265110084_.png); }
+.ap_popover_unsprited .ap_footer .ap_right  { background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/po_bottom_right._V265110087_.png); }
+.ap_popover_unsprited .ap_footer .ap_middle { background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/po_bottom._V265110084_.png); }
+
+/* Everything else -- sprited */
+.ap_popover_sprited .ap_body .ap_left, 
+.ap_popover_sprited .ap_body .ap_right {
+    background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/light/sprite-v._V219326283_.png);
+}
+
+
+.ap_popover_sprited .ap_header .ap_left, 
+.ap_popover_sprited .ap_header .ap_right,
+.ap_popover_sprited .ap_header .ap_middle,
+.ap_popover_sprited .ap_footer .ap_left, 
+.ap_popover_sprited .ap_footer .ap_right,
+.ap_popover_sprited .ap_footer .ap_middle,
+.ap_popover_sprited .ap_closebutton {
+    background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/light/sprite-h._V219326280_.png);
+}
+
+.ap_popover_sprited .ap_body .ap_right-arrow, .ap_popover_sprited .ap_body .ap_left-arrow {
+    background-image: url(http://g-ecx.images-amazon.com/images/G/01/javascripts/lib/popover/images/light/sprite-arrow-v._V219326286_.png);
+}
+
+</STYLE></HEAD><BODY class="mediawiki ltr ns-0 ns-subject page-Quick_HOWTO_Ch26_Linux_Software_RAID skin-monobook"><DIV id="ap_container"><IFRAME frameborder="0" tabindex="-1" src="javascript:void(false)" style="display:none;position:absolute;z-index:0;filter:Alpha(Opacity=&#39;0&#39;);opacity:0;"></IFRAME><IFRAME frameborder="0" tabindex="-1" src="javascript:void(false)" style="display:none;position:absolute;z-index:0;filter:Alpha(Opacity=&#39;0&#39;);opacity:0;"></IFRAME><IFRAME frameborder="0" tabindex="-1" src="javascript:void(false)" style="display:none;position:absolute;z-index:0;filter:Alpha(Opacity=&#39;0&#39;);opacity:0;"></IFRAME></DIV>
+	<DIV id="globalWrapper">
+
+
+<!-- LinuxHomeNetworking Start -->
+<!-- lhn-header1 Start--> 
+    <TABLE border="0" cellpadding="3" style="border-collapse: collapse" width="100%" bordercolor="#FFFFFF">
+      <TBODY><TR>
+        <TD>
+        &nbsp;</TD>
+      </TR>
+    </TBODY></TABLE>
+	<TABLE border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="100%">
+      <TBODY><TR>
+        <TD width="10" bgcolor="#FFFFFF">
+        &nbsp;</TD>
+        <TD width="300" bgcolor="#FFFFFF">
+        <P style="margin-top: 0; margin-bottom: 0" align="center">
+        <A href="http://www.linuxhomenetworking.com/">
+        <IMG border="0" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/logo-275x30.gif" width="275" height="30"></A></P>
+        <P style="margin-top: 0; margin-bottom: 0" align="center">
+        <FONT face="Arial" size="1">
+        <A style="text-decoration: none" href="http://www.linuxhomenetworking.com/forums/index.php?styleid=5">
+        <FONT color="#008000">Forums</FONT></A><FONT color="#008000"> | 
+        </FONT> 
+        <A href="http://www.linuxhomenetworking.com/mail" style="text-decoration: none">
+        <FONT color="#008000">Corrections</FONT></A><FONT color="#008000"> | 
+        </FONT> 
+        <A href="http://www.linuxhomenetworking.com/wiki/index.php/About_the_Site" style="text-decoration: none">
+        <FONT color="#008000">About</FONT></A><FONT color="#008000">&nbsp;&nbsp;&nbsp;&nbsp; 
+        (c) Peter Harrison</FONT></FONT></P></TD>
+        <TD bgcolor="#FFFFFF" align="center">
+
+
+<FORM action="http://www.linuxhomenetworking.com/search/" id="cse-search-box">
+  <DIV>
+    <INPUT type="hidden" name="cx" value="partner-pub-0304295028260795:bg0yrb-4i70">
+    <INPUT type="hidden" name="cof" value="FORID:10">
+    <INPUT type="hidden" name="ie" value="ISO-8859-1">
+    <INPUT type="text" name="q" size="35" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(126, 157, 185); border-right-color: rgb(126, 157, 185); border-bottom-color: rgb(126, 157, 185); border-left-color: rgb(126, 157, 185); padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; background-image: url(http://www.google.com/cse/intl/en/images/google_custom_search_watermark.gif); background-repeat: no-repeat; background-attachment: initial; -webkit-background-clip: initial; -webkit-background-origin: initial; background-color: rgb(255, 255, 255); background-position: 0% 50%; ">
+    <INPUT type="submit" name="sa" value="Search">
+  </DIV>
+<INPUT name="siteurl" type="hidden" value="www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID"><INPUT name="siteurl" type="hidden" value="www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID"></FORM>
+<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/brand"></SCRIPT>
+
+
+<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/brand(1)"></SCRIPT>        
+        </TD>
+        <TD width="310" bgcolor="#FFFFFF" align="center">
+        <P align="center" style="margin-top: 0; margin-bottom: 0">
+        <A href="http://www.linuxhomenetworking.com/about/buy-docs.html">
+        <IMG border="0" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/buypdf-300x30.gif" width="300" height="30"></A></P>
+        </TD>
+        <TD width="10" bgcolor="#FFFFFF">
+        &nbsp;</TD>
+      </TR>
+    </TBODY></TABLE>
+         <!-- lhn-header1 Stop-->
+
+                <DIV id="column-content">
+        <DIV id="content-lhn">
+         <!-- lhn-header1a Start-->    
+<TABLE border="0" cellpadding="5" style="border-collapse: collapse" width="100%" bordercolor="#FFFFFF">
+  <TBODY><TR>
+    <TD>
+    <TABLE border="0" cellpadding="10" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="100%">
+      <TBODY><TR>
+        <TD align="center" bgcolor="#048444">
+         <!-- lhn-header1a Stop-->
+<!-- LinuxHomeNetworking Stop -->
+
+
+		<A name="top" id="top"></A>
+				<H1 id="firstHeading" class="firstHeading">Quick HOWTO : Ch26 : Linux Software RAID</H1>
+
+
+<!-- LinuxHomeNetworking Start -->
+          <!-- lhn-header1b Start-->
+       </TD>
+      </TR>
+    </TBODY></TABLE> 
+    
+    </TD>
+  </TR>
+  </TBODY></TABLE>
+
+<TABLE border="0" cellpadding="0" style="border-collapse: collapse" width="100%" bordercolor="#FFFFFF">
+  <TBODY><TR>
+    <TD>
+    <P align="center">
+    <A href="http://www.linuxhomenetworking.com/forums/index.php?styleid=5">
+    <IMG border="0" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/forum-promo-800x50.gif" width="800" height="50"></A></P></TD>
+  </TR>
+</TBODY></TABLE>
+
+<!-- lhn-header1b Stop-->  
+<!-- lhn-header2 Start--> 
+<TABLE border="0" cellpadding="3" style="border-collapse: collapse" width="100%" bordercolor="#FFFFFF">
+  <TBODY><TR>
+    <TD align="left" width="160">
+<SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-0304295028260795";
+/* 120x90, created 8/3/08 */
+google_ad_slot = "3458463139";
+google_ad_width = 120;
+google_ad_height = 90;
+//-->
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/show_ads.js">
+</SCRIPT><SCRIPT src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/expansion_embed.js"></SCRIPT><SCRIPT src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/test_domain.js"></SCRIPT><SCRIPT>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</SCRIPT><INS style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:120px"><INS style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:120px"><IFRAME allowtransparency="true" frameborder="0" height="90" hspace="0" id="google_ads_frame1" marginheight="0" marginwidth="0" name="google_ads_frame" scrolling="no" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/ads(2).htm" style="left:0;position:absolute;top:0" vspace="0" width="120"></IFRAME></INS></INS>
+    
+    &nbsp;</TD>
+    <TD align="right">
+    
+<SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-0304295028260795";
+/* 728x90, Images Only - created 8/5/08 */
+google_ad_slot = "5137709687";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</SCRIPT>
+<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/show_ads.js">
+</SCRIPT><SCRIPT>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</SCRIPT><INS style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><INS style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><IFRAME allowtransparency="true" frameborder="0" height="90" hspace="0" id="google_ads_frame2" marginheight="0" marginwidth="0" name="google_ads_frame" scrolling="no" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/ads(3).htm" style="left:0;position:absolute;top:0" vspace="0" width="728"></IFRAME></INS></INS>
+
+</TD>
+  </TR>
+</TBODY></TABLE>
+
+<!-- lhn-header2 Stop--> 
+
+<!-- LinuxHomeNetworking Start -->
+
+
+		<DIV id="bodyContent">
+			<H3 id="siteSub">From Linux Home Networking</H3>
+			<DIV id="contentSub"></DIV>
+									<DIV id="jump-to-nav">Jump to: <A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#column-one">navigation</A>, <A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#searchInput">search</A></DIV>			<!-- start content -->
+			<TABLE id="toc" class="toc" summary="Contents"><TBODY><TR><TD><DIV id="toctitle"><H2>Contents</H2> <SPAN class="toctoggle">[<A id="togglelink" class="internal" href="javascript:toggleToc()">hide</A>]</SPAN></DIV>
+<UL>
+<LI class="toclevel-1"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Sponsors"><SPAN class="tocnumber">1</SPAN> <SPAN class="toctext">Sponsors</SPAN></A></LI>
+<LI class="toclevel-1"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Introduction"><SPAN class="tocnumber">2</SPAN> <SPAN class="toctext">Introduction</SPAN></A></LI>
+<LI class="toclevel-1"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#RAID_Types"><SPAN class="tocnumber">3</SPAN> <SPAN class="toctext">RAID Types</SPAN></A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Linear_Mode_RAID"><SPAN class="tocnumber">3.1</SPAN> <SPAN class="toctext">Linear Mode RAID</SPAN></A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#RAID_0"><SPAN class="tocnumber">3.2</SPAN> <SPAN class="toctext">RAID 0</SPAN></A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#RAID_1"><SPAN class="tocnumber">3.3</SPAN> <SPAN class="toctext">RAID 1</SPAN></A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Figure_26-1_RAID_0_And_RAID_1_Operation"><SPAN class="tocnumber">3.3.1</SPAN> <SPAN class="toctext">Figure 26-1 RAID 0 And RAID 1 Operation</SPAN></A></LI>
+</UL>
+</LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#RAID_4"><SPAN class="tocnumber">3.4</SPAN> <SPAN class="toctext">RAID 4</SPAN></A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#RAID_5"><SPAN class="tocnumber">3.5</SPAN> <SPAN class="toctext">RAID 5</SPAN></A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Figure_26-2_RAID_5_Operation"><SPAN class="tocnumber">3.5.1</SPAN> <SPAN class="toctext">Figure 26-2 RAID 5 Operation</SPAN></A></LI>
+</UL>
+</LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Before_You_Start"><SPAN class="tocnumber">4</SPAN> <SPAN class="toctext">Before You Start</SPAN></A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#IDE_Drives"><SPAN class="tocnumber">4.1</SPAN> <SPAN class="toctext">IDE Drives</SPAN></A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Serial_ATA_Drives"><SPAN class="tocnumber">4.2</SPAN> <SPAN class="toctext">Serial ATA Drives</SPAN></A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#SCSI_Drives"><SPAN class="tocnumber">4.3</SPAN> <SPAN class="toctext">SCSI Drives</SPAN></A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Should_I_Use_Software_RAID_Partitions_Or_Entire_Disks.3F"><SPAN class="tocnumber">4.4</SPAN> <SPAN class="toctext">Should I Use Software RAID Partitions Or Entire Disks?</SPAN></A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Backup_Your_System_First"><SPAN class="tocnumber">4.5</SPAN> <SPAN class="toctext">Backup Your System First</SPAN></A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Configure_RAID_In_Single_User_Mode"><SPAN class="tocnumber">4.6</SPAN> <SPAN class="toctext">Configure RAID In Single User Mode</SPAN></A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Configuring_Software_RAID"><SPAN class="tocnumber">5</SPAN> <SPAN class="toctext">Configuring Software RAID</SPAN></A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#RAID_Partitioning"><SPAN class="tocnumber">5.1</SPAN> <SPAN class="toctext">RAID Partitioning</SPAN></A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Determining_Available_Partitions"><SPAN class="tocnumber">5.1.1</SPAN> <SPAN class="toctext">Determining Available Partitions</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Unmount_the_Partitions"><SPAN class="tocnumber">5.1.2</SPAN> <SPAN class="toctext">Unmount the Partitions</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Prepare_The_Partitions_With_FDISK"><SPAN class="tocnumber">5.1.3</SPAN> <SPAN class="toctext">Prepare The Partitions With FDISK</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Use_FDISK_Help"><SPAN class="tocnumber">5.1.4</SPAN> <SPAN class="toctext">Use FDISK Help</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Set_The_ID_Type"><SPAN class="tocnumber">5.1.5</SPAN> <SPAN class="toctext">Set The ID Type</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Make_Sure_The_Change_Occurred"><SPAN class="tocnumber">5.1.6</SPAN> <SPAN class="toctext">Make Sure The Change Occurred</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Save_The_Changes"><SPAN class="tocnumber">5.1.7</SPAN> <SPAN class="toctext">Save The Changes</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Repeat_For_The_Other_Partitions"><SPAN class="tocnumber">5.1.8</SPAN> <SPAN class="toctext">Repeat For The Other Partitions</SPAN></A></LI>
+</UL>
+</LI>
+<LI class="toclevel-2"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Preparing_the_RAID_Set"><SPAN class="tocnumber">5.2</SPAN> <SPAN class="toctext">Preparing the RAID Set</SPAN></A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Create_the_RAID_Set"><SPAN class="tocnumber">5.2.1</SPAN> <SPAN class="toctext">Create the RAID Set</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Confirm_RAID_Is_Correctly_Inititalized"><SPAN class="tocnumber">5.2.2</SPAN> <SPAN class="toctext">Confirm RAID Is Correctly Inititalized</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Format_The_New_RAID_Set"><SPAN class="tocnumber">5.2.3</SPAN> <SPAN class="toctext">Format The New RAID Set</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Create_the_mdadm.conf_Configuration_File"><SPAN class="tocnumber">5.2.4</SPAN> <SPAN class="toctext">Create the mdadm.conf Configuration File</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Create_A_Mount_Point_For_The_RAID_Set"><SPAN class="tocnumber">5.2.5</SPAN> <SPAN class="toctext">Create A Mount Point For The RAID Set</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Edit_The_.2Fetc.2Ffstab_File"><SPAN class="tocnumber">5.2.6</SPAN> <SPAN class="toctext">Edit The /etc/fstab File</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Mount_The_New_RAID_Set"><SPAN class="tocnumber">5.2.7</SPAN> <SPAN class="toctext">Mount The New RAID Set</SPAN></A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Check_The_Status_Of_The_New_RAID"><SPAN class="tocnumber">5.2.8</SPAN> <SPAN class="toctext">Check The Status Of The New RAID</SPAN></A></LI>
+</UL>
+</LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Conclusion"><SPAN class="tocnumber">6</SPAN> <SPAN class="toctext">Conclusion</SPAN></A></LI>
+<LI class="toclevel-1"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID#Our_Linux_Forum_Community"><SPAN class="tocnumber">7</SPAN> <SPAN class="toctext">Our Linux Forum Community</SPAN></A></LI>
+</UL>
+</TD></TR></TBODY></TABLE><SCRIPT type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </SCRIPT>
+<A name="Sponsors" id="Sponsors"></A><H3> <SPAN class="mw-headline">Sponsors</SPAN></H3>
+<P><SCRIPT type="text/javascript">/* <![CDATA[ */
+google_ad_client = "pub-0304295028260795";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "image_text";
+//2007-10-27: LHN - Other - 336x280
+google_ad_channel = "4572876003";
+google_color_border = "ffffff";
+google_color_bg = "ffffff";
+google_color_link = "002bb8";
+google_color_url = "cdcdcd";
+google_color_text = "000000";
+/* ]]> */</SCRIPT><SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/show_ads.js"></SCRIPT><SCRIPT>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</SCRIPT><INS style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px"><INS style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px"><IFRAME allowtransparency="true" frameborder="0" height="280" hspace="0" id="google_ads_frame3" marginheight="0" marginwidth="0" name="google_ads_frame" scrolling="no" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/ads.htm" style="left:0;position:absolute;top:0" vspace="0" width="336"></IFRAME></INS></INS>
+</P>
+<A name="Introduction" id="Introduction"></A><H1> <SPAN class="mw-headline">Introduction</SPAN></H1>
+<P>The main goals of using redundant arrays of inexpensive disks (RAID) are to improve disk data performance and provide data redundancy.
+</P><P>RAID can be handled either by the operating system software or it may be implemented via a purpose built RAID disk controller card without having to configure the operating system at all. This chapter will explain how to configure the software RAID schemes supported by RedHat/Fedora Linux.
+</P><P>For the sake of simplicity, the chapter focuses on using RAID for partitions that include neither the /boot or the root (/) filesystems.
+</P>
+<A name="RAID_Types" id="RAID_Types"></A><H1> <SPAN class="mw-headline"> RAID Types </SPAN></H1>
+<P>Whether hardware- or software-based, RAID can be configured using a variety of standards. Take a look at the most popular.
+</P>
+<A name="Linear_Mode_RAID" id="Linear_Mode_RAID"></A><H2> <SPAN class="mw-headline"> Linear Mode RAID </SPAN></H2>
+<P>In the Linear RAID, the RAID controller views the RAID set as a chain of disks. Data is written to the next device in the chain only after the previous one is filled.
+</P><P>The aim of Linear RAID is to accommodate large filesystems spread over multiple devices with no data redundancy. A drive failure will corrupt your data.
+</P><P>Linear mode RAID is not supported by Fedora Linux.
+</P>
+<A name="RAID_0" id="RAID_0"></A><H2> <SPAN class="mw-headline"> RAID 0 </SPAN></H2>
+<P>With RAID 0, the RAID controller tries to evenly distribute data across all disks in the RAID set.
+</P><P>Envision a disk as if it were a plate, and think of the data as a cake. You have four cakes- chocolate, vanilla, cherry and strawberry-and four plates. The initialization process of RAID 0, divides the cakes and distributes the slices across all the plates. The RAID 0 drivers make the operating system feel that the cakes are intact and placed on one large plate. For example, four 9GB hard disks configured in a RAID 0 set are seen by the operating system to be one 36GB disk.
+</P><P>Like Linear RAID, RAID 0 aims to accommodate large filesystems spread over multiple devices with no data redundancy. The advantage of RAID 0 is data access speed. A file that is spread over four disks can be read four times as fast. You should also be aware that RAID 0 is often called striping.
+</P><P>RAID 0 can accommodate disks of unequal sizes. When RAID runs out of striping space on the smallest device, it then continues the striping using the available space on the remaining drives. When this occurs, the data access speed is lower for this portion of data, because the total number of RAID drives available is reduced. For this reason, RAID 0 is best used with drives of equal size.
+</P><P>RAID 0 is supported by Fedora Linux. Figure 26.1 illustrates the data allocation process in RAID 0.
+</P>
+<A name="RAID_1" id="RAID_1"></A><H2> <SPAN class="mw-headline"> RAID 1 </SPAN></H2>
+<P>With RAID 1, data is cloned on a duplicate disk. This RAID method is therefore frequently called disk mirroring. Think of telling two people the same story so that if one forgets some of the details you can ask the other one to remind you.
+</P><P>When one of the disks in the RAID set fails, the other one continues to function. When the failed disk is replaced, the data is automatically cloned to the new disk from the surviving disk. RAID 1 also offers the possibility of using a hot standby spare disk that will be automatically cloned in the event of a disk failure on any of the primary RAID devices.
+</P><P>RAID 1 offers data redundancy, without the speed advantages of RAID 0. A disadvantage of software-based RAID 1 is that the server has to send data twice to be written to each of the mirror disks. This can saturate data busses and CPU use. With a hardware-based solution, the server CPU sends the data to the RAID disk controller once, and the disk controller then duplicates the data to the mirror disks. This makes RAID-capable disk controllers the preferred solution when implementing RAID 1.
+</P><P>A limitation of RAID 1 is that the total RAID size in gigabytes is equal to that of the smallest disk in the RAID set. Unlike RAID 0, the extra space on the larger device isn't used.
+</P><P>RAID 1 is supported by Fedora Linux. Figure 26.1 illustrates the data allocation process in RAID 1.
+</P>
+<A name="Figure_26-1_RAID_0_And_RAID_1_Operation" id="Figure_26-1_RAID_0_And_RAID_1_Operation"></A><H3> <SPAN class="mw-headline">Figure 26-1 RAID 0 And RAID 1 Operation</SPAN></H3>
+<P><A href="http://www.linuxhomenetworking.com/wiki/index.php/File:Raid0.gif" class="image" title="Image:Raid0.gif"><IMG alt="Image:Raid0.gif" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/Raid0.gif" width="526" height="375" border="0"></A>
+</P><P><BR>
+</P>
+<A name="RAID_4" id="RAID_4"></A><H2> <SPAN class="mw-headline"> RAID 4 </SPAN></H2>
+<P>RAID 4 operates likes RAID 0 but inserts a special error-correcting or parity chunk on an additional disk dedicated to this purpose.
+</P><P>RAID 4 requires at least three disks in the RAID set and can survive the loss of a single drive only. When this occurs, the data in it can be recreated on the fly with the aid of the information on the RAID set's parity disk. When the failed disk is replaced, it is repopulated with the lost data with the help of the parity disk's information.
+</P><P>RAID 4 combines the high speed provided of RAID 0 with the redundancy of RAID 1. Its major disadvantage is that the data is striped, but the parity information is not. In other words, any data written to any section of the data portion of the RAID set must be followed by an update of the parity disk. The parity disk can therefore act as a bottleneck. For this reason, RAID 4 isn't used very frequently.
+</P><P>RAID 4 is not supported by Fedora Linux.
+</P>
+<A name="RAID_5" id="RAID_5"></A><H2> <SPAN class="mw-headline">RAID 5</SPAN></H2>
+<P>RAID 5 improves on RAID 4 by striping the parity data between all the disks in the RAID set. This avoids the parity disk bottleneck, while maintaining many of the speed features of RAID 0 and the redundancy of RAID 1. Like RAID 4, RAID 5 can survive the loss of a single disk only.
+</P><P>RAID 5 is supported by Fedora Linux. Figure 26.2 illustrates the data allocation process in RAID 5.
+</P><P>Linux RAID 5 requires a minimum of three disks or partitions.
+</P>
+<A name="Figure_26-2_RAID_5_Operation" id="Figure_26-2_RAID_5_Operation"></A><H3> <SPAN class="mw-headline">Figure 26-2 RAID 5 Operation</SPAN></H3>
+<P><A href="http://www.linuxhomenetworking.com/wiki/index.php/File:Raid5.gif" class="image" title="Image:raid5.gif"><IMG alt="Image:raid5.gif" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/Raid5.gif" width="443" height="361" border="0"></A>
+</P>
+<A name="Before_You_Start" id="Before_You_Start"></A><H1> <SPAN class="mw-headline"> Before You Start </SPAN></H1>
+<P>Specially built hardware-based RAID disk controllers are available for both IDE and SCSI drives. They usually have their own BIOS, so you can configure them right after your system's the power on self test (POST). Hardware-based RAID is transparent to your operating system; the hardware does all the work.
+</P><P>If hardware RAID isn't available, then you should be aware of these basic guidelines to follow when setting up software RAID.
+</P>
+<A name="IDE_Drives" id="IDE_Drives"></A><H2> <SPAN class="mw-headline"> IDE Drives </SPAN></H2>
+<P>To save costs, many small business systems will probably use IDE disks, but they do have some limitations.
+</P>
+<UL><LI>The total length of an IDE cable can be only a few feet long, which generally limits IDE drives to small home systems.
+</LI><LI>IDE drives do not hot swap. You cannot replace them while your system is running.
+</LI><LI>Only two devices can be attached per controller.
+</LI><LI>The performance of the IDE bus can be degraded by the presence of a second device on the cable.
+</LI><LI>The failure of one drive on an IDE bus often causes the malfunctioning of the second device. This can be fatal if you have two IDE drives of the same RAID set attached to the same cable.
+</LI></UL>
+<P>For these reasons, I recommend you use only one IDE drive per controller when using RAID, especially in a corporate environment. In a home or SOHO setting, IDE-based software RAID may be adequate.
+</P>
+<A name="Serial_ATA_Drives" id="Serial_ATA_Drives"></A><H2> <SPAN class="mw-headline">Serial ATA Drives</SPAN></H2>
+<P>Serial ATA type drives are rapidly replacing IDE, or Ultra ATA, drives as the preferred entry level disk storage option because of a number of advantages:
+</P>
+<UL><LI>The drive data cable can be as long as 1 meter in length versus IDE's 18 inches.
+</LI><LI>Serial ATA has better error checking than IDE.
+</LI><LI>There is only one drive per cable which makes hot swapping, or the capability to replace components while the system is still running, possible without the fear of affecting other devices on the data cable.
+</LI><LI>There are no jumpers to set on Serial ATA drives to make it a master or slave which makes them simpler to configure.
+</LI><LI>IDE drives have a 133Mbytes/s data rate whereas the Serial ATA specification starts at 150 Mbytes/sec with a goal of reaching 600 Mbytes/s over the expected ten year life of the specification.
+</LI></UL>
+<P>If you can't afford more expensive and faster SCSI drives, Serial ATA would be the preferred device for software and hardware RAID
+</P>
+<A name="SCSI_Drives" id="SCSI_Drives"></A><H2> <SPAN class="mw-headline">SCSI Drives</SPAN></H2>
+<P>SCSI hard disks have a number of features that make them more attractive for RAID use than either IDE or Serial ATA drives.
+</P>
+<UL><LI>SCSI controllers are more tolerant of disk failures. The failure of a single drive is less likely to disrupt the remaining drives on the bus.
+</LI><LI>SCSI cables can be up to 25 meters long, making them suitable for data center applications.
+</LI><LI>Much more than two devices may be connected to a SCSI cable bus. It can accommodate 7 (single-ended SCSI) or 15 (all other SCSI types) devices.
+</LI><LI>Some models of SCSI devices support "hot swapping" which allows you to replace them while the system is running.
+</LI><LI>SCSI currently supports data rates of up to 640 Mbytes/s making them highly desirable for installations where rapid data access is imperative.
+</LI></UL>
+<P>SCSI drives tend to be more expensive than IDE drives, however, which may make them less attractive for home use.
+</P>
+<A name="Should_I_Use_Software_RAID_Partitions_Or_Entire_Disks.3F" id="Should_I_Use_Software_RAID_Partitions_Or_Entire_Disks.3F"></A><H2> <SPAN class="mw-headline">Should I Use Software RAID Partitions Or Entire Disks?</SPAN></H2>
+<P>It is generally a not a good idea to share RAID-configured partitions with non-RAID partitions. The reason for this is obvious: A disk failure could still incapacitate a system.
+</P><P>If you decide to use RAID, all the partitions on each RAID disk should be part of a RAID set. Many people simplify this problem by filling each disk of a RAID set with only one partition.
+</P>
+<A name="Backup_Your_System_First" id="Backup_Your_System_First"></A><H2> <SPAN class="mw-headline">Backup Your System First</SPAN></H2>
+<P>Software RAID creates the equivalent of a single RAID virtual disk drive made up of all the underlying regular partitions used to create it. You have to format this new RAID device before your Linux system can store files on it. Formatting, however, causes all the old data on the underlying RAID partitions to be lost. It is best to backup the data on these and any other partitions on the disk drive on which you want implement RAID. A mistake could unintentionally corrupt valid data.
+</P>
+<A name="Configure_RAID_In_Single_User_Mode" id="Configure_RAID_In_Single_User_Mode"></A><H2> <SPAN class="mw-headline">Configure RAID In Single User Mode</SPAN></H2>
+<P>As you will be modifying the disk structure of your system, you should also consider configuring RAID while your system is running in single-user mode from the VGA console. This makes sure that most applications and networking are shutdown and that no other users can access the system, reducing the risk of data corruption during the exercise.
+</P>
+<PRE>[root@bigboy tmp]# init 1
+</PRE>
+<P>Once finished, issue the exit command, and your system will boot in the default runlevel provided in the /etc/inittab file.
+</P>
+<A name="Configuring_Software_RAID" id="Configuring_Software_RAID"></A><H1> <SPAN class="mw-headline"> Configuring Software RAID </SPAN></H1>
+<P>Configuring RAID using Fedora Linux requires a number of steps that need to be followed carefully. In the tutorial example, you'll be configuring RAID 5 using a system with three pre-partitioned hard disks. The partitions to be used are:
+</P>
+<PRE>/dev/hde1
+/dev/hdf2
+/dev/hdg1
+</PRE>
+<P>Be sure to adapt the various stages outlined below to your particular environment.
+</P>
+<A name="RAID_Partitioning" id="RAID_Partitioning"></A><H2> <SPAN class="mw-headline"> RAID Partitioning </SPAN></H2>
+<P>You first need to identify two or more partitions, each on a separate disk. If you are doing RAID 0 or RAID 5, the partitions should be of approximately the same size, as in this scenario. RAID limits the extent of data access on each partition to an area no larger than that of the smallest partition in the RAID set.
+</P>
+<A name="Determining_Available_Partitions" id="Determining_Available_Partitions"></A><H3> <SPAN class="mw-headline"> Determining Available Partitions </SPAN></H3>
+<P>First use the fdisk -l command to view all the mounted and unmounted filesystems available on your system. You may then also want to use the df -k command, which shows only mounted filesystems but has the big advantage of giving you the mount points too.
+</P><P>These two commands should help you to easily identify the partitions you want to use. Here is some sample output of these commands.
+</P>
+<PRE>[root@bigboy tmp]# fdisk -l
+
+Disk /dev/hda: 12.0 GB, 12072517632 bytes
+255 heads, 63 sectors/track, 1467 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+
+   Device Boot    Start       End    Blocks   Id  System
+/dev/hda1   *         1        13    104391   83  Linux
+/dev/hda2            14       144   1052257+  83  Linux
+/dev/hda3           145       209    522112+  82  Linux swap
+/dev/hda4           210      1467  10104885    5  Extended
+/dev/hda5           210       655   3582463+  83  Linux
+...
+...
+/dev/hda15         1455      1467    104391   83  Linux
+[root@bigboy tmp]#
+
+[root@bigboy tmp]# df -k
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/hda2              1035692    163916    819164  17% /
+/dev/hda1               101086      8357     87510   9% /boot
+/dev/hda15              101086      4127     91740   5% /data1
+...
+...
+...
+/dev/hda7              5336664    464228   4601344  10% /var
+[root@bigboy tmp]#
+</PRE>
+<A name="Unmount_the_Partitions" id="Unmount_the_Partitions"></A><H3> <SPAN class="mw-headline"> Unmount the Partitions </SPAN></H3>
+<P>You don't want anyone else accessing these partitions while you are creating the RAID set, so you need to make sure they are unmounted.
+</P>
+<PRE>[root@bigboy tmp]# umount /dev/hde1
+[root@bigboy tmp]# umount /dev/hdf2
+[root@bigboy tmp]# umount /dev/hdg1
+</PRE>
+<P><BR>
+</P>
+<A name="Prepare_The_Partitions_With_FDISK" id="Prepare_The_Partitions_With_FDISK"></A><H3> <SPAN class="mw-headline"> Prepare The Partitions With FDISK </SPAN></H3>
+<P>You have to change each partition in the RAID set to be of type FD (Linux raid autodetect), and you can do this with fdisk. Here is an example using /dev/hde1.
+</P>
+<PRE>[root@bigboy tmp]# fdisk /dev/hde
+The number of cylinders for this disk is set to 8355. 
+There is nothing wrong with that, but this is larger than 1024,
+and could in certain setups cause problems with:
+1) software that runs at boot time (e.g., old versions of LILO)
+2) booting and partitioning software from other OSs
+  (e.g., DOS FDISK, OS/2 FDISK)
+
+Command (m for help):
+</PRE>
+<A name="Use_FDISK_Help" id="Use_FDISK_Help"></A><H3> <SPAN class="mw-headline"> Use FDISK Help </SPAN></H3>
+<P>Now use the fdisk m command to get some help:
+</P>
+<PRE>Command (m for help): m
+  ...
+  ...
+  p   print the partition table
+  q   quit without saving changes
+  s   create a new empty Sun disklabel
+  t   change a partition's system id
+  ...
+  ...
+Command (m for help):
+</PRE>
+<A name="Set_The_ID_Type" id="Set_The_ID_Type"></A><H3> <SPAN class="mw-headline"> Set The ID Type</SPAN></H3>
+<P>Partition /dev/hde1 is the first partition on disk /dev/hde. Modify its type using the t command, and specify the partition number and type code. You also should use the L command to get a full listing of ID types in case you forget. In this case, RAID uses type fd, it may be different for your version of Linux.
+</P>
+<PRE>Command (m for help): t
+Partition number (1-5): 1
+Hex code (type L to list codes): L
+
+
+...
+...
+...
+16  Hidden FAT16    61   SpeedStor       f2  DOS secondary
+17  Hidden HPFS/NTF 63  GNU HURD or Sys fd  Linux raid auto
+18  AST SmartSleep  64  Novell Netware  fe  LANstep
+1b  Hidden Win95 FA 65  Novell Netware  ff  BBT
+Hex code (type L to list codes): fd
+Changed system type of partition 1 to fd (Linux raid autodetect)
+
+Command (m for help):
+</PRE>
+<A name="Make_Sure_The_Change_Occurred" id="Make_Sure_The_Change_Occurred"></A><H3> <SPAN class="mw-headline"> Make Sure The Change Occurred </SPAN></H3>
+<P>Use the p command to get the new proposed partition table:
+</P>
+<PRE>Command (m for help): p
+
+Disk /dev/hde: 4311 MB, 4311982080 bytes
+16 heads, 63 sectors/track, 8355 cylinders
+Units = cylinders of 1008 * 512 = 516096 bytes
+
+   Device Boot    Start       End    Blocks   Id  System
+/dev/hde1             1      4088   2060320+  fd  Linux raid autodetect
+/dev/hde2          4089      5713    819000   83  Linux
+/dev/hde4          6608      8355    880992    5  Extended
+/dev/hde5          6608      7500    450040+  83  Linux
+/dev/hde6          7501      8355    430888+  83  Linux
+
+Command (m for help):
+</PRE>
+<P><BR>
+</P>
+<A name="Save_The_Changes" id="Save_The_Changes"></A><H3> <SPAN class="mw-headline"> Save The Changes </SPAN></H3>
+<P>Use the w command to permanently save the changes to disk /dev/hde:
+</P>
+<PRE>Command (m for help): w
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+
+WARNING: Re-reading the partition table failed with error 16: Device or resource busy.
+The kernel still uses the old table.
+The new table will be used at the next reboot.
+Syncing disks.
+
+[root@bigboy tmp]#
+</PRE>
+<P>The error above will occur if any of the other partitions on the disk is mounted.
+</P>
+<A name="Repeat_For_The_Other_Partitions" id="Repeat_For_The_Other_Partitions"></A><H3> <SPAN class="mw-headline"> Repeat For The Other Partitions </SPAN></H3>
+<P>For the sake of brevity, I won't show the process for the other partitions. It's enough to know that the steps for changing the IDs for /dev/hdf2 and /dev/hdg1 are very similar.
+</P><P><BR>
+</P>
+<A name="Preparing_the_RAID_Set" id="Preparing_the_RAID_Set"></A><H2> <SPAN class="mw-headline">Preparing the RAID Set</SPAN></H2>
+<P>Now that the partitions have been prepared, we have to merge them into a new RAID partition that we'll then have to format and mount. Here's how it's done.
+</P>
+<A name="Create_the_RAID_Set" id="Create_the_RAID_Set"></A><H3> <SPAN class="mw-headline"> Create the RAID Set </SPAN></H3>
+<P>You use the mdadm command with the --create option to create the RAID set.  In this example we use the --level option to specify RAID 5, and the --raid-devices option to define the number of partitions to use.
+</P>
+<PRE>[root@bigboy tmp]# mdadm --create --verbose /dev/md0 --level=5 \
+   --raid-devices=3 /dev/hde1 /dev/hdf2 /dev/hdg1
+
+mdadm: layout defaults to left-symmetric
+mdadm: chunk size defaults to 64K
+mdadm: /dev/hde1 appears to contain an ext2fs file system
+    size=48160K  mtime=Sat Jan 27 23:11:39 2007
+mdadm: /dev/hdf2 appears to contain an ext2fs file system
+    size=48160K  mtime=Sat Jan 27 23:11:39 2007
+mdadm: /dev/hdg1 appears to contain an ext2fs file system
+    size=48160K  mtime=Sat Jan 27 23:11:39 2007
+mdadm: size set to 48064K
+Continue creating array? y
+mdadm: array /dev/md0 started.
+[root@bigboy tmp]#
+</PRE>
+<A name="Confirm_RAID_Is_Correctly_Inititalized" id="Confirm_RAID_Is_Correctly_Inititalized"></A><H3> <SPAN class="mw-headline"> Confirm RAID Is Correctly Inititalized </SPAN></H3>
+<P>The /proc/mdstat file provides the current status of all RAID devices. Confirm that the initialization is finished by inspecting the file and making sure that there are no initialization related messages. If there are, then wait until there are none.
+</P>
+<PRE>[root@bigboy tmp]# cat /proc/mdstat
+Personalities&nbsp;: [raid5]
+read_ahead 1024 sectors
+md0&nbsp;: active raid5 hdg1[2] hde1[1] hdf2[0]
+      4120448 blocks level 5, 32k chunk, algorithm 3 [3/3] [UUU]
+
+unused devices: &lt;none&gt;
+[root@bigboy tmp]#
+</PRE>
+<P>Notice that the new RAID device is called /dev/md0. This information will be required for the next step.
+</P>
+<A name="Format_The_New_RAID_Set" id="Format_The_New_RAID_Set"></A><H3> <SPAN class="mw-headline"> Format The New RAID Set </SPAN></H3>
+<P>Your new RAID partition now has to be formatted. The mkfs.ext3 command is used to do this.
+</P>
+<PRE>[root@bigboy tmp]# mkfs.ext3 /dev/md0
+mke2fs 1.39 (29-May-2006)
+Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+36144 inodes, 144192 blocks
+7209 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=67371008
+18 block groups
+8192 blocks per group, 8192 fragments per group
+2008 inodes per group
+Superblock backups stored on blocks: 
+        8193, 24577, 40961, 57345, 73729
+
+Writing inode tables: done                            
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 33 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+[root@bigboy tmp]#
+</PRE>
+<A name="Create_the_mdadm.conf_Configuration_File" id="Create_the_mdadm.conf_Configuration_File"></A><H3> <SPAN class="mw-headline">Create the mdadm.conf Configuration File</SPAN></H3>
+<P>Your system doesn't automatically remember all the component partitions of your RAID set. This information has to be kept in the mdadm.conf file. The formatting can be tricky, but fortunately the output of the mdadm --detail --scan --verbose command provides you with it.
+Here we see the output sent to the screen.
+</P>
+<PRE>[root@bigboy tmp]# mdadm --detail --scan --verbose
+ARRAY /dev/md0 level=raid5 num-devices=4 
+UUID=77b695c4:32e5dd46:63dd7d16:17696e09
+   devices=/dev/hde1,/dev/hdf2,/dev/hdg1
+[root@bigboy tmp]#
+
+</PRE>
+<P>Here we export the screen output to create the configuration file.
+</P>
+<PRE>[root@bigboy tmp]# mdadm --detail --scan --verbose &gt; /etc/mdadm.conf
+</PRE>
+<P><BR>
+</P>
+<A name="Create_A_Mount_Point_For_The_RAID_Set" id="Create_A_Mount_Point_For_The_RAID_Set"></A><H3> <SPAN class="mw-headline"> Create A Mount Point For The RAID Set </SPAN></H3>
+<P>The next step is to create a mount point for /dev/md0. In this case we'll create one called /mnt/raid
+</P>
+<PRE>[root@bigboy mnt]# mkdir /mnt/raid
+</PRE>
+<A name="Edit_The_.2Fetc.2Ffstab_File" id="Edit_The_.2Fetc.2Ffstab_File"></A><H3> <SPAN class="mw-headline">Edit The /etc/fstab File</SPAN></H3>
+<P>The /etc/fstab file lists all the partitions that need to mount when the system boots. Add an Entry for the RAID set, the /dev/md0 device.
+</P>
+<PRE>/dev/md0      /mnt/raid     ext3    defaults    1 2
+</PRE>
+<P>Do not use labels in the /etc/fstab file for RAID devices; just use the real device name, such as /dev/md0. In older Linux versions, the /etc/rc.d/rc.sysinit script would check the /etc/fstab file for device entries that matched RAID set names listed in the now unused /etc/raidtab configuration file. The script would not automatically start the RAID set driver for the RAID set if it didn't find a match. Device mounting would then occur later on in the boot process. Mounting a RAID device that doesn't have a loaded driver can corrupt your data and produce this error.
+</P>
+<PRE>Starting up RAID devices: md0(skipped)
+Checking filesystems
+/raiddata: Superblock has a bad ext3 journal(inode8)
+CLEARED.
+***journal has been deleted - file system is now ext 2 only***
+
+/raiddata: The filesystem size (according to the superblock) is 2688072 blocks.
+The physical size of the device is 8960245 blocks.
+Either the superblock or the partition table is likely to be corrupt!
+/boot: clean, 41/26104 files, 12755/104391 blocks
+
+/raiddata: UNEXPECTED INCONSISTENCY; Run fsck manually (ie without -a or -p options).
+</PRE>
+<P>If you are not familiar with the /etc/fstab file use the man fstab command to get a comprehensive explanation of each data column it contains.
+</P><P>The /dev/hde1, /dev/hdf2, and /dev/hdg1 partitions were replaced by the combined /dev/md0 partition. You therefore don't want the old partitions to be mounted again. Make sure that all references to them in this file are commented with a # at the beginning of the line or deleted entirely.  
+</P>
+<PRE>#/dev/hde1       /data1        ext3    defaults        1 2
+#/dev/hdf2       /data2        ext3    defaults        1 2
+#/dev/hdg1       /data3        ext3    defaults        1 2
+</PRE>
+<A name="Mount_The_New_RAID_Set" id="Mount_The_New_RAID_Set"></A><H3> <SPAN class="mw-headline"> Mount The New RAID Set </SPAN></H3>
+<P>Use the mount command to mount the RAID set. You have your choice of methods:
+</P>
+<UL><LI> The mount command's -a flag causes Linux to mount all the devices in the /etc/fstab file that have automounting enabled (default) and that are also not already mounted.
+</LI></UL>
+<PRE>[root@bigboy tmp]# mount -a
+</PRE>
+<UL><LI> You can also mount the device manually.
+</LI></UL>
+<PRE>[root@bigboy tmp]# mount /dev/md0 /mnt/raid
+</PRE>
+<P><BR>
+</P>
+<A name="Check_The_Status_Of_The_New_RAID" id="Check_The_Status_Of_The_New_RAID"></A><H3> <SPAN class="mw-headline"> Check The Status Of The New RAID </SPAN></H3>
+<P>The /proc/mdstat file provides the current status of all the devices. 
+</P>
+<PRE>[root@bigboy tmp]# raidstart /dev/md0
+[root@bigboy tmp]# cat /proc/mdstat
+Personalities&nbsp;: [raid5]
+read_ahead 1024 sectors
+md0&nbsp;: active raid5 hdg1[2] hde1[1] hdf2[0]
+      4120448 blocks level 5, 32k chunk, algorithm 3 [3/3] [UUU]
+
+unused devices: &lt;none&gt;
+[root@bigboy tmp]#
+</PRE>
+<A name="Conclusion" id="Conclusion"></A><H1> <SPAN class="mw-headline"> Conclusion </SPAN></H1>
+<P>Linux software RAID provides redundancy across partitions and hard disks, but it tends to be slower and less reliable than RAID provided by a hardware-based RAID disk controller.
+</P><P>Hardware RAID configuration is usually done via the system BIOS when the server boots up, and once configured, it is absolutely transparent to Linux. Unlike software RAID, hardware RAID requires entire disks to be dedicated to the purpose and when combined with the fact that it usually requires faster SCSI hard disks and an additional controller card, it tends to be expensive.
+</P><P>Remember to take these factors into consideration when determining the right solution for your needs and research the topic thoroughly before proceeding. Weighing cost versus reliability is always a difficult choice in systems administration.
+</P>
+<A name="Our_Linux_Forum_Community" id="Our_Linux_Forum_Community"></A><H1> <SPAN class="mw-headline">Our Linux Forum Community</SPAN></H1>
+<TABLE border="1" cellpadding="5" cellspacing="0" align="center" style="width:100%">
+
+<TBODY><TR>
+<TH style="background:#048444; color:white"> Latest Topics on the Linux Forums
+</TH></TR>
+</TBODY></TABLE>
+<P><A href="http://www.linuxhomenetworking.com/forums/showthread.php/19401-Looking-for-a-new-CMS-for-my-website-suggestions?goto=newpost" class="external text" title="http://www.linuxhomenetworking.com/forums/showthread.php/19401-Looking-for-a-new-CMS-for-my-website-suggestions?goto=newpost">Looking for a new CMS for my website... suggestions?</A>
+<B>21 December 2009, by beezlebubsbum</B>
+Hey all, I am looking at changing my Content Management System on my website.  I want to blog a little more, and I was wondering if anyone had any...
+</P><P><A href="http://www.linuxhomenetworking.com/forums/showthread.php/19400-openvpn-networking-change-kernel-panic?goto=newpost" class="external text" title="http://www.linuxhomenetworking.com/forums/showthread.php/19400-openvpn-networking-change-kernel-panic?goto=newpost">openvpn/networking change = kernel panic</A>
+</P><P><B>21 December 2009, by the_guv</B>
+really stumped on this, if anyone has by any chance had a similar issue ... 
+</P>
+<P></P><P>WHAT I DID .. installed openvpn/bridge-utils, rejigged my interfaces...
+</P><P><A href="http://www.linuxhomenetworking.com/forums/showthread.php/19398-New-toy-for-JRo?goto=newpost" class="external text" title="http://www.linuxhomenetworking.com/forums/showthread.php/19398-New-toy-for-JRo?goto=newpost">New toy for JRo</A>
+</P><P><B>19 December 2009, by jro</B>
+I am not a real gadget geek, but this one is turning out to be pretty cool. I got the new Droid phone yesterday. (not sure you know what that is in...
+</P>
+<P></P><P><A href="http://www.linuxhomenetworking.com/forums/showthread.php/19397-backup-script?goto=newpost" class="external text" title="http://www.linuxhomenetworking.com/forums/showthread.php/19397-backup-script?goto=newpost">backup script</A>
+</P><P><B>19 December 2009, by berto</B>
+please can someone out there help a linux noob with a backup/restore script, i require this for college assesment and i do not know how to do it. i...
+</P>
+<P></P><P><A href="http://www.linuxhomenetworking.com/forums/showthread.php/19396-DigiCert-recommendation?goto=newpost" class="external text" title="http://www.linuxhomenetworking.com/forums/showthread.php/19396-DigiCert-recommendation?goto=newpost">DigiCert recommendation</A>
+</P><P><B>18 December 2009, by jro</B>
+I don’t do this often, but I HAVE to recommend DigiCert.com if you need an SSL certificate. 
+</P>
+<P></P><P>First thing that caught my eye, price, they are...
+</P>
+<P><!-- 
+NewPP limit report
+Preprocessor node count: 122/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+</P>
+<!-- 
+NewPP limit report
+Preprocessor node count: 122/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+<DIV class="printfooter">
+Retrieved from "<A href="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking.htm">http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch26_:_Linux_Software_RAID</A>"</DIV>
+						<!-- end content -->
+						<DIV class="visualClear"></DIV>
+		</DIV>
+
+
+<!-- LinuxHomeNetworking Start -->
+<!-- lhn-header3 Start -->
+
+
+    <DIV align="center">
+      <CENTER>
+                    <TABLE border="0" cellpadding="12" style="border-collapse: collapse" bordercolor="#FFFFFF" width="728" bgcolor="#FFFFFF">
+                      <TBODY><TR>
+    <TD width="150" bgcolor="#FFFFFF">
+                    <FONT face="Arial" size="2" color="#FF0000">
+                    <IMG border="0" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/servers2.gif" width="140" height="90" align="left"></FONT></TD>
+    <TD bgcolor="#FFFFFF">
+<P align="left">
+<SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-0304295028260795";
+google_ad_width = 468;
+google_ad_height = 15;
+google_ad_format = "468x15_0ads_al";
+//2007-02-24: LHN - Other - 468x15_4al
+google_ad_channel = "5705610550";
+google_color_border = "ffffff";
+google_color_bg = "ffffff";
+google_color_link = "002bb8";
+google_color_url = "f0f0f0";
+google_color_text = "000000";
+//--></SCRIPT>
+<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/show_ads.js">
+</SCRIPT><SCRIPT>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</SCRIPT><INS style="display:inline-table;border:none;height:15px;margin:0;padding:0;position:relative;visibility:visible;width:468px"><INS style="display:block;border:none;height:15px;margin:0;padding:0;position:relative;visibility:visible;width:468px"><IFRAME allowtransparency="true" frameborder="0" height="15" hspace="0" id="google_ads_frame4" marginheight="0" marginwidth="0" name="google_ads_frame" scrolling="no" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/ads(1).htm" style="left:0;position:absolute;top:0" vspace="0" width="468"></IFRAME></INS></INS>
+
+&nbsp;</P></TD>
+                      </TR>
+                    </TBODY></TABLE>
+     </CENTER>
+    </DIV>                    
+<DIV align="center">
+<TABLE border="0" cellpadding="0" style="border-collapse: collapse" width="800" bordercolor="#FFFFFF">
+  <TBODY><TR>
+    <TD>
+<SCRIPT type="text/javascript"><!--
+amazon_ad_tag = "linuxhomenetw-20"; amazon_ad_width = "728"; amazon_ad_height = "90"; amazon_ad_logo = "hide"; amazon_ad_border = "hide"; amazon_color_border = "FFFFFF"; amazon_color_link = "002BB8"; amazon_color_logo = "000000";//--></SCRIPT>
+<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/ads.js"></SCRIPT><SCRIPT src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/ads-common.js" type="text/javascript"></SCRIPT><IFRAME src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/cm.htm" marginwidth="0" marginheight="0" width="728" height="90" border="0" frameborder="0" style="border:none;" scrolling="no"></IFRAME>
+    &nbsp;</TD>
+  </TR>
+</TBODY></TABLE>                    
+</DIV>
+
+
+<!-- lhn-header3 Stop-->
+<!-- LinuxHomeNetworking Stop -->
+
+
+	</DIV>
+		</DIV>
+
+
+<!-- LinuxHomeNetworking Start -->
+<!-- LinuxHomeNetworking Stop -->
+
+
+
+			<DIV class="visualClear"></DIV>
+			<DIV id="footer">
+				<DIV id="f-poweredbyico"><A href="http://www.mediawiki.org/"><IMG src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></A></DIV>
+				<DIV id="f-copyrightico"><A href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><IMG src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/somerights20.png" alt="Attribution-NonCommercial-NoDerivs 2.5 "></A></DIV>
+			<UL id="f-list">
+					<LI id="lastmod"> This page was last modified on 20 December 2009, at 00:16.</LI>
+					<LI id="viewcount">This page has been accessed 265,965 times.</LI>
+					<LI id="copyright">Content is available under <A href="http://creativecommons.org/licenses/by-nc-nd/2.5/" class="external " title="http://creativecommons.org/licenses/by-nc-nd/2.5/">Attribution-NonCommercial-NoDerivs 2.5 </A>.</LI>
+					<LI id="privacy"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Linux_Home_Networking:Privacy_policy" title="Linux Home Networking:Privacy policy">Privacy policy</A></LI>
+					<LI id="about"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Linux_Home_Networking:About" title="Linux Home Networking:About">About Linux Home Networking</A></LI>
+					<LI id="disclaimer"><A href="http://www.linuxhomenetworking.com/wiki/index.php/Linux_Home_Networking:General_disclaimer" title="Linux Home Networking:General disclaimer">Disclaimers</A></LI>
+			</UL>
+		</DIV>
+</DIV>
+
+		<SCRIPT type="text/javascript">if (window.runOnloadHook) runOnloadHook();</SCRIPT>
+<!-- Served in 1.745 secs. -->
+
+<!-- Google Analytics - Amazon Start - LinuxHomeNetworking -->
+<SCRIPT type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT><SCRIPT src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/ga.js" type="text/javascript"></SCRIPT>
+<SCRIPT type="text/javascript">
+var pageTracker = _gat._getTracker("UA-332450-4");
+pageTracker._trackPageview();
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/link-enhancer">
+</SCRIPT><SCRIPT src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/link-enhancer-common.js" type="text/javascript"></SCRIPT><SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/bootstrap.html" charset="utf-8"></SCRIPT><SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/amazonJQ-combined-core-5113._V228305909_.js"></SCRIPT><SCRIPT type="text/javascript" src="./Quick HOWTO   Ch26   Linux Software RAID - Linux Home Networking_files/assoc_pp-previews-41820._V224417644_.js"></SCRIPT>
+<NOSCRIPT></NOSCRIPT>
+<!-- Google Analytics - Amazon Stop - LinuxHomeNetworking -->
+
+
+
+</BODY></HTML>

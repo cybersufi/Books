@@ -1,0 +1,2388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0103)http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Querying_Bonding_Configuration -->
+<HTML xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" class="js"><HEAD><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <TITLE>bonding | The Linux Foundation</TITLE>
+  
+
+<SCRIPT type="text/javascript">
+<!--
+  var az_u = "ads.linuxfoundation.org/www/delivery/";
+  var az_us = "ads.linuxfoundation.org/www/delivery/";
+  var az_js = "ajs.php";
+  var az_wt = "0";
+-->
+</SCRIPT>
+<LINK rel="shortcut icon" href="http://www.linuxfoundation.org/sites/www.linuxfoundation.org/themes/opensourcery/favicon.ico" type="image/x-icon">
+<LINK rel="alternate" type="application/rss+xml" title="Browse Blogs" href="http://www.linuxfoundation.org/news-media/blogs/browse/rss.xml">
+
+<META name="keywords" content="Linux, Linux Foundation, Open Source, GNU, GPL, GNU/Linux, GNU Linux, Linux.com Email, Linux.com, Linux Foundation Membership, Support Linux, Linux Trademark, Linux Training, Linux Credit Card, Linux Membership, Learn Linux">
+<META name="description" content="The Linux bonding driver provides a method for aggregating
+multiple network interfaces into a single logical 
+bonded interface.
+The behavior of the bonded interfaces depends upon the mode; generally
+speaking, modes provide either hot standby or load balancing services.
+Additionally, link integrity monitoring may be performed.
+The bonding driver">
+  <LINK type="text/css" rel="stylesheet" media="all" href="./bonding   The Linux Foundation_files/css_795a85fc917207b7232030f089311d45.css">
+<LINK type="text/css" rel="stylesheet" media="print" href="./bonding   The Linux Foundation_files/css_8ad784aea35bd8d051a7d0b839cfa0af.css">
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/www.linuxfoundation.org/themes/opensourcery/ie.css?C" />
+<![endif]-->
+  <SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/jquery.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/drupal.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/openads.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/uc_file.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/uc_roles.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/lf_more.js"></SCRIPT><LINK rel="stylesheet" type="text/css" href="./bonding   The Linux Foundation_files/widget37.css" media="all"></HEAD><BODY class="not-front not-logged-in page-node node-type-wiki one-sidebar sidebar-right page-collaborate-workgroups-networking-bonding section-collaborate linux-foundation"><DIV style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000; " id="_atssh"><IFRAME id="_atssh385" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; left: 0px; top: 0px; " src="./bonding   The Linux Foundation_files/sh16.htm"></IFRAME></DIV><DIV id="dropmenudiv" style="visibility:hidden;width:165px;background-color:#f5f5f5" onmouseover="clearhidemenu()" onmouseout="dynamichide(event)"></DIV>
+<SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/panels.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/script.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "googleanalytics": { "trackOutgoing": 1, "trackMailto": 1, "trackDownload": 1, "trackDownloadExtensions": "7z|aac|avi|csv|doc|exe|flv|gif|gz|jpe?g|js|mp(3|4|e?g)|mov|pdf|phps|png|ppt|rar|sit|tar|torrent|txt|wma|wmv|xls|xml|zip" } });
+//--><!]]>
+</SCRIPT>
+<SCRIPT type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+	    addthis_pub = 'jhedstrom';
+	    addthis_logo = 'http://www.linuxfoundation.org/images/lflogo.png';
+	    addthis_logo_background = 'fff';
+	    addthis_logo_color = '666699';
+	    addthis_brand = 'Linux Foundation';
+	    addthis_options = 'favorites, email, digg, delicious, google, facebook, live, myspace, reddit, slashdot, stumbleupon, technorati, twitter, myweb, more';
+	
+//--><!]]>
+</SCRIPT>
+  
+  <SCRIPT type="text/javascript"> </SCRIPT>
+
+
+
+  <DIV id="page"><DIV id="page-inner">
+
+    <A name="top" id="navigation-top"></A>
+          <DIV id="skip-to-nav"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#navigation">Skip to Navigation</A></DIV>
+        <DIV id="header"><DIV id="header-inner" class="clear-block">
+      <DIV class="item-list"><UL id="lf-more-container"><LI class="first"><A href="http://www.linuxfoundation.org/" title="Linux Foundation - US"><IMG src="./bonding   The Linux Foundation_files/flag_us.gif" border="0"></A></LI>
+<LI><A href="http://www.linuxfoundation.jp/" title="Linux Foundation - Japan"><IMG src="./bonding   The Linux Foundation_files/flag_jp.gif" border="0"></A></LI>
+<LI><A href="http://es.linuxfoundation.org/" title="Linux Foundation - Espa&ntilde;a"><IMG src="./bonding   The Linux Foundation_files/flag_es.gif" border="0"></A></LI>
+<LI><A href="http://kr.linuxfoundation.org/" title="Linux Foundation - Korea"><IMG src="./bonding   The Linux Foundation_files/flag_kr.gif" border="0"></A></LI>
+<LI><A href="http://www.linux.com/">Linux.com</A></LI>
+<LI><A href="http://events.linuxfoundation.org/">Events</A></LI>
+<LI><A href="http://video.linuxfoundation.org/">Video</A></LI>
+<LI class="last"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#" id="lf-more" onclick="return dropdownmenu(this, event, menu2, &#39;100px&#39;)" onmouseout="delayhidemenu()">More</A></LI>
+</UL></DIV>              <DIV id="logo-title">
+
+          
+                                    <DIV id="site-name"><STRONG>
+                <A href="http://www.linuxfoundation.org/" title="Home" rel="home">
+                The Linux Foundation                </A>
+              </STRONG></DIV>
+                      
+          
+        </DIV> <!-- /#logo-title -->
+      
+      
+    </DIV></DIV> <!-- /#header-inner, /#header -->
+
+    <DIV id="main"><DIV id="main-inner" class="clear-block with-navbar">
+
+      <DIV id="content"><DIV id="content-inner">
+
+        
+        
+                  <DIV id="content-header">
+	    	    <DIV class="node-links">
+	      <UL class="links inline"><LI class="addthis first"><SPAN>
+      <A href="http://www.addthis.com/bookmark.php" class="addthis" onmouseover="return addthis_open(this, &#39;&#39;, &#39;[URL]&#39;, &#39;[TITLE]&#39;)" onmouseout="addthis_close()" onclick="return addthis_sendto()">Share</A></SPAN></LI>
+<LI class="print_html"><A href="http://www.linuxfoundation.org/print/5270" title="Display a printer-friendly version of this page." class="print-page" rel="nofollow">Print</A></LI>
+<LI class="print_mail last"><A href="http://www.linuxfoundation.org/printmail/5270" title="Send this page by e-mail." class="print-mail" rel="nofollow">Email</A></LI>
+</UL>	    </DIV>
+	    
+                          <H1 class="title">bonding</H1>
+                                                          </DIV> <!-- /#content-header -->
+        
+        <DIV id="content-area">
+          <DIV id="node-5270" class="node clear-block">
+
+
+
+  <DIV class="meta">
+      <SPAN class="submitted">By Linux Foundatio... - November 19, 2009 - 10:23am</SPAN>
+  
+      <DIV class="terms terms-inline"><UL class="links inline"><LI class="taxonomy_term_41 first last"><A href="http://www.linuxfoundation.org/tags/networking" rel="tag" title="">networking</A></LI>
+</UL></DIV>
+    </DIV>
+
+  <DIV class="content">
+    <SPAN class="print-link"></SPAN><P>The Linux bonding driver provides a method for aggregating<BR>
+multiple network interfaces into a single logical<BR>
+<A href="http://en.wikipedia.com/wiki/Link_aggregation" class="extiw" title="Link_aggregation">bonded</A> interface.<BR>
+The behavior of the bonded interfaces depends upon the mode; generally<BR>
+speaking, modes provide either hot standby or load balancing services.<BR>
+Additionally, link integrity monitoring may be performed.
+</P>
+<P>The bonding driver originally came from<BR>
+<A href="http://en.wikipedia.com/wiki/Donald_Becker" class="extiw" title="Donald_Becker">Donald Becker's</A><BR>
+<A href="http://en.wikipedia.com/wiki/Beowolf_cluster" class="extiw" title="Beowolf_cluster">beowulf</A> patches for kernel 2.0.<BR>
+It has changed quite a bit since, and<BR>
+the original tools from extreme-linux and beowulf sites will not work<BR>
+with this version of the driver.
+</P>
+<P>For new versions of the driver, updated userspace tools, and<BR>
+who to ask for help, please follow the links at the end of this file.
+</P>
+<TABLE id="toc" class="toc" summary="Contents">
+<TBODY><TR>
+<TD>
+<H2>Contents</H2>
+<UL>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Installation">1 Installation</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configure_and_build_the_kernel_with_bonding">1.1 Configure and build the kernel with bonding</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Install_ifenslave_Control_Utility">1.2 Install ifenslave Control Utility</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Bonding_Driver_Options">2 Bonding Driver Options</A></LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuring_Bonding_Devices">3 Configuring Bonding Devices</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuration_with_sysconfig_support">3.1 Configuration with sysconfig support</A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Using_DHCP_with_sysconfig">3.1.1 Using DHCP with sysconfig</A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuring_Multiple_Bonds_with_sysconfig">3.1.2 Configuring Multiple Bonds with sysconfig</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuration_with_initscripts_support">3.2 Configuration with initscripts support</A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Using_DHCP_with_initscripts">3.2.1 Using DHCP with initscripts</A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuring_Multiple_Bonds_with_initscripts">3.2.2 Configuring Multiple Bonds with initscripts</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuring_Bonding_with_.2Fetc.2Fnet">3.3 Configuring Bonding with /etc/net</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuring_Bonding_Manually">3.4 Configuring Bonding Manually</A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuring_Multiple_Bonds_Manually">3.4.1 Configuring Multiple Bonds Manually</A></LI>
+</UL>
+</LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="./bonding   The Linux Foundation_files/bonding   The Linux Foundation.htm">4 Querying Bonding Configuration</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Bonding_Configuration">4.1 Bonding Configuration</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Network_configuration">4.2 Network configuration</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Switch_Configuration">5 Switch Configuration</A></LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#802.1q_VLAN_Support">6 802.1q VLAN Support</A></LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Link_Monitoring">7 Link Monitoring</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#ARP_Monitor_Operation">7.1 ARP Monitor Operation</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuring_Multiple_ARP_Targets">7.2 Configuring Multiple ARP Targets</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#MII_Monitor_Operation">7.3 MII Monitor Operation</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Potential_Sources_of_Trouble">8 Potential Sources of Trouble</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Adventures_in_Routing">8.1 Adventures in Routing</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Ethernet_Device_Renaming">8.2 Ethernet Device Renaming</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Painfully_Slow_Or_No_Failed_Link_Detection_By_Miimon">8.3 Painfully Slow Or No Failed Link Detection By Miimon</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#SNMP_agents">9 SNMP agents</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Promiscuous_mode">9.1 Promiscuous mode</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuring_Bonding_for_High_Availability">10 Configuring Bonding for High Availability</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#High_Availability_in_a_Single_Switch_Topology">10.1 High Availability in a Single Switch Topology</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#High_Availability_in_a_Multiple_Switch_Topology">10.2 High Availability in a Multiple Switch Topology</A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#HA_Bonding_Mode_Selection_for_Multiple_Switch_Topology">10.2.1 HA Bonding Mode Selection for Multiple Switch Topology</A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#HA_Link_Monitoring_Selection_for_Multiple_Switch_Topology">10.2.2 HA Link Monitoring Selection for Multiple Switch Topology</A></LI>
+</UL>
+</LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Configuring_Bonding_for_Maximum_Throughput">11 Configuring Bonding for Maximum Throughput</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Maximizing_Throughput_in_a_Single_Switch_Topology">11.1 Maximizing Throughput in a Single Switch Topology</A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#MT_Bonding_Mode_Selection_for_Single_Switch_Topology">11.1.1 MT Bonding Mode Selection for Single Switch Topology</A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#MT_Link_Monitoring_for_Single_Switch_Topology">11.1.2 MT Link Monitoring for Single Switch Topology</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Maximum_Throughput_in_a_Multiple_Switch_Topology">11.2 Maximum Throughput in a Multiple Switch Topology</A>
+<UL>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#MT_Bonding_Mode_Selection_for_Multiple_Switch_Topology">11.2.1 MT Bonding Mode Selection for Multiple Switch Topology</A></LI>
+<LI class="toclevel-3"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#MT_Link_Monitoring_for_Multiple_Switch_Topology">11.2.2 MT Link Monitoring for Multiple Switch Topology</A></LI>
+</UL>
+</LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Switch_Behavior_Issues">12 Switch Behavior Issues</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Link_Establishment_and_Failover_Delays">12.1 Link Establishment and Failover Delays</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Duplicated_Incoming_Packets">12.2 Duplicated Incoming Packets</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Hardware_Specific_Considerations">13 Hardware Specific Considerations</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#IBM_BladeCenter">13.1 IBM BladeCenter</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#JS20_network_adapter_information">13.2 JS20 network adapter information</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#BladeCenter_networking_configuration">13.3 BladeCenter networking configuration</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Requirements_for_specific_modes">13.4 Requirements for specific modes</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Link_monitoring_issues">13.5 Link monitoring issues</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Other_concerns">13.6 Other concerns</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Frequently_Asked_Questions">14 Frequently Asked Questions</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Is_it_SMP_safe.3F">14.1 Is it SMP safe?</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#What_type_of_cards_will_work_with_it.3F">14.2 What type of cards will work with it?</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#How_many_bonding_devices_can_I_have.3F">14.3 How many bonding devices can I have?</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#How_many_slaves_can_a_bonding_device_have.3F">14.4 How many slaves can a bonding device have?</A></LI>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#What_happens_when_a_slave_link_dies.3F">14.5 What happens when a slave link dies?</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Can_bonding_be_used_for_High_Availability.3F">15 Can bonding be used for High Availability?</A></LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Which_switches.2Fsystems_does_it_work_with.3F">16 Which switches/systems does it work with?</A>
+<UL>
+<LI class="toclevel-2"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Where_does_a_bonding_device_get_its_MAC_address_from.3F">16.1 Where does a bonding device get its MAC address from?</A></LI>
+</UL>
+</LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Resources_and_Links">17 Resources and Links</A></LI>
+<LI class="toclevel-1"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#History">18 History</A></LI>
+</UL>
+</TD>
+</TR>
+</TBODY></TABLE>
+<P><A name="Installation"><BR>
+</A></P><A name="Installation"><H2> Installation</H2>
+<P></P></A><P></P>
+<P>Most popular distro kernels ship with the bonding driver<BR>
+already available as a module and the ifenslave user level control<BR>
+program installed and ready for use. If your distro does not, or you<BR>
+have need to compile bonding from source (e.g., configuring and<BR>
+installing a mainline kernel from kernel.org), you'll need to perform<BR>
+the following steps:
+</P>
+<P><A name="Configure_and_build_the_kernel_with_bonding"><BR>
+</A></P><A name="Configure_and_build_the_kernel_with_bonding"><H3> Configure and build the kernel with bonding</H3>
+<P></P></A><P></P>
+<P>The current version of the bonding driver is available in the<BR>
+drivers/net/bonding subdirectory of the most recent kernel source<BR>
+(which is available on <A href="http://kernel.org/" class="external text" title="http://kernel.org" rel="nofollow">kernel.org</A> ).<BR>
+Most users "rolling their own" will want to use the most recent kernel from kernel.org.
+</P>
+<P>Configure kernel with "make menuconfig" (or "make xconfig" or<BR>
+"make config"), then select "Bonding driver support" in the "Network<BR>
+device support" section.  It is recommended that you configure the<BR>
+driver as module since it is currently the only way to pass parameters<BR>
+to the driver or configure more than one bonding device.
+</P>
+<P>Build and install the new kernel and modules, then continue<BR>
+below to install ifenslave.
+</P>
+<P><A name="Install_ifenslave_Control_Utility"><BR>
+</A></P><A name="Install_ifenslave_Control_Utility"><H3> Install ifenslave Control Utility</H3>
+<P></P></A><P></P>
+<P>The ifenslave user level control program is included in the<BR>
+kernel source tree, in the file Documentation/networking/ifenslave.c.<BR>
+It is generally recommended that you use the ifenslave that<BR>
+corresponds to the kernel that you are using (either from the same<BR>
+source tree or supplied with the distro), however, ifenslave<BR>
+executables from older kernels should function (but features newer<BR>
+than the ifenslave release are not supported).  Running an ifenslave<BR>
+that is newer than the kernel is not supported, and may or may not<BR>
+work.
+</P>
+<P>To install ifenslave, do the following:
+</P>
+<PRE> # gcc -Wall -O -I/usr/src/linux/include ifenslave.c -o ifenslave
+ # cp ifenslave /sbin/ifenslave
+</PRE><P>If your kernel source is not in "/usr/src/linux," then replace<BR>
+"/usr/src/linux/include" in the above with the location of your kernel<BR>
+source include directory.
+</P>
+<P>You may wish to back up any existing /sbin/ifenslave, or, for<BR>
+testing or informal use, tag the ifenslave to the kernel version<BR>
+(e.g., name the ifenslave executable /sbin/ifenslave-2.6.10).
+</P>
+<P>IMPORTANT NOTE:
+</P>
+<P>If you omit the "-I" or specify an incorrect directory, you<BR>
+may end up with an ifenslave that is incompatible with the kernel<BR>
+you're trying to build it for.  Some distros (e.g., Red Hat from 7.1<BR>
+onwards) do not have /usr/include/linux symbolically linked to the<BR>
+default kernel source include directory.
+</P>
+<P><A name="Bonding_Driver_Options"><BR>
+</A></P><A name="Bonding_Driver_Options"><H2> Bonding Driver Options</H2>
+<P></P></A><P></P>
+<P>Options for the bonding driver are supplied as parameters to<BR>
+the bonding module at load time.  They may be given as command line<BR>
+arguments to the insmod or modprobe command, but are usually specified<BR>
+in either the /etc/modules.conf or /etc/modprobe.conf configuration<BR>
+file, or in a distro-specific configuration file (some of which are<BR>
+detailed in the next section).
+</P>
+<P>The available bonding driver parameters are listed below. If a<BR>
+parameter is not specified the default value is used.  When initially<BR>
+configuring a bond, it is recommended "tail -f /var/log/messages" be<BR>
+run in a separate window to watch for bonding driver error messages.
+</P>
+<P>It is critical that either the miimon or arp_interval and<BR>
+arp_ip_target parameters be specified, otherwise serious network<BR>
+degradation will occur during link failures.  Very few devices do not<BR>
+support at least miimon, so there is really no reason not to use it.
+</P>
+<P>Options with textual values will accept either the text name<BR>
+or, for backwards compatibility, the option value.  E.g.,<BR>
+"mode=802.3ad" and "mode=4" set the same mode.
+</P>
+<P>The parameters are as follows:
+</P>
+<DL>
+<DT> arp_interval&nbsp;</DT>
+<DD> Specifies the ARP link monitoring frequency in milliseconds. If ARP monitoring is used in an etherchannel compatible mode (modes 0 and 2), the switch should be configured in a mode that evenly distributes packets across all links. If the switch is configured to distribute the packets in an XOR fashion, all replies from the ARP targets will be received on the same link which could cause the other team members to fail.  ARP monitoring should not be used in conjunction with miimon.  A value of 0 disables ARP monitoring.  The default value is 0.<BR>
+</DD>
+<DT>arp_ip_target&nbsp;</DT>
+<DD> Specifies the IP addresses to use as ARP monitoring peers when arp_interval is &gt; 0.  These are the targets of the ARP request sent to determine the health of the link to the targets. Specify these values in ddd.ddd.ddd.ddd format.  Multiple IP addresses must be separated by a comma.  At least one IP address must be given for ARP monitoring to function.  The maximum number of targets that can be specified is 16.  The default value is no IP addresses.<BR>
+</DD>
+<DT> downdelay&nbsp;</DT>
+<DD> Specifies the time, in milliseconds, to wait before disabling a slave after a link failure has been detected.  This option is only valid for the miimon link monitor.  The downdelay value should be a multiple of the miimon value; if not, it will be rounded down to the nearest multiple.  The default value is 0.<BR>
+</DD>
+<DT> lacp_rate&nbsp;</DT>
+<DD> Option specifying the rate in which we'll ask our link partner to transmit LACPDU packets in 802.3ad mode.  Possible values are:<BR>
+</DD>
+</DL>
+<UL>
+<LI>
+<DL>
+<DT> slow or 0&nbsp;</DT>
+<DD> Request partner to transmit LACPDUs every 30 seconds.<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<UL>
+<LI>
+<DL>
+<DT> fast or 1&nbsp;</DT>
+<DD> Request partner to transmit LACPDUs every 1 second The default is slow.<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<DL>
+<DT> max_bonds&nbsp;</DT>
+<DD> Specifies the number of bonding devices to create for this instance of the bonding driver. E.g., if max_bonds is 3, and the bonding driver is not already loaded, then bond0, bond1 and bond2 will be created.  The default value is 1.<BR>
+</DD>
+<DT> miimon&nbsp;</DT>
+<DD> Specifies the MII link monitoring frequency in milliseconds.  This determines how often the link state of each slave is inspected for link failures.  A value of zero disables MII link monitoring.  A value of 100 is a good starting point.<BR>
+</DD>
+<DD> The use_carrier option, below, affects how the link state is determined.  See the High Availability section for additional information.  The default value is 0.<BR>
+</DD>
+<DT> mode&nbsp;</DT>
+<DD> Specifies one of the bonding policies. The default is	balance-rr (round robin).<BR>
+</DD>
+</DL>
+<P>Possible values are:
+</P>
+<UL>
+<LI>
+<DL>
+<DT> balance-rr or 0&nbsp;</DT>
+<DD> Round-robin policy: Transmit packets in sequential	order from the first available slave through the last.  This mode provides load balancing and fault tolerance.<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<UL>
+<LI>
+<DL>
+<DT> active-backup or 1&nbsp;</DT>
+<DD> Active-backup policy: Only one slave in the bond is active.  A different slave becomes active if, and only if, the active slave fails.  The bond's MAC address is externally visible on only one port (network adapter) to avoid confusing the switch.<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<DL>
+<DD> In bonding version 2.6.2 or later, when a failover occurs in active-backup mode, bonding will issue one or more gratuitous ARPs on the newly active slave. One gratutious ARP is issued for the bonding master interface and each VLAN interfaces configured above it, provided that the interface has at least one IP address configured.<BR>
+</DD>
+<DD> Gratuitous ARPs issued for VLAN interfaces are tagged with the appropriate VLAN id. This mode provides fault tolerance. The primary option, documented below, affects the behavior of this mode.<BR>
+</DD>
+</DL>
+<UL>
+<LI>
+<DL>
+<DT> balance-xor or 2&nbsp;</DT>
+<DD> XOR policy: Transmit based on the selected transmit hash policy. The default policy is a simple<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<DL>
+<DD> <IMG class="tex" alt=" ( {source} \oplus {destination} )&nbsp;% n_{slaves}" src="./bonding   The Linux Foundation_files/cb5b8cfaf5d544efdc37d12c461083e6.png"><BR>
+</DD>
+</DL>
+<DL>
+<DD> Alternate transmit policies may be selected via the xmit_hash_policy option.<BR>
+</DD>
+<DD> This mode provides load balancing and fault tolerance.<BR>
+</DD>
+</DL>
+<UL>
+<LI>
+<DL>
+<DT>broadcast or 3</DT>
+<DD> Broadcast policy: transmits everything on all slave interfaces.  This mode provides fault tolerance.<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<UL>
+<LI>
+<DL>
+<DT>802.3ad or 4</DT>
+<DD> IEEE 802.3ad Dynamic link aggregation.  Creates	aggregation groups that share the same speed and duplex settings.  Utilizes all slaves in the active aggregator according to the 802.3ad specification.<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<DL>
+<DD> Slave selection for outgoing traffic is done according to the transmit hash policy, which may be changed from the default simple XOR policy via the xmit_hash_policy option, documented below.  Note that not all transmit policies may be 802.3ad compliant, particularly in regards to the packet mis-ordering requirements of section 43.2.4 of the <A href="http://en.wikipedia.com/wiki/802.3" class="extiw" title="802.3">802.3ad</A> standard.  Differing peer implementations will have varying tolerances for noncompliance.<BR>
+</DD>
+</DL>
+<DL>
+<DD>
+<UL>
+<LI> Prerequisites:
+<OL>
+<LI> Ethtool support in the base drivers for retrieving the speed and duplex of each slave.
+</LI>
+<LI> A switch that supports IEEE 802.3ad Dynamic link aggregation.
+</LI>
+</OL>
+</LI>
+</UL>
+</DD>
+</DL>
+<DL>
+<DD>Most switches will require some type of configuration to enable 802.3ad mode.<BR>
+</DD>
+</DL>
+<UL>
+<LI>
+<DL>
+<DT> balance-tlb or 5</DT>
+<DD> Adaptive transmit load balancing: channel bonding that does not require any special switch support.  The outgoing traffic is distributed according to the current load (computed relative to the speed) on each slave.  Incoming traffic is received by the current slave.  If the receiving slave fails, another slave takes over the MAC address of the failed receiving slave.<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<DL>
+<DD>
+<UL>
+<LI> Prerequisite:
+<OL>
+<LI> Ethtool support in the base drivers for retrieving the speed of each slave.
+</LI>
+</OL>
+</LI>
+</UL>
+</DD>
+</DL>
+<P>
+</P>
+<UL>
+<LI>
+<DL>
+<DT> balance-alb or 6&nbsp;</DT>
+<DD> Adaptive load balancing: includes balance-tlb plus receive load balancing (rlb) for IPV4 traffic, and does not require any special switch support.  The receive load balancing is achieved by ARP negotiation.<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<DL>
+<DD> The bonding driver intercepts the ARP Replies sent by the local system on their way out and overwrites the source hardware address with the unique hardware address of one of the slaves in the bond such that different peers use different hardware addresses for the server.<BR>
+</DD>
+<DD> Receive traffic from connections created by the server is also balanced.  When the local system sends an ARP Request the bonding driver copies and saves the peer's IP information from the ARP packet.<BR>
+</DD>
+<DD> When the ARP Reply arrives from the peer, its hardware address is retrieved and the bonding driver initiates an ARP reply to this peer assigning it to one of the slaves in the bond.<BR>
+</DD>
+<DD> A problematic outcome of using ARP negotiation for balancing is that each time that an ARP request is broadcast it uses the hardware address of the bond.  Hence, peers learn the hardware address of the bond and the balancing of receive traffic collapses to the current slave.  This is handled by sending updates (ARP Replies) to all the peers with their individually assigned hardware address such that the traffic is redistributed.  Receive traffic is also redistributed when a new slave is added to the bond and when an inactive slave is re-activated.  The receive load is distributed sequentially (round robin) among the group of highest speed slaves in the bond.<BR>
+</DD>
+<DD> When a link is reconnected or a new slave joins the bond the receive traffic is redistributed among all active slaves in the bond by initiating ARP Replies with the selected mac address to each of the clients. The updelay parameter (detailed below) must be set to a value equal or greater than the switch's forwarding delay so that the ARP Replies sent to the peers will not be blocked by the switch.<BR>
+</DD>
+</DL>
+<DL>
+<DD>
+<UL>
+<LI> Prerequisites:
+<OL>
+<LI> Ethtool support in the base drivers for retrieving the speed of each slave.
+</LI>
+<LI> Base driver support for setting the hardware address of a device while it is open.  This is required so that there will always be one slave in the team using the bond hardware address (the curr_active_slave) while having a unique hardware address for each slave in the bond.  If the curr_active_slave fails its hardware address is swapped with the new curr_active_slave that was chosen.
+</LI>
+</OL>
+</LI>
+</UL>
+</DD>
+</DL>
+<DL>
+<DT> primary&nbsp;</DT>
+<DD>  A string (eth0, eth2, etc) specifying which slave is the primary device.  The specified device will always be the active slave while it is available.  Only when the primary is off-line will alternate devices be used.  This is useful when one slave is preferred over another, e.g., when one slave has higher throughput than another. The primary option is only valid for active-backup mode.<BR>
+</DD>
+<DT> updelay&nbsp;</DT>
+<DD> Specifies the time, in milliseconds, to wait before enabling a slave after a link recovery has been detected.  This option is only valid for the miimon link monitor.  The updelay value should be a multiple of the miimon value; if not, it will be rounded down to the nearest multiple.  The default value is 0.<BR>
+</DD>
+<DT> use_carrier&nbsp;</DT>
+<DD> Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. netif_carrier_ok() to determine the link status. The MII or ETHTOOL ioctls are less efficient and utilize a deprecated calling sequence within the kernel.  The netif_carrier_ok() relies on the device driver to maintain its state with netif_carrier_on/off; at this writing, most, but not all, device drivers support this facility.<BR>
+</DD>
+</DL>
+<DL>
+<DD> If bonding insists that the link is up when it should not be, it may be that your network device driver does not support netif_carrier_on/off.  The default state for netif_carrier is "carrier on," so if a driver does not support netif_carrier, it will appear as if the link is always up.  In this case, setting use_carrier to 0 will cause bonding to revert to the MII / ETHTOOL ioctl method to determine the link state.<BR>
+</DD>
+</DL>
+<DL>
+<DD> A value of 1 enables the use of netif_carrier_ok(), a value of 0 will use the deprecated MII / ETHTOOL ioctls.  The default value is 1.<BR>
+</DD>
+</DL>
+<DL>
+<DT> xmit_hash_policy&nbsp;</DT>
+<DD> Selects the transmit hash policy to use for slave selection in balance-xor and 802.3ad modes.  Possible values are:<BR>
+</DD>
+</DL>
+<UL>
+<LI>
+<DL>
+<DT> layer2&nbsp;</DT>
+<DD> Uses XOR of hardware MAC addresses to generate the hash.  The formula is<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<PRE> <IMG class="tex" alt="( {source} \oplus {destination} )&nbsp;% N_{slave}" src="./bonding   The Linux Foundation_files/8f6eed397d6bee56f08b1fe20aadfee6.png">
+</PRE><P>This algorithm will place all traffic to a particular network peer on the same slave.<BR>
+This algorithm is 802.3ad compliant.
+</P>
+<UL>
+<LI>
+<DL>
+<DT> layer3+4</DT>
+<DD> This policy uses upper layer protocol information, when available, to generate the hash.  This allows for traffic to a particular network peer to span multiple slaves, although a single connection will not span multiple slaves.<BR>
+</DD>
+</DL>
+</LI>
+</UL>
+<P>The formula for unfragmented TCP and UDP packets is
+</P>
+<PRE> <IMG class="tex" alt="(( port_{src} \oplus port_{dst}) \oplus ( (IP_{src} \oplus IP_{dst}) )&nbsp;% N" src="./bonding   The Linux Foundation_files/8bdca0ddf73e1cb38c4195ce511616d7.png">
+</PRE><P>For fragmented TCP or UDP packets and all other IP protocol traffic, the source and destination port information is omitted.  For non-IP traffic, the formula is the same as for the layer2 transmit hash policy.
+</P>
+<P>This policy is intended to mimic the behavior of certain switches, notably Cisco switches with PFC2 as well as some Foundry and IBM products.
+</P>
+<P>This algorithm is not fully 802.3ad compliant.  A single TCP or UDP conversation containing both fragmented and unfragmented packets will see packets striped across two interfaces.  This may result in out of order delivery.  Most traffic types will not meet this criteria, as TCP rarely fragments traffic, and most UDP traffic is not involved in extended conversations.  Other implementations of 802.3ad may or may not tolerate this noncompliance.
+</P>
+<P>The default value is layer2.  This option was added in bonding version 2.6.3.  In earlier versions of bonding, this parameter does not exist, and the layer2 policy is the only policy.
+</P>
+<P><A name="Configuring_Bonding_Devices"><BR>
+</A></P><A name="Configuring_Bonding_Devices"><H2> Configuring Bonding Devices</H2>
+<P></P></A><P></P>
+<P>There are, essentially, two methods for configuring bonding: with support from the distro's network initialization scripts, and without.  Distros generally use one of two packages for the network initialization scripts: initscripts or sysconfig.  Recent versions of these packages have support for bonding, while older versions do not.  /etc/net has built-in support for interface bonding.
+</P>
+<P>We will first describe the options for configuring bonding for distros using versions of initscripts and sysconfig with full or<BR>
+partial support for bonding, then provide information on enabling bonding without support from the network initialization scripts (i.e.,<BR>
+older versions of initscripts or sysconfig).
+</P>
+<P>If you're unsure whether your distro uses sysconfig or initscripts, or don't know if it's new enough, have no fear.<BR>
+Determining this is fairly straightforward.
+</P>
+<P>First, issue the command:
+</P>
+<PRE> $ rpm -qf /sbin/ifup
+</PRE><P>It will respond with a line of text starting with either "initscripts" or "sysconfig," followed by some numbers.  This is the<BR>
+package that provides your network initialization scripts.
+</P>
+<P>Next, to determine if your installation supports bonding, issue the command:
+</P>
+<PRE> $ grep ifenslave /sbin/ifup
+</PRE><P>If this returns any matches, then your initscripts or sysconfig has support for bonding.
+</P>
+<P><A name="Configuration_with_sysconfig_support"><BR>
+</A></P><A name="Configuration_with_sysconfig_support"><H3> Configuration with sysconfig support</H3>
+<P></P></A><P></P>
+<P>This section applies to distros using a version of sysconfig with bonding support, for example, SuSE Linux Enterprise Server 9.
+</P>
+<P>SuSE SLES 9's networking configuration system does support bonding, however, at this writing, the YaST system configuration<BR>
+frontend does not provide any means to work with bonding devices. Bonding devices can be managed by hand, however, as follows.
+</P>
+<P>First, if they have not already been configured, configure the slave devices.  On SLES 9, this is most easily done by running the<BR>
+yast2 sysconfig configuration utility.  The goal is for to create an ifcfg-id file for each slave device.  The simplest way to accomplish<BR>
+this is to configure the devices for <A href="http://en.wikipedia.com/wiki/DHCP" class="extiw" title="DHCP">DHCP</A> (this is only to get the file ifcfg-id file created; see below for some issues with DHCP).  The name of the configuration file for each device will be of the form:
+</P>
+<PRE> ifcfg-id-xx:xx:xx:xx:xx:xx
+</PRE><P>Where the "xx" portion will be replaced with the digits from the device's permanent MAC address.
+</P>
+<P>Once the set of ifcfg-id-xx:xx:xx:xx:xx:xx files has been created, it is necessary to edit the configuration files for the slave<BR>
+devices (the MAC addresses correspond to those of the slave devices). Before editing, the file will contain multiple lines, and will look something like this:
+</P>
+<PRE> BOOTPROTO='dhcp'
+ STARTMODE='on'
+ USERCTL='no'
+ UNIQUE='XNzu.WeZGOGF+4wE'
+ _nm_name='bus-pci-0001:61:01.0'
+</PRE><P>Change the BOOTPROTO and STARTMODE lines to the following:
+</P>
+<PRE> BOOTPROTO='none'
+ STARTMODE='off'
+</PRE><P>Do not alter the UNIQUE or _nm_name lines.  Remove any other lines (USERCTL, etc).
+</P>
+<P>Once the ifcfg-id-xx:xx:xx:xx:xx:xx files have been modified,<BR>
+it's time to create the configuration file for the bonding device<BR>
+itself.  This file is named ifcfg-bondX, where X is the number of the<BR>
+bonding device to create, starting at 0.  The first such file is<BR>
+ifcfg-bond0, the second is ifcfg-bond1, and so on.  The sysconfig<BR>
+network configuration system will correctly start multiple instances<BR>
+of bonding.
+</P>
+<P>The contents of the ifcfg-bondX file is as follows:
+</P>
+<PRE> BOOTPROTO="static"
+ BROADCAST="10.0.2.255"
+ IPADDR="10.0.2.10"
+ NETMASK="255.255.0.0"
+ NETWORK="10.0.2.0"
+ REMOTE_IPADDR=""
+ STARTMODE="onboot"
+ BONDING_MASTER="yes"
+ BONDING_MODULE_OPTS="mode=active-backup miimon=100"
+ BONDING_SLAVE0="eth0"
+ BONDING_SLAVE1="bus-pci-0000:06:08.1"
+</PRE><P>Replace the sample BROADCAST, IPADDR, NETMASK and NETWORK values with the appropriate values for your network.
+</P>
+<P>The STARTMODE specifies when the device is brought online.<BR>
+The possible values are:
+</P>
+<DL>
+<DT> onboot&nbsp;</DT>
+<DD> The device is started at boot time.  If you're not sure, this is probably what you want.<BR>
+</DD>
+<DT> manual&nbsp;</DT>
+<DD> The device is started only when ifup is called manually.  Bonding devices may be configured this way if you do not wish them to start automatically at boot for some reason.<BR>
+</DD>
+<DT> hotplug&nbsp;</DT>
+<DD> The device is started by a hotplug event.  This is not a valid choice for a bonding device.<BR>
+</DD>
+<DT> off or ignore&nbsp;</DT>
+<DD> The device configuration is ignored.<BR>
+</DD>
+</DL>
+<P>The line BONDING_MASTER='yes' indicates that the device is a bonding master device.  The only useful value is "yes."
+</P>
+<P>The contents of BONDING_MODULE_OPTS are supplied to the instance of the bonding module for this device.  Specify the options<BR>
+for the bonding mode, link monitoring, and so on here.  Do not include the max_bonds bonding parameter; this will confuse the configuration system if you have multiple bonding devices.
+</P>
+<P>Finally, supply one BONDING_SLAVEn="slave device" for each slave.  where "n" is an increasing value, one for each slave.  The<BR>
+"slave device" is either an interface name, e.g., "eth0", or a device specifier for the network device.  The interface name is easier to<BR>
+find, but the ethN names are subject to change at boot time if, e.g., a device early in the sequence has failed.  The device specifiers<BR>
+(bus-pci-0000:06:08.1 in the example above) specify the physical network device, and will not change unless the device's bus location changes (for example, it is moved from one PCI slot to another).  The example above uses one of each type for demonstration purposes; most configurations will choose one or the other for all slave devices.
+</P>
+<P>When all configuration files have been modified or created, networking must be restarted for the configuration changes to take<BR>
+effect.  This can be accomplished via the following:
+</P>
+<PRE> # /etc/init.d/network restart
+</PRE><P>Note that the network control script (/sbin/ifdown) will<BR>
+remove the bonding module as part of the network shutdown processing,<BR>
+so it is not necessary to remove the module by hand if, e.g., the<BR>
+module parameters have changed.
+</P>
+<P>Also, at this writing, YaST/YaST2 will not manage bonding<BR>
+devices (they do not show bonding interfaces on its list of network<BR>
+devices).  It is necessary to edit the configuration file by hand to<BR>
+change the bonding configuration.
+</P>
+<P>Additional general options and details of the ifcfg file<BR>
+format can be found in an example ifcfg template file:
+</P>
+<PRE> /etc/sysconfig/network/ifcfg.template
+</PRE><P>Note that the template does not document the various BONDING_<BR>
+settings described above, but does describe many of the other options.
+</P>
+<P><A name="Using_DHCP_with_sysconfig"><BR>
+</A></P><A name="Using_DHCP_with_sysconfig"><H4> Using DHCP with sysconfig</H4>
+<P></P></A><P></P>
+<P>Under sysconfig, configuring a device with BOOTPROTO='dhcp'<BR>
+will cause it to query DHCP for its IP address information.  At this<BR>
+writing, this does not function for bonding devices; the scripts<BR>
+attempt to obtain the device address from DHCP prior to adding any of<BR>
+the slave devices.  Without active slaves, the DHCP requests are not<BR>
+sent to the network.
+</P>
+<P><A name="Configuring_Multiple_Bonds_with_sysconfig"><BR>
+</A></P><A name="Configuring_Multiple_Bonds_with_sysconfig"><H4> Configuring Multiple Bonds with sysconfig</H4>
+<P></P></A><P></P>
+<P>The sysconfig network initialization system is capable of<BR>
+handling multiple bonding devices.  All that is necessary is for each<BR>
+bonding instance to have an appropriately configured ifcfg-bondX file<BR>
+(as described above).  Do not specify the "max_bonds" parameter to any<BR>
+instance of bonding, as this will confuse sysconfig.  If you require<BR>
+multiple bonding devices with identical parameters, create multiple<BR>
+ifcfg-bondX files.
+</P>
+<P>Because the sysconfig scripts supply the bonding module<BR>
+options in the ifcfg-bondX file, it is not necessary to add them to<BR>
+the system /etc/modules.conf or /etc/modprobe.conf configuration file.
+</P>
+<P><A name="Configuration_with_initscripts_support"><BR>
+</A></P><A name="Configuration_with_initscripts_support"><H3> Configuration with initscripts support</H3>
+<P></P></A><P></P>
+<P>This section applies to distros using a version of initscripts<BR>
+with bonding support, for example, Red Hat Linux 9 or Red Hat<BR>
+Enterprise Linux version 3 or 4.  On these systems, the network<BR>
+initialization scripts have some knowledge of bonding, and can be<BR>
+configured to control bonding devices.
+</P>
+<P>These distros will not automatically load the network adapter<BR>
+driver unless the ethX device is configured with an IP address.<BR>
+Because of this constraint, users must manually configure a<BR>
+network-script file for all physical adapters that will be members of<BR>
+a bondX link.  Network script files are located in the directory:
+</P>
+<PRE> /etc/sysconfig/network-scripts
+</PRE><P>The file name must be prefixed with "ifcfg-eth" and suffixed<BR>
+with the adapter's physical adapter number.  For example, the script<BR>
+for eth0 would be named /etc/sysconfig/network-scripts/ifcfg-eth0.<BR>
+Place the following text in the file:
+</P>
+<PRE> DEVICE=eth0
+ USERCTL=no
+ ONBOOT=yes
+ MASTER=bond0
+ SLAVE=yes
+ BOOTPROTO=none
+</PRE><P>The DEVICE= line will be different for every ethX device and<BR>
+must correspond with the name of the file, i.e., ifcfg-eth1 must have<BR>
+a device line of DEVICE=eth1.  The setting of the MASTER= line will<BR>
+also depend on the final bonding interface name chosen for your bond.<BR>
+As with other network devices, these typically start at 0, and go up<BR>
+one for each device, i.e., the first bonding instance is bond0, the<BR>
+second is bond1, and so on.
+</P>
+<P>Next, create a bond network script.  The file name for this<BR>
+script will be /etc/sysconfig/network-scripts/ifcfg-bondX where X is<BR>
+the number of the bond.  For bond0 the file is named "ifcfg-bond0",<BR>
+for bond1 it is named "ifcfg-bond1", and so on.  Within that file,<BR>
+place the following text:
+</P>
+<PRE> DEVICE=bond0
+ IPADDR=192.168.1.1
+ NETMASK=255.255.255.0
+ NETWORK=192.168.1.0
+ BROADCAST=192.168.1.255
+ ONBOOT=yes
+ BOOTPROTO=none
+ USERCTL=no
+</PRE><P>Be sure to change the networking specific lines (IPADDR,<BR>
+NETMASK, NETWORK and BROADCAST) to match your network configuration.
+</P>
+<P>Finally, it is necessary to edit /etc/modules.conf (or<BR>
+/etc/modprobe.conf, depending upon your distro) to load the bonding<BR>
+module with your desired options when the bond0 interface is brought<BR>
+up.  The following lines in /etc/modules.conf (or modprobe.conf) will<BR>
+load the bonding module, and select its options:
+</P>
+<PRE> alias bond0 bonding
+ options bond0 mode=balance-alb miimon=100
+</PRE><P>Replace the sample parameters with the appropriate set of options for your configuration.
+</P>
+<P>Finally run "/etc/rc.d/init.d/network restart" as root.  This<BR>
+will restart the networking subsystem and your bond link should be now<BR>
+up and running.
+</P>
+<P><A name="Using_DHCP_with_initscripts"><BR>
+</A></P><A name="Using_DHCP_with_initscripts"><H4> Using DHCP with initscripts</H4>
+<P></P></A><P></P>
+<P>Recent versions of initscripts (the version supplied with<BR>
+Fedora Core 3 and Red Hat Enterprise Linux 4 is reported to work) do<BR>
+have support for assigning IP information to bonding devices via DHCP.
+</P>
+<P>To configure bonding for DHCP, configure it as described<BR>
+above, except replace the line "BOOTPROTO=none" with "BOOTPROTO=dhcp"<BR>
+and add a line consisting of "TYPE=Bonding".  Note that the TYPE value<BR>
+is case sensitive.
+</P>
+<P><A name="Configuring_Multiple_Bonds_with_initscripts"><BR>
+</A></P><A name="Configuring_Multiple_Bonds_with_initscripts"><H4> Configuring Multiple Bonds with initscripts</H4>
+<P></P></A><P></P>
+<P>At this writing, the initscripts package does not directly<BR>
+support loading the bonding driver multiple times, so the process for<BR>
+doing so is the same as described in the "Configuring Multiple Bonds<BR>
+Manually" section, below.
+</P>
+<P>NOTE: It has been observed that some Red Hat supplied kernels<BR>
+are apparently unable to rename modules at load time (the "-obonding1"<BR>
+part).  Attempts to pass that option to modprobe will produce an<BR>
+"Operation not permitted" error.  This has been reported on some<BR>
+Fedora Core kernels, and has been seen on RHEL 4 as well.  On kernels<BR>
+exhibiting this problem, it will be impossible to configure multiple<BR>
+bonds with differing parameters.
+</P>
+<P>RedHat EL 5 supports multiple bonds even in configuration with different modes. Edit /etc/modprobe.conf and add:
+</P>
+<PRE>alias bond0 bonding
+alias bond1 bonding
+options bonding max_bonds=2
+</PRE><P>Edit/Create the file /etc/sysconfig/network-scripts/ifcfg-bond0, configuration is same as before except one option BONDING_OPTS:
+</P>
+<PRE>DEVICE=bond0
+ONBOOT=yes
+BOOTPROTO=dhcp
+USERCTL=no
+BONDING_OPTS="mode=1 miimon=100 primary=eth0"
+</PRE><P>For example second device can use mode=0. Edit/create the file /etc/sysconfig/network-scripts/ifcfg-bond1 and mention the bonding options:
+</P>
+<PRE>DEVICE=bond1
+ONBOOT=yes
+BOOTPROTO=dhcp
+USERCTL=no
+BONDING_OPTS="mode=0 miimon=100"
+</PRE><P><A name="Configuring_Bonding_with_.2Fetc.2Fnet"></A><BR>
+</P><H3> Configuring Bonding with /etc/net</H3>
+<P></P><P>This section applies to distros having /etc/net already integrated or to hand-made /etc/net installations. Bonding interfaces are usual /etc/net interfaces, the only thing you need to do is to decide which interfaces you will assign to the bond and which bond options you will use. In this example we will setup a high-availability ethernet bonding from two ethernet cards.<BR>
+/etc/net keeps information about interfaces in
+</P>
+<PRE> /etc/net/ifaces
+</PRE><P>First of all we have to create a configuration directory for each interface involved in configuration:
+</P>
+<PRE> # mkdir /etc/net/ifaces/primary
+ # mkdir /etc/net/ifaces/backup
+ # mkdir /etc/net/ifaces/failover
+</PRE><P>Then we will fill options files for ethernet interfaces:
+</P>
+<PRE> # cat &gt; /etc/net/ifaces/primary/options
+ TYPE=eth
+ MODULE=e100
+ ^D
+ # cat &gt; /etc/net/ifaces/backup/options
+ TYPE=eth
+ MODULE=e100
+ ^D
+ # cat &gt;&gt; /etc/net/iftab
+ primary mac 00:10:dc:9e:af:d5
+ backup mac 00:10:dc:9e:af:d6
+ ^D
+</PRE><P>We have configured two ethernet cards and fixed their names with iftab. Now it's time to configure bonding:
+</P>
+<PRE> # cat &gt; /etc/net/ifaces/failover/options
+ TYPE=bond
+ BONDMODE=1
+ HOST='primary backup'
+ BONDOPTIONS='use_carrier=1 miimon=100 primary=primary'
+ ^D
+ # cat &gt; /etc/net/ifaces/failover/ipv4address
+ 192.168.1.1/24
+ ^D
+ # cat &gt; /etc/net/ifaces/failover/ipv4route
+ default via 192.168.1.254
+ ^D
+</PRE><P>After that the only thing we have to do is
+</P>
+<PRE> # ifup failover
+</PRE><P>/etc/net will automatically discover (from HOST option) the correct order of initialization. You can configure as many bonds as you need. DHCP is currently not supported for bonding interfaces in /etc/net.
+</P>
+<P><A name="Configuring_Bonding_Manually"><BR>
+</A></P><A name="Configuring_Bonding_Manually"><H3> Configuring Bonding Manually</H3>
+<P></P></A><P></P>
+<P>-This section applies to distros whose network initialization<BR>
+scripts (the sysconfig or initscripts package) do not have specific<BR>
+knowledge of bonding.  One such distro is SuSE Linux Enterprise Server<BR>
+version 8.
+</P>
+<P>The general method for these systems is to place the bonding<BR>
+module parameters into /etc/modules.conf or /etc/modprobe.conf (as<BR>
+appropriate for the installed distro), then add modprobe and/or<BR>
+ifenslave commands to the system's global init script.  The name of<BR>
+the global init script differs; for sysconfig, it is<BR>
+/etc/init.d/boot.local and for initscripts it is /etc/rc.d/rc.local.
+</P>
+<P>For example, if you wanted to make a simple bond of two e100<BR>
+devices (presumed to be eth0 and eth1), and have it persist across<BR>
+reboots, edit the appropriate file (/etc/init.d/boot.local or<BR>
+/etc/rc.d/rc.local), and add the following:
+</P>
+<PRE> modprobe bonding mode=balance-alb miimon=100
+ modprobe e100
+ ifconfig bond0 192.168.1.1 netmask 255.255.255.0 up
+ ifenslave bond0 eth0
+ ifenslave bond0 eth1
+</PRE><P>Replace the example bonding module parameters and bond0<BR>
+network configuration (IP address, netmask, etc) with the appropriate<BR>
+values for your configuration.
+</P>
+<P>Unfortunately, this method will not provide support for the<BR>
+ifup and ifdown scripts on the bond devices.  To reload the bonding<BR>
+configuration, it is necessary to run the initialization script, e.g.,
+</P>
+<PRE> # /etc/init.d/boot.local
+</PRE><P>or
+</P>
+<PRE> # /etc/rc.d/rc.local
+</PRE><P>It may be desirable in such a case to create a separate script<BR>
+which only initializes the bonding configuration, then call that<BR>
+separate script from within boot.local.  This allows for bonding to be<BR>
+enabled without re-running the entire global init script.
+</P>
+<P>To shut down the bonding devices, it is necessary to first<BR>
+mark the bonding device itself as being down, then remove the<BR>
+appropriate device driver modules.  For our example above, you can do<BR>
+the following:
+</P>
+<PRE> # ifconfig bond0 down
+ # rmmod bonding
+ # rmmod e100
+</PRE><P>Again, for convenience, it may be desirable to create a script<BR>
+with these commands.
+</P>
+<P><A name="Configuring_Multiple_Bonds_Manually"><BR>
+</A></P><A name="Configuring_Multiple_Bonds_Manually"><H4> Configuring Multiple Bonds Manually</H4>
+<P></P></A><P></P>
+<P>This section contains information on configuring multiple<BR>
+bonding devices with differing options for those systems whose network<BR>
+initialization scripts lack support for configuring multiple bonds.
+</P>
+<P>If you require multiple bonding devices, but all with the same<BR>
+options, you may wish to use the "max_bonds" module parameter,<BR>
+documented above.
+</P>
+<P>To create multiple bonding devices with differing options, it<BR>
+is necessary to load the bonding driver multiple times.  Note that<BR>
+current versions of the sysconfig network initialization scripts<BR>
+handle this automatically; if your distro uses these scripts, no<BR>
+special action is needed.  See the section Configuring Bonding<BR>
+Devices, above, if you're not sure about your network initialization<BR>
+scripts.
+</P>
+<P>To load multiple instances of the module, it is necessary to<BR>
+specify a different name for each instance (the module loading system<BR>
+requires that every loaded module, even multiple instances of the same<BR>
+module, have a unique name).  This is accomplished by supplying<BR>
+multiple sets of bonding options in /etc/modprobe.conf, for example:
+</P>
+<PRE> alias bond0 bonding
+ options bond0 -o bond0 mode=balance-rr miimon=100
+ alias bond1 bonding
+ options bond1 -o bond1 mode=balance-alb miimon=50
+</PRE><P>will load the bonding module two times.  The first instance is<BR>
+named "bond0" and creates the bond0 device in balance-rr mode with an<BR>
+miimon of 100.  The second instance is named "bond1" and creates the<BR>
+bond1 device in balance-alb mode with an miimon of 50.
+</P>
+<P>In some circumstances (typically with older distributions),<BR>
+the above does not work, and the second bonding instance never sees<BR>
+its options.  In that case, the second options line can be substituted<BR>
+as follows:
+</P>
+<PRE> install bonding1 /sbin/modprobe bonding -obond1 mode=balance-alb miimon=50
+</PRE><P>This may be repeated any number of times, specifying a new and<BR>
+unique name in place of bond1 for each subsequent instance.
+</P>
+<P><A name="Querying_Bonding_Configuration"><BR>
+</A></P><A name="Querying_Bonding_Configuration"><H2> Querying Bonding Configuration</H2>
+<P></P></A><BR>
+<A name="Bonding_Configuration"><BR>
+<H3> Bonding Configuration</H3>
+<P></P></A><P></P>
+<P>Each bonding device has a read-only file residing in the<BR>
+/proc/net/bonding directory.  The file contents include information<BR>
+about the bonding configuration, options and state of each slave.
+</P>
+<P>For example, the contents of /proc/net/bonding/bond0 after the<BR>
+driver is loaded with parameters of mode=0 and miimon=1000 is<BR>
+generally as follows:
+</P>
+<PRE>	Ethernet Channel Bonding Driver: 2.6.1 (October 29, 2004)
+        Bonding Mode: load balancing (round-robin)
+        Currently Active Slave: eth0
+        MII Status: up
+        MII Polling Interval (ms): 1000
+        Up Delay (ms): 0
+        Down Delay (ms): 0
+
+        Slave Interface: eth1
+        MII Status: up
+        Link Failure Count: 1
+
+        Slave Interface: eth0
+        MII Status: up
+        Link Failure Count: 1
+</PRE><P>The precise format and contents will change depending upon the<BR>
+bonding configuration, state, and version of the bonding driver.
+</P>
+<P><A name="Network_configuration"><BR>
+</A></P><A name="Network_configuration"><H3> Network configuration</H3>
+<P></P></A><P></P>
+<P>The network configuration can be inspected using the ifconfig<BR>
+command.  Bonding devices will have the MASTER flag set; Bonding slave<BR>
+devices will have the SLAVE flag set.  The ifconfig output does not<BR>
+contain information on which slaves are associated with which masters.
+</P>
+<P>In the example below, the bond0 interface is the master<BR>
+(MASTER) while eth0 and eth1 are slaves (SLAVE). Notice all slaves of<BR>
+bond0 have the same MAC address (HWaddr) as bond0 for all modes except<BR>
+TLB and ALB that require a unique MAC address for each slave.
+</P>
+<PRE> # /sbin/ifconfig
+ bond0     Link encap:Ethernet  HWaddr 00:C0:F0:1F:37:B4
+         inet addr:XXX.XXX.XXX.YYY  Bcast:XXX.XXX.XXX.255  Mask:255.255.252.0
+         UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+         RX packets:7224794 errors:0 dropped:0 overruns:0 frame:0
+         TX packets:3286647 errors:1 dropped:0 overruns:1 carrier:0
+         collisions:0 txqueuelen:0
+ 
+ eth0      Link encap:Ethernet  HWaddr 00:C0:F0:1F:37:B4
+         inet addr:XXX.XXX.XXX.YYY  Bcast:XXX.XXX.XXX.255  Mask:255.255.252.0
+         UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+         RX packets:3573025 errors:0 dropped:0 overruns:0 frame:0
+         TX packets:1643167 errors:1 dropped:0 overruns:1 carrier:0
+         collisions:0 txqueuelen:100
+         Interrupt:10 Base address:0x1080
+ 
+ eth1      Link encap:Ethernet  HWaddr 00:C0:F0:1F:37:B4
+         inet addr:XXX.XXX.XXX.YYY  Bcast:XXX.XXX.XXX.255  Mask:255.255.252.0
+         UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+         RX packets:3651769 errors:0 dropped:0 overruns:0 frame:0
+         TX packets:1643480 errors:0 dropped:0 overruns:0 carrier:0
+         collisions:0 txqueuelen:100
+         Interrupt:9 Base address:0x1400
+</PRE><P><A name="Switch_Configuration"><BR>
+</A></P><A name="Switch_Configuration"><H2> Switch Configuration</H2>
+<P></P></A><P></P>
+<P>For this section, "switch" refers to whatever system the<BR>
+bonded devices are directly connected to (i.e., where the other end of<BR>
+the cable plugs into).  This may be an actual dedicated switch device,<BR>
+or it may be another regular system (e.g., another computer running<BR>
+Linux),
+</P>
+<P>The active-backup, balance-tlb and balance-alb modes do not<BR>
+require any specific configuration of the switch.
+</P>
+<P>The 802.3ad mode requires that the switch have the appropriate<BR>
+ports configured as an 802.3ad aggregation.  The precise method used<BR>
+to configure this varies from switch to switch, but, for example, a<BR>
+Cisco 3550 series switch requires that the appropriate ports first be<BR>
+grouped together in a single etherchannel instance, then that<BR>
+etherchannel is set to mode "lacp" to enable 802.3ad (instead of<BR>
+standard EtherChannel).
+</P>
+<P>The balance-rr, balance-xor and broadcast modes generally<BR>
+require that the switch have the appropriate ports grouped together.<BR>
+The nomenclature for such a group differs between switches, it may be<BR>
+called an "etherchannel" (as in the Cisco example, above), a "trunk<BR>
+group" or some other similar variation.  For these modes, each switch<BR>
+will also have its own configuration options for the switch's transmit<BR>
+policy to the bond.  Typical choices include XOR of either the MAC or<BR>
+IP addresses.  The transmit policy of the two peers does not need to<BR>
+match.  For these three modes, the bonding mode really selects a<BR>
+transmit policy for an EtherChannel group; all three will interoperate<BR>
+with another EtherChannel group.
+</P>
+<P><A name="802.1q_VLAN_Support"></A><BR>
+</P><H2> 802.1q VLAN Support</H2>
+<P></P><P>It is possible to configure VLAN devices over a bond interface<BR>
+using the 8021q driver.  However, only packets coming from the 8021q<BR>
+driver and passing through bonding will be tagged by default.  Self<BR>
+generated packets, for example, bonding's learning packets or ARP<BR>
+packets generated by either ALB mode or the ARP monitor mechanism, are<BR>
+tagged internally by bonding itself.  As a result, bonding must<BR>
+"learn" the VLAN IDs configured above it, and use those IDs to tag<BR>
+self generated packets.
+</P>
+<P>For reasons of simplicity, and to support the use of adapters<BR>
+that can do VLAN hardware acceleration offloading, the bonding<BR>
+interface declares itself as fully hardware offloading capable, it gets<BR>
+the add_vid/kill_vid notifications to gather the necessary<BR>
+information, and it propagates those actions to the slaves.  In case<BR>
+of mixed adapter types, hardware accelerated tagged packets that<BR>
+should go through an adapter that is not offloading capable are<BR>
+"un-accelerated" by the bonding driver so the VLAN tag sits in the<BR>
+regular location.
+</P>
+<P>VLAN interfaces must be added on top of a bonding interface<BR>
+only after enslaving at least one slave.  The bonding interface has a<BR>
+hardware address of 00:00:00:00:00:00 until the first slave is added.<BR>
+If the VLAN interface is created prior to the first enslavement, it<BR>
+would pick up the all-zeroes hardware address.  Once the first slave<BR>
+is attached to the bond, the bond device itself will pick up the<BR>
+slave's hardware address, which is then available for the VLAN device.
+</P>
+<P>Also, be aware that a similar problem can occur if all slaves<BR>
+are released from a bond that still has one or more VLAN interfaces on<BR>
+top of it.  When a new slave is added, the bonding interface will<BR>
+obtain its hardware address from the first slave, which might not<BR>
+match the hardware address of the VLAN interfaces (which was<BR>
+ultimately copied from an earlier slave).
+</P>
+<P>There are two methods to insure that the VLAN device operates<BR>
+with the correct hardware address if all slaves are removed from a<BR>
+bond interface:
+</P>
+<UL>
+<LI> Remove all VLAN interfaces then recreate them
+</LI>
+<LI> Set the bonding interface's hardware address so that it matches the hardware address of the VLAN interfaces.
+</LI>
+</UL>
+<P>Note that changing a VLAN interface's HW address would set the underlying device -- i.e. the bonding interface -- to promiscuous<BR>
+mode, which might not be what you want.
+</P>
+<P><A name="Link_Monitoring"><BR>
+</A></P><A name="Link_Monitoring"><H2> Link Monitoring</H2>
+<P></P></A><P></P>
+<P>The bonding driver at present supports two schemes for<BR>
+monitoring a slave device's link state: the ARP monitor and the MII<BR>
+monitor.
+</P>
+<P>At the present time, due to implementation restrictions in the<BR>
+bonding driver itself, it is not possible to enable both ARP and MII<BR>
+monitoring simultaneously.
+</P>
+<P><A name="ARP_Monitor_Operation"><BR>
+</A></P><A name="ARP_Monitor_Operation"><H3> ARP Monitor Operation</H3>
+<P></P></A><P></P>
+<P>The ARP monitor operates as its name suggests: it sends ARP<BR>
+queries to one or more designated peer systems on the network, and<BR>
+uses the response as an indication that the link is operating.  This<BR>
+gives some assurance that traffic is actually flowing to and from one<BR>
+or more peers on the local network.
+</P>
+<P>The ARP monitor relies on the device driver itself to verify<BR>
+that traffic is flowing.  In particular, the driver must keep up to<BR>
+date the last receive time, dev-&gt;last_rx, and transmit start time,<BR>
+dev-&gt;trans_start.  If these are not updated by the driver, then the<BR>
+ARP monitor will immediately fail any slaves using that driver, and<BR>
+those slaves will stay down.  If networking monitoring (tcpdump, etc)<BR>
+shows the ARP requests and replies on the network, then it may be that<BR>
+your device driver is not updating last_rx and trans_start.
+</P>
+<P><A name="Configuring_Multiple_ARP_Targets"><BR>
+</A></P><A name="Configuring_Multiple_ARP_Targets"><H3> Configuring Multiple ARP Targets</H3>
+<P></P></A><P></P>
+<P>While ARP monitoring can be done with just one target, it can<BR>
+be useful in a High Availability setup to have several targets to<BR>
+monitor.  In the case of just one target, the target itself may go<BR>
+down or have a problem making it unresponsive to ARP requests.  Having<BR>
+an additional target (or several) increases the reliability of the ARP<BR>
+monitoring.
+</P>
+<P>Multiple ARP targets must be separated by commas as follows:
+</P>
+<PRE> # example options for ARP monitoring with three targets
+ alias bond0 bonding
+ options bond0 arp_interval=60 arp_ip_target=192.168.0.1,192.168.0.3,192.168.0.9
+</PRE><P>For just a single target the options would resemble:
+</P>
+<PRE> # example options for ARP monitoring with one target
+ alias bond0 bonding
+ options bond0 arp_interval=60 arp_ip_target=192.168.0.100
+</PRE><P><A name="MII_Monitor_Operation"><BR>
+</A></P><A name="MII_Monitor_Operation"><H3> MII Monitor Operation</H3>
+<P></P></A><P></P>
+<P>The MII monitor monitors only the carrier state of the local<BR>
+network interface.  It accomplishes this in one of three ways: by<BR>
+depending upon the device driver to maintain its carrier state, by<BR>
+querying the device's MII registers, or by making an ethtool query to<BR>
+the device.
+</P>
+<P>If the use_carrier module parameter is 1 (the default value),<BR>
+then the MII monitor will rely on the driver for carrier state<BR>
+information (via the netif_carrier subsystem).  As explained in the<BR>
+use_carrier parameter information, above, if the MII monitor fails to<BR>
+detect carrier loss on the device (e.g., when the cable is physically<BR>
+disconnected), it may be that the driver does not support<BR>
+netif_carrier.
+</P>
+<P>If use_carrier is 0, then the MII monitor will first query the<BR>
+device's (via ioctl) MII registers and check the link state.  If that<BR>
+request fails (not just that it returns carrier down), then the MII<BR>
+monitor will make an ethtool ETHOOL_GLINK request to attempt to obtain<BR>
+the same information.  If both methods fail (i.e., the driver either<BR>
+does not support or had some error in processing both the MII register<BR>
+and ethtool requests), then the MII monitor will assume the link is<BR>
+up.
+</P>
+<P><A name="Potential_Sources_of_Trouble"><BR>
+</A></P><A name="Potential_Sources_of_Trouble"><H2> Potential Sources of Trouble</H2>
+<P></P></A><BR>
+<A name="Adventures_in_Routing"><BR>
+<H3> Adventures in Routing</H3>
+<P></P></A><P></P>
+<P>When bonding is configured, it is important that the slave<BR>
+devices not have routes that supercede routes of the master (or,<BR>
+generally, not have routes at all).  For example, suppose the bonding<BR>
+device bond0 has two slaves, eth0 and eth1, and the routing table is<BR>
+as follows:
+</P>
+<PRE> Kernel IP routing table
+ Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+ 10.0.0.0        0.0.0.0         255.255.0.0     U        40 0          0 eth0
+ 10.0.0.0        0.0.0.0         255.255.0.0     U        40 0          0 eth1
+ 10.0.0.0        0.0.0.0         255.255.0.0     U        40 0          0 bond0
+ 127.0.0.0       0.0.0.0         255.0.0.0       U        40 0          0 lo
+</PRE><P>This routing configuration will likely still update the<BR>
+receive/transmit times in the driver (needed by the ARP monitor), but<BR>
+may bypass the bonding driver (because outgoing traffic to, in this<BR>
+case, another host on network 10 would use eth0 or eth1 before bond0).
+</P>
+<P>The ARP monitor (and ARP itself) may become confused by this<BR>
+configuration, because ARP requests (generated by the ARP monitor)<BR>
+will be sent on one interface (bond0), but the corresponding reply<BR>
+will arrive on a different interface (eth0).  This reply looks to ARP<BR>
+as an unsolicited ARP reply (because ARP matches replies on an<BR>
+interface basis), and is discarded.  The MII monitor is not affected<BR>
+by the state of the routing table.
+</P>
+<P>The solution here is simply to insure that slaves do not have<BR>
+routes of their own, and if for some reason they must, those routes do<BR>
+not supercede routes of their master.  This should generally be the<BR>
+case, but unusual configurations or errant manual or automatic static<BR>
+route additions may cause trouble.
+</P>
+<P><A name="Ethernet_Device_Renaming"><BR>
+</A></P><A name="Ethernet_Device_Renaming"><H3> Ethernet Device Renaming</H3>
+<P></P></A><P></P>
+<P>On systems with network configuration scripts that do not<BR>
+associate physical devices directly with network interface names (so<BR>
+that the same physical device always has the same "ethX" name), it may<BR>
+be necessary to add some special logic to either /etc/modules.conf or<BR>
+/etc/modprobe.conf (depending upon which is installed on the system).
+</P>
+<P>For example, given a modules.conf containing the following:
+</P>
+<PRE> alias bond0 bonding
+ options bond0 mode=some-mode miimon=50
+ alias eth0 tg3
+ alias eth1 tg3
+ alias eth2 e1000
+ alias eth3 e1000
+</PRE><P>If neither eth0 and eth1 are slaves to bond0, then when the<BR>
+bond0 interface comes up, the devices may end up reordered.  This<BR>
+happens because bonding is loaded first, then its slave device's<BR>
+drivers are loaded next.  Since no other drivers have been loaded,<BR>
+when the e1000 driver loads, it will receive eth0 and eth1 for its<BR>
+devices, but the bonding configuration tries to enslave eth2 and eth3<BR>
+(which may later be assigned to the tg3 devices).
+</P>
+<P>Adding the following:
+</P>
+<PRE> add above bonding e1000 tg3
+</PRE><P>causes modprobe to load e1000 then tg3, in that order, when<BR>
+bonding is loaded.  This command is fully documented in the<BR>
+modules.conf manual page.
+</P>
+<P>On systems utilizing modprobe.conf (or modprobe.conf.local),<BR>
+an equivalent problem can occur.  In this case, the following can be<BR>
+added to modprobe.conf (or modprobe.conf.local, as appropriate), as<BR>
+follows (all on one line; it has been split here for clarity):
+</P>
+<PRE> install bonding /sbin/modprobe tg3
+ /sbin/modprobe e1000;
+ /sbin/modprobe --ignore-install bonding
+</PRE><P>This will, when loading the bonding module, rather than<BR>
+performing the normal action, instead execute the provided command.<BR>
+This command loads the device drivers in the order needed, then calls<BR>
+modprobe with --ignore-install to cause the normal action to then take<BR>
+place.  Full documentation on this can be found in the modprobe.conf<BR>
+and modprobe manual pages.
+</P>
+<P><A name="Painfully_Slow_Or_No_Failed_Link_Detection_By_Miimon"><BR>
+</A></P><A name="Painfully_Slow_Or_No_Failed_Link_Detection_By_Miimon"><H3> Painfully Slow Or No Failed Link Detection By Miimon</H3>
+<P></P></A><P></P>
+<P>By default, bonding enables the use_carrier option, which<BR>
+instructs bonding to trust the driver to maintain carrier state.
+</P>
+<P>As discussed in the options section, above, some drivers do<BR>
+not support the netif_carrier_on/_off link state tracking system.<BR>
+With use_carrier enabled, bonding will always see these links as up,<BR>
+regardless of their actual state.
+</P>
+<P>Additionally, other drivers do support netif_carrier, but do<BR>
+not maintain it in real time, e.g., only polling the link state at<BR>
+some fixed interval.  In this case, miimon will detect failures, but<BR>
+only after some long period of time has expired.  If it appears that<BR>
+miimon is very slow in detecting link failures, try specifying<BR>
+use_carrier=0 to see if that improves the failure detection time.  If<BR>
+it does, then it may be that the driver checks the carrier state at a<BR>
+fixed interval, but does not cache the MII register values (so the<BR>
+use_carrier=0 method of querying the registers directly works).  If<BR>
+use_carrier=0 does not improve the failover, then the driver may cache<BR>
+the registers, or the problem may be elsewhere.
+</P>
+<P>Also, remember that miimon only checks for the device's<BR>
+carrier state.  It has no way to determine the state of devices on or<BR>
+beyond other ports of a switch, or if a switch is refusing to pass<BR>
+traffic while still maintaining carrier on.
+</P>
+<P><A name="SNMP_agents"><BR>
+</A></P><A name="SNMP_agents"><H2> SNMP agents</H2>
+<P></P></A><P></P>
+<P>If running SNMP agents, the bonding driver should be loaded<BR>
+before any network drivers participating in a bond.  This requirement<BR>
+is due to the interface index (ipAdEntIfIndex) being associated to<BR>
+the first interface found with a given IP address.  That is, there is<BR>
+only one ipAdEntIfIndex for each IP address.  For example, if eth0 and<BR>
+eth1 are slaves of bond0 and the driver for eth0 is loaded before the<BR>
+bonding driver, the interface for the IP address will be associated<BR>
+with the eth0 interface.  This configuration is shown below, the IP<BR>
+address 192.168.1.1 has an interface index of 2 which indexes to eth0<BR>
+in the ifDescr table (ifDescr.2).
+</P>
+<PRE>    interfaces.ifTable.ifEntry.ifDescr.1 = lo
+    interfaces.ifTable.ifEntry.ifDescr.2 = eth0
+    interfaces.ifTable.ifEntry.ifDescr.3 = eth1
+    interfaces.ifTable.ifEntry.ifDescr.4 = eth2
+    interfaces.ifTable.ifEntry.ifDescr.5 = eth3
+    interfaces.ifTable.ifEntry.ifDescr.6 = bond0
+    ip.ipAddrTable.ipAddrEntry.ipAdEntIfIndex.10.10.10.10 = 5
+    ip.ipAddrTable.ipAddrEntry.ipAdEntIfIndex.192.168.1.1 = 2
+    ip.ipAddrTable.ipAddrEntry.ipAdEntIfIndex.10.74.20.94 = 4
+    ip.ipAddrTable.ipAddrEntry.ipAdEntIfIndex.127.0.0.1 = 1
+</PRE><P>This problem is avoided by loading the bonding driver before<BR>
+any network drivers participating in a bond.  Below is an example of<BR>
+loading the bonding driver first, the IP address 192.168.1.1 is<BR>
+correctly associated with ifDescr.2.
+</P>
+<PRE>    interfaces.ifTable.ifEntry.ifDescr.1 = lo
+    interfaces.ifTable.ifEntry.ifDescr.2 = bond0
+    interfaces.ifTable.ifEntry.ifDescr.3 = eth0
+    interfaces.ifTable.ifEntry.ifDescr.4 = eth1
+    interfaces.ifTable.ifEntry.ifDescr.5 = eth2
+    interfaces.ifTable.ifEntry.ifDescr.6 = eth3
+    ip.ipAddrTable.ipAddrEntry.ipAdEntIfIndex.10.10.10.10 = 6
+    ip.ipAddrTable.ipAddrEntry.ipAdEntIfIndex.192.168.1.1 = 2
+    ip.ipAddrTable.ipAddrEntry.ipAdEntIfIndex.10.74.20.94 = 5
+    ip.ipAddrTable.ipAddrEntry.ipAdEntIfIndex.127.0.0.1 = 1
+</PRE><P>While some distributions may not report the interface name in<BR>
+ifDescr, the association between the IP address and IfIndex remains<BR>
+and SNMP functions such as Interface_Scan_Next will report that<BR>
+association.
+</P>
+<P><A name="Promiscuous_mode"><BR>
+</A></P><A name="Promiscuous_mode"><H3> Promiscuous mode</H3>
+<P></P></A><P></P>
+<P>When running network monitoring tools, e.g., tcpdump, it is<BR>
+common to enable promiscuous mode on the device, so that all traffic<BR>
+is seen (instead of seeing only traffic destined for the local host).<BR>
+The bonding driver handles promiscuous mode changes to the bonding<BR>
+master device (e.g., bond0), and propagates the setting to the slave<BR>
+devices.
+</P>
+<P>For the balance-rr, balance-xor, broadcast, and 802.3ad modes,<BR>
+the promiscuous mode setting is propagated to all slaves.
+</P>
+<P>For the active-backup, balance-tlb and balance-alb modes, the<BR>
+promiscuous mode setting is propagated only to the active slave.
+</P>
+<P>For balance-tlb mode, the active slave is the slave currently<BR>
+receiving inbound traffic.
+</P>
+<P>For balance-alb mode, the active slave is the slave used as a<BR>
+"primary."  This slave is used for mode-specific control traffic, for<BR>
+sending to peers that are unassigned or if the load is unbalanced.
+</P>
+<P>For the active-backup, balance-tlb and balance-alb modes, when<BR>
+the active slave changes (e.g., due to a link failure), the<BR>
+promiscuous setting will be propagated to the new active slave.
+</P>
+<P><A name="Configuring_Bonding_for_High_Availability"><BR>
+</A></P><A name="Configuring_Bonding_for_High_Availability"><H2> Configuring Bonding for High Availability</H2>
+<P></P></A><P></P>
+<P>High Availability refers to configurations that provide<BR>
+maximum network availability by having redundant or backup devices,<BR>
+links or switches between the host and the rest of the world.  The<BR>
+goal is to provide the maximum availability of network connectivity<BR>
+(i.e., the network always works), even though other configurations<BR>
+could provide higher throughput.
+</P>
+<P><A name="High_Availability_in_a_Single_Switch_Topology"><BR>
+</A></P><A name="High_Availability_in_a_Single_Switch_Topology"><H3> High Availability in a Single Switch Topology</H3>
+<P></P></A><P></P>
+<P>If two hosts (or a host and a single switch) are directly<BR>
+connected via multiple physical links, then there is no availability<BR>
+penalty to optimizing for maximum bandwidth.  In this case, there is<BR>
+only one switch (or peer), so if it fails, there is no alternative<BR>
+access to fail over to.  Additionally, the bonding load balance modes<BR>
+support link monitoring of their members, so if individual links fail,<BR>
+the load will be rebalanced across the remaining devices.
+</P>
+<P>See Section 13, "Configuring Bonding for Maximum Throughput"<BR>
+for information on configuring bonding with one peer device.
+</P>
+<P><A name="High_Availability_in_a_Multiple_Switch_Topology"><BR>
+</A></P><A name="High_Availability_in_a_Multiple_Switch_Topology"><H3> High Availability in a Multiple Switch Topology</H3>
+<P></P></A><P></P>
+<P>With multiple switches, the configuration of bonding and the<BR>
+network changes dramatically.  In multiple switch topologies, there is<BR>
+a trade off between network availability and usable bandwidth.
+</P>
+<P>Below is a sample network, configured to maximize the<BR>
+availability of the network:
+</P>
+<PRE>               |                                     |
+               |port3                           port3|
+         +-----+----+                          +-----+----+
+         |          |port2       ISL      port2|          |
+         | switch A +--------------------------+ switch B |
+         |          |                          |          |
+         +-----+----+                          +-----++---+
+               |port1                           port1|
+               |             +-------+               |
+               +-------------+ host1 +---------------+
+                        eth0 +-------+ eth1
+</PRE><P>In this configuration, there is a link between the two<BR>
+switches (ISL, or inter switch link), and multiple ports connecting to<BR>
+the outside world ("port3" on each switch).  There is no technical<BR>
+reason that this could not be extended to a third switch.
+</P>
+<P><A name="HA_Bonding_Mode_Selection_for_Multiple_Switch_Topology"><BR>
+</A></P><A name="HA_Bonding_Mode_Selection_for_Multiple_Switch_Topology"><H4> HA Bonding Mode Selection for Multiple Switch Topology</H4>
+<P></P></A><P></P>
+<P>In a topology such as the example above, the active-backup and<BR>
+broadcast modes are the only useful bonding modes when optimizing for<BR>
+availability; the other modes require all links to terminate on the<BR>
+same peer for them to behave rationally.
+</P>
+<DL>
+<DT> active-backup&nbsp;</DT>
+<DD> This is generally the preferred mode, particularly if the switches have an ISL and play together well.  If the network configuration is such that one switch is specifically a backup switch (e.g., has lower capacity, higher cost, etc), then the primary option can be used to insure that the preferred link is always used when it is available.<BR>
+</DD>
+<DT> broadcast&nbsp;</DT>
+<DD> This mode is really a special purpose mode, and is suitable only for very specific needs.  For example, if the two switches are not connected (no ISL), and the networks beyond them are totally independent.  In this case, if it is necessary for some specific one-way traffic to reach both independent networks, then the broadcast mode may be suitable.<BR>
+</DD>
+</DL>
+<P><A name="HA_Link_Monitoring_Selection_for_Multiple_Switch_Topology"><BR>
+</A></P><A name="HA_Link_Monitoring_Selection_for_Multiple_Switch_Topology"><H4> HA Link Monitoring Selection for Multiple Switch Topology</H4>
+<P></P></A><P></P>
+<P>The choice of link monitoring ultimately depends upon your<BR>
+switch.  If the switch can reliably fail ports in response to other<BR>
+failures, then either the MII or ARP monitors should work.  For<BR>
+example, in the above example, if the "port3" link fails at the remote<BR>
+end, the MII monitor has no direct means to detect this.  The ARP<BR>
+monitor could be configured with a target at the remote end of port3,<BR>
+thus detecting that failure without switch support.
+</P>
+<P>In general, however, in a multiple switch topology, the ARP<BR>
+monitor can provide a higher level of reliability in detecting end to<BR>
+end connectivity failures (which may be caused by the failure of any<BR>
+individual component to pass traffic for any reason).  Additionally,<BR>
+the ARP monitor should be configured with multiple targets (at least<BR>
+one for each switch in the network).  This will insure that,<BR>
+regardless of which switch is active, the ARP monitor has a suitable<BR>
+target to query.
+</P>
+<P><A name="Configuring_Bonding_for_Maximum_Throughput"><BR>
+</A></P><A name="Configuring_Bonding_for_Maximum_Throughput"><H2> Configuring Bonding for Maximum Throughput</H2>
+<P></P></A><BR>
+<A name="Maximizing_Throughput_in_a_Single_Switch_Topology"><BR>
+<H3>  Maximizing Throughput in a Single Switch Topology</H3>
+<P></P></A><P></P>
+<P>In a single switch configuration, the best method to maximize<BR>
+throughput depends upon the application and network environment.  The<BR>
+various load balancing modes each have strengths and weaknesses in<BR>
+different environments, as detailed below.
+</P>
+<P>For this discussion, we will break down the topologies into<BR>
+two categories.  Depending upon the destination of most traffic, we<BR>
+categorize them into either "gatewayed" or "local" configurations.
+</P>
+<P>In a gatewayed configuration, the "switch" is acting primarily<BR>
+as a router, and the majority of traffic passes through this router to<BR>
+other networks.  An example would be the following:
+</P>
+<P>
+</P>
+<PRE>    +----------+                     +----------+
+    |          |eth0            port1|          | to other networks
+    | Host A   +---------------------+ router   +-------------------&gt;
+    |          +---------------------+          | Hosts B and C are out
+    |          |eth1            port2|          | here somewhere
+    +----------+                     +----------+
+</PRE><P>The router may be a dedicated router device, or another host<BR>
+acting as a gateway.  For our discussion, the important point is that<BR>
+the majority of traffic from Host A will pass through the router to<BR>
+some other network before reaching its final destination.
+</P>
+<P>In a gatewayed network configuration, although Host A may<BR>
+communicate with many other systems, all of its traffic will be sent<BR>
+and received via one other peer on the local network, the router.
+</P>
+<P>Note that the case of two systems connected directly via<BR>
+multiple physical links is, for purposes of configuring bonding, the<BR>
+same as a gatewayed configuration.  In that case, it happens that all<BR>
+traffic is destined for the "gateway" itself, not some other network<BR>
+beyond the gateway.
+</P>
+<P>In a local configuration, the "switch" is acting primarily as<BR>
+a switch, and the majority of traffic passes through this switch to<BR>
+reach other stations on the same network.  An example would be the<BR>
+following:
+</P>
+<PRE>   +----------+            +----------+       +--------+
+   |          |eth0   port1|          +-------+ Host B |
+   |  Host A  +------------+  switch  |port3  +--------+
+   |          +------------+          |                  +--------+
+   |          |eth1   port2|          +------------------+ Host C |
+   +----------+            +----------+port4             +--------+
+</PRE><P>
+Again, the switch may be a dedicated switch device, or another<BR>
+host acting as a gateway.  For our discussion, the important point is<BR>
+that the majority of traffic from Host A is destined for other hosts<BR>
+on the same local network (Hosts B and C in the above example).
+</P>
+<P>In summary, in a gatewayed configuration, traffic to and from<BR>
+the bonded device will be to the same MAC level peer on the network<BR>
+(the gateway itself, i.e., the router), regardless of its final<BR>
+destination.  In a local configuration, traffic flows directly to and<BR>
+from the final destinations, thus, each destination (Host B, Host C)<BR>
+will be addressed directly by their individual MAC addresses.
+</P>
+<P>This distinction between a gatewayed and a local network<BR>
+configuration is important because many of the load balancing modes<BR>
+available use the MAC addresses of the local network source and<BR>
+destination to make load balancing decisions.  The behavior of each<BR>
+mode is described below.
+</P>
+<P><A name="MT_Bonding_Mode_Selection_for_Single_Switch_Topology"><BR>
+</A></P><A name="MT_Bonding_Mode_Selection_for_Single_Switch_Topology"><H4> MT Bonding Mode Selection for Single Switch Topology</H4>
+<P></P></A><P></P>
+<P>This configuration is the easiest to set up and to understand,<BR>
+although you will have to decide which bonding mode best suits your<BR>
+needs.  The trade offs for each mode are detailed below:
+</P>
+<DL>
+<DT> balance-rr&nbsp;</DT>
+<DD> This mode is the only mode that will permit a single TCP/IP connection to stripe traffic across multiple interfaces. It is therefore the only mode that will allow a single TCP/IP stream to utilize more than one interface's worth of throughput.  This comes at a cost, however: the striping often results in peer systems receiving packets out<BR>
+</DD>
+</DL>
+<P>of order, causing TCP/IP's congestion control system to kick in, often by retransmitting segments.
+</P>
+<P>It is possible to adjust TCP/IP's congestion limits by altering the net.ipv4.tcp_reordering sysctl parameter.  The<BR>
+usual default value is 3, and the maximum useful value is 127. For a four interface balance-rr bond, expect that a single TCP/IP stream will utilize no more than approximately 2.3 interface's worth of throughput, even after adjusting tcp_reordering.
+</P>
+<P>Note that this out of order delivery occurs when both the sending and receiving systems are utilizing a multiple interface bond.  Consider a configuration in which a balance-rr bond feeds into a single higher capacity network channel (e.g., multiple 100Mb/sec ethernets feeding a single gigabit ethernet via an etherchannel capable switch).  In this configuration, traffic sent from the multiple 100Mb devices to a destination connected to the gigabit device will not see packets out of order.  However, traffic sent from the gigabit device to the multiple 100Mb devices may or may not see traffic out of order, depending upon the balance policy of the switch.  Many switches do not support any modes that stripe traffic (instead choosing a port based upon IP or MAC level<BR>
+addresses); for those devices, traffic flowing from the gigabit device to the many 100Mb devices will only utilize one interface.
+</P>
+<P>If you are utilizing protocols other than TCP/IP, UDP for example, and your application can tolerate out of order delivery, then this mode can allow for single stream datagram performance that scales near linearly as interfaces are added to the bond.
+</P>
+<P>This mode requires the switch to have the appropriate ports configured for "etherchannel" or "trunking." active-backup: There is not much advantage in this network topology to the active-backup mode, as the inactive backup devices are all<BR>
+connected to the same peer as the primary.  In this case, a load balancing mode (with link monitoring) will provide the<BR>
+same level of network availability, but with increased available bandwidth.  On the plus side, active-backup mode 	does not require any configuration of the switch, so it may 	have value if the hardware available does not support any of 	the load balance modes.
+</P>
+<DL>
+<DT> balance-xor&nbsp;</DT>
+<DD> This mode will limit traffic such that packets destined for specific peers will always be sent over the same interface.  Since the destination is determined by the MAC addresses involved, this mode works best in a "local" network configuration (as described above), with destinations all on the same local network.  This mode is likely to be suboptimal if all your traffic is passed through a single router (i.e., a "gatewayed" network configuration, as described above). As with balance-rr, the switch ports need to be configured for "etherchannel" or "trunking."<BR>
+</DD>
+<DT> broadcast&nbsp;</DT>
+<DD> Like active-backup, there is not much advantage to this mode in this type of network topology.<BR>
+</DD>
+<DT>  802.3ad&nbsp;</DT>
+<DD> This mode can be a good choice for this type of network topology.  The 802.3ad mode is an IEEE standard, so all peers that implement 802.3ad should interoperate well.  The 802.3ad protocol includes automatic configuration of the aggregates, so minimal manual configuration of the switch is needed (typically only to designate that some set of devices is available for 802.3ad).  The 802.3ad standard also mandates that frames be delivered in order (within certain limits), so in general single connections will not see misordering of packets.  The 802.3ad mode does have some drawbacks: the standard mandates that all devices in the aggregate operate at the same speed and duplex.  Also, as with all bonding load balance modes other than balance-rr, no single connection will be able to utilize more than a single interface's worth of bandwidth.<BR>
+</DD>
+</DL>
+<P>Additionally, the linux bonding 802.3ad implementation distributes traffic by peer (using an XOR of MAC addresses),<BR>
+so in a "gatewayed" configuration, all outgoing traffic will generally use the same device.  Incoming traffic may also end<BR>
+up on a single device, but that is dependent upon the balancing policy of the peer's 8023.ad implementation.  In a<BR>
+"local" configuration, traffic will be distributed across the devices in the bond.
+</P>
+<P>Finally, the 802.3ad mode mandates the use of the MII monitor, therefore, the ARP monitor is not available in this mode.
+</P>
+<DL>
+<DT> balance-tlb&nbsp;</DT>
+<DD> The balance-tlb mode balances outgoing traffic by peer. Since the balancing is done according to MAC address, in  	"gatewayed" configuration (as described above), this mode will send all traffic across a single device.  However, in a "local" network configuration, this mode balances multiple local network peers across devices in a vaguely intelligent manner (not a simple XOR as in balance-xor or 802.3ad mode), so that mathematically unlucky MAC addresses (i.e., ones that XOR to the same value) will not all "bunch up" on a single interface.<BR>
+</DD>
+</DL>
+<P>Unlike 802.3ad, interfaces may be of differing speeds, and no<BR>
+special switch configuration is required.  On the down side,<BR>
+in this mode all incoming traffic arrives over a single<BR>
+interface, this mode requires certain ethtool support in the<BR>
+network device driver of the slave interfaces, and the ARP<BR>
+monitor is not available.
+</P>
+<DL>
+<DT> balance-alb&nbsp;</DT>
+<DD> This mode is everything that balance-tlb is, and more. It has all of the features (and restrictions) of balance-tlb, and will also balance incoming traffic from local network peers (as described in the Bonding Module Options section, above).<BR>
+</DD>
+</DL>
+<P>The only additional down side to this mode is that the network<BR>
+device driver must support changing the hardware address while<BR>
+the device is open.
+</P>
+<P><A name="MT_Link_Monitoring_for_Single_Switch_Topology"><BR>
+</A></P><A name="MT_Link_Monitoring_for_Single_Switch_Topology"><H4> MT Link Monitoring for Single Switch Topology</H4>
+<P></P></A><P></P>
+<P>The choice of link monitoring may largely depend upon which<BR>
+mode you choose to use.  The more advanced load balancing modes do not<BR>
+support the use of the ARP monitor, and are thus restricted to using<BR>
+the MII monitor (which does not provide as high a level of end to end<BR>
+assurance as the ARP monitor).
+</P>
+<P><A name="Maximum_Throughput_in_a_Multiple_Switch_Topology"><BR>
+</A></P><A name="Maximum_Throughput_in_a_Multiple_Switch_Topology"><H3> Maximum Throughput in a Multiple Switch Topology</H3>
+<P></P></A><P></P>
+<P>Multiple switches may be utilized to optimize for throughput<BR>
+when they are configured in parallel as part of an isolated network<BR>
+between two or more systems, for example:
+</P>
+<PRE>                      +-----------+
+                      |  Host A   | 
+                      +-+---+---+-+
+                        |   |   |
+               +--------+   |   +---------+
+               |            |             |
+        +------+---+  +-----+----+  +-----+----+
+        | Switch A |  | Switch B |  | Switch C |
+        +------+---+  +-----+----+  +-----+----+
+               |            |             |
+               +--------+   |   +---------+
+                        |   |   |
+                      +-+---+---+-+
+                      |  Host B   | 
+                      +-----------+
+</PRE><P>In this configuration, the switches are isolated from one<BR>
+another.  One reason to employ a topology such as this is for an<BR>
+isolated network with many hosts (a cluster configured for high<BR>
+performance, for example), using multiple smaller switches can be more<BR>
+cost effective than a single larger switch, e.g., on a network with 24<BR>
+hosts, three 24 port switches can be significantly less expensive than<BR>
+a single 72 port switch.
+</P>
+<P>If access beyond the network is required, an individual host<BR>
+can be equipped with an additional network device connected to an<BR>
+external network; this host then additionally acts as a gateway.
+</P>
+<P><A name="MT_Bonding_Mode_Selection_for_Multiple_Switch_Topology"><BR>
+</A></P><A name="MT_Bonding_Mode_Selection_for_Multiple_Switch_Topology"><H4> MT Bonding Mode Selection for Multiple Switch Topology</H4>
+<P></P></A><P></P>
+<P>In actual practice, the bonding mode typically employed in<BR>
+configurations of this type is balance-rr.  Historically, in this<BR>
+network configuration, the usual caveats about out of order packet<BR>
+delivery are mitigated by the use of network adapters that do not do<BR>
+any kind of packet coalescing (via the use of NAPI, or because the<BR>
+device itself does not generate interrupts until some number of<BR>
+packets has arrived).  When employed in this fashion, the balance-rr<BR>
+mode allows individual connections between two hosts to effectively<BR>
+utilize greater than one interface's bandwidth.
+</P>
+<P><A name="MT_Link_Monitoring_for_Multiple_Switch_Topology"><BR>
+</A></P><A name="MT_Link_Monitoring_for_Multiple_Switch_Topology"><H4> MT Link Monitoring for Multiple Switch Topology</H4>
+<P></P></A><P></P>
+<P>Again, in actual practice, the MII monitor is most often used<BR>
+in this configuration, as performance is given preference over<BR>
+availability.  The ARP monitor will function in this topology, but its<BR>
+advantages over the MII monitor are mitigated by the volume of probes<BR>
+needed as the number of systems involved grows (remember that each<BR>
+host in the network is configured with bonding).
+</P>
+<P><A name="Switch_Behavior_Issues"><BR>
+</A></P><A name="Switch_Behavior_Issues"><H2> Switch Behavior Issues</H2>
+<P></P></A><BR>
+<A name="Link_Establishment_and_Failover_Delays"><BR>
+<H3>  Link Establishment and Failover Delays</H3>
+<P></P></A><P></P>
+<P>Some switches exhibit undesirable behavior with regard to the<BR>
+timing of link up and down reporting by the switch.
+</P>
+<P>First, when a link comes up, some switches may indicate that<BR>
+the link is up (carrier available), but not pass traffic over the<BR>
+interface for some period of time.  This delay is typically due to<BR>
+some type of autonegotiation or routing protocol, but may also occur<BR>
+during switch initialization (e.g., during recovery after a switch<BR>
+failure).  If you find this to be a problem, specify an appropriate<BR>
+value to the updelay bonding module option to delay the use of the<BR>
+relevant interface(s).
+</P>
+<P>Second, some switches may "bounce" the link state one or more<BR>
+times while a link is changing state.  This occurs most commonly while<BR>
+the switch is initializing.  Again, an appropriate updelay value may<BR>
+help.
+</P>
+<P>Note that when a bonding interface has no active links, the<BR>
+driver will immediately reuse the first link that goes up, even if the<BR>
+updelay parameter has been specified (the updelay is ignored in this<BR>
+case).  If there are slave interfaces waiting for the updelay timeout<BR>
+to expire, the interface that first went into that state will be<BR>
+immediately reused.  This reduces down time of the network if the<BR>
+value of updelay has been overestimated, and since this occurs only in<BR>
+cases with no connectivity, there is no additional penalty for<BR>
+ignoring the updelay.
+</P>
+<P>In addition to the concerns about switch timings, if your<BR>
+switches take a long time to go into backup mode, it may be desirable<BR>
+to not activate a backup interface immediately after a link goes down.<BR>
+Failover may be delayed via the downdelay bonding module option.
+</P>
+<P><A name="Duplicated_Incoming_Packets"><BR>
+</A></P><A name="Duplicated_Incoming_Packets"><H3> Duplicated Incoming Packets</H3>
+<P></P></A><P></P>
+<P>It is not uncommon to observe a short burst of duplicated<BR>
+traffic when the bonding device is first used, or after it has been<BR>
+idle for some period of time.  This is most easily observed by issuing<BR>
+a "ping" to some other host on the network, and noticing that the<BR>
+output from ping flags duplicates (typically one per slave).
+</P>
+<P>For example, on a bond in active-backup mode with five slaves<BR>
+all connected to one switch, the output may appear as follows:
+</P>
+<PRE> # ping -n 10.0.4.2
+ PING 10.0.4.2 (10.0.4.2) from 10.0.3.10&nbsp;: 56(84) bytes of data.
+ 64 bytes from 10.0.4.2: icmp_seq=1 ttl=64 time=13.7 ms
+ 64 bytes from 10.0.4.2: icmp_seq=1 ttl=64 time=13.8 ms (DUP!)
+ 64 bytes from 10.0.4.2: icmp_seq=1 ttl=64 time=13.8 ms (DUP!)
+ 64 bytes from 10.0.4.2: icmp_seq=1 ttl=64 time=13.8 ms (DUP!)
+ 64 bytes from 10.0.4.2: icmp_seq=1 ttl=64 time=13.8 ms (DUP!)
+ 64 bytes from 10.0.4.2: icmp_seq=2 ttl=64 time=0.216 ms
+ 64 bytes from 10.0.4.2: icmp_seq=3 ttl=64 time=0.267 ms
+ 64 bytes from 10.0.4.2: icmp_seq=4 ttl=64 time=0.222 ms
+</PRE><P>This is not due to an error in the bonding driver, rather, it<BR>
+is a side effect of how many switches update their MAC forwarding<BR>
+tables.  Initially, the switch does not associate the MAC address in<BR>
+the packet with a particular switch port, and so it may send the<BR>
+traffic to all ports until its MAC forwarding table is updated.  Since<BR>
+the interfaces attached to the bond may occupy multiple ports on a<BR>
+single switch, when the switch (temporarily) floods the traffic to all<BR>
+ports, the bond device receives multiple copies of the same packet<BR>
+(one per slave device).
+</P>
+<P>The duplicated packet behavior is switch dependent, some<BR>
+switches exhibit this, and some do not.  On switches that display this<BR>
+behavior, it can be induced by clearing the MAC forwarding table (on<BR>
+most Cisco switches, the privileged command "clear mac address-table<BR>
+dynamic" will accomplish this).
+</P>
+<P><A name="Hardware_Specific_Considerations"><BR>
+</A></P><A name="Hardware_Specific_Considerations"><H2> Hardware Specific Considerations</H2>
+<P></P></A><P></P>
+<P>This section contains additional information for configuring<BR>
+bonding on specific hardware platforms, or for interfacing bonding<BR>
+with particular switches or other devices.
+</P>
+<P><A name="IBM_BladeCenter"><BR>
+</A></P><A name="IBM_BladeCenter"><H3> IBM BladeCenter</H3>
+<P></P></A><P></P>
+<P>This applies to the JS20 and similar systems.
+</P>
+<P>On the JS20 blades, the bonding driver supports only<BR>
+balance-rr, active-backup, balance-tlb and balance-alb modes.  This is<BR>
+largely due to the network topology inside the BladeCenter, detailed<BR>
+below.
+</P>
+<P><A name="JS20_network_adapter_information"><BR>
+</A></P><A name="JS20_network_adapter_information"><H3> JS20 network adapter information</H3>
+<P></P></A><P></P>
+<P>All JS20s come with two Broadcom Gigabit Ethernet ports<BR>
+integrated on the planar (that's "motherboard" in IBM-speak).  In the<BR>
+BladeCenter chassis, the eth0 port of all JS20 blades is hard wired to<BR>
+I/O Module #1; similarly, all eth1 ports are wired to I/O Module #2.<BR>
+An add-on Broadcom daughter card can be installed on a JS20 to provide<BR>
+two more Gigabit Ethernet ports.  These ports, eth2 and eth3, are<BR>
+wired to I/O Modules 3 and 4, respectively.
+</P>
+<P>Each I/O Module may contain either a switch or a passthrough<BR>
+module (which allows ports to be directly connected to an external<BR>
+switch).  Some bonding modes require a specific BladeCenter internal<BR>
+network topology in order to function; these are detailed below.
+</P>
+<P>Additional BladeCenter-specific networking information can be<BR>
+found in three IBM Redbooks (<A href="http://www.ibm.com/redbooks" title="www.ibm.com/redbooks">www.ibm.com/redbooks</A>):
+</P>
+<P>"IBM eServer BladeCenter Networking Options"<BR>
+"IBM eServer BladeCenter Layer 2-7 Network Switching"<BR>
+"Cisco Systems Intelligent Gigabit Ethernet Switch Module for the IBM BladeCenter"
+</P>
+<P><A name="BladeCenter_networking_configuration"><BR>
+</A></P><A name="BladeCenter_networking_configuration"><H3> BladeCenter networking configuration</H3>
+<P></P></A><P></P>
+<P>Because a BladeCenter can be configured in a very large number<BR>
+of ways, this discussion will be confined to describing basic<BR>
+configurations.
+</P>
+<P>Normally, Ethernet Switch Modules (ESMs) are used in I/O<BR>
+modules 1 and 2.  In this configuration, the eth0 and eth1 ports of a<BR>
+JS20 will be connected to different internal switches (in the<BR>
+respective I/O modules).
+</P>
+<P>A passthrough module (OPM or CPM, optical or copper,<BR>
+passthrough module) connects the I/O module directly to an external<BR>
+switch.  By using PMs in I/O module #1 and #2, the eth0 and eth1<BR>
+interfaces of a JS20 can be redirected to the outside world and<BR>
+connected to a common external switch.
+</P>
+<P>Depending upon the mix of ESMs and PMs, the network will<BR>
+appear to bonding as either a single switch topology (all PMs) or as a<BR>
+multiple switch topology (one or more ESMs, zero or more PMs).  It is<BR>
+also possible to connect ESMs together, resulting in a configuration<BR>
+much like the example in "High Availability in a Multiple Switch<BR>
+Topology," above.
+</P>
+<P><A name="Requirements_for_specific_modes"><BR>
+</A></P><A name="Requirements_for_specific_modes"><H3> Requirements for specific modes</H3>
+<P></P></A><P></P>
+<P>The balance-rr mode requires the use of passthrough modules<BR>
+for devices in the bond, all connected to an common external switch.<BR>
+That switch must be configured for "etherchannel" or "trunking" on the<BR>
+appropriate ports, as is usual for balance-rr.
+</P>
+<P>The balance-alb and balance-tlb modes will function with<BR>
+either switch modules or passthrough modules (or a mix).  The only<BR>
+specific requirement for these modes is that all network interfaces<BR>
+must be able to reach all destinations for traffic sent over the<BR>
+bonding device (i.e., the network must converge at some point outside<BR>
+the BladeCenter).
+</P>
+<P>The active-backup mode has no additional requirements.
+</P>
+<P><A name="Link_monitoring_issues"><BR>
+</A></P><A name="Link_monitoring_issues"><H3> Link monitoring issues</H3>
+<P></P></A><P></P>
+<P>When an Ethernet Switch Module is in place, only the ARP<BR>
+monitor will reliably detect link loss to an external switch.  This is<BR>
+nothing unusual, but examination of the BladeCenter cabinet would<BR>
+suggest that the "external" network ports are the ethernet ports for<BR>
+the system, when it fact there is a switch between these "external"<BR>
+ports and the devices on the JS20 system itself.  The MII monitor is<BR>
+only able to detect link failures between the ESM and the JS20 system.
+</P>
+<P>When a passthrough module is in place, the MII monitor does<BR>
+detect failures to the "external" port, which is then directly<BR>
+connected to the JS20 system.
+</P>
+<P>Note: There is a special feature (Trunk Failover) available on some of the IBM switch modules (the Cisco IGESM for one) that will provide feedback to the internal connections, such that a failure on the external uplinks can be relayed back to the internal server facing links. This allows the use of MII monitor to detect an external uplink failure. Details on its use and configuration can be found in section 7.7 of the IBM Redpaper at:<BR>
+<A href="http://www.redbooks.ibm.com/abstracts/redp3869.html" class="external free" title="http://www.redbooks.ibm.com/abstracts/redp3869.html" rel="nofollow">http://www.redbooks.ibm.com/abstracts/redp3869.html</A>
+</P>
+<P><A name="Other_concerns"><BR>
+</A></P><A name="Other_concerns"><H3> Other concerns</H3>
+<P></P></A><P></P>
+<P>The Serial Over LAN (SoL) link is established over the primary<BR>
+ethernet (eth0) only, therefore, any loss of link to eth0 will result<BR>
+in losing your SoL connection.  It will not fail over with other<BR>
+network traffic, as the SoL system is beyond the control of the<BR>
+bonding driver.
+</P>
+<P>It may be desirable to disable spanning tree on the switch<BR>
+(either the internal Ethernet Switch Module, or an external switch) to<BR>
+avoid fail-over delay issues when using bonding.
+</P>
+<P><A name="Frequently_Asked_Questions"><BR>
+</A></P><A name="Frequently_Asked_Questions"><H2> Frequently Asked Questions</H2>
+<P></P></A><BR>
+<A name="Is_it_SMP_safe.3F"></A><BR>
+<H3> Is it SMP safe?</H3>
+<P></P><P>Yes. The old 2.0.xx channel bonding patch was not SMP safe.<BR>
+The new driver was designed to be SMP safe from the start.
+</P>
+<P><A name="What_type_of_cards_will_work_with_it.3F"></A><BR>
+</P><H3> What type of cards will work with it?</H3>
+<P></P><P>Any Ethernet type cards (you can even mix cards - a Intel<BR>
+EtherExpress PRO/100 and a 3com 3c905b, for example).  For most modes,<BR>
+devices need not be of the same speed.
+</P>
+<P><A name="How_many_bonding_devices_can_I_have.3F"></A><BR>
+</P><H3> How many bonding devices can I have?</H3>
+<P></P><P>There is no limit.
+</P>
+<P><A name="How_many_slaves_can_a_bonding_device_have.3F"></A><BR>
+</P><H3> How many slaves can a bonding device have?</H3>
+<P></P><P>This is limited only by the number of network interfaces Linux<BR>
+supports and/or the number of network cards you can place in your<BR>
+system.
+</P>
+<P><A name="What_happens_when_a_slave_link_dies.3F"></A><BR>
+</P><H3> What happens when a slave link dies?</H3>
+<P></P><P>If link monitoring is enabled, then the failing device will be<BR>
+disabled.  The active-backup mode will fail over to a backup link, and<BR>
+other modes will ignore the failed link.  The link will continue to be<BR>
+monitored, and should it recover, it will rejoin the bond (in whatever<BR>
+manner is appropriate for the mode). See the sections on High<BR>
+Availability and the documentation for each mode for additional<BR>
+information.
+</P>
+<P>Link monitoring can be enabled via either the miimon or<BR>
+arp_interval parameters (described in the module parameters section,<BR>
+above).  In general, miimon monitors the carrier state as sensed by<BR>
+the underlying network device, and the arp monitor (arp_interval)<BR>
+monitors connectivity to another host on the local network.
+</P>
+<P>If no link monitoring is configured, the bonding driver will<BR>
+be unable to detect link failures, and will assume that all links are<BR>
+always available.  This will likely result in lost packets, and a<BR>
+resulting degradation of performance.  The precise performance loss<BR>
+depends upon the bonding mode and network configuration.
+</P>
+<P><A name="Can_bonding_be_used_for_High_Availability.3F"></A><BR>
+</P><H2> Can bonding be used for High Availability?</H2>
+<P></P><P>Yes.  See the section on High Availability for details.
+</P>
+<P><A name="Which_switches.2Fsystems_does_it_work_with.3F"></A><BR>
+</P><H2> Which switches/systems does it work with?</H2>
+<P></P><P>The full answer to this depends upon the desired mode.
+</P>
+<P>In the basic balance modes (balance-rr and balance-xor), it<BR>
+works with any system that supports etherchannel (also called<BR>
+trunking).  Most managed switches currently available have such<BR>
+support, and many unmanaged switches as well.
+</P>
+<P>The advanced balance modes (balance-tlb and balance-alb) do<BR>
+not have special switch requirements, but do need device drivers that<BR>
+support specific features (described in the appropriate section under<BR>
+module parameters, above).
+</P>
+<P>In 802.3ad mode, it works with with systems that support IEEE<BR>
+802.3ad Dynamic Link Aggregation.  Most managed and many unmanaged<BR>
+switches currently available support 802.3ad.
+</P>
+<P>The active-backup mode should work with any Layer-II switch.
+</P>
+<P><A name="Where_does_a_bonding_device_get_its_MAC_address_from.3F"></A><BR>
+</P><H3> Where does a bonding device get its MAC address from?</H3>
+<P></P><P>If not explicitly configured (with ifconfig or ip link), the<BR>
+MAC address of the bonding device is taken from its first slave<BR>
+device.  This MAC address is then passed to all following slaves and<BR>
+remains persistent (even if the first slave is removed) until the<BR>
+bonding device is brought down or reconfigured.
+</P>
+<P>If you wish to change the MAC address, you can set it with<BR>
+ifconfig or ip link:
+</P>
+<PRE> # ifconfig bond0 hw ether 00:11:22:33:44:55
+ # ip link set bond0 address 66:77:88:99:aa:bb
+</PRE><P>The MAC address can be also changed by bringing down/up the<BR>
+device and then changing its slaves (or their order):
+</P>
+<PRE> # ifconfig bond0 down&nbsp;; modprobe -r bonding
+ # ifconfig bond0 .... up
+ # ifenslave bond0 eth...
+</PRE><P>This method will automatically take the address from the next<BR>
+slave that is added.
+</P>
+<P>To restore your slaves' MAC addresses, you need to detach them<BR>
+from the bond (`ifenslave -d bond0 eth0'). The bonding driver will<BR>
+then restore the MAC addresses that the slaves had before they were<BR>
+enslaved.
+</P>
+<P><A name="Resources_and_Links"><BR>
+</A></P><A name="Resources_and_Links"><H2> Resources and Links</H2>
+<P></P></A><P></P>
+<P>The latest version of the bonding driver can be found in the latest<BR>
+version of the linux kernel, found on <A href="http://kernel.org/" class="external free" title="http://kernel.org" rel="nofollow">http://kernel.org</A>.
+</P>
+<P>The latest version of this document can be found in either the latest<BR>
+kernel source (named Documentation/networking/bonding.txt), or on the<BR>
+<A href="http://www.sourceforge.net/projects/bonding" class="external text" title="http://www.sourceforge.net/projects/bonding" rel="nofollow">bonding site</A>.
+</P>
+<P>Discussions regarding the bonding driver take place primarily on the<BR>
+<A href="mailto:bonding-devel@lists.sourceforge.net" class="external text" title="mailto:bonding-devel@lists.sourceforge.net" rel="nofollow">bonding-devel mailing list</A>, hosted at sourceforge.net.  If you have questions or problems, post them to the list.<BR>
+The administrative interface (to subscribe or unsubscribe) can be found at:<BR>
+<A href="https://lists.sourceforge.net/lists/listinfo/bonding-devel" class="external free" title="https://lists.sourceforge.net/lists/listinfo/bonding-devel" rel="nofollow">https://lists.sourceforge.net/lists/listinfo/bonding-devel</A>
+</P>
+<P>Donald Becker's Ethernet Drivers and diag programs may be found at&nbsp;: <A href="http://www.scyld.com/network/" class="external free" title="http://www.scyld.com/network/" rel="nofollow">http://www.scyld.com/network/</A><BR>
+You will also find a lot of information regarding Ethernet, NWay, MII,<BR>
+etc. at <A href="http://www.scyld.com/" title="www.scyld.com">www.scyld.com</A>.
+</P>
+<P><A name="History"><BR>
+</A></P><A name="History"><H2> History</H2>
+<P></P></A><P></P>
+<P>This page is based on the kernel/Documentation/networking/bonding.txt.
+</P>
+<P>Initial release&nbsp;: Thomas Davis &lt;tadavis at lbl.gov&gt;<BR>
+<BR>Corrections, HA extensions&nbsp;: 2000/10/03-15&nbsp;:
+</P>
+<UL>
+<LI> Willy Tarreau &lt;willy at meta-x.org&gt;
+</LI>
+<LI> Constantine Gavrilov &lt;const-g at xpert.com&gt;
+</LI>
+<LI> Chad N. Tindel &lt;ctindel at ieee dot org&gt;
+</LI>
+<LI> Janice Girouard &lt;girouard at us dot ibm dot com&gt;
+</LI>
+<LI> Jay Vosburgh &lt;fubar at us dot ibm dot com&gt;
+</LI>
+</UL>
+  </DIV>
+  
+  <DIV class="groups">Groups: <DIV class="links"><UL class="links"><LI class="og_5066 first last"><A href="http://www.linuxfoundation.org/collaborate/workgroups/networking/group">Networking</A></LI>
+</UL></DIV></DIV>
+  <UL class="links inline"><LI class="addthis first"><SPAN>
+      <A href="http://www.addthis.com/bookmark.php" class="addthis" onmouseover="return addthis_open(this, &#39;&#39;, &#39;[URL]&#39;, &#39;[TITLE]&#39;)" onmouseout="addthis_close()" onclick="return addthis_sendto()">Share</A></SPAN></LI>
+<LI class="print_html"><A href="http://www.linuxfoundation.org/print/5270" title="Display a printer-friendly version of this page." class="print-page" rel="nofollow">Print</A></LI>
+<LI class="print_mail last"><A href="http://www.linuxfoundation.org/printmail/5270" title="Send this page by e-mail." class="print-mail" rel="nofollow">Email</A></LI>
+</UL></DIV>        </DIV>
+
+        
+        
+      </DIV></DIV> <!-- /#content-inner, /#content -->
+
+              <DIV id="navbar"><DIV id="navbar-inner" class="region region-navbar">
+
+          <A name="navigation" id="navigation"></A>
+
+          
+                      <DIV id="primary">
+              <UL class="links"><LI class="menu-480 first"><A href="http://www.linuxfoundation.org/" title="">Home</A></LI>
+<LI class="menu-4575"><A href="http://www.linuxfoundation.org/about" title="About Us">About Us</A></LI>
+<LI class="menu-475"><A href="http://www.linuxfoundation.org/news-media" title="News &amp; Media">News &amp; Media</A></LI>
+<LI class="menu-477"><A href="http://www.linuxfoundation.org/programs" title="Programs">Programs</A></LI>
+<LI class="menu-1131"><A href="http://www.linuxfoundation.org/collaborate" title="">Collaborate</A></LI>
+<LI class="menu-1991"><A href="http://www.linuxfoundation.org/events" title="Events">Events</A></LI>
+<LI class="menu-5458"><A href="http://www.linuxfoundation.org/linux-training" title="Linux Training: Train With The Experts">Training</A></LI>
+<LI class="menu-7015 last"><A href="http://www.linuxfoundation.org/services" title="Linux Foundation Services">Services</A></LI>
+</UL>              <DIV class="divider">&nbsp;</DIV>
+            </DIV> <!-- /#primary -->
+          
+          <DIV id="user-navigation"><DIV class="breadcrumb"><A href="http://www.linuxfoundation.org/">Home</A> › bonding</DIV><DIV id="block-os_custom-0" class="block block-os_custom region-odd odd region-count-1 count-7"><DIV class="block-inner">
+
+  
+  <DIV class="content">
+    <DIV class="item-list"><UL class="links user-navigation"><LI class="first"><A href="http://www.linuxfoundation.org/user?destination=node%2F5270" class="user-navigation user-navigation-login">Login</A></LI>
+<LI class="last"><A href="http://www.linuxfoundation.org/user/register?destination=node%2F5270" class="user-navigation user-navigation-register">Register</A></LI>
+</UL></DIV>  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+<DIV class="divider">&nbsp;</DIV></DIV>
+        </DIV></DIV> <!-- /#navbar-inner, /#navbar -->
+      
+      
+              <DIV id="sidebar-right"><DIV id="sidebar-right-inner" class="region region-right">
+          <DIV id="block-search-0" class="block block-search region-odd odd region-count-1 count-1"><DIV class="block-inner">
+
+  
+  <DIV class="content">
+    <FORM action="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" accept-charset="UTF-8" method="post" id="search-block-form">
+<DIV><DIV class="container-inline">
+  <DIV class="form-item" id="edit-search-block-form-1-wrapper">
+ <LABEL for="edit-search-block-form-1">Search this site: </LABEL>
+ <INPUT type="text" maxlength="128" name="search_block_form" id="edit-search-block-form-1" size="15" value="" title="Enter the terms you wish to search for." class="form-text">
+</DIV>
+<INPUT type="submit" name="op" id="edit-submit" value="Search" class="form-submit">
+<INPUT type="hidden" name="form_build_id" id="form-ad6bf2f8cffbaad3839501d64bfe99bc" value="form-ad6bf2f8cffbaad3839501d64bfe99bc">
+<INPUT type="hidden" name="form_id" id="edit-search-block-form" value="search_block_form">
+</DIV>
+
+</DIV></FORM>
+  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+<DIV id="block-openads-0" class="block block-openads region-even even region-count-2 count-2"><DIV class="block-inner">
+
+  
+  <DIV class="content">
+    
+    <SCRIPT type="text/javascript"><!--
+      az_adjs(1, '1');
+    --></SCRIPT><SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/ajs.php"></SCRIPT><A href="http://ads.linuxfoundation.org/www/delivery/ck.php?oaparams=2__bannerid=160__zoneid=1__cb=2eee9ccf6a__oadest=http://training.linuxfoundation.org/component/registrationpro/?func=details&did=42" target="_blank"><IMG src="./bonding   The Linux Foundation_files/ai.php" width="300" height="250" alt="Register For Developing Linux Device Drivers Course" title="Register For Developing Linux Device Drivers Course" border="0"></A><DIV id="beacon_2eee9ccf6a" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><IMG src="./bonding   The Linux Foundation_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></DIV>
+  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+<DIV id="block-views-blogs-block_1" class="block block-views region-odd odd region-count-3 count-3"><DIV class="block-inner">
+
+      <H2 class="title">Recent Blog Posts</H2>
+  
+  <DIV class="content">
+    <DIV class="view view-blogs view-id-blogs view-display-id-block_1 view-dom-id-1">
+    
+  
+  
+      <DIV class="view-content">
+        <DIV class="views-row views-row-1 views-row-odd views-row-first">
+    <DIV class="blog-listing">
+  <DIV class="user-picture">
+    <DIV class="picture">
+  <IMG src="./bonding   The Linux Foundation_files/picture-28.jpg" alt="jzemlin&#39;s picture" title="jzemlin&#39;s picture" class="imagecache imagecache-user-small" width="44" height="37"></DIV>
+  </DIV>
+  <DIV class="views-field-title">
+    <A href="http://www.linuxfoundation.org/news-media/blogs/browse/2010/05/fragmentation-good-and-bad-linux" title="Fragmentation is Good and Bad for Linux" alt="Fragmentation is Good and Bad for Linux">Fragmentation is Good and Bad for Linux</A>  </DIV>
+  <DIV class="posted-date">
+    May 11, 2010  </DIV>
+</DIV>
+  </DIV>
+  <DIV class="views-row views-row-2 views-row-even">
+    <DIV class="blog-listing">
+  <DIV class="user-picture">
+    <DIV class="picture">
+  <IMG src="./bonding   The Linux Foundation_files/picture-3026.jpg" alt="jennifercloer&#39;s picture" title="jennifercloer&#39;s picture" class="imagecache imagecache-user-small" width="44" height="37"></DIV>
+  </DIV>
+  <DIV class="views-field-title">
+    <A href="http://www.linuxfoundation.org/news-media/blogs/browse/2010/05/people-who-support-linux" title="The People Who Support Linux" alt="The People Who Support Linux">The People Who Support Linux</A>  </DIV>
+  <DIV class="posted-date">
+    May 6, 2010  </DIV>
+</DIV>
+  </DIV>
+  <DIV class="views-row views-row-3 views-row-odd">
+    <DIV class="blog-listing">
+  <DIV class="user-picture">
+    <DIV class="picture">
+  <IMG src="./bonding   The Linux Foundation_files/picture-3026.jpg" alt="jennifercloer&#39;s picture" title="jennifercloer&#39;s picture" class="imagecache imagecache-user-small" width="44" height="37"></DIV>
+  </DIV>
+  <DIV class="views-field-title">
+    <A href="http://www.linuxfoundation.org/node/6222" title="Jon Corbet QA: Upstream Contributions Influence Direction of Linux Kernel" alt="Jon Corbet QA: Upstream Contributions Influence Direction of Linux Kernel">Jon Corbet QA: Upstream Contributions Influence Direction of Linux Kernel</A>  </DIV>
+  <DIV class="posted-date">
+    May 4, 2010  </DIV>
+</DIV>
+  </DIV>
+  <DIV class="views-row views-row-4 views-row-even">
+    <DIV class="blog-listing">
+  <DIV class="user-picture">
+    <DIV class="picture">
+  <IMG src="./bonding   The Linux Foundation_files/picture-3026.jpg" alt="jennifercloer&#39;s picture" title="jennifercloer&#39;s picture" class="imagecache imagecache-user-small" width="44" height="37"></DIV>
+  </DIV>
+  <DIV class="views-field-title">
+    <A href="http://www.linuxfoundation.org/node/6197" title="Linux.com T-shirt Design Contest Finalists Announced" alt="Linux.com T-shirt Design Contest Finalists Announced">Linux.com T-shirt Design Contest Finalists Announced</A>  </DIV>
+  <DIV class="posted-date">
+    April 26, 2010  </DIV>
+</DIV>
+  </DIV>
+  <DIV class="views-row views-row-5 views-row-odd">
+    <DIV class="blog-listing">
+  <DIV class="user-picture">
+    <DIV class="picture">
+  <IMG src="./bonding   The Linux Foundation_files/picture-16.jpg" alt="amanda&#39;s picture" title="amanda&#39;s picture" class="imagecache imagecache-user-small" width="44" height="37"></DIV>
+  </DIV>
+  <DIV class="views-field-title">
+    <A href="http://www.linuxfoundation.org/news-media/blogs/browse/2010/04/miss-collabsummit-now-you-can-see-what-you-missed" title="Miss CollabSummit? Now You Can See What You Missed" alt="Miss CollabSummit? Now You Can See What You Missed">Miss CollabSummit? Now You Can See What You Missed</A>  </DIV>
+  <DIV class="posted-date">
+    April 22, 2010  </DIV>
+</DIV>
+  </DIV>
+  <DIV class="views-row views-row-6 views-row-even views-row-last">
+    <DIV class="blog-listing">
+  <DIV class="user-picture">
+    <DIV class="picture">
+  <IMG src="./bonding   The Linux Foundation_files/picture-16.jpg" alt="amanda&#39;s picture" title="amanda&#39;s picture" class="imagecache imagecache-user-small" width="44" height="37"></DIV>
+  </DIV>
+  <DIV class="views-field-title">
+    <A href="http://www.linuxfoundation.org/news-media/blogs/browse/2010/04/announcing-2010-we%E2%80%99re-linux-video-winners" title="Announcing the 2010 We&rsquo;re Linux Video Winners" alt="Announcing the 2010 We&rsquo;re Linux Video Winners">Announcing the 2010 We’re Linux Video Winners</A>  </DIV>
+  <DIV class="posted-date">
+    April 19, 2010  </DIV>
+</DIV>
+  </DIV>
+    </DIV>
+  
+  
+  
+      
+<DIV class="more-link">
+  <A href="http://www.linuxfoundation.org/news-media/blogs/browse-blogs">
+    more  </A>
+</DIV>
+  
+  
+      <DIV class="feed-icon">
+      <A href="http://www.linuxfoundation.org/news-media/blogs/browse/rss.xml" class="feed-icon"><IMG src="./bonding   The Linux Foundation_files/feed.png" alt="Syndicate content" title="Browse Blogs" width="16" height="16"></A>    </DIV>
+  
+</DIV>   </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+<DIV id="block-block-13" class="block block-block region-even even region-count-4 count-4"><DIV class="block-inner">
+
+  
+  <DIV class="content">
+    <P>
+	<A href="http://www.linuxfoundation.org/about/join/individual"><IMG alt="Become an Individual Member" src="./bonding   The Linux Foundation_files/block_ind300x65.jpg" title="Become an Individual Member"></A></P>
+  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+<DIV id="block-block-11" class="block block-block region-odd odd region-count-5 count-5"><DIV class="block-inner">
+
+      <H2 class="title">Member Spotlight</H2>
+  
+  <DIV class="content">
+    <!--/* OpenX Javascript Tag v2.6.3 */-->
+
+<!--/*
+  * The backup image section of this tag has been generated for use on a
+  * non-SSL page. If this tag is to be placed on an SSL page, change the
+  *   'http://ads.linuxfoundation.org/www/delivery/...'
+  * to
+  *   'https://ads.linuxfoundation.org/www/delivery/...'
+  *
+  * This noscript section of this tag only shows image banners. There
+  * is no width or height in these banners, so if you want these tags to
+  * allocate space for the ad before it shows, you will need to add this
+  * information to the <img> tag.
+  *
+  * If you do not want to deal with the intricities of the noscript
+  * section, delete the tag (from <noscript>... to </noscript>). On
+  * average, the noscript tag is called from less than 1% of internet
+  * users.
+  */-->
+
+<SCRIPT type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://ads.linuxfoundation.org/www/delivery/ajs.php':'http://ads.linuxfoundation.org/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=4");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></SCRIPT><SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/ajs(1).php"></SCRIPT><A href="http://ads.linuxfoundation.org/www/delivery/ck.php?oaparams=2__bannerid=18__zoneid=4__cb=4baabb157f__oadest=http://www.linuxfoundation.org/about/members" target="_blank"><IMG src="./bonding   The Linux Foundation_files/ai(1).php" width="300" height="150" alt="Gold Members - NetApp &amp; Nokia" title="Gold Members - NetApp &amp; Nokia" border="0"></A><DIV id="beacon_4baabb157f" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><IMG src="./bonding   The Linux Foundation_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></DIV>
+<NOSCRIPT></NOSCRIPT>  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+<DIV id="block-block-12" class="block block-block region-even even region-count-6 count-6"><DIV class="block-inner">
+
+      <H2 class="title">Stay Connected</H2>
+  
+  <DIV class="content">
+    <P><IMG width="16" height="16" align="absmiddle" src="./bonding   The Linux Foundation_files/icn_join.jpg" alt="Linux Foundation Icon">&nbsp;<A target="_blank" href="http://www.linuxfoundation.org/about/join">Join the Linux Foundation</A><BR>
+<IMG width="16" height="16" border="0" align="absmiddle" alt="" src="./bonding   The Linux Foundation_files/icn_video.png"> <A target="_blank" href="http://video.linuxfoundation.org/">Linux Foundation Video</A><BR>
+<IMG width="16" height="16" border="0" align="absmiddle" alt="" src="./bonding   The Linux Foundation_files/icn_newsletter.jpg"> <A href="https://lists.linux-foundation.org/mailman/listinfo/lf-announce">Linux Foundation Newsletter</A><BR>
+<IMG width="16" height="16" border="0" align="absmiddle" alt="" src="./bonding   The Linux Foundation_files/icn_twitter.png"> <A href="http://twitter.com/linuxfoundation">Follow us on Twitter</A><BR>
+<IMG width="16" height="16" border="0" align="absmiddle" alt="" src="./bonding   The Linux Foundation_files/icn_facebook.png"> <A href="http://www.facebook.com/pages/The-Linux-Foundation/41911143546"><SPAN class="list-link-2 facebook">Linux Foundation Group on Facebook</SPAN></A><BR>
+<IMG width="16" height="16" border="0" align="absmiddle" alt="" src="./bonding   The Linux Foundation_files/icn_gcal.png"> <A href="http://www.linuxfoundation.org/events/calendar">Linux Foundation Public Calendar</A><BR>
+<IMG width="16" height="16" border="0" align="absmiddle" alt="" src="./bonding   The Linux Foundation_files/icn_linkedin.png"> <A href="http://www.linkedin.com/groups?gid=48682">Linux Foundation LinkedIn Group</A></P>
+  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+        </DIV></DIV> <!-- /#sidebar-right-inner, /#sidebar-right -->
+      
+    </DIV></DIV> <!-- /#main-inner, /#main -->
+
+          <DIV id="footer"><DIV id="footer-inner" class="region region-footer">
+
+        <DIV id="block-block-1" class="block block-block region-odd even region-count-1 count-8"><DIV class="block-inner">
+
+      <H2 class="title">Who are we?</H2>
+  
+  <DIV class="content">
+    <P>The Linux Foundation is a non-profit consortium dedicated to fostering the growth of Linux.</P>
+<P><A href="http://www.linuxfoundation.org/about">More on the Foundation...</A></P>
+  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+<DIV id="block-block-2" class="block block-block region-even odd region-count-2 count-9"><DIV class="block-inner">
+
+      <H2 class="title">Explore</H2>
+  
+  <DIV class="content">
+    <UL class="links">
+<LI>
+    <A href="http://www.linuxfoundation.org/search">Search or Browse</A>
+  </LI>
+<LI>
+    <A href="http://www.linuxfoundation.org/">Home</A>&nbsp;/&nbsp;<A href="http://www.linuxfoundation.org/news-media/news">News</A>&nbsp;/&nbsp;<A href="http://www.linuxfoundation.org/news-media/announcements">Announcements</A>
+  </LI>
+<LI>
+    <A href="http://www.linuxfoundation.org/news-media/blogs">Blogs</A>&nbsp;/&nbsp;<A href="http://www.linuxfoundation.org/collaborate/publications">Publications</A>
+  </LI>
+<LI>
+    <A href="http://www.linuxfoundation.org/events">Events</A>&nbsp;/&nbsp;<A href="http://www.linuxfoundation.org/collaborate/workgroups">Workgroups</A>
+  </LI>
+<LI>
+     <A href="http://www.linuxfoundation.org/about/join">Membership</A>&nbsp;/&nbsp;<A href="http://www.linuxfoundation.org/about/members">Members</A>
+  </LI>
+</UL>
+  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+<DIV id="block-block-3" class="block block-block region-odd even region-count-3 count-10"><DIV class="block-inner">
+
+      <H2 class="title">Stay Current</H2>
+  
+  <DIV class="content">
+    <UL class="links">
+<LI>
+    <A href="http://events.linuxfoundation.org/">Linux Foundation Events</A>
+  </LI>
+<LI>
+    <A href="http://www.linuxfoundation.org/events/calendar">Linux Foundation Public Calendar</A>
+  </LI>
+<LI>
+    <A href="http://training.linuxfoundation.org/">Upcoming Training Courses</A>
+  </LI>
+<LI>
+    <A href="http://www.linux.com/">Linux.com</A>
+  </LI>
+</UL>
+  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+<DIV id="block-block-4" class="block block-block region-even odd region-count-4 count-11"><DIV class="block-inner">
+
+      <H2 class="title">About</H2>
+  
+  <DIV class="content">
+    <UL class="links">
+<LI>
+    <A href="http://www.linuxfoundation.org/about/faq">Frequently Asked Questions</A>
+  </LI>
+<LI>
+    <A href="http://www.linuxfoundation.org/about/join">How do I get Involved?</A>
+  </LI>
+<LI>
+    <A href="http://www.linuxfoundation.org/about">About</A>&nbsp;/&nbsp;<A href="http://www.linuxfoundation.org/contact">Contact Us</A>&nbsp;/&nbsp;<A href="http://www.linuxfoundation.org/about/careers">Careers</A>
+  </LI>
+<LI>
+    <A href="http://www.linuxfoundation.org/about/staff">Staff</A>&nbsp;/&nbsp;<A href="http://www.linuxfoundation.org/about/board-members">Board Members</A>
+  </LI>
+<LI>
+    <A href="http://www.linuxfoundation.org/privacy">Privacy Policy</A> / <A href="http://www.linuxfoundation.org/terms">Terms of Use</A>
+  </LI>
+<LI>
+    To view the old wiki site click <A href="http://wiki.linuxfoundation.org/"> here </A>
+  </LI>
+</UL>
+  </DIV>
+
+  
+</DIV></DIV> <!-- /block-inner, /block -->
+
+	<DIV class="divider">&nbsp;</DIV>
+      </DIV></DIV> <!-- /#footer-inner, /#footer -->
+    
+  </DIV></DIV> <!-- /#page-inner, /#page -->
+
+    <DIV id="footer-message">
+    <DIV id="footer-message-inner">
+      Copyright © 2010 Linux Foundation. All rights reserved.<BR>
+LSB is a trademark of the Linux Foundation. Linux is a registered trademark of Linus Torvalds.<BR>
+Please see our <A href="http://www.linuxfoundation.org/en/Privacy_Policy">privacy policy</A>.    </DIV>
+  </DIV>
+  
+
+
+  
+  <SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/googleanalytics.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+<!--//--><![CDATA[//><!--
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+//--><!]]>
+</SCRIPT><SCRIPT src="./bonding   The Linux Foundation_files/ga.js" type="text/javascript"></SCRIPT>
+<SCRIPT type="text/javascript">
+<!--//--><![CDATA[//><!--
+var pageTracker = _gat._getTracker("UA-831873-1");pageTracker._trackPageview();
+//--><!]]>
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="./bonding   The Linux Foundation_files/addthis_widget.js"></SCRIPT>
+
+
+</BODY></HTML>

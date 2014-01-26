@@ -1,0 +1,15 @@
+var OX_50b0a709 = '';
+OX_50b0a709 += "<"+"span><"+"script type=\'text/javascript\'><"+"!--// <"+"![CDATA[\n";
+OX_50b0a709 += "/* openads=http://http100.howtoforge.com/www/delivery bannerid=11 zoneid=5 source= */\n";
+OX_50b0a709 += "// ]]> --><"+"/script><"+"script type=\"text/javascript\"><"+"!--\n";
+OX_50b0a709 += "google_ad_client = \"pub-3043223216276099\";\n";
+OX_50b0a709 += "/* Rectangle Howtos 300x250 (howtoforge.com) */\n";
+OX_50b0a709 += "google_ad_slot = \"3032949215\";\n";
+OX_50b0a709 += "google_ad_width = 300;\n";
+OX_50b0a709 += "google_ad_height = 250;\n";
+OX_50b0a709 += "//-->\n";
+OX_50b0a709 += "<"+"/script>\n";
+OX_50b0a709 += "<"+"script type=\"text/javascript\"\n";
+OX_50b0a709 += "src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
+OX_50b0a709 += "<"+"/script><"+"script type=\'text/javascript\' src=\'http://http100.howtoforge.com/www/delivery/ag.php\'><"+"/script><"+"/span><"+"div id=\'beacon_7911fe094a\' style=\'position: absolute; left: 0px; top: 0px; visibility: hidden;\'><"+"img src=\'http://http100.howtoforge.com/www/delivery/lg.php?bannerid=11&amp;campaignid=2&amp;zoneid=5&amp;loc=1&amp;referer=http%3A%2F%2Fwww.howtoforge.com%2Flinux_lvm&amp;cb=7911fe094a\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\' /><"+"/div>\n";
+document.write(OX_50b0a709);

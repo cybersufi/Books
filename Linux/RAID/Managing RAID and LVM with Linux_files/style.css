@@ -1,0 +1,226 @@
+BODY,TD,TH,A,P,.H {
+	font-family:Arial,Trebuchet MS,helvetica,sans-serif;
+	font-size: 10pt;
+}
+HR {
+	height: 1px;
+}
+A:link { color: blue }       /* unvisited link */
+#A:visited { color: mediumblue }   /* visited links */
+A:active { color: red }    /* active links */
+A:hover {
+	/* background-color: #E6E6E6; */
+	/* background-color: #FFFFCC; */
+	background-color: #E0ECF0;
+	text-decoration: none;
+	/* border-bottom: 1px dashed navy; */
+}
+.minus1 {
+	font-size: 9pt;
+	color : #555555;
+}
+A.minus1 {
+	font-size: 9pt;
+	color : blue;
+}
+.minus2 {
+	font-size: 8pt;
+	color : #777777;
+}
+.gray1 {
+	background-color : #D0D0D0;
+}
+.gray1hp {
+	/* background-color : #D0D0D0; */
+	/* border-color: #B0B0B0; */
+	background-color : #D0D8E0;
+	/* background: url(http://www.gagme.com/greg/gif/bheadblue.gif); */
+	border-color: #A0A8B0;
+	/* border-style : groove groove none groove; */
+	border-style : none solid solid none;
+	border-width : 1px;
+	-moz-border-radius: 3px;
+	border-radius: 4px;
+}
+.gray2 {
+	background-color : #E8E8E8;
+}
+.gray2hp {
+	/* background-color : #E8E8E8; */
+	/* border-color: #C8C8C8; */
+	background-color : #E0ECF0;
+	border-color: #B8A8A8;
+	/* border: groove; */
+	/* border: none; */
+	border-style : none solid solid none;
+	border-width : 1px;
+	-moz-border-radius: 3px;
+	border-radius: 4px;
+}
+.infobox {
+	font-size: 8pt;
+	color : #555555;
+	border-color: #555555;
+	border-width : 1px;
+	border-width : 1px;
+        border-style: solid;
+	-moz-border-radius: 4px;
+        border-radius: 4px;
+}
+
+H3 {
+	font-family:arial,sans-serif;
+	font-size: 12pt;
+	/* border-bottom: 1px solid #888;
+	line-height: 100%; */
+}
+H2 {
+	font-family:arial,sans-serif;
+	font-size: 14pt;
+	/* border-bottom: 1px solid #888; */
+}
+H1 {
+	font-family:arial,sans-serif;
+	font-size: 16pt;
+}
+.HL {
+	background-color: #FFFF88;
+}
+.EXAMPLE {
+	font-family:courier;
+        background: #E6E6E6;
+}
+input,submit,select,textarea {
+	font-size : 11px;
+	font-family:arial,sans-serif;
+	color : #000000;
+	text-transform: none;
+	background-color: #EEEEEE;
+	text-decoration: none;
+	border-width: 1px;
+	border-color: #000000;
+	border-style: solid;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 1px;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+form {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+.alert {
+/*        border-width: 1px; */
+	border-style: groove;
+	border-color: #EFBFCF;
+        background: #FFCFDF;
+	color: red;
+        margin: 4px;
+        padding: 4px;
+	font-size: 9pt;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+.donate {
+/*        border-width: 1px; */
+	border-style: groove;
+	border-color: #EFBFCF;
+        background: #CFDFFF;
+        margin: 4px;
+        padding: 4px;
+	font-size: 9pt;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+form.donate {
+	text-align: right;
+}
+PRE {
+        border-left: 1px solid #888888;
+        background: #EEEEEE;
+        margin: 4px;
+        padding: 6px;
+	font-size: 9pt;
+}
+CODE {
+	font-family: Courier, "Courier New", monospace;
+	/* font-size: 10pt; */
+	font-size: 9pt;
+}
+
+.NOTE {
+	font-family: "Bitstream Vera Sans Mono", Courier, "Courier New";
+	font-size: 8pt;
+}
+
+.rubin {
+	background: #D0DCE0;
+	background-color: #D0DCE0;
+}
+
+.google {
+	font-size : 13px;
+	font-family:arial,sans-serif;
+	color : #000000;
+	text-transform: none;
+	background-color: #EEEEEE;
+	text-decoration: none;
+	border-width: 1px;
+	border-color: #000000;
+	border-style: solid;
+	background-image: url(http://www.gagme.com/greg/gif/google_logo.gif);
+	background-repeat: no-repeat;
+	background-positionx: 10;
+}
+
+table#navigation {border-collapse: collapse;  caption-side:bottom;}
+table#navigation tr{border: 1px solid black;}
+table#navigation col{border: 1px solid black;}
+table#navigation td{}
+table#navigation th{}
+
+/*
+Experimental, found on http://www.squarefree.com/userstyles/
+a[href^="mailto:"]:before { content: "\2709 " }
+*/
+
+/* For search engine highlighting */
+/* http://suda.co.uk/projects/SEHL/ */
+.hl0 { background-color: #99FFFF }
+.hl1 { background-color: #CCFFCC }
+.hl2 { background-color: #FFAAFF }
+.hl3 { background-color: #FFBBBB }
+.hl4 { background-color: #FFFF99 }
+
+.code {
+	color: black;
+	background-color: #E6E6E6;
+	font-family: Courier, monospace;
+}
+
+/* Based on what I did for rubinreports */
+table.nicetable {
+        border-collapse:collapse;
+        width:100%;
+        margin-left:auto;
+        margin-right:auto;
+        margin-bottom:20px;
+}
+table.nicetable td {
+        padding:3px;
+        border:1px solid #d0d0d0;
+}
+table.nicetable th {
+        padding:3px;
+        border:1px solid #a0a0a0;
+        font-weight: bold;
+        background-color:#f4f4f4;
+        /* Nice orange color: #cc6600; */
+}
+
+/* For my name on home page 
+   From: http://www.workingwith.me.uk/examples/css-drop-shadows.html
+*/

@@ -1,0 +1,576 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="win firefox firefox3 gecko gecko1" dir="ltr" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+
+
+<title>Logical Volume Manager (Linux) - Wikipedia, the free encyclopedia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="generator" content="MediaWiki 1.16alpha-wmf">
+<link rel="alternate" type="application/x-wiki" title="Edit this page" href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit">
+<link rel="edit" title="Edit this page" href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit">
+<link rel="stylesheet" type="text/css" href="Logical_Volume_Manager_%28Linux%29_files/combined.css">
+<link rel="stylesheet" type="text/css" href="Logical_Volume_Manager_%28Linux%29_files/jquery-ui-1.css">
+<link rel="apple-touch-icon" href="http://en.wikipedia.org/apple-touch-icon.png">
+<link rel="shortcut icon" href="http://en.wikipedia.org/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://en.wikipedia.org/w/opensearch_desc.php" title="Wikipedia (en)">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/rss+xml" title="Wikipedia RSS Feed" href="http://en.wikipedia.org/w/index.php?title=Special:RecentChanges&amp;feed=rss">
+<link rel="alternate" type="application/atom+xml" title="Wikipedia Atom Feed" href="http://en.wikipedia.org/w/index.php?title=Special:RecentChanges&amp;feed=atom">
+<link rel="stylesheet" href="Logical_Volume_Manager_%28Linux%29_files/shared.css" type="text/css" media="screen">
+<link rel="stylesheet" href="Logical_Volume_Manager_%28Linux%29_files/commonPrint.css" type="text/css" media="print">
+<link rel="stylesheet" href="Logical_Volume_Manager_%28Linux%29_files/main.css" type="text/css" media="screen">
+<link rel="stylesheet" href="Logical_Volume_Manager_%28Linux%29_files/main_002.css" type="text/css" media="handheld">
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins-1.5/monobook/IE50Fixes.css?254z2" type="text/css" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins-1.5/monobook/IE55Fixes.css?254z2" type="text/css" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins-1.5/monobook/IE60Fixes.css?254z2" type="text/css" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins-1.5/monobook/IE70Fixes.css?254z2" type="text/css" media="screen" /><![endif]-->
+<link rel="stylesheet" href="Logical_Volume_Manager_%28Linux%29_files/index_003.css" type="text/css" media="all">
+<link rel="stylesheet" href="Logical_Volume_Manager_%28Linux%29_files/index_005.css" type="text/css" media="print">
+<link rel="stylesheet" href="Logical_Volume_Manager_%28Linux%29_files/index_002.css" type="text/css" media="handheld">
+<link rel="stylesheet" href="Logical_Volume_Manager_%28Linux%29_files/index_004.css" type="text/css" media="all">
+<link rel="stylesheet" href="Logical_Volume_Manager_%28Linux%29_files/index.css" type="text/css" media="all">
+<script type="text/javascript">
+var skin="monobook",
+stylepath="/skins-1.5",
+wgArticlePath="/wiki/$1",
+wgScriptPath="/w",
+wgScriptExtension=".php",
+wgScript="/w/index.php",
+wgVariantArticlePath=false,
+wgActionPaths={},
+wgServer="http://en.wikipedia.org",
+wgCanonicalNamespace="",
+wgCanonicalSpecialPageName=false,
+wgNamespaceNumber=0,
+wgPageName="Logical_Volume_Manager_(Linux)",
+wgTitle="Logical Volume Manager (Linux)",
+wgAction="view",
+wgArticleId=2273532,
+wgIsArticle=true,
+wgUserName=null,
+wgUserGroups=null,
+wgUserLanguage="en",
+wgContentLanguage="en",
+wgBreakFrames=false,
+wgCurRevisionId=329290193,
+wgVersion="1.16alpha-wmf",
+wgEnableAPI=true,
+wgEnableWriteAPI=true,
+wgSeparatorTransformTable=["", ""],
+wgDigitTransformTable=["", ""],
+wgMainPageTitle="Main Page",
+wgFormattedNamespaces={"-2": "Media", "-1": "Special", "0": "", "1": "Talk", "2": "User", "3": "User talk", "4": "Wikipedia", "5": "Wikipedia talk", "6": "File", "7": "File talk", "8": "MediaWiki", "9": "MediaWiki talk", "10": "Template", "11": "Template talk", "12": "Help", "13": "Help talk", "14": "Category", "15": "Category talk", "100": "Portal", "101": "Portal talk"},
+wgNamespaceIds={"media": -2, "special": -1, "": 0, "talk": 1, "user": 2, "user_talk": 3, "wikipedia": 4, "wikipedia_talk": 5, "file": 6, "file_talk": 7, "mediawiki": 8, "mediawiki_talk": 9, "template": 10, "template_talk": 11, "help": 12, "help_talk": 13, "category": 14, "category_talk": 15, "portal": 100, "portal_talk": 101, "wp": 4, "wt": 5, "image": 6, "image_talk": 7},
+wgMWSuggestTemplate="http://en.wikipedia.org/w/api.php?action=opensearch\x26search={searchTerms}\x26namespace={namespaces}\x26suggest",
+wgDBname="enwiki",
+wgSearchNamespaces=[0],
+wgMWSuggestMessages=["with suggestions", "no suggestions"],
+wgRestrictionEdit=[],
+wgRestrictionMove=[],
+wgTrackingToken="a465f6fdc796bee4f20ce4b5d62a2702",
+wgClickTrackingIsThrottled=true,
+wgNotice="",
+wgNoticeLocal="";
+</script>
+<script src="Logical_Volume_Manager_%28Linux%29_files/wikibits.js" type="text/javascript"></script>
+<script src="Logical_Volume_Manager_%28Linux%29_files/ajax.js" type="text/javascript"></script>
+<script src="Logical_Volume_Manager_%28Linux%29_files/mwsuggest.js" type="text/javascript"></script>
+<script type="text/javascript" src="Logical_Volume_Manager_%28Linux%29_files/js2.js"></script>
+<script type="text/javascript" src="Logical_Volume_Manager_%28Linux%29_files/plugins.js"></script>
+<script type="text/javascript" src="Logical_Volume_Manager_%28Linux%29_files/CollapsibleTabs.js"></script>
+<script type="text/javascript" src="Logical_Volume_Manager_%28Linux%29_files/ClickTracking.js"></script>
+<script type="text/javascript" src="Logical_Volume_Manager_%28Linux%29_files/centralnotice.js"></script><style type="text/css">
+#centralNotice .siteNoticeSmall{display:none;}
+#centralNotice .siteNoticeSmallAnon{display:none;}
+#centralNotice .siteNoticeSmallUser{display:none;}
+#centralNotice.collapsed .siteNoticeBig{display:none;}
+#centralNotice.collapsed .siteNoticeSmall{display:block;}
+#centralNotice.collapsed .siteNoticeSmallUser{display:block;}
+#centralNotice.collapsed .siteNoticeSmallAnon{display:block;}
+#centralNotice.anonnotice .siteNoticeSmallUser{display:none !important;}
+#centralNotice.usernotice .siteNoticeSmallAnon{display:none !important;}
+</style>
+
+
+<!--[if lt IE 7]><script type="text/javascript" src="/skins-1.5/common/IEFixes.js?254z2"></script>
+	<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+<script src="Logical_Volume_Manager_%28Linux%29_files/index.php" type="text/javascript"></script><script type="text/javascript" src="Logical_Volume_Manager_%28Linux%29_files/index_002.php"></script>
+
+<style type="text/css">#bodyContent { position:relative; } 
+.topicon { position:absolute; top:-2em !important;}
+#coordinates{ position:absolute; top:1px !important; right:0px !important;}</style></head><body class="mediawiki ltr ns-0 ns-subject page-Logical_Volume_Manager_Linux skin-monobook">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a id="top"></a>
+		<div id="siteNotice"><script type="text/javascript">if (wgNotice != '') document.writeln(wgNotice);</script><div id="centralNotice" class="expanded anonnotice"><style type="text/css">
+/* Styles for Notices */
+.notice-all a {
+ text-decoration: none;
+}
+.notice-all a:hover span {
+ text-decoration: underline;
+}
+div.notice-all div, div.notice-all span {
+ margin: 0 !important;
+}
+.notice-pitch {
+ display: inline-block;
+ background-color: transparent;
+}
+.notice-pitch table {
+ background-color: transparent;
+}
+.notice-pitch-block {
+ float: left;
+ padding: 1em;
+}
+.notice-pitch-text {
+ overflow: visible;
+ color: black;
+ font-family: sans-serif;
+ font-weight: bold;
+ text-align: left;
+ font-size: 2.25em;
+ line-height: 1em;
+ padding: 1em 1.5em 0.75em 0.75em !important;
+ cursor: pointer;
+}
+.notice-pitch-donor {
+ color: #333333;
+}
+.notice-pitch-donor-info {
+ padding-right: 1em;
+ font-size: 0.8em;
+ white-space: nowrap;
+}
+.notice-slogan {
+ color: #6E98C2;
+ font-weight: bold;
+ padding-right: 1em;
+}
+.siteNoticeBig {
+ position: relative;
+ float: left;
+ width: 100%;
+ border: solid 1px silver;
+ background-color: #f3f3f3;
+ margin-bottom: 1em;
+ padding-top: 1em;
+ padding-bottom: 1em;
+}
+ .siteNoticeBig .notice-toggle {
+  position: absolute;
+  top: 0em;
+  right: 0.5em;
+  font-size: 0.75em;
+ }
+ .siteNoticeBig .notice-button {
+  float: left;
+  height: 28px;
+  text-align: center;
+  background-color: transparent;
+ }
+ .siteNoticeBig .notice-button-start {
+  float: left;
+  background-image: url(http://upload.wikimedia.org/centralnotice/images/2009/button-glossy.png);
+  background-position: left top;
+  width: 12px;
+  height: 28px;
+ }
+ .siteNoticeBig .notice-button-end {
+  float: left;
+  background-image: url(http://upload.wikimedia.org/centralnotice/images/2009/button-glossy.png);
+  background-position: right bottom;
+  width: 12px;
+  height: 28px;
+ }
+ .siteNoticeBig .notice-button-label {
+  float: left;
+  background-image: url(http://upload.wikimedia.org/centralnotice/images/2009/button-glossy.png);
+  background-position: center center;
+  background-repeat: repeat-x;
+  font-family: sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  line-height: 28px;
+  height: 28px;
+  white-space: nowrap;
+ }
+.siteNoticeSmallAnon {
+ position: relative;
+ float: left;
+ width: 100%;
+ border: solid 1px silver;
+ background-color: #f3f3f3;
+ text-align: center;
+ padding: 0.1em 0;
+ margin-bottom: 1em;
+}
+ .siteNoticeSmallAnon .notice-toggle {
+  float: right;
+  font-size: 0.75em;
+  padding-right: 0.5em;
+ }
+ .siteNoticeSmallAnon .notice-slogan {
+  padding-left: 0.5em;
+ }
+.siteNoticeSmallUser {
+ position: relative;
+ float: left;
+ width: 100%;
+ text-align: center;
+ margin-bottom: 1em;
+}
+ .siteNoticeSmallUser .notice-toggle {
+  float: right;
+  font-size: 0.75em;
+ }
+</style>
+<script>
+/* @param mode string to be appended to the utm_source paramter like "utm_source=[notice]_[mode]" */
+function goToDonationPage( mode ) {
+ var url = 'http://meta.wikimedia.org/wiki/Special:GeoLite?lang=en&&utm_medium=sitenotice&utm_campaign=fundraiser2009&utm_source=2009_Notice22';
+ if ( mode && mode.length ) { 
+  url += '_' + mode;
+ }
+ var targets = String( 'Support_Wikipedia2' ).split(',');
+ if ( targets.length ) {
+  url += '&target=' + targets[Math.floor( Math.random() * targets.length )].replace(/^\s+|\s+$/, '');
+ }
+ window.location = url;
+}
+</script>
+<div class="notice-all siteNoticeBig" align="center">
+ <a class="notice-pitch" href="javascript:goToDonationPage()">
+  <table class="notice-pitch-block" border="0" cellpadding="0" cellspacing="0">
+   <tbody><tr>
+    <td class="notice-pitch-text">
+     <span>“A small price to pay for the value received.”</span>
+    </td>
+    <td class="notice-pitch-donor" align="left">
+     <table border="0" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+       <td class="notice-pitch-donor-info">Donor:</td>
+       <td class="notice-pitch-donor-info">Richard Egg</td>
+      </tr>
+      <tr>
+       <td class="notice-pitch-donor-info">Date:</td>
+       <td class="notice-pitch-donor-info">October 6, 2009</td>
+      </tr>
+      <tr>
+       <td class="notice-pitch-donor-info">Amount:</td>
+       <td class="notice-pitch-donor-info">USD 200.00</td>
+      </tr>
+      <tr>
+       <td colspan="2" style="padding-top: 0.5em;">
+        <div class="notice-button">
+         <div class="notice-button-start"></div>
+         <div class="notice-button-label">Donate Now</div>
+         <div class="notice-button-end"></div>
+        </div>
+        <div style="clear: both;"></div>
+       </td>
+      </tr>
+     </tbody></table>
+    </td>
+   </tr>
+  </tbody></table>
+  <div style="clear: both;"></div>
+ </a>
+ <div class="notice-toggle">[<a href="#" onclick="toggleNotice();return false"><span>Hide</span></a>]</div>
+ <div style="clear: both;"></div>
+</div>
+<div class="notice-all siteNoticeSmallAnon">
+ <div class="notice-toggle">[<a href="#" onclick="toggleNotice()"><span>Show</span></a>]</div>
+ <a class="notice-slogan" href="javascript:goToDonationPage('collapsed')">
+   <span>Wikipedia</span>
+   <img src="Logical_Volume_Manager_%28Linux%29_files/Wikipedia-logo-small_Fundraising_2009.png" alt="">
+   <span>Forever</span>
+ </a>
+ <span>Our shared knowledge. Our shared treasure.</span>
+ <a href="javascript:goToDonationPage('collapsed')">
+  <span>Help us protect it.</span>
+ </a>
+ <div style="clear: both;"></div>
+</div>
+<div class="notice-all siteNoticeSmallUser">
+ <div class="notice-toggle">[<a href="#" onclick="toggleNotice()"><span>Show</span></a>]</div>
+ <a class="notice-slogan" href="javascript:goToDonationPage('collapsed')">
+  <span>Wikipedia</span>
+  <img src="Logical_Volume_Manager_%28Linux%29_files/Wikipedia-logo-small_Fundraising_2009.png" alt="">
+  <span>Forever</span>
+ </a>
+ <span>Our shared knowledge. Our shared treasure.</span>
+ <a href="javascript:goToDonationPage('collapsed')">
+  <span>Help us protect it.</span>
+ </a>
+ <div style="clear: both;"></div>
+</div>
+<div style="clear: both;"></div></div>
+</div>		<h1 id="firstHeading" class="firstHeading">Logical Volume Manager (Linux)</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Wikipedia, the free encyclopedia</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p><b>LVM</b> is a <a href="http://en.wikipedia.org/wiki/Logical_volume_management" title="Logical volume management">logical volume manager</a> for the <a href="http://en.wikipedia.org/wiki/Linux_kernel" title="Linux kernel">Linux kernel</a>;
+it manages disk drives and similar mass-storage devices, in particular
+large ones. The term "volume" refers to a disk drive or partition
+thereof. It was originally written in 1998 by <a href="http://en.wikipedia.org/w/index.php?title=Heinz_Mauelshagen&amp;action=edit&amp;redlink=1" class="new" title="Heinz Mauelshagen (page does not exist)">Heinz Mauelshagen</a>, who based its design on that of the LVM in <a href="http://en.wikipedia.org/wiki/HP-UX" title="HP-UX">HP-UX</a>.</p>
+<p>The abbreviation "LVM" can also refer to the <a href="http://en.wikipedia.org/wiki/Logical_Volume_Management" title="Logical Volume Management" class="mw-redirect">Logical Volume Management</a> available in HP-UX, IBM AIX and OS/2 operating systems.</p>
+<p>The installers for the <a href="http://en.wikipedia.org/wiki/ArchLinux" title="ArchLinux" class="mw-redirect">Arch Linux</a>, <a href="http://en.wikipedia.org/wiki/Debian" title="Debian">Debian</a>, <a href="http://en.wikipedia.org/wiki/Fedora_%28operating_system%29" title="Fedora (operating system)">Fedora</a>, <a href="http://en.wikipedia.org/wiki/Gentoo_Linux" title="Gentoo Linux">Gentoo</a>, <a href="http://en.wikipedia.org/wiki/MontaVista#MontaVista_Linux" title="MontaVista">MontaVista Linux</a>, <a href="http://en.wikipedia.org/wiki/OpenSUSE" title="OpenSUSE">openSUSE</a>, <a href="http://en.wikipedia.org/wiki/SUSE_Linux_Enterprise_Desktop" title="SUSE Linux Enterprise Desktop">SLED</a>, <a href="http://en.wikipedia.org/wiki/Slackware" title="Slackware">Slackware</a>, <a href="http://en.wikipedia.org/wiki/SUSE_Linux_Enterprise_Server" title="SUSE Linux Enterprise Server">SLES</a>, and <a href="http://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29" title="Ubuntu (operating system)">Ubuntu</a> distributions are LVM-aware and can install a bootable system with a <a href="http://en.wikipedia.org/wiki/Root_file_system" title="Root file system" class="mw-redirect">root filesystem</a> on a <a href="http://en.wikipedia.org/wiki/Logical_volume" title="Logical volume" class="mw-redirect">logical volume</a>.</p>
+<table id="toc" class="toc">
+<tbody><tr>
+<td>
+<div id="toctitle">
+<h2>Contents</h2>
+ <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Common_uses"><span class="tocnumber">1</span> <span class="toctext">Common uses</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Features"><span class="tocnumber">2</span> <span class="toctext">Features</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Implementation"><span class="tocnumber">3</span> <span class="toctext">Implementation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Caveats"><span class="tocnumber">3.1</span> <span class="toctext">Caveats</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#See_also"><span class="tocnumber">4</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#References"><span class="tocnumber">5</span> <span class="toctext">References</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#External_links"><span class="tocnumber">6</span> <span class="toctext">External links</span></a></li>
+</ul>
+</td>
+</tr>
+</tbody></table>
+<script type="text/javascript">
+//<![CDATA[
+if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } 
+//]]>
+</script>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit&amp;section=1" title="Edit section: Common uses">edit</a>]</span> <span class="mw-headline" id="Common_uses">Common uses</span></h2>
+<p>LVM is suitable for:</p>
+<ul>
+<li>Managing large hard disk farms by letting you add disks, replace
+disks, copy and share contents from one disk to another without
+disrupting service.</li>
+<li>On small systems (like a desktop at home), instead of having to
+guess how big a partition needs to be, LVM allows you to resize your
+disk partitions easily as needed.</li>
+<li>Making backups by taking "snapshots."</li>
+<li>Creating single <a href="http://en.wikipedia.org/wiki/Logical_volume" title="Logical volume" class="mw-redirect">logical volumes</a> of multiple physical volumes or entire hard disks (somewhat similar to <a href="http://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_0" title="Standard RAID levels">RAID 0</a>, but more similar to <a href="http://en.wikipedia.org/wiki/JBOD" title="JBOD" class="mw-redirect">JBOD</a>), allowing for dynamic volume resizing.</li>
+</ul>
+<p>One can think of LVM as a thin software layer on top of the hard
+disks and partitions, which creates an illusion of continuity and
+ease-of-use for managing hard-drive replacement, repartitioning, and
+backups.</p>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit&amp;section=2" title="Edit section: Features">edit</a>]</span> <span class="mw-headline" id="Features">Features</span></h2>
+<p>The LVM can:</p>
+<ul>
+<li>Resize <a href="http://en.wikipedia.org/wiki/Volume_group" title="Volume group">volume groups</a> online by absorbing new <a href="http://en.wikipedia.org/wiki/Physical_volume" title="Physical volume" class="mw-redirect">physical volumes</a> (PV) or ejecting existing ones.</li>
+<li>Resize logical volumes (LV) online by concatenating <a href="http://en.wikipedia.org/wiki/Extent_%28file_systems%29" title="Extent (file systems)">extents</a> onto them or truncating extents from them.</li>
+<li>Create read-only <a href="http://en.wikipedia.org/wiki/Snapshot_%28computer_storage%29" title="Snapshot (computer storage)">snapshots</a> of logical volumes (LVM1).</li>
+<li>Create read-write <a href="http://en.wikipedia.org/wiki/Snapshot_%28computer_storage%29" title="Snapshot (computer storage)">snapshots</a> of logical volumes (LVM2).</li>
+<li>Stripe whole or parts of logical volumes across multiple PVs, in a fashion similar to <a href="http://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_0" title="Standard RAID levels">RAID 0</a>.</li>
+<li>Mirror whole or parts of logical volumes, in a fashion similar to <a href="http://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_1" title="Standard RAID levels">RAID 1</a>.</li>
+<li>Move online logical volumes between PVs.</li>
+<li>Split or merge volume groups <i>in situ</i> (as long as no logical
+volumes span the split). This can be useful when migrating whole
+logical volumes to or from offline storage.</li>
+</ul>
+<p>The LVM will also work in a shared-storage <a href="http://en.wikipedia.org/wiki/Computer_cluster" title="Computer cluster" class="mw-redirect">cluster</a>
+(where disks holding the PVs are shared between multiple host
+computers), but requires an additional daemon to propagate state
+changes between cluster nodes.</p>
+<p>LVM does not:</p>
+<ul>
+<li>Provide <a href="http://en.wikipedia.org/wiki/Parity_bit" title="Parity bit">parity</a>-based redundancy across LVs, as with <a href="http://en.wikipedia.org/wiki/Standard_RAID_levels" title="Standard RAID levels">RAID levels</a> 4 through 6. This functionality is instead provided by Linux <a href="http://en.wikipedia.org/wiki/Mdadm" title="Mdadm">metadisks</a>, which can be used as LVM physical volumes.</li>
+</ul>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit&amp;section=3" title="Edit section: Implementation">edit</a>]</span> <span class="mw-headline" id="Implementation">Implementation</span></h2>
+<p>LVM keeps a metadata header at the start of every <a href="http://en.wikipedia.org/wiki/Physical_volume" title="Physical volume" class="mw-redirect">physical volume</a>, each of which is uniquely identified by a <a href="http://en.wikipedia.org/wiki/Universally_Unique_Identifier" title="Universally Unique Identifier">UUID</a>.
+Each PV's header is a complete copy of the entire volume group's
+layout, including the UUIDs of all other PV, the UUIDs of all logical
+volumes and an allocation map of <a href="http://en.wikipedia.org/wiki/Physical_extent" title="Physical extent" class="mw-redirect">PEs</a> to <a href="http://en.wikipedia.org/wiki/Logical_extent" title="Logical extent" class="mw-redirect">LEs</a>. This simplifies data recovery in the event of PV loss.</p>
+<p>In the 2.6-series of the Linux Operating System, the LVM is implemented in terms of the <a href="http://en.wikipedia.org/wiki/Device_mapper" title="Device mapper">device mapper</a>,
+a simple block-level scheme for creating virtual block devices and
+mapping their contents onto other block devices. This minimizes the
+amount of relatively hard-to-debug kernel code needed to implement the
+LVM. It also allows its I/O redirection services to be shared with
+other volume managers (such as <a href="http://en.wikipedia.org/wiki/Enterprise_Volume_Management_System" title="Enterprise Volume Management System">EVMS</a>).
+Any LVM-specific code is pushed out into its user-space tools, which
+merely manipulate these mappings and reconstruct their state from
+on-disk metadata upon each invocation.</p>
+<p>To bring a volume group online, the "vgchange" tool:</p>
+<ol>
+<li>Searches for PVs in all available block devices.</li>
+<li>Parses the metadata header in each PV found.</li>
+<li>Computes the layouts of all visible volume groups.</li>
+<li>Loops over each logical volume in the volume group to be brought online and:
+<ol>
+<li>Checks if the logical volume to be brought online has all its PVs visible.</li>
+<li>Creates a new, empty device mapping.</li>
+<li>Maps it (with the "linear" target) onto the data areas of the PVs the logical volume belongs to.</li>
+</ol>
+</li>
+</ol>
+<p>To move an online logical volume between PVs on the same VG, use the "pvmove" tool:</p>
+<ol>
+<li>Creates a new, empty device mapping for the destination.</li>
+<li>Applies the "mirror" target to the original and destination maps.
+The kernel will start the mirror in "degraded" mode and begin copying
+data from the original to the destination to bring it into sync.</li>
+<li>Replaces the original mapping with the destination when the mirror comes into sync, then destroys the original.</li>
+</ol>
+<p>These device mapper operations take place transparently, without
+applications or filesystems being aware that their underlying storage
+is moving.</p>
+<h3><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit&amp;section=4" title="Edit section: Caveats">edit</a>]</span> <span class="mw-headline" id="Caveats">Caveats</span></h3>
+<p>The current implementation does not support <a href="http://en.wikipedia.org/wiki/Write_barrier" title="Write barrier" class="mw-redirect">write barriers</a>. This means that the guarantee against filesystem corruption offered by <a href="http://en.wikipedia.org/wiki/Journaled_file_system" title="Journaled file system" class="mw-redirect">journaled file systems</a> like <a href="http://en.wikipedia.org/wiki/Ext3" title="Ext3">ext3</a> and <a href="http://en.wikipedia.org/wiki/XFS" title="XFS">XFS</a> is negated under some circumstances.<sup id="cite_ref-0" class="reference"><a href="#cite_note-0"><span>[</span>1<span>]</span></a></sup>
+Most distros, with the notable exception of SUSE, turn off protective
+barriers by default anyway, to prevent performance degradation.</p>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit&amp;section=5" title="Edit section: See also">edit</a>]</span> <span class="mw-headline" id="See_also">See also</span></h2>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Logical_volume_management" title="Logical volume management">Logical volume management</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Snapshot_%28computer_storage%29" title="Snapshot (computer storage)">Snapshot (computer storage)</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Hot_copy" title="Hot copy">Hot copy</a></li>
+</ul>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit&amp;section=6" title="Edit section: References">edit</a>]</span> <span class="mw-headline" id="References">References</span></h2>
+<div class="references-small references-column-count references-column-count-2" style="-moz-column-count: 2;">
+<ol class="references">
+<li id="cite_note-0"><b><a href="#cite_ref-0">^</a></b> <span class="citation web">"<a href="http://lwn.net/Articles/283161" class="external text" rel="nofollow">Barriers and journaling filesystems</a>". <a href="http://en.wikipedia.org/wiki/LWN" title="LWN">LWN</a>. 2008-05-22<span class="printonly">. <a href="http://lwn.net/Articles/283161" class="external free" rel="nofollow">http://lwn.net/Articles/283161</a></span><span class="reference-accessdate">. Retrieved 2008-05-28</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=Barriers+and+journaling+filesystems&amp;rft.atitle=&amp;rft.date=2008-05-22&amp;rft.pub=%5B%5BLWN%5D%5D&amp;rft_id=http%3A%2F%2Flwn.net%2FArticles%2F283161&amp;rfr_id=info:sid/en.wikipedia.org:Logical_Volume_Manager_(Linux)"><span style="display: none;">&nbsp;</span></span></li>
+</ol>
+</div>
+<div class="references-small" style="-moz-column-count: 2; margin-left: 1.5em;">
+<ul>
+<li><span class="citation web">Lewis, AJ (2006-11-27). "<a href="http://tldp.org/HOWTO/LVM-HOWTO" class="external text" rel="nofollow">LVM HOWTO</a>". <a href="http://en.wikipedia.org/wiki/Linux_Documentation_Project" title="Linux Documentation Project">Linux Documentation Project</a><span class="printonly">. <a href="http://tldp.org/HOWTO/LVM-HOWTO" class="external free" rel="nofollow">http://tldp.org/HOWTO/LVM-HOWTO</a></span><span class="reference-accessdate">. Retrieved 2008-03-04</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=LVM+HOWTO&amp;rft.atitle=&amp;rft.aulast=Lewis&amp;rft.aufirst=AJ&amp;rft.au=Lewis%2C%26%2332%3BAJ&amp;rft.date=2006-11-27&amp;rft.pub=%5B%5BLinux+Documentation+Project%5D%5D&amp;rft_id=http%3A%2F%2Ftldp.org%2FHOWTO%2FLVM-HOWTO&amp;rfr_id=info:sid/en.wikipedia.org:Logical_Volume_Manager_(Linux)"><span style="display: none;">&nbsp;</span></span>.</li>
+<li><a href="http://patft.uspto.gov/netacgi/nph-Parser?patentnumber=5129088" class="external text" rel="nofollow">US5,129,088</a> <span class="PDFlink noprint" style="font-size: smaller;">(<a href="http://www.pat2pdf.org/pat2pdf/foo.pl?number=5129088" class="external text" rel="nofollow">PDF version</a>)</span> (<a href="http://en.wikipedia.org/w/index.php?title=1992-7-7&amp;action=edit&amp;redlink=1" class="new" title="1992-7-7 (page does not exist)">1992-7-7</a>) Auslander, et al., <i>Data
+Processing Method to Create Virtual Disks from Non-Contiguous Groups of
+Logically Contiguous Addressable Blocks of Direct Access Storage Device</i>.<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Apatent&amp;rft.number=5129088&amp;rft.cc=US&amp;rft.title=Data+Processing+Method+to+Create+Virtual+Disks+from+Non-Contiguous+Groups+of+Logically+Contiguous+Addressable+Blocks+of+Direct+Access+Storage+Device&amp;rft.inventor=Auslander%2C+et+al.&amp;rft.date=1992-7-7"><span style="display: none;">&nbsp;</span></span> (fundamental patent).</li>
+</ul>
+</div>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit&amp;section=7" title="Edit section: External links">edit</a>]</span> <span class="mw-headline" id="External_links">External links</span></h2>
+<ul>
+<li><a href="http://sourceware.org/lvm2/" class="external text" rel="nofollow">LVM2 Resource Page</a></li>
+<li><a href="http://www.debuntu.org/how-to-install-ubuntu-over-lvm-filesystem" class="external text" rel="nofollow">How to install Ubuntu over LVM Filesystem - debuntu.org</a></li>
+<li><a href="http://sunoano.name/ws/public_xhtml/lvm.html" class="external text" rel="nofollow">All about LVM on one page</a> - a page covering LVM, starting with theory and ending with many practical examples about its usage.</li>
+</ul>
+
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 1010/1000000
+Post-expand include size: 6774/2048000 bytes
+Template argument size: 1813/2048000 bytes
+Expensive parser function count: 0/500
+-->
+
+<!-- Saved in parser cache with key enwiki:pcache:idhash:2273532-0!1!0!default!!en!2 and timestamp 20091205051532 -->
+<div class="printfooter">
+Retrieved from "<a href="http://en.wikipedia.org/wiki/Logical_Volume_Manager_%28Linux%29">http://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)</a>"</div>
+			<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://en.wikipedia.org/wiki/Special:Categories" title="Special:Categories">Categories</a>: <span dir="ltr"><a href="http://en.wikipedia.org/wiki/Category:Computer_storage" title="Category:Computer storage">Computer storage</a></span> | <span dir="ltr"><a href="http://en.wikipedia.org/wiki/Category:Linux_kernel_features" title="Category:Linux kernel features">Linux kernel features</a></span></div></div>			<!-- end content -->
+						<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul xml:lang="en" lang="en">
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://en.wikipedia.org/wiki/Logical_Volume_Manager_%28Linux%29" title="View the content page [alt-shift-c]" accesskey="c">Article</a></li>
+				 <li id="ca-talk"><a href="http://en.wikipedia.org/wiki/Talk:Logical_Volume_Manager_%28Linux%29" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-edit"><a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=edit" title="You can edit this page. 
+Please use the preview button before saving. [alt-shift-e]" accesskey="e">Edit this page</a></li>
+				 <li id="ca-history"><a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;action=history" title="Past versions of this page [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul xml:lang="en" lang="en">
+				<li id="pt-optin-try"><a href="http://en.wikipedia.org/w/index.php?title=Special:UsabilityInitiativeOptIn&amp;from=Logical_Volume_Manager_%28Linux%29" title="Try out new features" class="no-text-transform">Try Beta</a></li>
+				<li id="pt-login"><a href="http://en.wikipedia.org/w/index.php?title=Special:UserLogin&amp;returnto=Logical_Volume_Manager_%28Linux%29" title="You are encouraged to log in; however, it is not mandatory. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png);" href="http://en.wikipedia.org/wiki/Main_Page" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5 xml:lang="en" lang="en">Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage-description"><a href="http://en.wikipedia.org/wiki/Main_Page" title="Visit the main page [alt-shift-z]" accesskey="z">Main page</a></li>
+				<li id="n-contents"><a href="http://en.wikipedia.org/wiki/Portal:Contents" title="Guides to browsing Wikipedia">Contents</a></li>
+				<li id="n-featuredcontent"><a href="http://en.wikipedia.org/wiki/Portal:Featured_content" title="Featured content — the best of Wikipedia">Featured content</a></li>
+				<li id="n-currentevents"><a href="http://en.wikipedia.org/wiki/Portal:Current_events" title="Find background information on current events">Current events</a></li>
+				<li id="n-randompage"><a href="http://en.wikipedia.org/wiki/Special:Random" title="Load a random article [alt-shift-x]" accesskey="x">Random article</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5 xml:lang="en" lang="en"><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/w/index.php" id="searchform">
+				<input name="title" value="Special:Search" type="hidden">
+				<input autocomplete="off" id="searchInput" title="Search Wikipedia" accesskey="f" name="search">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if one exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search Wikipedia for this text" type="submit">
+			</form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-interaction">
+		<h5 xml:lang="en" lang="en">Interaction</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-aboutsite"><a href="http://en.wikipedia.org/wiki/Wikipedia:About" title="Find out about Wikipedia">About Wikipedia</a></li>
+				<li id="n-portal"><a href="http://en.wikipedia.org/wiki/Wikipedia:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+				<li id="n-recentchanges"><a href="http://en.wikipedia.org/wiki/Special:RecentChanges" title="The list of recent changes in the wiki [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-contact"><a href="http://en.wikipedia.org/wiki/Wikipedia:Contact_us" title="How to contact Wikipedia">Contact Wikipedia</a></li>
+				<li id="n-sitesupport"><a href="http://wikimediafoundation.org/wiki/Support_Wikipedia/en" title="Support us">Donate to Wikipedia</a></li>
+				<li id="n-help"><a href="http://en.wikipedia.org/wiki/Help:Contents" title="Guidance on how to use and edit Wikipedia">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5 xml:lang="en" lang="en">Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://en.wikipedia.org/wiki/Special:WhatLinksHere/Logical_Volume_Manager_%28Linux%29" title="List of all English Wikipedia pages containing links to this page [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://en.wikipedia.org/wiki/Special:RecentChangesLinked/Logical_Volume_Manager_%28Linux%29" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://en.wikipedia.org/wiki/Wikipedia:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://en.wikipedia.org/wiki/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;printable=yes" rel="alternate" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://en.wikipedia.org/w/index.php?title=Logical_Volume_Manager_%28Linux%29&amp;oldid=329290193" title="Permanent link to this revision of the page">Permanent link</a></li><li id="t-cite"><a href="http://en.wikipedia.org/w/index.php?title=Special:Cite&amp;page=Logical_Volume_Manager_%28Linux%29&amp;id=329290193" title="Information on how to cite this page">Cite this page</a></li>			</ul>
+		</div>
+	</div>
+	<div id="p-lang" class="portlet">
+		<h5 xml:lang="en" lang="en">Languages</h5>
+		<div class="pBody">
+			<ul>
+				<li class="interwiki-de"><a href="http://de.wikipedia.org/wiki/Logical_Volume_Manager">Deutsch</a></li>
+				<li class="interwiki-es"><a href="http://es.wikipedia.org/wiki/LVM">Español</a></li>
+				<li class="interwiki-fr"><a href="http://fr.wikipedia.org/wiki/LVM">Français</a></li>
+				<li class="interwiki-ru"><a href="http://ru.wikipedia.org/wiki/LVM">Русский</a></li>
+			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Logical_Volume_Manager_%28Linux%29_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31"></a></div>
+				<div id="f-copyrightico"><a href="http://wikimediafoundation.org/"><img src="Logical_Volume_Manager_%28Linux%29_files/wikimedia-button.png" alt="Wikimedia Foundation" width="88" height="31"></a></div>
+			<ul id="f-list">
+					<li id="lastmod"> This page was last modified on 2 December 2009 at 19:00.</li>
+					<li id="copyright">Text is available under the <a rel="license" href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/" style="display: none;"></a>;
+additional terms may apply.
+See <a href="http://wikimediafoundation.org/wiki/Terms_of_Use">Terms of Use</a> for details.<br>
+Wikipedia® is a registered trademark of the <a href="http://www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</a>, a non-profit organization.</li><li><a class="internal" href="http://en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact us</a></li>
+					<li id="privacy"><a href="http://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+					<li id="about"><a href="http://en.wikipedia.org/wiki/Wikipedia:About" title="Wikipedia:About">About Wikipedia</a></li>
+					<li id="disclaimer"><a href="http://en.wikipedia.org/wiki/Wikipedia:General_disclaimer" title="Wikipedia:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served by srv147 in 0.055 secs. --></body></html>

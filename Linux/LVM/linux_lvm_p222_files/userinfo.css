@@ -1,0 +1,8 @@
+/* $Id: userinfo.css,v 1.1 2005/01/02 01:46:39 MegaGrunt Exp $ */
+
+.block-userinfo .title {
+  display: none
+}
+.block-userinfo div {
+  margin-bottom:3px;
+}

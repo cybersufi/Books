@@ -1,0 +1,3 @@
+ADBRITE.INLINE.keyword_to_id['Hardware']='Hardware';ADBRITE.INLINE.keyword_to_id['Permanent']='Permanent';ADBRITE.INLINE.keyword_to_id['Active']='Active';ADBRITE.INLINE.keyword_to_id['active']='active';ADBRITE.INLINE.keyword_to_id['obtained']='obtained';ADBRITE.INLINE.keyword_to_id['verify']='verify';ADBRITE.INLINE.keyword_to_id['similar']='similar';ADBRITE.INLINE.keyword_to_id['channel']='channel';
+ADBRITE.INLINE.keywords_to_inline=[['Hardware'],['Permanent'],['Active'],['active'],['obtained'],['verify'],['similar'],['channel']];
+ADBRITE.INLINE.inline();

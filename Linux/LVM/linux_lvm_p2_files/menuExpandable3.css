@@ -1,0 +1,32 @@
+.dhtml_node {
+  font-style: italic
+}
+.menuList {
+  PADDING-RIGHT: 0px; PADDING-LEFT: 15px; PADDING-BOTTOM: 10px; MARGIN: 0px; PADDING-TOP: 10px
+}
+LI.menubar {
+  LIST-STYLE-POSITION: outside; FONT-SIZE: 12px; BACKGROUND: url(plus.gif) no-repeat 0em 0.3em; LINE-HEIGHT: 1.5em; LIST-STYLE-TYPE: none
+}
+.submenu {
+  PADDING-RIGHT: 0px; DISPLAY: none; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN-LEFT: 15px; PADDING-TOP: 0px
+}
+.menuList LI, .submenu LI {
+  LIST-STYLE-POSITION: outside; BACKGROUND: url(square.gif) no-repeat 0em 0.3em; LIST-STYLE-TYPE: none
+}
+A.actuator {
+  PADDING-LEFT: 15px; FONT-SIZE: 12px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+A.actuator:hover {
+  TEXT-DECORATION: underline
+}
+.menuList LI A, .submenu LI A {
+  PADDING-LEFT: 15px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+submenu LI A:hover, SPAN.key {
+  TEXT-DECORATION: underline
+}
+
+.voc {
+  float: left;
+  padding: 15px;
+}

@@ -1,0 +1,2588 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: =?Windows-1252?Q?Making_LVM_Mirror_on_Linux_using_Red_Hat_CLuster_Suite?=
+	=?Windows-1252?Q?_=96_CLVM_=28Cluster_LVM=29_=96_on_RHEL_5_=AB_Kairo_Arau?=
+	=?Windows-1252?Q?jo?=
+Date: Tue, 11 Aug 2009 18:51:56 +0700
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01CA1AB4.CCEC63C0"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.2180
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://kairo.wordpress.com/2009/05/06/making-lvm-mirror-on-linux-using-red-hat-cluster-suite-clvm-cluster-lvm-on-rhel-5/
+
+=EF=BB=BF<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" =
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML lang=3Dpt-br dir=3Dltr =
+xmlns=3D"http://www.w3.org/1999/xhtml"><HEAD=20
+profile=3Dhttp://gmpg.org/xfn/11><TITLE>Making LVM Mirror on Linux using =
+Red Hat CLuster Suite =E2=80=93 CLVM (Cluster LVM) =E2=80=93 on RHEL 5 =
+=C2=AB Kairo Araujo</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3DUTF-8"><LINK=20
+media=3Dscreen=20
+href=3D"http://s3.wordpress.com/wp-content/themes/pub/twenty-eight/style.=
+css?m=3D1245873790b"=20
+type=3Dtext/css rel=3Dstylesheet><LINK title=3D"RSS 2.0"=20
+href=3D"http://kairo.wordpress.com/feed/" type=3Dapplication/rss+xml=20
+rel=3Dalternate><LINK href=3D"http://kairo.wordpress.com/xmlrpc.php"=20
+rel=3Dpingback><LINK=20
+title=3D"Kairo Araujo =C2=BB Making LVM Mirror on Linux using Red Hat =
+CLuster Suite =E2=80=93 CLVM (Cluster LVM) =E2=80=93 on RHEL&nbsp;5 =
+Comments Feed"=20
+href=3D"http://kairo.wordpress.com/2009/05/06/making-lvm-mirror-on-linux-=
+using-red-hat-cluster-suite-clvm-cluster-lvm-on-rhel-5/feed/"=20
+type=3Dapplication/rss+xml rel=3Dalternate>
+<SCRIPT type=3Dtext/javascript>=0A=
+/* <![CDATA[ */=0A=
+function addLoadEvent(func){var oldonload=3Dwindow.onload;if(typeof =
+window.onload!=3D'function'){window.onload=3Dfunc;}else{window.onload=3Df=
+unction(){oldonload();func();}}}=0A=
+/* ]]> */=0A=
+</SCRIPT>
+<LINK=20
+href=3D"http://s.wordpress.com/wp-content/themes/h4/global.css?m=3D124400=
+0994b"=20
+type=3Dtext/css rel=3Dstylesheet>
+<SCRIPT=20
+src=3D"http://kairo.wordpress.com/wp-includes/js/comment-reply.js?ver=3D2=
+0090102"=20
+type=3Dtext/javascript></SCRIPT>
+<LINK title=3DRSD href=3D"http://kairo.wordpress.com/xmlrpc.php?rsd"=20
+type=3Dapplication/rsd+xml rel=3DEditURI><LINK=20
+href=3D"http://kairo.wordpress.com/wp-includes/wlwmanifest.xml"=20
+type=3Dapplication/wlwmanifest+xml rel=3Dwlwmanifest><LINK =
+title=3D"Kairo Araujo"=20
+href=3D"http://kairo.wordpress.com" rel=3Dindex><LINK=20
+title=3D"IBM =E2=80=93 MDS File&nbsp;Upload"=20
+href=3D"http://kairo.wordpress.com/2007/06/26/aix-linux-storage-disk/"=20
+rel=3Dstart><LINK=20
+title=3D"Linux: GFS / GFS2 Sharing filesystems multiple servers =
+/&nbsp;nodes"=20
+href=3D"http://kairo.wordpress.com/2009/04/09/gfs-gfs2-sharing-filesystem=
+s-multiple-servers-nodes/"=20
+rel=3Dprev><LINK=20
+title=3D"Problema Motorola Q11 com o Roteador Wireless DLink DI-524 =
+=E2=80=93 Suporte&nbsp;(!?)"=20
+href=3D"http://kairo.wordpress.com/2009/08/06/problema-motorola-q11-com-o=
+-roteador-wireless-dlink-di-524/"=20
+rel=3Dnext>
+<META content=3D"MSHTML 6.00.2900.2180" name=3DGENERATOR><LINK=20
+href=3D"http://kairo.wordpress.com/2009/05/06/making-lvm-mirror-on-linux-=
+using-red-hat-cluster-suite-clvm-cluster-lvm-on-rhel-5/"=20
+rel=3Dcanonical><LINK=20
+href=3D"http://www.gravatar.com/blavatar/f83c6190eb6db9bf49615dec4018957d=
+?s=3D16&amp;d=3Dhttp://s.wordpress.com/favicon.ico"=20
+type=3Dimage/x-icon rel=3D"shortcut icon"><LINK=20
+href=3D"http://www.gravatar.com/blavatar/f83c6190eb6db9bf49615dec4018957d=
+?s=3D16&amp;d=3Dhttp://s.wordpress.com/favicon.ico"=20
+type=3Dimage/x-icon rel=3Dicon><LINK=20
+href=3D"http://www.gravatar.com/blavatar/f20243b0647d4ebae847cfba65874cf1=
+?s=3D158&amp;d=3Dhttp://s.wordpress.com/wp-content/themes/h4/i/webclip.pn=
+g"=20
+rel=3Dapple-touch-icon><LINK =
+href=3D"http://kairo.wordpress.com/?openidserver=3D1"=20
+rel=3Dopenid.server><LINK href=3D"http://kairo.wordpress.com/"=20
+rel=3Dopenid.delegate><LINK href=3D"http://wp.me/p2u8n-3p" =
+rel=3Dshortlink></HEAD>
+<BODY class=3Dpermalink>
+<DIV id=3Dpage>
+<HR>
+
+<DIV id=3Dheader style=3D"CURSOR: pointer"=20
+onclick=3D"location.href=3D'http://kairo.wordpress.com';">
+<H1>Kairo Araujo</H1>
+<P class=3Ddescription>Unix, Storage Disk, Storage Area Network and =
+me.</P></DIV>
+<DIV class=3Dcontent>
+<DIV class=3Dprimary>
+<DIV=20
+class=3D"post-211 post hentry category-linux category-unix-notes =
+tag-cluster-lvm tag-clvm tag-linux-lvm-mirror tag-lvconvert-m1 item =
+entry"=20
+id=3Dpost-211>
+<DIV class=3Ditemhead>
+<H3><A=20
+title=3D"Making LVM Mirror on Linux using Red Hat CLuster Suite =
+=E2=80=93 CLVM (Cluster LVM) =E2=80=93 on RHEL&nbsp;5"=20
+href=3D"http://kairo.wordpress.com/2009/05/06/making-lvm-mirror-on-linux-=
+using-red-hat-cluster-suite-clvm-cluster-lvm-on-rhel-5/"=20
+rel=3Dbookmark>Making LVM Mirror on Linux using Red Hat CLuster Suite =
+=E2=80=93 CLVM=20
+(Cluster LVM) =E2=80=93 on RHEL&nbsp;5</A></H3>
+<P class=3Dmetadata>06/05/2009 in <A title=3D"Ver todos os posts em =
+Linux"=20
+href=3D"http://pt-br.wordpress.com/tag/linux/" rel=3D"category =
+tag">Linux</A>, <A=20
+title=3D"Ver todos os posts em Unix Notes"=20
+href=3D"http://pt-br.wordpress.com/tag/unix-notes/" rel=3D"category =
+tag">Unix=20
+Notes</A><BR>Tags: <A =
+href=3D"http://pt-br.wordpress.com/tag/cluster-lvm/"=20
+rel=3Dtag>Cluster LVM</A>, <A =
+href=3D"http://pt-br.wordpress.com/tag/clvm/"=20
+rel=3Dtag>CLVM</A>, <A =
+href=3D"http://pt-br.wordpress.com/tag/linux-lvm-mirror/"=20
+rel=3Dtag>Linux LVM Mirror</A>, <A=20
+href=3D"http://pt-br.wordpress.com/tag/lvconvert-m1/" =
+rel=3Dtag>lvconvert=20
+-m1</A><BR></P></DIV>
+<DIV class=3Ditemtext>
+<SCRIPT =
+src=3D"http://s.wordpress.com/wp-content/plugins/adverts/adsense.js?1"=20
+type=3Dtext/javascript></SCRIPT>
+
+<P><STRONG>1. The scenario</STRONG></P>
+<P>On my box I=E2=80=99ve two disks from two differents Storage =
+Disk.</P>
+<P>Using multipath I=E2=80=99ve this disks<BR>/dev/dm-15 from Storage =
+Disk A (in=20
+use)<BR>/dev/dm-28 from Storage Disk B (not in use yet.)</P>
+<P>I=E2=80=99ve the Volume Group with name vg_gfs00 on =
+/dev/dm-15<BR>I=E2=80=99ve the Logical=20
+Volume with name lv00 on the Volume Group VG_GFS</P>
+<P>Looking my outputs pvs, vgs and lvs</P>
+<P>PVS output<BR><CODE>#=20
+pvs<BR>PV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+VG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fmt&nbsp; Attr=20
+PSize&nbsp;&nbsp; PFree<BR>/dev/dm-15 vg_gfs00&nbsp;&nbsp;&nbsp; lvm2=20
+a-&nbsp;&nbsp; 278,98G 39,95G<BR>/dev/sda3&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lvm2 a-&nbsp;&nbsp; 131,47G=20
+86,19G</CODE></P>
+<P>VGS output<BR><CODE>#=20
+vgs<BR>VG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #PV #LV =
+#SN=20
+Attr&nbsp;&nbsp; VSize&nbsp;&nbsp;=20
+VFree<BR>rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp; =
+11&nbsp;&nbsp;=20
+0 wz--n- 131,47G 86,19G<BR>vg_gfs00all&nbsp;&nbsp; 8&nbsp;&nbsp; =
+7&nbsp;&nbsp; 0=20
+wz--n- 278,98G 39,95G</CODE></P>
+<P>LVS output<BR><CODE>#=20
+lvs<BR>LV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+VG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Attr&nbsp;&nbsp;=20
+LSize<BR>homelv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao=20
+512,00M<BR>optlv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+1,00G<BR>rootlv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+1,00G<BR>tmplv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+2,00G<BR>usrlv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+4,00G<BR>varloglv&nbsp;&nbsp;&nbsp; rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+
+-wi-ao&nbsp;&nbsp; 8,00G<BR>varlv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+4,00G<BR>lv00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+vg_gfs00&nbsp;&nbsp;&nbsp; -wi-ao 239,03G</CODE></P>
+<P><STRONG>2. Objective</STRONG></P>
+<P>Implement a mirror on filesystems for high availbility if my Storage =
+Disk A=20
+or B crashs.</P>
+<P><STRONG>3. Implementing</STRONG><BR><STRONG><BR>a. Make a PV on new =
+disk=20
+(/dev/dm-28)</STRONG></P>
+<P><CODE># pvcreate /dev/dm-28</CODE></P>
+<P><STRONG>b. Add new volume on the vg_gfs00</STRONG></P>
+<P><CODE># vgextend vg_gfs00 /dev/dm-28</CODE></P>
+<P><STRONG>c. Make a mirror on Logical Volume</STRONG></P>
+<P><CODE># lvconvert -m1 vg_gfs00/lv00 /dev/dm-28<BR>vg_gfs00/lv00: =
+Converted:=20
+17,1%<BR>vg_gfs00/lv00: Converted: 34,1%<BR>vg_gfs00/lv00: Converted:=20
+51,0%<BR>vg_gfs00/lv00: Converted: 68,4%<BR>vg_gfs00/lv00: Converted:=20
+85,5%<BR>vg_gfs00/lv00: Converted: 100,0%</CODE></P>
+<P><SPAN style=3D"TEXT-DECORATION: underline">Note:</SPAN> If your LV =
+are in more=20
+PVs you can specify all PVs<BR>Sample:</P>
+<P><CODE># lvs -a -o +devices | grep=20
+lv00<BR>lv00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+vg_gfs00=20
+-wi-ao&nbsp; 10,00G&nbsp;&nbsp;&nbsp;&nbsp;=20
+/dev/dm-15(0)<BR>lv00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;=20
+vg_gfs00 -wi-ao&nbsp; 10,00G&nbsp;&nbsp;&nbsp;&nbsp;=20
+/dev/dm-16(123490)</CODE></P>
+<P>In this case dm-15 and dm-16 are on my Storage Disk A, I need two =
+disks on=20
+the Storage Disk B, sample dm-28 and dm-29.<BR>For convert I use =
+this<BR><CODE>#=20
+lvconvert -m1 vg_gfs00/lv00 /dev/dm-28 /dev/dm-29</CODE></P>
+<P><STRONG>d. Checking Mirror with lvs -a -o +devices</STRONG></P>
+<P><CODE># lvs -a -o +devices | grep=20
+vl00<BR>lv00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;=20
+vg_gfs00 mwi-ao&nbsp; 10,00G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+lv00_mlog=20
+100,00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+lv00_mimage_0(0),lv00_mimage_1(0)<BR>[lv00_mimage_0] vg_gfs00 =
+iwi-ao&nbsp;=20
+10,00G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+/dev/dm-15(10242)<BR>[lv00_mimage_1] vg_gfs00 iwi-ao&nbsp;=20
+10,00G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+/dev/dm-28(14086)</CODE></P>
+<P>Looking details:</P>
+<P>lv00 is a lv00_mlog and have a 100% of sync to lv00_mimage_0 and=20
+lv00_image1.<BR>The lv00_mimage_0 is stored on /dev/dm-15<BR>The =
+lv00_mimage_1=20
+is stored on /dev/dm-28</P>
+<P>Looking with a simple lvs</P>
+<P><CODE># =
+lvs<BR>LV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+VG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Attr&nbsp;&nbsp;=20
+LSize&nbsp; Origin Snap%&nbsp; Move=20
+Log&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;=20
+Copy%&nbsp; Convert<BR>homelv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao=20
+512,00M<BR>optlv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+1,00G<BR>rootlv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+1,00G<BR>tmplv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+2,00G<BR>usrlv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+4,00G<BR>varloglv&nbsp;&nbsp;&nbsp; rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+
+-wi-ao&nbsp;&nbsp; 8,00G<BR>varlv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+rootvg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -wi-ao&nbsp;&nbsp;=20
+4,00G<BR>lv00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+vg_gfs00&nbsp;&nbsp;&nbsp; -wi-ao 239,03G&nbsp; &nbsp;&nbsp;&nbsp;=20
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; lv00_mlog 100,00</CODE></P>
+<P>If the lv00_mlog is not 100% you have a problem with one of =
+disks.</P>
+<P><STRONG>4. Documentation:</STRONG></P>
+<P>* <A=20
+href=3D"http://www.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/5.2/htm=
+l/Cluster_Logical_Volume_Manager/">http://www.redhat.com/docs/en-US/Red_H=
+at_Enterprise_Linux/5.2/html/Cluster_Logical_Volume_Manager/</A><BR>-=20
+2.3.3. Mirrored Logical Volumes<BR>- 4.4.1.3. Creating Mirrored =
+Volumes<BR>-=20
+6.3. Recovering from LVM Mirror Failure</P><!--adcode-->
+<DIV style=3D"PADDING-TOP: 5px; TEXT-ALIGN: left" align=3Dcenter>
+<SCRIPT type=3Dtext/javascript><!--=0A=
+google_ad_client =3D "pub-3443918307802676";=0A=
+google_ad_output =3D "js";=0A=
+google_feedback =3D "on";=0A=
+google_max_num_ads =3D "4";=0A=
+google_ad_width =3D 336;=0A=
+google_ad_height =3D 280;=0A=
+google_ad_format =3D "336x280_as";=0A=
+google_image_size =3D "336x280";=0A=
+google_ad_type =3D "text,flash,html";=0A=
+google_ad_channel =3D"7770228814+9378541030+7401333398+4689656086";=0A=
+var color_bg =3D 'ffffff';=0A=
+var color_text =3D '000000';=0A=
+var color_link =3D '0000ff';=0A=
+var color_border =3D 'ffffff';=0A=
+var color_url =3D '0000ff';=0A=
+=0A=
+google_analytics_domain_name =3D "wordpress.com";=0A=
+//--></SCRIPT>
+
+<SCRIPT src=3D"http://pagead2.googlesyndication.com/pagead/show_ads.js"=20
+type=3Dtext/javascript></SCRIPT>
+</DIV>
+<DIV style=3D"CLEAR: both"><BR></DIV><!--/adcode--></DIV></DIV>
+<HR>
+
+<DIV class=3Dcomments id=3Dcomments>
+<DIV class=3Dcenter>
+<H4><A=20
+href=3D"http://kairo.wordpress.com/2009/05/06/making-lvm-mirror-on-linux-=
+using-red-hat-cluster-suite-clvm-cluster-lvm-on-rhel-5/#comments">No=20
+Comments Yet</A></H4></DIV>
+<OL class=3Dcommentlist id=3Dcommentlist><!-- If comments are open, but =
+there are no comments. --><!--<li id=3D"leavecomment"></li>--></OL><!-- =
+Reply Form -->
+<DIV id=3Drespond>
+<H4>Leave a Comment</H4>
+<DIV id=3Dcancel-comment-reply><SMALL><A id=3Dcancel-comment-reply-link=20
+style=3D"DISPLAY: none"=20
+href=3D"http://kairo.wordpress.com/2009/05/06/making-lvm-mirror-on-linux-=
+using-red-hat-cluster-suite-clvm-cluster-lvm-on-rhel-5/#respond"=20
+rel=3Dnofollow>Clique aqui para cancelar a =
+resposta.</A></SMALL></DIV><BR>
+<P class=3Dmetadata style=3D"PADDING-BOTTOM: 10px"><A=20
+title=3D"Send a trackback to this article"=20
+href=3D"http://kairo.wordpress.com/2009/05/06/making-lvm-mirror-on-linux-=
+using-red-hat-cluster-suite-clvm-cluster-lvm-on-rhel-5/trackback/">trackb=
+ack=20
+address</A></P>
+<FORM id=3Dcommentform =
+action=3Dhttp://kairo.wordpress.com/wp-comments-post.php=20
+method=3Dpost>
+<DIV id=3Derrors style=3D"DISPLAY: none">There was an error with your =
+comment,=20
+please try again.</DIV>
+<DIV id=3Dauthorinfo>
+<P><INPUT id=3Dauthor tabIndex=3D1 size=3D22 name=3Dauthor> <LABEL=20
+for=3Dauthor><SMALL><STRONG>name</STRONG>(obrigat=C3=B3rio)</SMALL></LABE=
+L> </P>
+<P><INPUT id=3Demail tabIndex=3D2 size=3D22 name=3Demail> <LABEL=20
+for=3Demail><SMALL><STRONG>email</STRONG> (will not be published)=20
+(obrigat=C3=B3rio)</SMALL></LABEL> </P>
+<P><INPUT id=3Durl tabIndex=3D3 size=3D22 name=3Durl> <LABEL=20
+for=3Durl><SMALL><STRONG>url</STRONG></SMALL></LABEL> </P></DIV>
+<P><TEXTAREA id=3Dcomment tabIndex=3D4 name=3Dcomment rows=3D10 =
+cols=3D100></TEXTAREA></P>
+<P><INPUT id=3Dsubscribe style=3D"WIDTH: auto" type=3Dcheckbox =
+value=3Dsubscribe=20
+name=3Dsubscribe> <LABEL id=3Dsubscribe-label =
+for=3Dsubscribe>Notificar-me os=20
+coment=C3=A1rios mais recentes via e-mail.</LABEL></P>
+<P><INPUT id=3Dsubmit tabIndex=3D5 type=3Dsubmit value=3DSubmit =
+name=3Dsubmit> <INPUT=20
+id=3Dcomment_post_ID type=3Dhidden value=3D211 name=3Dcomment_post_ID> =
+<INPUT=20
+id=3Dcomment_parent type=3Dhidden value=3D0 name=3Dcomment_parent> <BR=20
+class=3Dall></P><INPUT type=3Dhidden value=3D1249983805 name=3Dgenseq>=20
+</FORM></DIV></DIV></DIV>
+<HR>
+
+<DIV class=3Dsecondary>
+<DIV class=3Dleft>
+<UL>
+  <LI class=3D"widget widget_text" id=3Dtext-1>
+  <H2 class=3Dwidgettitle>Unix, AIX, Linux, Storage Disk, Storage Area =
+Network=20
+  (SAN), HMC, Blade Center, IBM, TI, SysAdmin, Computa=C3=A7=C3=A3o e =
+Pessoal</H2>
+  <DIV class=3Dtextwidget>
+  <P>
+  <P><A href=3D"http://www.linkedin.com/in/kairoaraujo"><IMG height=3D33 =
+
+  alt=3D"View Kairo Araujo's profile on LinkedIn"=20
+  src=3D"http://www.linkedin.com/img/webpromo/btn_myprofile_160x33.gif" =
+width=3D160=20
+  border=3D0></A> </P>Unix &amp; Storage Disk Administrator at IBM =
+Brazil.=20
+  <P>Note: All information and opinions in this blog / website are =
+purely=20
+  personal and do not reflect any opinions or information from IBM. </P>
+  <P>Nota: Todas as informa=C3=A7=C3=B5es e opni=C3=B5es neste =
+blog/website s=C3=A3o meramente=20
+  pessoais e n=C3=A3o refletem quaisquer opni=C3=B5es ou =
+informa=C3=A7=C3=B5es da IBM. </P>
+  <P></P></DIV>
+  <LI class=3D"widget widget_pages" id=3Dpages-2>
+  <H2 class=3Dwidgettitle>P=C3=A1ginas</H2>
+  <UL>
+    <LI class=3D"page_item page-item-5"><A title=3DCurriculum&nbsp;Vitae =
+
+    =
+href=3D"http://kairo.wordpress.com/curriculum-vitae/">Curriculum&nbsp;Vit=
+ae</A>=20
+
+    <LI class=3D"page_item page-item-41"><A title=3DFedora&nbsp;Devel=20
+    =
+href=3D"http://kairo.wordpress.com/fedora-devel/">Fedora&nbsp;Devel</A>=20
+    <LI class=3D"page_item page-item-2"><A title=3DSobre=20
+    href=3D"http://kairo.wordpress.com/about/">Sobre</A> </LI></UL>
+  <LI class=3D"widget widget_rss" id=3Drss-1>
+  <H2 class=3Dwidgettitle><A class=3Drsswidget title=3D"Assinar este =
+conte=C3=BAdo"=20
+  href=3D"http://twitter.com/statuses/user_timeline/14063004.atom"><IMG=20
+  style=3D"BACKGROUND: orange; COLOR: white; BORDER-TOP-STYLE: none; =
+BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: =
+none"=20
+  height=3D14 alt=3DRSS =
+src=3D"http://s.wordpress.com/wp-includes/images/rss.png"=20
+  width=3D14></A> <A class=3Drsswidget title=3D""=20
+  href=3D"http://twitter.com/statuses/user_timeline/14063004.atom">Fast =
+Blog=20
+  (Pessoal)</A></H2>
+  <UL>
+    <LI><A class=3Drsswidget title=3D"kairoaraujo: Vou dormir."=20
+    =
+href=3D"http://twitter.com/kairoaraujo/statuses/3238692640">kairoaraujo: =
+Vou=20
+    dormir.</A>
+    <LI><A class=3Drsswidget=20
+    title=3D"kairoaraujo: Putz, quanto e-mails pessoais, respondi =
+todos."=20
+    =
+href=3D"http://twitter.com/kairoaraujo/statuses/3238439609">kairoaraujo: =
+Putz,=20
+    quanto e-mails pessoais, respondi todos.</A>
+    <LI><A class=3Drsswidget title=3D"kairoaraujo: @ffalce  Isso mesmo =
+:)"=20
+    =
+href=3D"http://twitter.com/kairoaraujo/statuses/3236467750">http://twitte=
+r.com/kairoaraujo/statuses/3236467750</A>
+    <LI><A class=3Drsswidget=20
+    title=3D"kairoaraujo: Video disponivel do Motorola Q11 que estou =
+vendendo no Mercado Livre. http://bit.ly/Ktrgj"=20
+    =
+href=3D"http://twitter.com/kairoaraujo/statuses/3236212089">kairoaraujo: =
+Video=20
+    disponivel do Motorola Q11 que estou vendendo no Mercado Livre.=20
+    http://bit.ly/Ktrgj</A>
+    <LI><A class=3Drsswidget=20
+    title=3D"kairoaraujo: @plastico Sim, voc=C3=AA pode fazer video do =
+produto e colocar na p=C3=A1gina. Custa R$0.50 :)"=20
+    =
+href=3D"http://twitter.com/kairoaraujo/statuses/3235674134">http://twitte=
+r.com/kairoaraujo/statuses/3235674134</A></LI></UL>
+  <LI class=3D"widget widget_calendar" id=3Dcalendar-2>
+  <H2 class=3Dwidgettitle>&nbsp;</H2>
+  <DIV id=3Dcalendar_wrap>
+  <TABLE id=3Dwp-calendar summary=3DAgenda>
+    <CAPTION>Maio 2009</CAPTION>
+    <THEAD>
+    <TR>
+      <TH title=3DSegunda-feira scope=3Dcol abbr=3DSegunda-feira>S</TH>
+      <TH title=3DTer=C3=A7a-feira scope=3Dcol =
+abbr=3DTer=C3=A7a-feira>T</TH>
+      <TH title=3DQuarta-feira scope=3Dcol abbr=3DQuarta-feira>Q</TH>
+      <TH title=3DQuinta-feira scope=3Dcol abbr=3DQuinta-feira>Q</TH>
+      <TH title=3DSexta-Feira scope=3Dcol abbr=3DSexta-Feira>S</TH>
+      <TH title=3DS=C3=A1bado scope=3Dcol abbr=3DS=C3=A1bado>S</TH>
+      <TH title=3DDomingo scope=3Dcol abbr=3DDomingo>D</TH></TR></THEAD>
+    <TFOOT>
+    <TR>
+      <TD id=3Dprev abbr=3DAbril colSpan=3D3><A title=3D"Ver posts de =
+Abril 2009"=20
+        href=3D"http://kairo.wordpress.com/2009/04/">=C2=AB Abr</A></TD>
+      <TD class=3Dpad>&nbsp;</TD>
+      <TD id=3Dnext abbr=3DAgosto colSpan=3D3><A title=3D"Ver posts de =
+Agosto 2009"=20
+        href=3D"http://kairo.wordpress.com/2009/08/">Ago =
+=C2=BB</A></TD></TR></TFOOT>
+    <TBODY>
+    <TR>
+      <TD class=3Dpad colSpan=3D4>&nbsp;</TD>
+      <TD>1</TD>
+      <TD>2</TD>
+      <TD>3</TD></TR>
+    <TR>
+      <TD>4</TD>
+      <TD>5</TD>
+      <TD><A=20
+        title=3D"Making LVM Mirror on Linux using Red Hat CLuster Suite =
+=E2=80=93 CLVM (Cluster LVM) =E2=80=93 on RHEL&nbsp;5"=20
+        href=3D"http://kairo.wordpress.com/2009/05/06/">6</A></TD>
+      <TD>7</TD>
+      <TD>8</TD>
+      <TD>9</TD>
+      <TD>10</TD></TR>
+    <TR>
+      <TD>11</TD>
+      <TD>12</TD>
+      <TD>13</TD>
+      <TD>14</TD>
+      <TD>15</TD>
+      <TD>16</TD>
+      <TD>17</TD></TR>
+    <TR>
+      <TD>18</TD>
+      <TD>19</TD>
+      <TD>20</TD>
+      <TD>21</TD>
+      <TD>22</TD>
+      <TD>23</TD>
+      <TD>24</TD></TR>
+    <TR>
+      <TD>25</TD>
+      <TD>26</TD>
+      <TD>27</TD>
+      <TD>28</TD>
+      <TD>29</TD>
+      <TD>30</TD>
+      <TD>31</TD></TR></TBODY></TABLE></DIV>
+  <LI class=3D"widget widget_archive" id=3Darchives-2>
+  <H2 class=3Dwidgettitle>Arquivo de Posts</H2>
+  <UL>
+    <LI><A title=3D"Agosto 2009" =
+href=3D"http://kairo.wordpress.com/2009/08/">Agosto=20
+    2009</A>&nbsp;(1)=20
+    <LI><A title=3D"Maio 2009" =
+href=3D"http://kairo.wordpress.com/2009/05/">Maio=20
+    2009</A>&nbsp;(1)=20
+    <LI><A title=3D"Abril 2009" =
+href=3D"http://kairo.wordpress.com/2009/04/">Abril=20
+    2009</A>&nbsp;(2)=20
+    <LI><A title=3D"Mar=C3=A7o 2009" =
+href=3D"http://kairo.wordpress.com/2009/03/">Mar=C3=A7o=20
+    2009</A>&nbsp;(2)=20
+    <LI><A title=3D"Fevereiro 2009"=20
+    href=3D"http://kairo.wordpress.com/2009/02/">Fevereiro =
+2009</A>&nbsp;(3)=20
+    <LI><A title=3D"Janeiro 2009"=20
+    href=3D"http://kairo.wordpress.com/2009/01/">Janeiro =
+2009</A>&nbsp;(2)=20
+    <LI><A title=3D"Dezembro 2008"=20
+    href=3D"http://kairo.wordpress.com/2008/12/">Dezembro =
+2008</A>&nbsp;(3)=20
+    <LI><A title=3D"Agosto 2008" =
+href=3D"http://kairo.wordpress.com/2008/08/">Agosto=20
+    2008</A>&nbsp;(1)=20
+    <LI><A title=3D"Julho 2008" =
+href=3D"http://kairo.wordpress.com/2008/07/">Julho=20
+    2008</A>&nbsp;(5)=20
+    <LI><A title=3D"Junho 2008" =
+href=3D"http://kairo.wordpress.com/2008/06/">Junho=20
+    2008</A>&nbsp;(4)=20
+    <LI><A title=3D"Maio 2008" =
+href=3D"http://kairo.wordpress.com/2008/05/">Maio=20
+    2008</A>&nbsp;(2)=20
+    <LI><A title=3D"Abril 2008" =
+href=3D"http://kairo.wordpress.com/2008/04/">Abril=20
+    2008</A>&nbsp;(5)=20
+    <LI><A title=3D"Mar=C3=A7o 2008" =
+href=3D"http://kairo.wordpress.com/2008/03/">Mar=C3=A7o=20
+    2008</A>&nbsp;(4)=20
+    <LI><A title=3D"Outubro 2007"=20
+    href=3D"http://kairo.wordpress.com/2007/10/">Outubro =
+2007</A>&nbsp;(1)=20
+    <LI><A title=3D"Setembro 2007"=20
+    href=3D"http://kairo.wordpress.com/2007/09/">Setembro =
+2007</A>&nbsp;(5)=20
+    <LI><A title=3D"Agosto 2007" =
+href=3D"http://kairo.wordpress.com/2007/08/">Agosto=20
+    2007</A>&nbsp;(5)=20
+    <LI><A title=3D"Julho 2007" =
+href=3D"http://kairo.wordpress.com/2007/07/">Julho=20
+    2007</A>&nbsp;(5)=20
+    <LI><A title=3D"Junho 2007" =
+href=3D"http://kairo.wordpress.com/2007/06/">Junho=20
+    2007</A>&nbsp;(1) </LI></UL>
+  <LI class=3D"widget widget_stats_topclicks" id=3Dtop-clicks>
+  <H2 class=3Dwidgettitle>mais acessados</H2>
+  <UL>
+    <LI><A=20
+    =
+href=3D"http://www.freewarepocketpc.net/ppc-download-wifi-profiles-v0-0-2=
+.html"=20
+    rel=3Dnofollow>freewarepocketpc.net/ppc-=E2=80=A6</A>
+    <LI><A href=3D"http://tools.enterprisemobile.com/iputil/"=20
+    rel=3Dnofollow>tools.enterprisemobile.co=E2=80=A6</A>
+    <LI><A=20
+    =
+href=3D"ftp://ftp.software.ibm.com/storage/devdrvr/Linux/lin_tape_source-=
+lin_taped/"=20
+    =
+rel=3Dnofollow>ftp://ftp.software.ibm.com/storage/devdrvr/Linux/lin_tape_=
+source-lin_taped/</A>
+    <LI><A=20
+    =
+href=3D"http://www.dlink.com.br/suporte/arquivos/DI-524/MANUAIS/_ATUALIZA=
+CAO_DE_FIRMWARE%20DI524.pdf"=20
+    rel=3Dnofollow>dlink.com.br/suporte/arqu=E2=80=A6</A>
+    <LI><A=20
+    =
+href=3D"http://marcomalaquias.wordpress.com/2008/12/02/criando-um-backup-=
+das-sessoes-do-putty/"=20
+    rel=3Dnofollow>marcomalaquias.wordpress.=E2=80=A6</A>
+    <LI><A=20
+    =
+href=3D"http://shots.snap.com/explore/91765/?url=3Dhttp%3A%2F%2Ftwitter.c=
+om%2Fstatuses%2Fuser_timeline%2F14063004.atom&amp;key=3De5a3c1e6dff5de35b=
+1c6e7c470411886&amp;src=3Dpub-2311827-www.wordpress.com&amp;cp=3D&amp;tol=
+=3Durl"=20
+    rel=3Dnofollow>shots.snap.com/explore/91=E2=80=A6</A>
+    <LI><A href=3D"http://paulstamatiou.com/" =
+rel=3Dnofollow>paulstamatiou.com</A>
+    <LI><A href=3D"http://www.linkedin.com/in/kairoaraujo"=20
+    rel=3Dnofollow>linkedin.com/in/kairoarau=E2=80=A6</A>
+    <LI><A href=3D"http://www.pronetadvertising.com/about"=20
+    rel=3Dnofollow>pronetadvertising.com/abo=E2=80=A6</A>
+    <LI><A =
+href=3D"http://zumo.uol.com.br/2008/10/18/preview-motorola-moto-q11/"=20
+    rel=3Dnofollow>zumo.uol.com.br/2008/10/1=E2=80=A6</A></LI></UL>
+  <LI class=3D"widget widget_search" id=3Dsearch-2>
+  <FORM id=3Dsearchform action=3D/ method=3Dget>
+  <P><INPUT id=3Ds onblur=3D"if (this.value =3D=3D '') {this.value =3D =
+'search here';}"=20
+  onfocus=3D"if (this.value =3D=3D 'search here') {this.value =3D '';}"=20
+  value=3D"search here"=20
+  name=3Ds><INPUT id=3Dsearchsubmit type=3Dsubmit value=3DGo></P></FORM>
+  <LI class=3D"widget widget_statscounter" id=3Dblog-stats>
+  <H2 class=3Dwidgettitle>Stats</H2>
+  <UL>
+    <LI>26,762 Acessos </LI></UL></LI></UL></DIV>
+<DIV class=3Dright>
+<DIV class=3Dsearch>
+<FORM id=3Dsearchform action=3D/ method=3Dget>
+<P><INPUT id=3Ds onblur=3D"if (this.value =3D=3D '') {this.value =3D =
+'search here';}"=20
+onfocus=3D"if (this.value =3D=3D 'search here') {this.value =3D '';}"=20
+value=3D"search here"=20
+name=3Ds><INPUT id=3Dsearchsubmit type=3Dsubmit =
+value=3DGo></P></FORM></DIV>
+<UL></UL></DIV><!-- close right --></DIV>
+<DIV class=3Dclear></DIV></DIV>
+<DIV class=3Dclear></DIV></DIV>
+<HR>
+
+<DIV id=3Dfooter><SMALL><A href=3D"http://pt-br.wordpress.com/" =
+rel=3Dgenerator>Blog=20
+no WordPress.com</A>. Theme: 2813 by <A =
+href=3D"http://elifoner.com/">Eli</A>, <A=20
+href=3D"http://www.pronetadvertising.com/about">Neil</A>, and <A=20
+href=3D"http://paulstamatiou.com/">Paul</A>..</SMALL></DIV><!-- =
+google_afm -->
+<SCRIPT src=3D"http://cache.amefin.com/analytics.js"=20
+type=3Dtext/javascript></SCRIPT>
+
+<SCRIPT type=3Dtext/javascript>_amefin.setZoneId(20).track()</SCRIPT>
+
+<SCRIPT src=3D"http://edge.quantserve.com/quant.js" =
+type=3Dtext/javascript></SCRIPT>
+
+<SCRIPT type=3Dtext/javascript>_qoptions =3D { =
+labels:"adt.0,language.pt-br,posttag.cluster-lvm,posttag.clvm,posttag.lin=
+ux-lvm-mirror,posttag.lvconvert-m1" =
+};_qacct=3D"p-18-mFEk4J448M";quantserve();</SCRIPT>
+<NOSCRIPT>
+<P><IMG style=3D"DISPLAY: none" height=3D1 alt=3D""=20
+src=3D"http://pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=3Dadt=
+.0%2Clanguage.pt-br%2Cposttag.cluster-lvm%2Cposttag.clvm%2Cposttag.linux-=
+lvm-mirror%2Cposttag.lvconvert-m1"=20
+width=3D1></P></NOSCRIPT>
+<SCRIPT =
+type=3Dtext/javascript>_acseed=3D'Nm01fCNhbSRLQSMjLSw4M2tWcVloOitubzYjSyt=
+jIzlOaSg3VUFmcUp7MlJpbGJjViZtNDRec1gkL1QjIzh0Z2s7fUghTlBJIEpld2dVRixgMnhK=
+XSwjVlU2JTc/WCMgIDIsZSNXMnZFIShMJWN0PUpLbW5IP2BpfGYyWXghUnQ1Xz55RyBBM0l1M=
+m1lRDVyW0RgM1NXejx8eE9aQFdKSixVZk1INXFrTVI+ZE1bfXo2QGZ+XnBhVz1aflcqWSo5aj=
+t9am1PLnl5dD0yQmc=3D';</SCRIPT>
+
+<SCRIPT src=3D"http://s.stats.wordpress.com/w.js?19"=20
+type=3Dtext/javascript></SCRIPT>
+
+<SCRIPT type=3Dtext/javascript>=0A=
+st_go({'blog':'592495','v':'wpcom','user_id':'0','post':'211','subd':'kai=
+ro'});=0A=
+ex_go({'crypt':'RDZ8LFkxbXF2QWo2ZGxaMHVtR2NuYm1ZLH4vVDRYOGJwN1l3LE58bTdhY=
+m9BLF1sdEhrTlFOXS5DVGloekZjZHlRWlNoVzhrTk5jcENBSEJ1Ty04MDJrb3RDRmYsWVVvLE=
+4yb3dZbUc5Y0RVfFJENC14Nm1XT2ZfWDczYmFLNGdFSD9FSSxXcmFPZyZqOT1NalRSVXg4fDl=
+5aThtRG93dC9DL1cxJk1BRFMuNGUuSlFuVCx3fFMuNjFTV25+WHpzZVIwRyw3VEl+bz89VFF+=
+ajJubU1XaCw9MVAyZWZyeGMxT2F5ZmNOJUVqL2NUWld0VkF0THIvLiYsc1tfd2tzUi8zYz1Jf=
+kdjR3ZMQjVlfC9FVU8vaS1NfmIxSW4mb3xzdUE3Ym5HU2RDfjR+MlhIZU0ySW05XWldQ24mb3=
+h0JSw4cX5vYncwVFZ3W3JLXy8vSy1BTElWVEJQUDJZSnUtals5KzJpU0xJeXxuPThwOWQ9aE5=
+KTVtvQXl1UU1vVGQ3YTFVczNXfkFkRUdOK1AsZm0rRCZ4ci94SWZXWmlJK0JZV0Nh'});=0A=
+addLoadEvent(function(){linktracker_init('592495',211);});=0A=
+</SCRIPT>
+</BODY></HTML>
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.linkedin.com/img/webpromo/btn_myprofile_160x33.gif
+
+R0lGODlhoAAhAOYAAP////j8/vf39/H4+u74/O/v7+Xx9t/v9dbv99Ds9ubm5svq9c/m8Mbo9N7e
+3r3l8sbh7MLf6tbW1r3c6aze7qjc7rfZ6MzMzKvT5JzX65PU6ZDT6cXFxZ7N4IrQ6IXO58W9vb29
+vYfK4JLF24TH3o7D2bm4uJO+1La1tYS+1nu93nu81nW8162trXW51W231G6z0aalpGWy0KKhoKGg
+n2KtzV2tzZGfpV+pyFuqyZmZmVWpymugu1Wlx4mYnU2kx5SUlIeWm0WfxFCcv02avYyMjEOavz2a
+wYyEhIWEgkKSt4KBfzOTu4F/fjyMsy+PuHt7eyaMt3p4dh2HtHJycnJxb2xsbA1+rWlnZWZmZgV5
+qgB0phVqml1bWRJomRFomABqnFlXVVVVVQpjlFJPTQNgkk9MSgBbjkpKSkI/PT8/Pz88OjMzMzIv
+LCYjICUiIBgVEv///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5
+BAUUAHEALAAAAACgACEAAAf/gHGCBA8ZGhqGGYmIjIuOjZCPkpGUk5aVmJeamZybiRUNBIKCAQ8e
+H6ipqqusra6vsLGys7S1trYeC6MPHyQ3VFnBwsPExcbHyMnKy8zNzs/LVDckHw9xBB4kSUUKAN7f
+4OHi4+Tl5ufo6err7OcCDkVLIh4BDR83RQLt+/z9/v8AzQUocuNDggofqjgIyLBhuhNczkicSLGi
+RC4nHLK7QOUDhQwfsujTSJLkiTFDWKhIoWLFypYvXbJ0QWRMxpLnAmT5oCgkzp8MvShhQbSo0aNG
+nXwBag7Lh0M+mUrdd0bGi6tYs2rNKuPM1HE7e2b5SjZdVRlo06pdu9Zr2W87/6GO1Vik7kJwMdy0
+kXAOHpIiAGPYBXfGhuEVBAB0MMy4sWO3bwGEBTk2gDfLAAJg3ny5c2bPcEJzCOcmNGBzHELDAUhG
+NOEdsDF4OwC7tu3bkN/G1fABi74Av0cCzxycuPHhmlVzsMwcSmgUzD9HD5A69HTp2K8zbw1n9Ocz
+P8Kn8GYhvPnz6M9w/sx+vXvP6SaHFEC/vv37+PMDUA0CuH8BFzggwHAD6lMgACCo9t+CAhTQTYEM
+BmBGaP1pFsAZQmQoRA4yaOjhhxqqN6BmBgIwookWlnjiiNpll5lTG2wwX3401mifaiHcFwMSSOSI
+RBJICABEF13MQF8IqtFnRf9oblyggBSlwdEGEPUVgIVqUnDHgX1nHOElDB10kMIRYHYAQw0WMIDB
+Dl56eUaB+AFXYzAt5JjFlvRFCOGA8olk45/54XjfhHAkIYBqhIYmhQBIhiZAC0w6mQaTqhmqwKSq
+ZZpjfWcw4WkH3jDABKgARDDANwPk4CkTbwKKXwtIABACEDpd4Gp9TsnVYAG77sqrBBygQIMCHADh
+QAHDOkhDrzjy2qAAhBqaKRltqCZBo3BIEKWtSYRGpQLVwqFAt3C4MUMIXQjKKRNPMDGCNxC4+40B
+DHwzQbtPtCoABw60QIOADnBgwpYXAGGrA3RysGUWFwSgAA3D/tlnARRXbHH/ARysMQMQYUBhghoC
+SDFDAS1A4WuzFDcYbQGqAeFglDRgSygNFJfmhgk4XwlHC+HSXHNoIfDK6xlRFP0uABBEcbQBTEQx
+HgADFB3FGUIDgUYLLaBBbBZVcNBC11S0oAAUTUgABJV3CpBFCzOEQZ/Qb79txQcxhnTx3SGIYSIb
+wDF8gdtWbFmxaiZcvLJqFUdrQqaiUcx4puTCUTjFhE5O8RlTZF4CvFNsDkAJmffwTeZTUE0xEIAJ
+AAUKHKCRWRgOBOAAGkLSenYAXVxgghUXcBCGBBX3mvLEd1scQhYBFMAGAAXkXsDvtJ8cmuWUh7YE
+y6Elbv3iob0RWhsOOPC4/2qQTl/xGuZXjPkVUzwdQfvelMD+D6Ozb3oBZzcIxAwciKR88soDQBGo
+lL87ASELZwOCAopXsVzxBgsLjKCDKLZAE/hvec27QAFiIAYaAECCqkGB4ULTBOzBQXtwWAL3JBcu
+LBTAe3A41sXCVcICiO85FjvDFXbovis8LQU7FMI3dniF+xVBJLMDFvIKYIWg6cAKAcjfAAWQu7/J
+yVfF65MCtsjFLioAXQ5bngLuZEM2VIyL4xMXoZqgANVEcI0ocGMcQxMDKnyvCChAQRFioIAlqKYK
+TQgXHFAgwTNo4ZDu08IPD2mEbxxSC1RbYBGqUAUx6EBW/nMAMKyggIFQaf+KzjtgFqTAwIrtpG4Q
+9KIqebXFDyqgQTpYgivROD4FoIGEbQwNF28JhybMUVwKCEP3MvY4MyjAAejLVDIJGcEzbOGZK/DG
+BLYQTQCs4JlH+MYzt3AGLk6xQAt0mIMKNM7gdXKc4IygOh2kRVW6U5U66MIrvYiGetqzngqoQj11
+YEt8blGfaNBBCMxA0C1ewJ5QUIAOeNmGgG4RYd5bQwwWioYQdNGZWtgCDiYQgRJolKM4eOYTODrN
+LUCSi2dz0DtXytKVzk0uD42pTB0wUwVoUAA1balOj7lTVdJUp8406TaFOtSMbtOo3TTosXrK1Hf2
+KXzHpGn4pErVqFp1qlf/5WlVparVrWYVqmC9qlfBylWwjgEMzzRqRtWa1qKCoQw87eJPuRpXus41
+rjo9pYyyMNW++vWvgA2sYAdL2MIalgdnQGtb2UpUo4LhDDygKlb7KlayRtWymKVqWCjwgSYa9rOg
+Da1oD1sGi5iWImWI7GhXS9YQVOEDoPiAD5YgAdba9ra4za1uQSuBJgThAwsYQDbIhgIJGPe4yE2u
+cpXrgNo6t7nQfa50o0vd6Vq3utit7W63O1gJtGAJUCCBBgYQB16QIAhVgIZ618ve9rr3vceoQhCo
+kYBRLEBGt8ivfvfL3/76NxYeaMAoBDGABXykEYZghIITfIkFOxgSDmbwISEWEeEJW1jCEJYwhims
+YQtn+MIe5jCIK5wBCiAgAKMIBAA7
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://s.wordpress.com/wp-includes/images/rss.png
+
+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
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=adt.0%2Clanguage.pt-br%2Cposttag.cluster-lvm%2Cposttag.clvm%2Cposttag.linux-lvm-mirror%2Cposttag.lvconvert-m1
+
+R0lGODlhAQABAAAAACwAAAAAAQABAID///8AAAACAkQBADs=
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://kairo.wordpress.com/2009/05/06/making-lvm-mirror-on-linux-using-red-hat-cluster-suite-clvm-cluster-lvm-on-rhel-5/2813.css?2
+
+#digg_live_wrapper {
+	MARGIN-TOP: 10px
+}
+#digg_live_wrapper IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; BORDER-BOTTOM-STYLE: none
+}
+#digg_live_credits {
+	VISIBILITY: hidden
+}
+BODY {
+	BORDER-TOP: #289acf 6px solid; BACKGROUND: #fff; MARGIN: 0px; FONT: 72% =
+Verdana, "Bitstream Vera Sans", sans-serif; COLOR: #333; BORDER-BOTTOM: =
+#289acf 6px solid; TEXT-ALIGN: center
+}
+#page {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #fff; =
+PADDING-BOTTOM: 10px; MARGIN: 0px auto; WIDTH: 900px; PADDING-TOP: 20px; =
+POSITION: relative; TEXT-ALIGN: left
+}
+#header {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent =
+scroll repeat 0% 0%; PADDING-BOTTOM: 20px; PADDING-TOP: 0px; TEXT-ALIGN: =
+left
+}
+.primary {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: =
+0px; MARGIN: 0px 15px 0px 0px; WIDTH: 425px; PADDING-TOP: 0px
+}
+INPUT#s {
+	FONT-SIZE: 12px; WIDTH: 100px; MARGIN-RIGHT: 2px
+}
+.search {
+	MARGIN: 10px 0px 20px
+}
+.secondary {
+	FLOAT: right; FONT: 1em/1.5em 'Lucida Grande',Verdana,Arial,Sans-Serif; =
+WIDTH: 450px; COLOR: #555; POSITION: relative; BACKGROUND-COLOR: #fff; =
+TEXT-ALIGN: left
+}
+.secondary .left {
+	FLOAT: left; WIDTH: 200px; MARGIN-RIGHT: 20px
+}
+.secondary .right {
+	DISPLAY: inline; FLOAT: left; WIDTH: 200px
+}
+.comments {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; =
+PADDING-TOP: 30px; POSITION: relative; TEXT-ALIGN: left
+}
+A IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; BORDER-BOTTOM-STYLE: none
+}
+:link IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; BORDER-BOTTOM-STYLE: none
+}
+:visited IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; BORDER-BOTTOM-STYLE: none
+}
+H2 {
+	FONT-FAMILY: "lucida grande",tahoma,arial,helvetica,sans-serif
+}
+H3 {
+	FONT-FAMILY: "lucida grande",tahoma,arial,helvetica,sans-serif
+}
+H4 {
+	FONT-FAMILY: "lucida grande",tahoma,arial,helvetica,sans-serif
+}
+.pagetitle {
+	MARGIN: 15px 0px; TEXT-ALIGN: left
+}
+.pagetitle H2 {
+	DISPLAY: inline; FONT-WEIGHT: normal; FONT-SIZE: 2em; LETTER-SPACING: =
+-1px; TEXT-ALIGN: center
+}
+.primary H2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #555; BORDER-BOTTOM: #eee =
+1px solid
+}
+.secondary H2 {
+	PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-LEFT: 0px; FONT-WEIGHT: =
+bold; FONT-SIZE: 13px; PADDING-BOTTOM: 0px; TEXT-TRANSFORM: uppercase; =
+COLOR: #555; PADDING-TOP: 0px
+}
+.secondary H2 A:hover {
+	COLOR: #fff! important
+}
+.secondary P {
+	MARGIN-TOP: 5px! important; FONT-SIZE: 12px; MARGIN-BOTTOM: -2px! =
+important; LINE-HEIGHT: 1.3em! important
+}
+.sb-module {
+	FONT-SIZE: 12px; LINE-HEIGHT: 1.1em
+}
+CODE {
+	BORDER-RIGHT: #289acf 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: =
+#289acf 1px solid; DISPLAY: block; PADDING-LEFT: 4px; BACKGROUND: #111; =
+PADDING-BOTTOM: 4px; FONT: 1em 'Courier New',Courier,Fixed; OVERFLOW: =
+auto; BORDER-LEFT: #289acf 6px solid; COLOR: #fff; PADDING-TOP: 4px; =
+BORDER-BOTTOM: #289acf 1px solid; TEXT-ALIGN: left
+}
+A:link {
+	moz-outline: none
+}
+A:visited {
+	moz-outline: none
+}
+A:active {
+	moz-outline: none
+}
+.primary H3 A:hover {
+	COLOR: #000
+}
+A {
+	COLOR: #38c; TEXT-DECORATION: none
+}
+A:hover {
+	BACKGROUND: #38c; COLOR: #fff; TEXT-DECORATION: none
+}
+.clear:unknown {
+	CLEAR: both; DISPLAY: block; VISIBILITY: hidden; HEIGHT: 0px; content: =
+"."
+}
+.clear {
+	DISPLAY: inline-block
+}
+.clear {
+	DISPLAY: block
+}
+.primary IMG {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 2px; =
+PADDING-TOP: 2px; max-width: 100%
+}
+.permalink .itemtext IMG {
+	max-width: 500px; min-width: 0px
+}
+.alignright {
+	FLOAT: right
+}
+.alignleft {
+	FLOAT: left
+}
+UNKNOWN {
+	DISPLAY: block; MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+UNKNOWN {
+	PADDING-RIGHT: 4px; DISPLAY: inline; PADDING-LEFT: 4px; PADDING-BOTTOM: =
+4px; MARGIN: 0px 0px 2px 7px; PADDING-TOP: 4px
+}
+UNKNOWN {
+	PADDING-RIGHT: 4px; DISPLAY: inline; PADDING-LEFT: 4px; PADDING-BOTTOM: =
+4px; MARGIN: 0px 7px 2px 0px; PADDING-TOP: 4px
+}
+SMALL {
+	FONT-SIZE: 0.9em; LINE-HEIGHT: 1.4em
+}
+SMALL {
+	COLOR: #777
+}
+STRIKE {
+	COLOR: #777
+}
+.commentlist BLOCKQUOTE {
+	PADDING-RIGHT: 30px; PADDING-LEFT: 30px; PADDING-BOTTOM: 0px; MARGIN: =
+20px 0px; COLOR: #888; LINE-HEIGHT: 1.2em; PADDING-TOP: 0px; =
+FONT-FAMILY: Trebuchet MS, Serif
+}
+BLOCKQUOTE {
+	PADDING-RIGHT: 30px; PADDING-LEFT: 30px; PADDING-BOTTOM: 0px; MARGIN: =
+20px 0px; COLOR: #888; LINE-HEIGHT: 1.2em; PADDING-TOP: 0px; =
+FONT-FAMILY: Trebuchet MS, Serif
+}
+HR {
+	DISPLAY: none
+}
+.alert {
+	BORDER-RIGHT: #ffd324 2px solid; PADDING-RIGHT: 20px; PADDING-LEFT: =
+20px; BACKGROUND: #fff6bf; PADDING-BOTTOM: 5px; MARGIN: 10px auto; =
+BORDER-LEFT: #ffd324 2px solid; PADDING-TOP: 5px; TEXT-ALIGN: center
+}
+.itemtext OL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 35px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+.itemtext UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 35px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+.itemtext OL LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px =
+0px 3px; PADDING-TOP: 0px
+}
+.itemtext UL LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px =
+0px 3px; PADDING-TOP: 0px
+}
+.secondary UL {
+	PADDING-LEFT: 0px; MARGIN: 5px 0px 0px
+}
+.secondary OL {
+	PADDING-LEFT: 0px; MARGIN: 5px 0px 0px
+}
+.secondary UL {
+	MARGIN-LEFT: 0px
+}
+.secondary OL {
+	MARGIN-LEFT: 15px
+}
+.secondary UL LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 1px; MARGIN: =
+0px; PADDING-TOP: 1px
+}
+.secondary OL LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 1px; MARGIN: =
+0px; PADDING-TOP: 1px
+}
+.secondary UL LI {
+	LIST-STYLE-IMAGE: none; LIST-STYLE-TYPE: none
+}
+OL LI {
+	LIST-STYLE-POSITION: outside; LIST-STYLE-TYPE: decimal
+}
+UL.sbmenu {
+	WIDTH: 210px; HEIGHT: auto; TEXT-ALIGN: left
+}
+UL.sbmenu LI {
+	FLOAT: left; WIDTH: 100%
+}
+UL.sbmenu LI A {
+	DISPLAY: block; FONT: 1.5em/20px Verdana, Sans-Serif; TEXT-TRANSFORM: =
+uppercase; COLOR: #999
+}
+UL.sbmenu LI A:hover {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #000
+}
+UL.sbmenu LI.current_page_item A {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #333; =
+TEXT-DECORATION: none
+}
+UL.sbmenu LI.current_page_item A:hover {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #333; =
+TEXT-DECORATION: none
+}
+H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: =
+2.5em; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #000; PADDING-TOP: 0px; =
+LETTER-SPACING: -1px
+}
+#header .description {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 1.2em; =
+PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #000; PADDING-TOP: 0px
+}
+.center {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; TEXT-ALIGN: center
+}
+.ar-categories UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; WIDTH: 500px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+.ar-popular UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; WIDTH: 500px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+.ar-categories UL LI {
+	DISPLAY: block; FLOAT: left; MARGIN: 0px; WIDTH: 230px
+}
+.primary H3 A:hover {
+	BACKGROUND: #eee; COLOR: #000
+}
+.primary .metadata A:hover {
+	COLOR: #fff
+}
+.primary H3 {
+	DISPLAY: inline; FONT-WEIGHT: normal; FONT-SIZE: 1.8em; LETTER-SPACING: =
+-1px
+}
+.primary H4 {
+	DISPLAY: inline; FONT-WEIGHT: normal; FONT-SIZE: 1.8em; LETTER-SPACING: =
+-1px
+}
+.permalink .primary .aside H3 {
+	DISPLAY: inline; FONT-WEIGHT: normal; FONT-SIZE: 1.8em; LETTER-SPACING: =
+-1px
+}
+.primary .aside H3 {
+	FONT-WEIGHT: normal; FONT-SIZE: 1.5em
+}
+.itemhead {
+	MARGIN-TOP: 10px
+}
+.itemtext H3 {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; FONT-SIZE: =
+1.7em; PADDING-BOTTOM: 0px; PADDING-TOP: 15px
+}
+.itemtext H4 {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; FONT-SIZE: =
+1.5em; PADDING-BOTTOM: 0px; PADDING-TOP: 15px
+}
+.secondary DIV {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+20px 0px 0px; PADDING-TOP: 0px
+}
+.permalink .primary .aside .itemtext {
+	FONT-SIZE: 1.1em; COLOR: #444
+}
+.aside {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; FONT-SIZE: =
+1em; PADDING-BOTTOM: 20px! important; PADDING-TOP: 10px! important
+}
+.editlink IMG {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; RIGHT: =
+0px; PADDING-BOTTOM: 0px! important; MARGIN: 4px 0px 0px; WIDTH: 16px; =
+BORDER-TOP-STYLE: none! important; PADDING-TOP: 0px! important; =
+BORDER-RIGHT-STYLE: none! important; BORDER-LEFT-STYLE: none! important; =
+POSITION: absolute; HEIGHT: 16px; BORDER-BOTTOM-STYLE: none! important
+}
+.aside .editlink IMG {
+	TOP: 9px
+}
+.commentseditlink {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 10px; PADDING-BOTTOM: 2px; =
+BORDER-TOP-STYLE: none; PADDING-TOP: 2px; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+H2 {
+	COLOR: #444
+}
+H2 A {
+	COLOR: #444
+}
+H2 A:visited {
+	COLOR: #444
+}
+H3 {
+	COLOR: #444
+}
+H3 A {
+	COLOR: #444
+}
+H3 A:visited {
+	COLOR: #444
+}
+H4 {
+	COLOR: #444
+}
+H4 A {
+	COLOR: #444
+}
+H4 A:visited {
+	COLOR: #444
+}
+H3 A:hover {
+	COLOR: #fff
+}
+H2 {
+	TEXT-DECORATION: none
+}
+H2 A {
+	TEXT-DECORATION: none
+}
+H2 A:hover {
+	TEXT-DECORATION: none
+}
+H2 A:visited {
+	TEXT-DECORATION: none
+}
+H3 {
+	TEXT-DECORATION: none
+}
+H3 A {
+	TEXT-DECORATION: none
+}
+H3 A:hover {
+	TEXT-DECORATION: none
+}
+H3 A:visited {
+	TEXT-DECORATION: none
+}
+H4 {
+	TEXT-DECORATION: none
+}
+H4 A {
+	TEXT-DECORATION: none
+}
+H4 A:hover {
+	TEXT-DECORATION: none
+}
+H4 A:visited {
+	TEXT-DECORATION: none
+}
+H2 A:hover {
+	BACKGROUND: #eee; COLOR: #000
+}
+H2 SPAN A:hover {
+	BACKGROUND: #eee; COLOR: #000
+}
+.metadata {
+	MARGIN-TOP: 0px; DISPLAY: block; FONT-SIZE: 12px; MARGIN-BOTTOM: -8px; =
+COLOR: #9c9c9c
+}
+.metadata A {
+	COLOR: #777
+}
+.aside .metadata {
+	FONT-SIZE: 12px
+}
+.commentslink {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; =
+PADDING-TOP: 0px
+}
+.primary .item {
+	CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: =
+15px; MARGIN: 0px; PADDING-TOP: 5px; POSITION: relative
+}
+.primary .item .itemtext {
+	FONT: 1.1em/1.5em 'Lucida Grande',Verdana,Arial,Sans-Serif; COLOR: =
+#444; TEXT-ALIGN: left
+}
+.primary .item .itemtext P {
+	MARGIN: 10px 0px
+}
+.primary .item .itemtext UL {
+	MARGIN: 10px 0px
+}
+.primary .item .itemtext OL {
+	MARGIN: 10px 0px
+}
+.primary .item .itemtext DIV {
+	MARGIN: 10px 0px
+}
+.primary .item .itemtext BLOCKQUOTE {
+	MARGIN: 10px 0px
+}
+.primary .aside .itemtext P {
+	MARGIN: 8px 0px
+}
+.primary .aside .itemtext UL {
+	MARGIN: 8px 0px
+}
+.primary .aside .itemtext OL {
+	MARGIN: 8px 0px
+}
+.primary .aside .itemtext DIV {
+	MARGIN: 8px 0px
+}
+.primary .aside .itemtext BLOCKQUOTE {
+	MARGIN: 8px 0px
+}
+.permalink .primary .aside .itemtext P {
+	MARGIN: 13px 0px
+}
+.permalink .primary .aside .itemtext UL {
+	MARGIN: 13px 0px
+}
+.permalink .primary .aside .itemtext OL {
+	MARGIN: 13px 0px
+}
+.permalink .primary .aside .itemtext DIV {
+	MARGIN: 13px 0px
+}
+.permalink .primary .aside .itemtext BLOCKQUOTE {
+	MARGIN: 13px 0px
+}
+.comments .commentlist {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; =
+PADDING-TOP: 10px; POSITION: relative
+}
+.comments .commentlist LI {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: =
+10px 0px 10px -42px; PADDING-TOP: 5px; LIST-STYLE-TYPE: none
+}
+.comments .commentlist LI IMG.avatar {
+	PADDING-RIGHT: 3px; FLOAT: right
+}
+.comments .commentlist LI .commentauthor {
+	FONT-WEIGHT: bold; FONT-SIZE: 1.5em; LETTER-SPACING: -1px
+}
+.comments .commentlist LI.bypostauthor {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #ccc 1px =
+solid; PADDING-LEFT: 5px; BACKGROUND: #f5f5f5; PADDING-BOTTOM: 2px; =
+BORDER-LEFT: #ccc 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ccc 1px =
+solid; LIST-STYLE-TYPE: none
+}
+.comments .pinglist {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 1.2em; =
+PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+.comments .pinglist LI {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 4px; PADDING-LEFT: 0px; PADDING-BOTTOM: =
+5px; PADDING-TOP: 5px; LIST-STYLE-TYPE: none
+}
+.comments .pinglist LI .commentauthor {
+	DISPLAY: block; FONT-WEIGHT: bold
+}
+.comments .pinglist LI SMALL {
+	DISPLAY: block; FONT: 1em Arial,Sans-Serif
+}
+.comments .pinglist LI .counter {
+	DISPLAY: none
+}
+.comments .pinglist LI IMG {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; =
+BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; =
+BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.comments #leavecomment {
+	FONT-SIZE: 2em; MARGIN-BOTTOM: 40px; COLOR: #ddd; LETTER-SPACING: -2px; =
+TEXT-ALIGN: center
+}
+.comments FORM {
+	CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: =
+30px; MARGIN: 0px; WIDTH: 100%; PADDING-TOP: 1px
+}
+UNKNOWN {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #fff; =
+PADDING-BOTTOM: 3px; MARGIN: 0px; FONT: 1.1em =
+Verdana,Arial,Helvetica,Sans-Serif; COLOR: #333; PADDING-TOP: 3px
+}
+UNKNOWN {
+	MARGIN: 5px 5px 1px 0px; WIDTH: 45%
+}
+.comments FORM TEXTAREA {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; WIDTH: =
+98.5%; PADDING-TOP: 2px; HEIGHT: 200px
+}
+.comments FORM #submit {
+	FLOAT: right; MARGIN: 0px
+}
+.navigation {
+	MARGIN: 10px 0px; WIDTH: 99%; TEXT-ALIGN: center
+}
+.navigation .left {
+	FLOAT: left; WIDTH: 50%; TEXT-ALIGN: left
+}
+.navigation .right {
+	FLOAT: right; WIDTH: 50%; TEXT-ALIGN: right
+}
+.navigation P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: =
+0px; PADDING-TOP: 0px
+}
+.navigation A {
+	COLOR: #777
+}
+.navigation A:hover {
+	COLOR: #fff
+}
+.sb-comments-blc UL LI SPAN A {
+	COLOR: #999
+}
+.sb-comments UL LI SMALL A {
+	COLOR: #999
+}
+UNKNOWN {
+	RIGHT: 0px; COLOR: #999; POSITION: absolute
+}
+.sb-comments-blc A:hover {
+	COLOR: #fff! important
+}
+.activityentry {
+	FONT-SIZE: 12px
+}
+DIV#brians-latest-comments SMALL {
+	DISPLAY: block; MARGIN: 0px
+}
+#footer SMALL {
+	FONT-SIZE: 1em
+}
+#footer {
+	MARGIN: 10px auto 0px; POSITION: relative; HEIGHT: 20px; TEXT-ALIGN: =
+center; TEXT-DECORATION: none
+}
+#footer A {
+	FONT-WEIGHT: bold; COLOR: #888
+}
+#footer A:hover {
+	BACKGROUND: #fff; COLOR: #000; BORDER-TOP-STYLE: none; =
+BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; TEXT-DECORATION: =
+none; BORDER-BOTTOM-STYLE: none
+}
+#footer A:link {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; TEXT-DECORATION: none; BORDER-BOTTOM-STYLE: none
+}
+#footer A:visited {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: =
+none; TEXT-DECORATION: none; BORDER-BOTTOM-STYLE: none
+}
+.primary {
+	OVERFLOW: hidden
+}
+.aligncenter {
+	DISPLAY: block; MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+DL.aligncenter {
+	DISPLAY: block; MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+.wp_caption {
+	BORDER-RIGHT: #ddd 1px solid; BORDER-TOP: #ddd 1px solid; MARGIN: 10px; =
+BORDER-LEFT: #ddd 1px solid; PADDING-TOP: 4px; BORDER-BOTTOM: #ddd 1px =
+solid; BACKGROUND-COLOR: #f3f3f3; TEXT-ALIGN: center; moz-border-radius: =
+3px; khtml-border-radius: 3px; webkit-border-radius: 3px; border-radius: =
+3px
+}
+.wp_caption IMG {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: =
+0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: 0px; PADDING-TOP: =
+0px; BORDER-BOTTOM: 0px
+}
+.wp_caption_dd {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 11px; PADDING-BOTTOM: =
+5px; MARGIN: 0px; LINE-HEIGHT: 17px; PADDING-TOP: 0px
+}
+.sticky H3 {
+	FONT-WEIGHT: bold
+}
+.sticky .itemtext {
+	PADDING-RIGHT: 10px; BORDER-TOP: #ccc 2px solid; MARGIN-TOP: 1em; =
+PADDING-LEFT: 10px; BACKGROUND: #f7f7f7; PADDING-BOTTOM: 10px; =
+PADDING-TOP: 10px
+}
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: 7bit
+Content-Location: http://s3.wordpress.com/wp-content/themes/pub/twenty-eight/style.css?m=1245873790b
+
+@import url( 2813.css?2 );
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://s.wordpress.com/wp-content/themes/h4/global.css?m=1244000994b
+
+IMG.latex {
+	VERTICAL-ALIGN: middle; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: =
+none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+FORM.contact-form {
+	WIDTH: 100%; TEXT-ALIGN: left
+}
+FORM.contact-form TEXTAREA {
+	WIDTH: 96%
+}
+FORM.contact-form LABEL {
+	DISPLAY: inline; FLOAT: none
+}
+.form-error {
+	COLOR: maroon
+}
+FORM.contact-form P LABEL.form-error {
+	COLOR: maroon
+}
+.video-player {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; =
+BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 5px; =
+MARGIN: auto; PADDING-TOP: 5px; TEXT-ALIGN: center; BORDER-RIGHT-WIDTH: =
+0px
+}
+.wpvidavee_title {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: =
+10px; PADDING-BOTTOM: 2px; LINE-HEIGHT: 12px; PADDING-TOP: 2px; =
+FONT-FAMILY: Tahoma,Arial,sans-serif; TEXT-ALIGN: left
+}
+.wpvidavee_footer {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 9px; PADDING-BOTTOM: =
+2px; LINE-HEIGHT: 11px; PADDING-TOP: 2px; FONT-FAMILY: =
+Tahoma,Arial,sans-serif; TEXT-ALIGN: right
+}
+.wpvidavee_footer A {
+	TEXT-DECORATION: none
+}
+.wpvidavee_p {
+	COLOR: red
+}
+.hidden {
+	DISPLAY: none
+}
+.possibly-related {
+	CLEAR: both
+}
+.screen-reader-text {
+	LEFT: -1000em; POSITION: absolute
+}
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://kairo.wordpress.com/wp-includes/js/comment-reply.js?ver=20090102
+
+addComment=3D{moveForm:function(d,f,i,c){var =
+m=3Dthis,a,h=3Dm.I(d),b=3Dm.I(i),l=3Dm.I("cancel-comment-reply-link"),j=3D=
+m.I("comment_parent"),k=3Dm.I("comment_post_ID");if(!h||!b||!l||!j){retur=
+n}m.respondId=3Di;c=3Dc||false;if(!m.I("wp-temp-form-div")){a=3Ddocument.=
+createElement("div");a.id=3D"wp-temp-form-div";a.style.display=3D"none";b=
+.parentNode.insertBefore(a,b)}h.parentNode.insertBefore(b,h.nextSibling);=
+if(k&&c){k.value=3Dc}j.value=3Df;l.style.display=3D"";l.onclick=3Dfunctio=
+n(){var =
+n=3DaddComment,e=3Dn.I("wp-temp-form-div"),o=3Dn.I(n.respondId);if(!e||!o=
+){return}n.I("comment_parent").value=3D"0";e.parentNode.insertBefore(o,e)=
+;e.parentNode.removeChild(e);this.style.display=3D"none";this.onclick=3Dn=
+ull;return false};try{m.I("comment").focus()}catch(g){}return =
+false},I:function(a){return document.getElementById(a)}};
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://s.wordpress.com/wp-content/plugins/adverts/adsense.js?1
+
+function google_ad_request_done(google_ads) {
+var s =3D '';
+var i;
+
+if ( google_ads.length =3D=3D 0 ) { return; }
+
+s +=3D '<div style=3D"margin-top: 15px;"><a href=3D"' + =
+google_info.feedback_url + '" style=3D"border-bottom: none; =
+text-decoration: none;">Ads by Google</a><br />';
+
+if ( 'flash' =3D=3D google_ads[0].type ) {
+
+   s +=3D '<object =
+classid=3D"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"' +
+' =
+codebase=3D"http://download.macromedia.com/pub/shockwave/cabs/flash/swfla=
+sh.cab#version=3D6,0,0,0"' +
+' WIDTH=3D"' + google_ad.image_width +
+'" HEIGHT=3D"' + google_ad.image_height + '">' +
+'<PARAM NAME=3D"movie" VALUE=3D"' + google_ad.image_url + '">' +
+'<PARAM NAME=3D"quality" VALUE=3D"high">' +
+'<PARAM NAME=3D"AllowScriptAccess" VALUE=3D"never">' +
+'<EMBED src=3D"' + google_ad.image_url +
+'" WIDTH=3D"' + google_ad.image_width +
+'" HEIGHT=3D"' + google_ad.image_height +
+'" TYPE=3D"application/x-shockwave-flash"' +
+' AllowScriptAccess=3D"never" ' +
+' =
+PLUGINSPAGE=3D"http://www.macromedia.com/go/getflashplayer"></EMBED></OBJ=
+ECT>';
+
+} else if ( 'image' =3D=3D google_ads[0].type ) {
+
+   s +=3D '<a href=3D"' + google_ads[0].url +
+'" target=3D"_top" title=3D"go to ' + google_ads[0].visible_url +
+'"><img border=3D"0" src=3D"' + google_ads[0].image_url +
+'"width=3D"' + google_ads[0].image_width +
+'"height=3D"' + google_ads[0].image_height + '"></a>';
+
+} else if ( 'html' =3D=3D google_ads[0].type ) {
+
+	s +=3D google_ads[0].snippet;
+
+}  else {
+
+if (google_ads.length =3D=3D 1) {
+
+s +=3D '<div style=3D"display: block; float: left; padding-right: 10px; =
+font-size: 130%; margin: auto;">' +
+'<a href=3D"s-p: Go to ' + google_ads[0].visible_url + '" ' +
+'onclick=3D"window.location=3D\'' + google_ads[0].url + '\'; return =
+false;">' +
+'<span class=3D"gad-head" style=3D"font-size: 1.2em; font-weight: =
+bold;">' + google_ads[0].line1 + '</span></a><br />' +
+'<span style=3D"">' +
+google_ads[0].line2 + ' ' +
+google_ads[0].line3 + '<br /></span>' +
+'<a href=3D"s-p: Go to ' + google_ads[0].visible_url + '" ' +
+'onclick=3D"window.location=3D\'' + google_ads[0].url + '\'; return =
+false;">' +
+google_ads[0].visible_url + '</a></div>' +
+'<br clear=3D"all" />';
+
+} else if (google_ads.length =3D=3D 2) {
+
+for(i =3D 0; i < google_ads.length; ++i) {
+	s +=3D'<div style=3D"display: block; float: left; padding-right: =
+10px;">' +=20
+	'<a href=3D"s-p: Go to ' + google_ads[i].visible_url + '" =
+onclick=3D"window.location=3D\'' + google_ads[i].url + '\'; return =
+false;">' +
+	'<span class=3D"gad-head" style=3D"font-size: 1.2em;">' + =
+google_ads[i].line1 + '</span></a><br />' +
+	'<span class=3D"gad-text" style=3D"font-weight: normal;">' +
+	google_ads[i].line2 + '<br />' +
+	google_ads[i].line3 + '</span><br />' +
+	'<a href=3D"s-p: Go to ' + google_ads[i].visible_url + '" =
+onclick=3D"window.location=3D\'' + google_ads[i].url + '\'; return =
+false;">' +
+	'<span class=3D"gad-url">' + google_ads[i].visible_url + =
+'</span></a></div>';
+}
+s +=3D '<br clear=3D"all" />';
+} else if (google_ads.length > 2) {
+for(i =3D 0; i < google_ads.length; ++i) {
+	s +=3D'<div style=3D"display: block; width: 100%; padding-bottom: 5px; =
+font-weight: normal;">' +
+	'<a href=3D"s-p: Go to ' + google_ads[i].visible_url + '" =
+onclick=3D"window.location=3D\'' + google_ads[i].url + '\'; return =
+false;">' +
+	'<span class=3D"gad-head" style=3D"font-size: 1.2em;">' + =
+google_ads[i].line1 + '</span></a><br />' +
+	'<span class=3D"gad-text" style=3D"font-weight: normal;">' +
+	google_ads[i].line2 + ' ' + google_ads[i].line3 + '</span><br />' +
+	'<a href=3D"s-p: Go to ' + google_ads[i].visible_url + '" =
+onclick=3D"window.location=3D\'' + google_ads[i].url + '\'; return =
+false;">' +
+	'<span class=3D"gad-url" style=3D"font-weight: normal">' + =
+google_ads[i].visible_url + '</span></a></div>';
+}
+}
+}
+s +=3D '<br clear=3D"all" /></div>';
+document.write(s);
+return;
+}
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://pagead2.googlesyndication.com/pagead/show_ads.js
+
+(function(){=0A=
+var h=3Dtrue,l=3Dnull,m=3Dfalse,aa=3D(new =
+Date).getTime(),ba=3Dfunction(a){var b=3D(new =
+Date).getTime()-aa,c=3D"&dtd=3D"+(b<1000?b:"M");return a+c};var =
+n=3Dthis,ca=3Dfunction(a,b,c){var d=3Da.split("."),e=3Dc||n;!(d[0]in =
+e)&&e.execScript&&e.execScript("var "+d[0]);for(var =
+f;d.length&&(f=3Dd.shift());)if(!d.length&&b!=3D=3Dundefined)e[f]=3Db;els=
+e e=3De[f]?e[f]:(e[f]=3D{})},o=3Dfunction(a){var b=3Dtypeof =
+a;if(b=3D=3D"object")if(a){if(a instanceof Array||!(a instanceof =
+Object)&&Object.prototype.toString.call(a)=3D=3D"[object Array]"||typeof =
+a.length=3D=3D"number"&&typeof a.splice!=3D"undefined"&&typeof =
+a.propertyIsEnumerable!=3D"undefined"&&!a.propertyIsEnumerable("splice"))=
+return"array";=0A=
+if(!(a instanceof =
+Object)&&(Object.prototype.toString.call(a)=3D=3D"[object =
+Function]"||typeof a.call!=3D"undefined"&&typeof =
+a.propertyIsEnumerable!=3D"undefined"&&!a.propertyIsEnumerable("call")))r=
+eturn"function"}else return"null";else if(b=3D=3D"function"&&typeof =
+a.call=3D=3D"undefined")return"object";return b},p=3Dfunction(a){return =
+o(a)=3D=3D"array"},da=3Dfunction(a){var b=3Do(a);return =
+b=3D=3D"array"||b=3D=3D"object"&&typeof =
+a.length=3D=3D"number"},q=3Dfunction(a){return typeof =
+a=3D=3D"string"},ea=3Dfunction(a){var b=3Do(a);return b=3D=3D"object"||=0A=
+b=3D=3D"array"||b=3D=3D"function"};Math.floor(Math.random()*2147483648).t=
+oString(36);=0A=
+var fa=3Dfunction(a){var =
+b=3Do(a);if(b=3D=3D"object"||b=3D=3D"array"){if(a.clone)return =
+a.clone.call(a);var c=3Db=3D=3D"array"?[]:{};for(var d in =
+a)c[d]=3Dfa(a[d]);return c}return a},ga=3Dfunction(a,b){var =
+c=3Da.u;if(arguments.length>2){var =
+d=3DArray.prototype.slice.call(arguments,2);c&&d.unshift.apply(d,c);c=3Dd=
+}b=3Da.w||b;a=3Da.v||a;var e,f=3Db||n;e=3Dc?function(){var =
+i=3DArray.prototype.slice.call(arguments);i.unshift.apply(i,c);return =
+a.apply(f,i)}:function(){return =
+a.apply(f,arguments)};e.u=3Dc;e.w=3Db;e.v=3Da;return =
+e},ha=3DDate.now||function(){return(new Date).getTime()},=0A=
+r=3Dfunction(a,b,c){ca(a,b,c)};function s(a,b){var =
+c=3DparseFloat(a);return isNaN(c)||c>1||c<0?b:c}function =
+ia(a,b){if(a=3D=3D"true")return h;if(a=3D=3D"false")return m;return =
+b}function t(a,b){var c=3D/^([\w-]+\.)+[\w-]{2,}(\:[0-9]+)?$/;return =
+c.test(a)?a:b};var =
+ja=3D"pagead2.googlesyndication.com",ka=3D"googleads.g.doubleclick.net",l=
+a=3D"pubads.g.doubleclick.net",ma=3D"securepubads.g.doubleclick.net",oa=3D=
+"partner.googleadservices.com",u=3Dt("pagead2.googlesyndication.com",ja),=
+pa=3Dt("googleads.g.doubleclick.net",ka),qa=3Dt("pagead2.googlesyndicatio=
+n.com",ja);t("pubads.g.doubleclick.net",la);t("partner.googleadservices.c=
+om",oa);t("securepubads.g.doubleclick.net",ma);function v(a){return =
+typeof =
+encodeURIComponent=3D=3D"function"?encodeURIComponent(a):escape(a)}functi=
+on ra(a,b,c){var =
+d=3Ddocument.createElement("script");d.type=3D"text/javascript";if(b)d.on=
+load=3Db;if(c)d.id=3Dc;d.src=3Da;var =
+e=3Ddocument.getElementsByTagName("head")[0];if(!e)return =
+m;window.setTimeout(function(){e.appendChild(d)},0);return h}function =
+sa(a,b){a.google_image_requests||(a.google_image_requests=3D[]);var =
+c=3Dnew Image;c.src=3Db;a.google_image_requests.push(c)}=0A=
+function ta(a){if(a in ua)return ua[a];return =
+ua[a]=3Dnavigator.userAgent.toLowerCase().indexOf(a)!=3D-1}var ua=3D{};=0A=
+function va(){if(navigator.plugins&&navigator.mimeTypes.length){var =
+a=3Dnavigator.plugins["Shockwave Flash"];if(a&&a.description)return =
+a.description.replace(/([a-zA-Z]|\s)+/,"").replace(/(\s)+r/,".")}else =
+if(navigator.userAgent&&navigator.userAgent.indexOf("Windows =
+CE")>=3D0){for(var b=3D3,c=3D1;c;)try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash."+(b+1));b++}catch(d){c=3Dl}=
+return b.toString()}else if(ta("msie")&&!window.opera){c=3Dl;try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash.7")}catch(e){b=3D=0A=
+0;try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash.6");b=3D6;c.AllowScriptAcces=
+s=3D"always"}catch(f){if(b=3D=3D6)return b.toString()}try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash")}catch(i){}}if(c){b=3Dc.Get=
+Variable("$version").split(" ")[1];return =
+b.replace(/,/g,".")}}return"0"}function wa(a){var =
+b=3Da.google_ad_format;if(b)return b.indexOf("_0ads")>0;return =
+a.google_ad_output!=3D"html"&&a.google_num_radlinks>0}function =
+w(a){return!!a&&a.indexOf("_sdo")!=3D-1}=0A=
+function xa(a){return wa(a)||w(a.google_ad_format)}function A(a,b){var =
+c=3DMath.random();if(c<b){var d=3DMath.floor(c/b*a.length);return =
+a[d]}return""};var =
+ya=3D{google_ad_channel:"channel",google_ad_host:"host",google_ad_host_ch=
+annel:"h_ch",google_ad_host_tier_id:"ht_id",google_ad_section:"region",go=
+ogle_ad_type:"ad_type",google_adtest:"adtest",google_allow_expandable_ads=
+:"ea",google_alternate_ad_url:"alternate_ad_url",google_alternate_color:"=
+alt_color",google_bid:"bid",google_city:"gcs",google_color_bg:"color_bg",=
+google_color_border:"color_border",google_color_line:"color_line",google_=
+color_link:"color_link",google_color_text:"color_text",google_color_url:"=
+color_url",=0A=
+google_contents:"contents",google_country:"gl",google_cust_age:"cust_age"=
+,google_cust_ch:"cust_ch",google_cust_gender:"cust_gender",google_cust_id=
+:"cust_id",google_cust_interests:"cust_interests",google_cust_job:"cust_j=
+ob",google_cust_l:"cust_l",google_cust_lh:"cust_lh",google_cust_u_url:"cu=
+st_u_url",google_disable_video_autoplay:"disable_video_autoplay",google_e=
+d:"ed",google_encoding:"oe",google_feedback:"feedback_link",google_flash_=
+version:"flash",google_font_face:"f",google_font_size:"fs",google_hints:"=
+hints",=0A=
+google_kw:"kw",google_kw_type:"kw_type",google_language:"hl",google_page_=
+url:"url",google_referrer_url:"ref",google_region:"gr",google_reuse_color=
+s:"reuse_colors",google_safe:"adsafe",google_tag_info:"gut",google_target=
+ing:"targeting",google_ui_features:"ui",google_ui_version:"uiv",google_vi=
+deo_doc_id:"video_doc_id",google_video_product_type:"video_product_type"}=
+,za=3D{google_ad_client:"client",google_ad_format:"format",google_ad_outp=
+ut:"output",google_ad_callback:"callback",google_ad_height:"h",google_ad_=
+override:"google_ad_override",=0A=
+google_ad_slot:"slotname",google_ad_width:"w",google_analytics_uacct:"ga_=
+wpids",google_ctr_threshold:"ctr_t",google_image_size:"image_size",google=
+_last_modified_time:"lmt",google_max_num_ads:"num_ads",google_max_radlink=
+_len:"max_radlink_len",google_num_radlinks:"num_radlinks",google_num_radl=
+inks_per_unit:"num_radlinks_per_unit",google_only_ads_with_video:"only_ad=
+s_with_video",google_page_location:"loc",google_rl_dest_url:"rl_dest_url"=
+,google_rl_filtering:"rl_filtering",google_rl_mode:"rl_mode",google_rt:"r=
+t",=0A=
+google_skip:"skip"},Ca=3D{google_only_pyv_ads:"pyv",google_with_pyv_ads:"=
+withpyv"};function Da(a,b){try{return =
+a.top.document.URL=3D=3Db.URL}catch(c){}return m}function =
+Ea(a,b,c,d){var =
+e=3Dc||a.google_ad_width,f=3Dd||a.google_ad_height;if(Da(a,b))return =
+m;var i=3Db.documentElement;if(e&&f){var =
+j=3D1,k=3D1;if(a.innerHeight){j=3Da.innerWidth;k=3Da.innerHeight}else =
+if(i&&i.clientHeight){j=3Di.clientWidth;k=3Di.clientHeight}else =
+if(b.body){j=3Db.body.clientWidth;k=3Db.body.clientHeight}if(k>2*f||j>2*e=
+)return m}return h}function Fa(a,b){for(var c in b)a["google_"+c]=3Db[c]}=0A=
+function Ga(a,b){if(!b)return a.URL;return a.referrer}function =
+Ha(a,b){if(!b&&a.google_referrer_url=3D=3Dl)return"0";else =
+if(b&&a.google_referrer_url=3D=3Dl)return"1";else =
+if(!b&&a.google_referrer_url!=3Dl)return"2";else =
+if(b&&a.google_referrer_url!=3Dl)return"3";return"4"}function =
+Ia(a,b,c,d){a.page_url=3DGa(c,d);a.page_location=3Dl}function =
+Ja(a,b,c,d){a.page_url=3Db.google_page_url;a.page_location=3DGa(c,d)||"EM=
+PTY"}=0A=
+function Ka(a,b){var =
+c=3D{},d=3DEa(a,b,a.google_ad_width,a.google_ad_height);c.iframing=3DHa(a=
+,d);a.google_page_url?Ja(c,a,b,d):Ia(c,a,b,d);c.last_modified_time=3Db.UR=
+L=3D=3Dc.page_url?Date.parse(b.lastModified)/1000:l;c.referrer_url=3Dd?a.=
+google_referrer_url:a.google_page_url&&a.google_referrer_url?a.google_ref=
+errer_url:b.referrer;return c}function La(a){var =
+b=3D{},c=3Da.URL.substring(a.URL.lastIndexOf("http"));b.iframing=3Dl;b.pa=
+ge_url=3Dc;b.page_location=3Da.URL;b.last_modified_time=3Dl;b.referrer_ur=
+l=3Dc;return b}=0A=
+function Ma(a,b){var c=3DNa(a,b);Fa(a,c)}function Na(a,b){var c;return =
+c=3Da.google_page_url=3D=3Dl&&Oa[b.domain]?La(b):Ka(a,b)}var =
+Oa=3D{};Oa["ad.yieldmanager.com"]=3Dh;var =
+B=3D"",Ra=3Dfunction(){if(window.google_ad_frameborder=3D=3Dl)window.goog=
+le_ad_frameborder=3D0;if(window.google_ad_output=3D=3Dl)window.google_ad_=
+output=3D"html";if(w(window.google_ad_format)){var =
+a=3Dwindow.google_ad_format.match(/^(\d+)x(\d+)_.*/);if(a){window.google_=
+ad_width=3DparseInt(a[1],10);window.google_ad_height=3DparseInt(a[2],10);=
+window.google_ad_output=3D"html"}}window.google_ad_format=3DPa(window.goo=
+gle_ad_format,window.google_ad_output,window.google_ad_width,window.googl=
+e_ad_height,window.google_ad_slot,=0A=
+!!window.google_override_format);B=3Dwindow.google_ad_client||"";window.g=
+oogle_ad_client=3DQa(window.google_ad_format,window.google_ad_client);Ma(=
+window,document);if(window.google_num_slots_by_channel=3D=3Dl)window.goog=
+le_num_slots_by_channel=3D{};if(window.google_viewed_host_channels=3D=3Dl=
+)window.google_viewed_host_channels=3D{};if(window.google_num_slots_by_cl=
+ient=3D=3Dl)window.google_num_slots_by_client=3D{};if(window.google_prev_=
+ad_formats_by_region=3D=3Dl)window.google_prev_ad_formats_by_region=3D{};=
+if(window.google_prev_ad_slotnames_by_region=3D=3D=0A=
+l)window.google_prev_ad_slotnames_by_region=3D{};if(window.google_correla=
+tor=3D=3Dl)window.google_correlator=3D(new =
+Date).getTime();if(window.google_adslot_loaded=3D=3Dl)window.google_adslo=
+t_loaded=3D{};if(window.google_adContentsBySlot=3D=3Dl)window.google_adCo=
+ntentsBySlot=3D{};if(window.google_flash_version=3D=3Dl)window.google_fla=
+sh_version=3Dva();if(window.google_new_domain_checked=3D=3Dl)window.googl=
+e_new_domain_checked=3D0;if(window.google_new_domain_enabled=3D=3Dl)windo=
+w.google_new_domain_enabled=3D0;window.google_ad_section=3Dwindow.google_=
+ad_section||=0A=
+window.google_ad_region||"";window.google_country=3Dwindow.google_country=
+||window.google_gl||"";var b=3D(new =
+Date).getTime();if(p(window.google_color_bg))window.google_color_bg=3Dwin=
+dow.google_color_bg[b%window.google_color_bg.length];if(p(window.google_c=
+olor_text))window.google_color_text=3Dwindow.google_color_text[b%window.g=
+oogle_color_text.length];if(p(window.google_color_link))window.google_col=
+or_link=3Dwindow.google_color_link[b%window.google_color_link.length];if(=
+p(window.google_color_url))window.google_color_url=3D=0A=
+window.google_color_url[b%window.google_color_url.length];if(p(window.goo=
+gle_color_border))window.google_color_border=3Dwindow.google_color_border=
+[b%window.google_color_border.length];if(p(window.google_color_line))wind=
+ow.google_color_line=3Dwindow.google_color_line[b%window.google_color_lin=
+e.length]},Sa=3Dfunction(a){var b;for(b in ya)a[b]=3Dl;for(b in =
+za)a[b]=3Dl;for(b in =
+Ca)a[b]=3Dl;a.google_container_id=3Dl;a.google_eids=3Dl;a.google_ad_regio=
+n=3Dl;a.google_gl=3Dl},Qa=3Dfunction(a,b){if(!b)return"";b=3Db.toLowerCas=
+e();=0A=
+return =
+b=3Dw(a)?Ta(b):Ua(b)},Ua=3Dfunction(a){if(a&&a.substring(0,3)!=3D"ca-")a=3D=
+"ca-"+a;return =
+a},Ta=3Dfunction(a){if(a&&a.substring(0,9)!=3D"dist-aff-")a=3D"dist-aff-"=
++a;return =
+a},Pa=3Dfunction(a,b,c,d,e,f){if(!a&&b=3D=3D"html")a=3Dc+"x"+d;return =
+a=3DVa(a,e,f)?a.toLowerCase():""},Va=3Dfunction(a,b,c){if(!a)return =
+m;if(!b)return h;return c};var C=3Ddocument,D=3Dnavigator,F=3Dwindow;=0A=
+function Wa(){var a=3DC.cookie,b=3DMath.round((new =
+Date).getTime()/1000),c=3DF.google_analytics_domain_name,d=3Dtypeof =
+c=3D=3D"undefined"?Xa("auto"):Xa(c),e=3Da.indexOf("__utma=3D"+d+".")>-1,f=
+=3Da.indexOf("__utmb=3D"+d)>-1,i=3Da.indexOf("__utmc=3D"+d)>-1,j,k=3D{},g=
+=3D!!F&&!!F.gaGlobal;if(e){j=3Da.split("__utma=3D"+d+".")[1].split(";")[0=
+].split(".");k.sid=3Df&&i?j[3]+"":g&&F.gaGlobal.sid?F.gaGlobal.sid:b+"";k=
+.vid=3Dj[0]+"."+j[1];k.from_cookie=3Dh}else{k.sid=3Dg&&F.gaGlobal.sid?F.g=
+aGlobal.sid:b+"";k.vid=3Dg&&F.gaGlobal.vid?F.gaGlobal.vid:(Math.round(Mat=
+h.random()*=0A=
+2147483647)^Ya()&2147483647)+"."+b;k.from_cookie=3Dm}k.dh=3Dd;k.hid=3Dg&&=
+F.gaGlobal.hid?F.gaGlobal.hid:Math.round(Math.random()*2147483647);return=
+ F.gaGlobal=3Dk}=0A=
+function Ya(){var =
+a=3DC.cookie?C.cookie:"",b=3DF.history.length,c,d,e=3D[D.appName,D.versio=
+n,D.language?D.language:D.browserLanguage,D.platform,D.userAgent,D.javaEn=
+abled()?1:0].join("");if(F.screen)e+=3DF.screen.width+"x"+F.screen.height=
++F.screen.colorDepth;else =
+if(F.java){d=3Djava.awt.Toolkit.getDefaultToolkit().getScreenSize();e+=3D=
+d.screen.width+"x"+d.screen.height}e+=3Da;e+=3DC.referrer?C.referrer:"";f=
+or(c=3De.length;b>0;)e+=3Db--^c++;return Za(e)}=0A=
+function Za(a){var =
+b=3D1,c=3D0,d,e;if(!(a=3D=3Dundefined||a=3D=3D"")){b=3D0;for(d=3Da.length=
+-1;d>=3D0;d--){e=3Da.charCodeAt(d);b=3D(b<<6&268435455)+e+(e<<14);c=3Db&2=
+66338304;b=3Dc!=3D0?b^c>>21:b}}return b}function =
+Xa(a){if(!a||a=3D=3D""||a=3D=3D"none")return =
+1;if("auto"=3D=3Da){a=3DC.domain;if("www."=3D=3Da.substring(0,4))a=3Da.su=
+bstring(4,a.length)}return Za(a.toLowerCase())};var =
+$a=3D{google:1,googlegroups:1,gmail:1,googlemail:1,googleimages:1,googlep=
+rint:1};function ab(a){var =
+b=3Da.google_page_location||a.google_page_url;if(!b)return =
+m;b=3Db.toString();if(b.indexOf("http://")=3D=3D0)b=3Db.substring(7,b.len=
+gth);else =
+if(b.indexOf("https://")=3D=3D0)b=3Db.substring(8,b.length);var =
+c=3Db.indexOf("/");if(c=3D=3D-1)c=3Db.length;var =
+d=3Db.substring(0,c),e=3Dd.split("."),f=3Dm;if(e.length>=3D3)f=3De[e.leng=
+th-3]in $a;if(e.length>=3D2)f=3Df||e[e.length-2]in $a;return f}=0A=
+function bb(a,b,c){if(ab(a)){a.google_new_domain_checked=3D1;return =
+m}if(a.google_new_domain_checked=3D=3D0){var =
+d=3DMath.random();if(d<=3Dc){var =
+e=3D"http://"+pa+"/pagead/test_domain.js",f=3D"script";b.write("<"+f+' =
+src=3D"'+e+'"></'+f+">");a.google_new_domain_checked=3D1;return =
+h}}return m}function =
+cb(a){if(!ab(a)&&a.google_new_domain_enabled=3D=3D1)return"http://"+pa;re=
+turn"http://"+qa};var =
+db=3Ddocument,eb=3Dia("false",m),fb=3Dia("false",m),gb=3Dia("false",m);ia=
+("false",m);var =
+G=3Dwindow;document.URL&&(document.URL.indexOf("?google_debug")>0||docume=
+nt.URL.indexOf("&google_debug")>0);var hb=3Dfunction(a){return =
+a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,"")},nb=3Dfunction(a,b){if(b)return =
+a.replace(ib,"&amp;").replace(jb,"&lt;").replace(kb,"&gt;").replace(lb,"&=
+quot;");else{if(!mb.test(a))return =
+a;if(a.indexOf("&")!=3D-1)a=3Da.replace(ib,"&amp;");if(a.indexOf("<")!=3D=
+-1)a=3Da.replace(jb,"&lt;");if(a.indexOf(">")!=3D-1)a=3Da.replace(kb,"&gt=
+;");if(a.indexOf('"')!=3D-1)a=3Da.replace(lb,"&quot;");return =
+a}},ib=3D/&/g,jb=3D/</g,kb=3D/>/g,lb=3D/\"/g,mb=3D/[&<>\"]/,qb=3Dfunction=
+(a){if(H(a,"&"))return"document"in n&&!H(a,"<")?=0A=
+ob(a):pb(a);return a},ob=3Dfunction(a){var =
+b=3Dn.document.createElement("a");b.innerHTML=3Da;b.normalize&&b.normaliz=
+e();a=3Db.firstChild.nodeValue;b.innerHTML=3D"";return =
+a},pb=3Dfunction(a){return =
+a.replace(/&([^;]+);/g,function(b,c){switch(c){case "amp":return"&";case =
+"lt":return"<";case "gt":return">";case =
+"quot":return'"';default:if(c.charAt(0)=3D=3D"#"){var =
+d=3DNumber("0"+c.substr(1));if(!isNaN(d))return =
+String.fromCharCode(d)}return b}})},rb=3Dfunction(a,b){for(var =
+c=3Db.length,d=3D0;d<c;d++){var e=3Dc=3D=3D1?b:b.charAt(d);=0A=
+if(a.charAt(0)=3D=3De&&a.charAt(a.length-1)=3D=3De)return =
+a.substring(1,a.length-1)}return a},H=3Dfunction(a,b){return =
+a.indexOf(b)!=3D-1},wb=3Dfunction(a,b){for(var =
+c=3D0,d=3Dhb(String(a)).split("."),e=3Dhb(String(b)).split("."),f=3DMath.=
+max(d.length,e.length),i=3D0;c=3D=3D0&&i<f;i++){var =
+j=3Dd[i]||"",k=3De[i]||"",g=3Dnew RegExp("(\\d*)(\\D*)","g"),y=3Dnew =
+RegExp("(\\d*)(\\D*)","g");do{var =
+E=3Dg.exec(j)||["","",""],z=3Dy.exec(k)||["","",""];if(E[0].length=3D=3D0=
+&&z[0].length=3D=3D0)break;var =
+W=3DE[1].length=3D=3D0?0:parseInt(E[1],10),na=3Dz[1].length=3D=3D=0A=
+0?0:parseInt(z[1],10);c=3Dsb(W,na)||sb(E[2].length=3D=3D0,z[2].length=3D=3D=
+0)||sb(E[2],z[2])}while(c=3D=3D0)}return =
+c},sb=3Dfunction(a,b){if(a<b)return-1;else if(a>b)return 1;return =
+0};ha();var =
+I=3Dfunction(a){this.t=3Da;this.i=3D[];this.p=3Dthis.h=3D0;this.d=3D[];th=
+is.n=3Dm};I.prototype.s=3Dfunction(a,b){var =
+c=3Dthis.t[b],d=3Dthis.i;this.t[b]=3Dfunction(e){if(e&&e.length>0){var =
+f=3De.length>1?e[1].url:l;d.push([a,qb(e[0].url),f])}c(e)}};I.prototype.r=
+=3Dfunction(){this.h++};I.prototype.o=3Dfunction(){if(!this.n){ra("http:/=
+/"+u+"/pagead/osd.js");this.n=3Dh}};I.prototype.j=3Dfunction(a){if(this.h=
+>0)for(var =
+b=3Ddocument.getElementsByTagName("iframe"),c=3D0;c<b.length;c++)b.item(c=
+).name=3D=3D"google_ads_frame"&&a(b.item(c),b.item(c).src)};=0A=
+I.prototype.k=3Dfunction(a){var b=3Dthis.i;if(b.length>0)for(var =
+c=3Ddocument.getElementsByTagName("a"),d=3Dfunction(g,y){return =
+g.innerHTML.indexOf(y)>0},e=3D0;e<c.length;e++)for(var =
+f=3D0;f<b.length;f++)if(c.item(e).href=3D=3Db[f][1]){var =
+i=3Dc.item(e).parentNode;if(b[f][2])for(var =
+j=3Di,k=3D0;k<4;k++){if(d(j,b[f][2])){i=3Dj;break}j=3Dj.parentNode}a(i,b[=
+f][0]);b.splice(f,1);break}};I.prototype.e=3Dfunction(a){this.k(a);this.j=
+(a)};I.prototype.a=3Dfunction(a){this.p=3Da};I.prototype.g=3Dfunction(){r=
+eturn this.p};=0A=
+I.prototype.f=3Dfunction(){return =
+this.i.length+this.h};I.prototype.b=3Dfunction(a){this.d=3Da};I.prototype=
+.q=3Dfunction(a,b){if(this.d.length>0){for(var =
+c=3D0;c<this.d.length;c++)if(this.d[c]=3D=3Da)if(a=3D=3D"js")this.s(b,"go=
+ogle_ad_request_done");else a=3D=3D"html"&&this.r();this.o()}};var =
+xb=3Dfunction(){window.__google_ad_urls||(window.__google_ad_urls=3Dnew =
+I(window));return =
+window.__google_ad_urls};r("Goog_AdSense_getAdAdapterInstance",xb);r("Goo=
+g_AdSense_OsdAdapter",I);=0A=
+r("Goog_AdSense_OsdAdapter.prototype.numBlocks",I.prototype.f);r("Goog_Ad=
+Sense_OsdAdapter.prototype.findBlocks",I.prototype.e);r("Goog_AdSense_Osd=
+Adapter.prototype.getOsdMode",I.prototype.g);var =
+yb=3Dfunction(a,b,c){var =
+d=3Dga(b,n,a),e=3Dwindow.onerror;window.onerror=3Dd;try{c()}catch(f){var =
+i=3Df.toString(),j=3D"";if(f.fileName)j=3Df.fileName;var =
+k=3D-1;if(f.lineNumber)k=3Df.lineNumber;var g=3Dd(i,j,k);if(!g)throw =
+f;}window.onerror=3De};r("google_protectAndRun",yb);=0A=
+var Ab=3Dfunction(a,b,c,d){if(Math.random()<0.01){var =
+e=3Ddb,f=3D["http://",u,"/pagead/gen_204","?id=3Djserror","&cb=3D",eb?1:0=
+,"&cd=3D",fb?1:0,"&context=3D",v(a),"&msg=3D",v(b),"&file=3D",v(c),"&line=
+=3D",v(d.toString()),"&url=3D",v(e.URL.substring(0,512)),"&ref=3D",v(e.re=
+ferrer.substring(0,512))];f.push(zb());sa(G,f.join(""))}return!gb};r("goo=
+gle_handleError",Ab);=0A=
+var zb=3Dfunction(){var =
+a=3D["&client=3D",v(G.google_ad_client),"&format=3D",v(G.google_ad_format=
+),"&slotname=3D",v(G.google_ad_slot),"&output=3D",v(G.google_ad_output),"=
+&ad_type=3D",v(G.google_ad_type)];return a.join("")};var =
+Bb=3Dfunction(a,b,c){if(a.forEach)a.forEach(b,c);else =
+if(Array.forEach)Array.forEach(a,b,c);else for(var =
+d=3Da.length,e=3Dq(a)?a.split(""):a,f=3D0;f<d;f++)f in =
+e&&b.call(c,e[f],f,a)},Cb=3Dfunction(a){if(p(a))return =
+a.concat();else{for(var =
+b=3D[],c=3D0,d=3Da.length;c<d;c++)b[c]=3Da[c];return b}};var =
+J=3Dfunction(a,b){this.x=3Da!=3D=3Dundefined?a:0;this.y=3Db!=3D=3Dundefin=
+ed?b:0};J.prototype.clone=3Dfunction(){return new =
+J(this.x,this.y)};J.prototype.toString=3Dfunction(){return"("+this.x+", =
+"+this.y+")"};var =
+K=3Dfunction(a,b){this.width=3Da;this.height=3Db};K.prototype.clone=3Dfun=
+ction(){return new =
+K(this.width,this.height)};K.prototype.toString=3Dfunction(){return"("+th=
+is.width+" x =
+"+this.height+")"};K.prototype.ceil=3Dfunction(){this.width=3DMath.ceil(t=
+his.width);this.height=3DMath.ceil(this.height);return =
+this};K.prototype.floor=3Dfunction(){this.width=3DMath.floor(this.width);=
+this.height=3DMath.floor(this.height);return this};=0A=
+K.prototype.round=3Dfunction(){this.width=3DMath.round(this.width);this.h=
+eight=3DMath.round(this.height);return =
+this};K.prototype.scale=3Dfunction(a){this.width*=3Da;this.height*=3Da;re=
+turn this};var Db=3Dfunction(a,b,c){for(var d in =
+a)b.call(c,a[d],d,a)};var =
+L,Eb,Fb,Gb,Hb,Ib,Jb,Kb,Lb,Mb,Nb=3Dfunction(){return =
+n.navigator?n.navigator.userAgent:l},Ob=3Dfunction(){return =
+n.navigator},Pb=3Dfunction(){Ib=3DHb=3DGb=3DFb=3DEb=3DL=3Dm;var =
+a;if(a=3DNb()){var =
+b=3DOb();L=3Da.indexOf("Opera")=3D=3D0;Eb=3D!L&&a.indexOf("MSIE")!=3D-1;G=
+b=3D(Fb=3D!L&&a.indexOf("WebKit")!=3D-1)&&a.indexOf("Mobile")!=3D-1;Ib=3D=
+(Hb=3D!L&&!Fb&&b.product=3D=3D"Gecko")&&b.vendor=3D=3D"Camino"}};Pb();=0A=
+var M=3DL,N=3DEb,Qb=3DHb,O=3DFb,Rb=3DGb,Sb=3Dfunction(){var =
+a=3DOb();return =
+a&&a.platform||""},Tb=3DSb(),Ub=3Dfunction(){Jb=3DH(Tb,"Mac");Kb=3DH(Tb,"=
+Win");Lb=3DH(Tb,"Linux");Mb=3D!!Ob()&&H(Ob().appVersion||"","X11")};Ub();=0A=
+var Vb=3DJb,Wb=3DKb,Xb=3DLb,Yb=3Dfunction(){var =
+a=3D"",b;if(M&&n.opera){var c=3Dn.opera.version;a=3Dtypeof =
+c=3D=3D"function"?c():c}else{if(Qb)b=3D/rv\:([^\);]+)(\)|;)/;else =
+if(N)b=3D/MSIE\s+([^\);]+)(\)|;)/;else =
+if(O)b=3D/WebKit\/(\S+)/;if(b){var =
+d=3Db.exec(Nb());a=3Dd?d[1]:""}}return =
+a},Zb=3DYb(),$b=3D{},P=3Dfunction(a){return =
+$b[a]||($b[a]=3Dwb(Zb,a)>=3D0)};var ac;var bc=3Dfunction(a){return =
+q(a)?document.getElementById(a):a},cc=3Dbc,ec=3Dfunction(a,b){Db(b,functi=
+on(c,d){if(d=3D=3D"style")a.style.cssText=3Dc;else =
+if(d=3D=3D"class")a.className=3Dc;else =
+if(d=3D=3D"for")a.htmlFor=3Dc;else if(d in =
+dc)a.setAttribute(dc[d],c);else =
+a[d]=3Dc})},dc=3D{cellpadding:"cellPadding",cellspacing:"cellSpacing",col=
+span:"colSpan",rowspan:"rowSpan",valign:"vAlign",height:"height",width:"w=
+idth",usemap:"useMap",frameborder:"frameBorder",type:"type"},fc=3Dfunctio=
+n(a){var b=3Da.document;if(O&&!P("500")&&!Rb){if(typeof a.innerHeight=3D=3D=0A=
+"undefined")a=3Dwindow;var =
+c=3Da.innerHeight,d=3Da.document.documentElement.scrollHeight;if(a=3D=3Da=
+.top)if(d<c)c-=3D15;return new K(a.innerWidth,c)}var =
+e=3Db.compatMode=3D=3D"CSS1Compat"&&(!M||M&&P("9.50"))?b.documentElement:=
+b.body;return new K(e.clientWidth,e.clientHeight)},gc=3Dfunction(a){var =
+b=3D!O&&a.compatMode=3D=3D"CSS1Compat"?a.documentElement:a.body;return =
+new J(b.scrollLeft,b.scrollTop)},ic=3Dfunction(){return =
+hc(document,arguments)},hc=3Dfunction(a,b){var =
+c=3Db[0],d=3Db[1];if(N&&d&&(d.name||d.type)){var e=3D["<",c];d.name&&=0A=
+e.push(' name=3D"',nb(d.name),'"');if(d.type){e.push(' =
+type=3D"',nb(d.type),'"');d=3Dfa(d);delete =
+d.type}e.push(">");c=3De.join("")}var =
+f=3Da.createElement(c);if(d)if(q(d))f.className=3Dd;else =
+ec(f,d);if(b.length>2){function =
+i(g){if(g)f.appendChild(q(g)?a.createTextNode(g):g)}for(var =
+j=3D2;j<b.length;j++){var =
+k=3Db[j];da(k)&&!(ea(k)&&k.nodeType>0)?Bb(jc(k)?Cb(k):k,i):i(k)}}return =
+f},kc=3Dfunction(a,b){a.appendChild(b)},lc=3Dfunction(a){return =
+a&&a.parentNode?a.parentNode.removeChild(a):l},mc=3Dfunction(a,b){var =
+c=3Db.parentNode;=0A=
+c&&c.replaceChild(a,b)},nc=3DO&&P("522"),oc=3Dfunction(a,b){if(typeof =
+a.contains!=3D"undefined"&&!nc&&b.nodeType=3D=3D1)return =
+a=3D=3Db||a.contains(b);if(typeof =
+a.compareDocumentPosition!=3D"undefined")return =
+a=3D=3Db||Boolean(a.compareDocumentPosition(b)&16);for(;b&&a!=3Db;)b=3Db.=
+parentNode;return b=3D=3Da},Q=3Dfunction(a){return =
+a.nodeType=3D=3D9?a:a.ownerDocument||a.document},jc=3Dfunction(a){if(a&&t=
+ypeof a.length=3D=3D"number")if(ea(a))return typeof =
+a.item=3D=3D"function"||typeof a.item=3D=3D"string";else =
+if(o(a)=3D=3D"function")return typeof a.item=3D=3D=0A=
+"function";return =
+m},R=3Dfunction(a){this.c=3Da||n.document||document};R.prototype.createEl=
+ement=3Dfunction(a){return =
+this.c.createElement(a)};R.prototype.createTextNode=3Dfunction(a){return =
+this.c.createTextNode(a)};R.prototype.m=3Dfunction(){return =
+this.c.compatMode=3D=3D"CSS1Compat"};R.prototype.l=3Dfunction(){return =
+gc(this.c)};R.prototype.appendChild=3Dkc;R.prototype.removeNode=3Dlc;R.pr=
+ototype.replaceNode=3Dmc;R.prototype.contains=3Doc;var =
+pc,qc,rc,sc,tc,uc,vc=3Dfunction(){uc=3Dtc=3Dsc=3Drc=3Dqc=3Dpc=3Dm;var =
+a=3DNb();if(a)if(a.indexOf("Firefox")!=3D-1)pc=3Dh;else =
+if(a.indexOf("Camino")!=3D-1)qc=3Dh;else =
+if(a.indexOf("iPhone")!=3D-1||a.indexOf("iPod")!=3D-1)rc=3Dh;else =
+if(a.indexOf("Android")!=3D-1)sc=3Dh;else =
+if(a.indexOf("Chrome")!=3D-1)tc=3Dh;else =
+if(a.indexOf("Safari")!=3D-1)uc=3Dh};vc();var wc=3Dfunction(a,b){var =
+c=3DQ(a);if(c.defaultView&&c.defaultView.getComputedStyle){var =
+d=3Dc.defaultView.getComputedStyle(a,"");if(d)return d[b]}return =
+l},S=3Dfunction(a,b){return =
+wc(a,b)||(a.currentStyle?a.currentStyle[b]:l)||a.style[b]},xc=3Dfunction(=
+a){var b;b=3Da?a.nodeType=3D=3D9?a:Q(a):document;if(N&&!(b?new =
+R(Q(b)):ac||(ac=3Dnew R)).m())return b.body;return =
+b.documentElement},yc=3Dfunction(a){var =
+b=3Da.getBoundingClientRect();if(N){var =
+c=3Da.ownerDocument;b.left-=3Dc.documentElement.clientLeft+c.body.clientL=
+eft;=0A=
+b.top-=3Dc.documentElement.clientTop+c.body.clientTop}return =
+b},zc=3Dfunction(a){if(N)return a.offsetParent;for(var =
+b=3DQ(a),c=3DS(a,"position"),d=3Dc=3D=3D"fixed"||c=3D=3D"absolute",e=3Da.=
+parentNode;e&&e!=3Db;e=3De.parentNode){c=3DS(e,"position");d=3Dd&&c=3D=3D=
+"static"&&e!=3Db.documentElement&&e!=3Db.body;if(!d&&(e.scrollWidth>e.cli=
+entWidth||e.scrollHeight>e.clientHeight||c=3D=3D"fixed"||c=3D=3D"absolute=
+"))return e}return l},Ac=3Dfunction(a){var =
+b,c=3DQ(a),d=3DS(a,"position"),e=3DQb&&c.getBoxObjectFor&&!a.getBoundingC=
+lientRect&&d=3D=3D"absolute"&&(b=3D=0A=
+c.getBoxObjectFor(a))&&(b.screenX<0||b.screenY<0),f=3Dnew =
+J(0,0),i=3Dxc(c);if(a=3D=3Di)return =
+f;if(a.getBoundingClientRect){b=3Dyc(a);var j=3D(c?new =
+R(Q(c)):ac||(ac=3Dnew R)).l();f.x=3Db.left+j.x;f.y=3Db.top+j.y}else =
+if(c.getBoxObjectFor&&!e){b=3Dc.getBoxObjectFor(a);var =
+k=3Dc.getBoxObjectFor(i);f.x=3Db.screenX-k.screenX;f.y=3Db.screenY-k.scre=
+enY}else{var =
+g=3Da;do{f.x+=3Dg.offsetLeft;f.y+=3Dg.offsetTop;if(g!=3Da){f.x+=3Dg.clien=
+tLeft||0;f.y+=3Dg.clientTop||0}if(O&&S(g,"position")=3D=3D"fixed"){f.x+=3D=
+c.body.scrollLeft;f.y+=3Dc.body.scrollTop;=0A=
+break}g=3Dg.offsetParent}while(g&&g!=3Da);if(M||O&&d=3D=3D"absolute")f.y-=
+=3Dc.body.offsetTop;for(g=3Da;(g=3Dzc(g))&&g!=3Dc.body&&g!=3Di;){f.x-=3Dg=
+.scrollLeft;if(!M||g.tagName!=3D"TR")f.y-=3Dg.scrollTop}}return =
+f};Qb&&P("1.9");=0A=
+var Bc=3Dfunction(a,b,c,d){if(/^\d+px?$/.test(b))return =
+parseInt(b,10);else{var =
+e=3Da.style[c],f=3Da.runtimeStyle[c];a.runtimeStyle[c]=3Da.currentStyle[c=
+];a.style[c]=3Db;var =
+i=3Da.style[d];a.style[c]=3De;a.runtimeStyle[c]=3Df;return =
+i}},Cc=3Dfunction(a){var b=3DQ(a),c=3D"";if(b.createTextRange){var =
+d=3Db.body.createTextRange();d.moveToElementText(a);c=3Dd.queryCommandVal=
+ue("FontName")}if(!c){c=3DS(a,"fontFamily");if(M&&Xb)c=3Dc.replace(/ =
+\[[^\]]*\]/,"")}var e=3Dc.split(",");if(e.length>1)c=3De[0];return =
+rb(c,"\"'")},Dc=3Dfunction(a){var b=3D=0A=
+a.match(/[^\d]+$/);return =
+b&&b[0]||l},Ec=3D{cm:1,"in":1,mm:1,pc:1,pt:1},Fc=3D{em:1,ex:1},Gc=3Dfunct=
+ion(a){var b=3DS(a,"fontSize"),c=3DDc(b);if(b&&"px"=3D=3Dc)return =
+parseInt(b,10);if(N)if(c in Ec)return Bc(a,b,"left","pixelLeft");else =
+if(a.parentNode&&a.parentNode.nodeType=3D=3D1&&c in Fc){var =
+d=3Da.parentNode,e=3DS(d,"fontSize");return =
+Bc(d,b=3D=3De?"1em":b,"left","pixelLeft")}var =
+f=3Dic("span",{style:"visibility:hidden;position:absolute;line-height:0;p=
+adding:0;margin:0;border:0;height:1em;"});kc(a,f);b=3Df.offsetHeight;lc(f=
+);=0A=
+return b};var T=3D{};function Hc(a){if(a=3D=3D1)return =
+h;return!T[a]}function =
+U(a,b){if(a)if(b=3D=3D1)if(T[b])T[b]+=3D","+a;else T[b]=3Da;else =
+T[b]=3Da}function Ic(){var a=3D[];for(var b in T)a.push(T[b]);return =
+a.join(",")}function Jc(a,b){if(a&&a instanceof Array)for(var =
+c=3D0;c<a.length;c++)a[c]&&typeof a[c]=3D=3D"string"&&U(a[c],b)}var =
+Kc=3Dm;=0A=
+function Lc(a,b){var =
+c=3D"script";(Kc=3DMc(a,b))||(a.google_allow_expandable_ads=3Dm);var =
+d=3D!Nc();Kc&&d&&b.write("<"+c+' =
+src=3D"http://'+u+'/pagead/expansion_embed.js"></'+c+">");var =
+e=3Dbb(a,b,s("1",0.01)),f=3Dd||e;f&&ta("msie")&&!window.opera?b.write("<"=
++c+' =
+src=3D"http://'+u+'/pagead/render_ads.js"></'+c+">"):b.write("<"+c+'>goog=
+le_protectAndRun("ads_core.google_render_ad", google_handleError, =
+google_render_ad);</'+c+">")}function V(a){return a!=3Dl?'"'+a+'"':'""'}=0A=
+var Oc=3Dfunction(a,b,c){var =
+d=3Dc.slice(-1)=3D=3D"?"?"":"&";return[c,d,a,"=3D",b.toString()].join("")=
+};function =
+X(a,b){if(a&&b)window.google_ad_url=3DOc(a,b,window.google_ad_url)}functi=
+on Y(a){var =
+b=3Dwindow,c=3Dya[a]||za[a]||Ca[a]||l,d=3Db[a];X(c,d)}function =
+Z(a,b){b!=3Dl&&X(a,v(b))}function $(a){var =
+b=3Dwindow,c=3Dya[a]||za[a]||Ca[a]||l,d=3Db[a];Z(c,d)}=0A=
+function Pc(a){var b=3Da.screen,c=3Dnavigator.javaEnabled(),d=3D-(new =
+Date).getTimezoneOffset();if(b){X("u_h",b.height);X("u_w",b.width);X("u_a=
+h",b.availHeight);X("u_aw",b.availWidth);X("u_cd",b.colorDepth)}X("u_tz",=
+d);X("u_his",history.length);X("u_java",c);navigator.plugins&&X("u_nplug"=
+,navigator.plugins.length);navigator.mimeTypes&&X("u_nmime",navigator.mim=
+eTypes.length)}function Qc(a){var =
+b=3D"google_unique_id";if(a[b])++a[b];else a[b]=3D1;return a[b]}=0A=
+function Rc(){var =
+a=3DN&&P("6"),b=3DQb&&P("1.8.1"),c=3DO&&P("525");if(Wb&&(a||b||c))return =
+h;else if(Vb&&(c||b))return h;else if(Xb&&b)return h;return m}function =
+Nc(){return(typeof ExpandableAdSlotFactory=3D=3D"function"||typeof =
+ExpandableAdSlotFactory=3D=3D"object")&&typeof =
+ExpandableAdSlotFactory.createIframe=3D=3D"function"}function =
+Mc(a,b){if(a.google_allow_expandable_ads=3D=3D=3Dm||!b.body||a.google_ad_=
+output!=3D"html"||Ea(a,b)||!Sc(a)||isNaN(a.google_ad_height)||isNaN(a.goo=
+gle_ad_width)||!Rc())return m;return h}=0A=
+function Sc(a){var b=3Da.google_ad_format;if(w(b))return =
+m;if(wa(a)&&!(b=3D=3D"468x15_0ads_al"))return m;return h}function =
+Tc(){var a;if(G.google_ad_output=3D=3D"html"&&!xa(G)&&Hc(0)){var =
+b=3D["6083035","6083034"];a=3DA(b,s("0",0));U(a,0)}return =
+a=3D=3D"6083035"}function =
+Uc(a,b){if((a.google_unique_id||0)=3D=3D0&&a.google_ad_output=3D=3D"html"=
+&&document.body&&typeof =
+b.body.getBoundingClientRect=3D=3D"function")return =
+A(["36812001","36812002"],s("0.01",0));return""}=0A=
+function Vc(a){var =
+b=3D"";if((a.google_unique_id||0)=3D=3D0&&(a.google_ad_output=3D=3D"js"||=
+a.google_ad_output=3D=3D"html")){xa(a)||(b=3DA(["36813001","36813002","36=
+813003","36813004"],s("0.012",0)));if(b=3D=3D"")b=3DA(["36813005","368130=
+06"],s("0.008",0))}return b}function Wc(a,b){switch(a){case =
+"36813002":b.a(1);b.b(["js"]);break;case =
+"36813003":b.a(1);b.b(["html"]);break;case =
+"36813004":b.a(2);b.b(["html","js"]);break;case =
+"36813006":b.a(0);b.b(["html","js"]);break}}=0A=
+function Xc(a){if(a.body)try{return fc(window)}catch(b){return new =
+K(-12245933,-12245933)}else return new K(-1,-1)}=0A=
+function Yc(a,b,c,d){var =
+e=3DQc(a);c=3DOc("ifi",e,c);c=3Dc.substring(0,1992);c=3Dc.replace(/%\w?$/=
+,"");var =
+f=3D"script";if((a.google_ad_output=3D=3D"js"||a.google_ad_output=3D=3D"j=
+son_html")&&(a.google_ad_request_done||a.google_radlink_request_done))b.w=
+rite("<"+f+' language=3D"JavaScript1.1" =
+src=3D'+V(ba(c))+"></"+f+">");else =
+if(a.google_ad_output=3D=3D"html")if(Kc&&Nc()){var =
+i=3Da.google_container_id||d||l;a["google_expandable_ad_slot"+e]=3DExpand=
+ableAdSlotFactory.createIframe("google_ads_frame"+e,ba(c),a.google_ad_wid=
+th,a.google_ad_height,=0A=
+i)}else{var j=3D'<iframe name=3D"google_ads_frame" =
+width=3D'+V(a.google_ad_width)+" height=3D"+V(a.google_ad_height)+" =
+frameborder=3D"+V(a.google_ad_frameborder)+" src=3D"+V(ba(c))+' =
+marginwidth=3D"0" marginheight=3D"0" vspace=3D"0" hspace=3D"0" =
+allowtransparency=3D"true" =
+scrolling=3D"no"></iframe>';a.google_container_id?Zc(a.google_container_i=
+d,b,j):b.write(j)}}function $c(a){Sa(a)}=0A=
+function ad(a,b){var =
+c=3Daa,d=3Dwindow.google_ad_format,e=3Dcb(window);window.google_ad_url=3D=
+w(d)?e+"/pagead/sdo?":Tc()?e+"/pagead/render_iframe_ads.html#":e+"/pagead=
+/ads?";$("google_ad_client");Y("google_ad_host");Y("google_ad_host_tier_i=
+d");var =
+f=3Dwindow.google_num_slots_by_client,i=3Dwindow.google_num_slots_by_chan=
+nel,j=3Dwindow.google_prev_ad_formats_by_region,k=3Dwindow.google_prev_ad=
+_slotnames_by_region,g=3Dwindow.google_ad_section;if(w(d)){window.google_=
+num_sdo_slots=3Dwindow.google_num_sdo_slots?window.google_num_sdo_slots+=0A=
+1:1;if(window.google_num_sdo_slots>4)return m}else =
+if(wa(window)){window.google_num_0ad_slots=3Dwindow.google_num_0ad_slots?=
+window.google_num_0ad_slots+1:1;if(window.google_num_0ad_slots>3)return =
+m}else =
+if(window.google_cpa_choice=3D=3Dl){window.google_num_ad_slots=3Dwindow.g=
+oogle_num_ad_slots?window.google_num_ad_slots+1:1;if(window.google_num_sl=
+ots_to_rotate){j[g]=3Dl;k[g]=3Dl;if(window.google_num_slot_to_show=3D=3Dl=
+)window.google_num_slot_to_show=3Dc%window.google_num_slots_to_rotate+1;i=
+f(window.google_num_slot_to_show!=3D=0A=
+window.google_num_ad_slots)return m}else =
+if(window.google_num_ad_slots>6&&g=3D=3D"")return =
+m}X("dt",aa);Y("google_language");Y("google_country");Y("google_region");=
+$("google_city");$("google_hints");Y("google_safe");Y("google_encoding");=
+Y("google_last_modified_time");$("google_alternate_ad_url");Y("google_alt=
+ernate_color");Y("google_skip");Y("google_targeting");if(f[B])f[B]+=3D1;e=
+lse{f[B]=3D1;f.length+=3D1}if(j[g])if(!w(d)){Z("prev_fmts",j[g].toLowerCa=
+se());f.length>1&&X("slot",f[B])}k[g]&&Z("prev_slotnames",=0A=
+k[g].toLowerCase());if(d)w(d)||(j[g]=3Dj[g]?j[g]+","+d:d);else =
+if(window.google_ad_slot)k[g]=3Dk[g]?k[g]+","+window.google_ad_slot:windo=
+w.google_ad_slot;Y("google_max_num_ads");$("google_ad_output");Y("google_=
+adtest");Y("google_ad_callback");$("google_ad_format");Y("google_ad_slot"=
+);Z("correlator",window.google_correlator);window.google_new_domain_check=
+ed=3D=3D1&&window.google_new_domain_enabled=3D=3D0&&X("dblk",1);$("google=
+_ad_channel");if(window.google_ad_channel){for(var =
+y=3D"",E=3Dwindow.google_ad_channel.split(bd),=0A=
+z=3D0;z<E.length;z++){var W=3DE[z];if(i[W])y+=3DW+"+";else =
+i[W]=3D1}Z("pv_ch",y)}$("google_ad_host_channel");if(window.google_ad_hos=
+t_channel){var =
+na=3Dcd(window.google_ad_host_channel,window.google_viewed_host_channels)=
+;Z("pv_h_ch",na)}$("google_page_url");$("google_color_bg");$("google_colo=
+r_text");$("google_color_link");$("google_color_url");$("google_color_bor=
+der");$("google_color_line");window.google_reuse_colors?X("reuse_colors",=
+1):X("reuse_colors",0);Y("google_font_face");Y("google_font_size");Y("goo=
+gle_kw_type");=0A=
+$("google_kw");$("google_contents");Y("google_num_radlinks");Y("google_ma=
+x_radlink_len");Y("google_rl_filtering");Y("google_rl_mode");Y("google_rt=
+");$("google_rl_dest_url");Y("google_num_radlinks_per_unit");Y("google_ad=
+_type");Y("google_image_size");Y("google_ad_section");Jc(window.google_ei=
+ds,1);var =
+Aa;if(Hc(0)){Aa=3DA(["36814001","36814002"],s("0",0));U(Aa,0)}Z("eid",Ic(=
+));var =
+tb=3Dwindow.google_allow_expandable_ads;if(tb!=3Dl)tb?X("ea","1"):X("ea",=
+"0");eb&&X("cb",1);fb&&X("cd",=0A=
+1);Y("google_feedback");$("google_referrer_url");$("google_page_location"=
+);X("frm",window.google_iframing);Y("google_bid");Y("google_ctr_threshold=
+");Y("google_cust_age");Y("google_cust_gender");Y("google_cust_interests"=
+);Y("google_cust_id");Y("google_cust_job");Y("google_cust_u_url");Y("goog=
+le_cust_l");Y("google_cust_lh");Y("google_cust_ch");Y("google_ed");Y("goo=
+gle_video_doc_id");Y("google_video_product_type");$("google_ui_features")=
+;$("google_ui_version");$("google_tag_info");$("google_only_ads_with_vide=
+o");=0A=
+$("google_only_pyv_ads");$("google_with_pyv_ads");$("google_disable_video=
+_autoplay");var ub=3Dm;if(a){Z("dff",Cc(a));Z("dfs",Gc(a));var =
+x;if(b)if(typeof a.getBoundingClientRect=3D=3D"function"){var =
+vb=3Da.getBoundingClientRect();x=3D{x:vb.left,y:vb.top}}else{x=3D{};x.x=3D=
+"-252738";x.y=3D"-252738"}else =
+try{x=3DAc(a)}catch(td){x=3D{};x.x=3D"-252738";x.y=3D"-252738"}if(x){ub=3D=
+h;Z("adx",x.x);Z("ady",x.y)}}if(ub||Aa=3D=3D"36814002"){var =
+Ba=3DXc(document);if(Ba){Z("biw",Ba.width);Z("bih",Ba.height)}}Wa();X("ga=
+_vid",window.gaGlobal.vid);=0A=
+X("ga_sid",window.gaGlobal.sid);X("ga_hid",window.gaGlobal.hid);X("ga_fc"=
+,window.gaGlobal.from_cookie);$("google_analytics_uacct");Y("google_ad_ov=
+erride");Y("google_flash_version");X("w",window.google_ad_width||-1);X("h=
+",window.google_ad_height||-1);Pc(window);return h}=0A=
+function cd(a,b){for(var =
+c=3Da.split("|"),d=3D-1,e=3D[],f=3D0;f<c.length;f++){var =
+i=3Dc[f].split(bd);b[f]||(b[f]=3D{});for(var =
+j=3D"",k=3D0;k<i.length;k++){var =
+g=3Di[k];if(!(g=3D=3D""))if(b[f][g])j+=3D"+"+g;else =
+b[f][g]=3D1}j=3Dj.slice(1);e[f]=3Dj;if(j!=3D"")d=3Df}var =
+y=3D"";if(d>-1){for(f=3D0;f<d;f++)y+=3De[f]+"|";y+=3De[d]}return y}=0A=
+function dd(){var =
+a=3Dxb(),b=3Dwindow.google_enable_osd,c=3D"";if(b=3D=3D=3Dh){c=3D"3681300=
+6";Wc(c,a)}else =
+if(b!=3D=3Dm&&Hc(0)){c=3DA(["68120011","68120021","68120031","68120041"],=
+s("0",0));if(c=3D=3D""){c=3DUc(window,document);if(c=3D=3D""){c=3DVc(wind=
+ow);c!=3D""&&Wc(c,a)}}}U(c,0);var d=3Dm,e=3Dm,f=3Dm;switch(c){case =
+"68120031":f=3Dh;case "68120021":e=3Dh;case "68120041":d=3Dh;break;case =
+"36812002":if(!window.google_atf_included){window.google_atf_included=3Dh=
+;ra("http://"+u+"/pagead/atf.js")}break}var i;if(d){var j=3D=0A=
+"google_temp_span";i=3Dwindow.google_container_id&&cc(window.google_conta=
+iner_id)||cc(j);if(!i&&!window.google_container_id){document.write("<span=
+ id=3D"+j+"></span>");i=3Dcc(j)}}var =
+k=3Dm;k=3De?ad(i,f):ad();i&&i.id=3D=3Dj&&lc(i);if(k){a.q(window.google_ad=
+_output,window.google_ad_url);Yc(window,document,window.google_ad_url);$c=
+(window)}}function ed(a,b,c,d){var =
+e=3DAb(a,b,c,d);Lc(window,document);return e}function fd(){Ra()}=0A=
+function gd(a){for(var =
+b=3D{},c=3Da.split("?"),d=3Dc[c.length-1].split("&"),e=3D0;e<d.length;e++=
+){var =
+f=3Dd[e].split("=3D");if(f[0])try{b[f[0].toLowerCase()]=3Df.length>1?wind=
+ow.decodeURIComponent?decodeURIComponent(f[1].replace(/\+/g," =
+")):unescape(f[1]):""}catch(i){}}return b}function hd(){var =
+a=3Dwindow,b=3Dgd(document.URL);if(b.google_ad_override){a.google_ad_over=
+ride=3Db.google_ad_override;a.google_adtest=3D"on"}}=0A=
+function Zc(a,b,c){if(a){var =
+d=3Db.getElementById(a);if(d&&c&&c.length!=3D""){d.style.visibility=3D"vi=
+sible";d.innerHTML=3Dc}}}var bd=3D/[+, =
+]/;window.google_render_ad=3Ddd;var =
+id=3D["30143070","30143071","30143075"],jd=3Dtypeof =
+window.postMessage=3D=3D"function"||typeof =
+window.postMessage=3D=3D"object"||typeof =
+document.postMessage=3D=3D"function",ld=3Dfunction(a,b){typeof =
+A1_googleCreateSlot=3D=3D"function"?A1_googleCreateSlot(a.google_ad_clien=
+t):kd(a,b)},nd=3Dfunction(){if(!md())return m;return =
+h},od=3Dfunction(a){if(xa(a))return m;var =
+b=3Da.google_ad_output;if(b&&b!=3D"html")return m;var =
+c=3Da.google_ad_client;if(typeof =
+c!=3D"string"||c.substring(0,4)!=3D"pub-"&&c.substring(0,7)!=3D"ca-pub-")=
+return m;=0A=
+return h},qd=3Dfunction(a){if(typeof =
+a.google_a1_eid=3D=3D"string")return a.google_a1_eid;var =
+b=3Ds("0.001",0);a.google_a1_eid=3Dpd(id,b);return =
+a.google_a1_eid},kd=3Dfunction(a,b){if(!a.google_included_a1_script){var =
+c=3D"script",d=3D"/pagead/show_ads_sra3.js?v\x3d1";b.write("<"+c+' =
+src=3D"http://'+u+d+'"></'+c+">");a.google_included_a1_script=3Dh}},md=3D=
+function(){if(N&&P("8"))return m;return jd||!O},pd=3Dfunction(a,b){var =
+c=3DMath.random();if(c<b){var d=3DMath.floor(c/b*a.length);return =
+a[d]}return""};function =
+rd(){hd();yb("show_ads.google_init_globals",ed,fd);Lc(window,document)}fu=
+nction sd(){if(!nd(window)||!od(window))rd();else =
+if(gb&&window.google_use_a1=3D=3D=3Dh)ld(window,document);else{var =
+a=3Dqd(window);if(a){U(a,0);window.google_allow_expandable_ads=3Dm}!a||a=3D=
+=3D"30143070"?rd():ld(window,document)}}yb("show_ads.main",Ab,sd);=0A=
+})()=0A=
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://cache.amefin.com/analytics.js
+
+var _amefin =3D {=0A=
+  pingImage: null,=0A=
+  setZoneId: function(zoneId)=0A=
+  {=0A=
+    this.zoneId =3D zoneId;=0A=
+    return this;=0A=
+  },=0A=
+  shouldUseCurrent: false,=0A=
+  setUseCurrent: function(shouldUseCurrent)=0A=
+  {=0A=
+    this.shouldUseCurrent =3D shouldUseCurrent;=0A=
+    return this;=0A=
+  },=0A=
+  searchToUse: null,=0A=
+  useSearch: function(searchToUse)=0A=
+  {=0A=
+    this.searchToUse =3D searchToUse;=0A=
+    return this;=0A=
+  },=0A=
+  isSearchReferrer: function()=0A=
+  {=0A=
+    var engines =3D ["google\\.com/", "search\\.yahoo\\.com/", =
+"search\\.msn\\.", "search\\.live\\.", "search\\.aol\\.", "ask\\.com/", =
+"searchservice\\.myspace\\.", "facebook\\.com/"];=0A=
+=0A=
+    for(var i =3D 0; i < engines.length; i++)=0A=
+    {=0A=
+      var regexString =3D "^http://(www\\.)?" + engines[i];=0A=
+      var regex =3D new RegExp(regexString, "i");=0A=
+      if(regex.test(this.shouldUseCurrent ? document.URL : =
+document.referrer))=0A=
+      {=0A=
+        return true;=0A=
+      }=0A=
+    }=0A=
+    return false;=0A=
+  },=0A=
+  track: function()=0A=
+  {=0A=
+    if(this.searchToUse || this.isSearchReferrer())=0A=
+    {=0A=
+      document.write("<script src=3D'http://amefin.com/analytics?url=3D" =
++ encodeURIComponent(document.URL) + "&referrer=3D" + =
+encodeURIComponent(document.referrer) + "&search=3D" + this.searchToUse =
++ "&shouldUseCurrent=3D" + this.shouldUseCurrent + "&zoneId=3D" + =
+this.zoneId + "&width=3D" + screen.width + "&height=3D" + screen.height =
++ "' type=3D'text/javascript'></script>");=0A=
+    }=0A=
+    return this;=0A=
+  },=0A=
+  druvoid: function()=0A=
+  {=0A=
+    return this;=0A=
+  },=0A=
+  hit_pixel: function(slot, url)=0A=
+  {=0A=
+    var pix =3D new Image(1,1);=0A=
+    pix.alt =3D '';=0A=
+    pix.src =3D url;=0A=
+    pix.onload =3D function () {_amefin.druvoid();};=0A=
+    this[slot] =3D pix;=0A=
+  }=0A=
+}=0A=
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://edge.quantserve.com/quant.js
+
+//=0A=
+// For correct measurement, DO NOT HOST THIS FROM ANOTHER SERVER=0A=
+//=0A=
+function _qcdst(){if(_qctzoff(0)!=3D_qctzoff(6))return 1;return 0;}=0A=
+function _qctzoff(m){=0A=
+var d1=3Dnew Date(2000,m,1,0,0,0,0);=0A=
+var t=3Dd1.toGMTString();=0A=
+var d3=3Dnew Date(t.substring(0,t.lastIndexOf(" ")-1));=0A=
+return d1-d3;=0A=
+}=0A=
+function _qceuc(s){=0A=
+if(typeof(encodeURIComponent)=3D=3D'function'){return =
+encodeURIComponent(s);}=0A=
+else{return escape(s);}=0A=
+}=0A=
+function _qcrnd(){return Math.round(Math.random()*2147483647);}=0A=
+function _qcgc(n){=0A=
+ var v=3D'';=0A=
+ var c=3Ddocument.cookie;if(!c)return v;=0A=
+ var i=3Dc.indexOf(n+"=3D");=0A=
+ var len=3Di+n.length+1;=0A=
+ if(i>-1){=0A=
+  var end=3Dc.indexOf(";", len);=0A=
+  if(end<0)end=3Dc.length;=0A=
+  v=3Dc.substring(len,end);=0A=
+ }=0A=
+ return v;=0A=
+}=0A=
+function _qcdomain(){=0A=
+ var d=3Ddocument.domain;=0A=
+ if(d.substring(0,4)=3D=3D"www.")d=3Dd.substring(4,d.length);=0A=
+ var a=3Dd.split(".");var len=3Da.length;=0A=
+ if(len<3)return d;=0A=
+ var e=3Da[len-1];=0A=
+ if(e.length<3)return d;=0A=
+ d=3Da[len-2]+"."+a[len-1];=0A=
+ return d;=0A=
+}=0A=
+function _qcsc(dc,m){=0A=
+ var s=3D"";var d=3D_qcdomain();=0A=
+ if =
+(m=3D=3D"ad"||d=3D=3D"doubleclick.net"||d=3D=3D"atdmt.com"||d=3D=3D"yield=
+manager.com"||d=3D=3D"fimserve.com"||=0A=
+  =
+d=3D=3D"tribalfusion.com"||d=3D=3D"trafficmp.com"){s+=3D";fpan=3Du;fpa=3D=
+;fpbn=3D;fpb=3D";return s;}=0A=
+ var u=3Ddocument;var a=3D_qcgc("__qca");=0A=
+ if(a.length>0){s+=3D";fpan=3D0;fpa=3D"+a;}=0A=
+ else{=0A=
+  u.cookie=3D"__qca=3D"+dc+"; expires=3DSun, 18 Jan 2038 00:00:00 GMT; =
+path=3D/; domain=3D"+d;=0A=
+  a=3D_qcgc("__qca");=0A=
+  if(a.length>0){s+=3D";fpan=3D1;fpa=3D"+dc;}=0A=
+  else{s+=3D";fpan=3Du;fpa=3D";}=0A=
+ }=0A=
+ var b=3D_qcgc("__qcb");=0A=
+ if(b.length>0){s+=3D";fpbn=3D0;fpb=3D"+b;}=0A=
+ else{b=3D_qcrnd();=0A=
+  u.cookie=3D"__qcb=3D"+b+"; path=3D/; domain=3D"+d;=0A=
+  b=3D_qcgc("__qcb");=0A=
+  if(b.length>0){s+=3D";fpbn=3D1;fpb=3D"+b;}=0A=
+  else{s+=3D";fpbn=3Du;fpb=3D";}=0A=
+ }=0A=
+ return s;=0A=
+}=0A=
+function _qcdc(n){=0A=
+ document.cookie=3Dn+"=3D; expires=3DThu, 01 Jan 1970 00:00:01 GMT; =
+path=3D/; domain=3D"+_qcdomain();=0A=
+}=0A=
+function _qpxload(){=0A=
+ if((_qimg)&& typeof _qimg.width =3D=3D"number"){=0A=
+  if (_qimg.width=3D=3D3){_qcdc("__qca");}=0A=
+}}=0A=
+function quantserve(){=0A=
+ var r=3D_qcrnd();=0A=
+ var =
+sr=3D'',qo=3D'',qm=3D'',url=3D'',ref=3D'',je=3D'u',ns=3D'1',media=3D'webp=
+age',event=3D'load';=0A=
+ if(typeof _qoptions !=3D"undefined" && _qoptions!=3Dnull){=0A=
+  for(var k in _qoptions){=0A=
+   if(typeof(_qoptions[k])!=3D'string'){continue;}=0A=
+   if(k=3D=3D'qacct'){_qacct=3D_qoptions[k];}=0A=
+   else{qo+=3D';'+k+'=3D'+_qceuc(_qoptions[k]);}=0A=
+   if(k=3D=3D'media'){media=3D_qoptions[k];}=0A=
+   if(k=3D=3D'event'){event=3D_qoptions[k];}=0A=
+  }=0A=
+  _qoptions=3Dnull;=0A=
+ }=0A=
+ if((typeof _qacct =3D=3D"undefined")||(_qacct.length=3D=3D0))return;=0A=
+ if(media=3D=3D'webpage' && event=3D=3D'load'){=0A=
+  if((typeof _qpixelsent =
+!=3D"undefined")&&(_qpixelsent=3D=3D_qacct))return;=0A=
+  _qpixelsent=3D_qacct;}=0A=
+ var ce=3D(navigator.cookieEnabled)?"1":"0";=0A=
+ if(typeof navigator.javaEnabled =
+!=3D'undefined')je=3D(navigator.javaEnabled())?"1":"0";=0A=
+ if(typeof _qmeta !=3D"undefined" && =
+_qmeta!=3Dnull){qm=3D';m=3D'+_qceuc(_qmeta);_qmeta=3Dnull;}=0A=
+ =
+if(self.screen){sr=3Dscreen.width+"x"+screen.height+"x"+screen.colorDepth=
+;}=0A=
+ var d=3Dnew Date();=0A=
+ var dst=3D_qcdst();=0A=
+  =0A=
+ =0A=
+=0A=
+ var dc=3D"1249527052-79789399-15165062";=0A=
+ var dg=3D"E5336-W-MS-6";=0A=
+ var qs=3D"http://pixel.quantserve.com";=0A=
+ var fp=3D_qcsc(dc,media);=0A=
+ if(window.location && =
+window.location.href)url=3D_qceuc(window.location.href);=0A=
+ if(window.document && =
+window.document.referrer)ref=3D_qceuc(window.document.referrer);=0A=
+ if(self=3D=3Dtop)ns=3D'0';=0A=
+ _qimg=3Dnew Image();=0A=
+ _qimg.alt=3D"";=0A=
+ =
+_qimg.src=3Dqs+'/pixel'+';r=3D'+r+fp+';ns=3D'+ns+';url=3D'+url+';ref=3D'+=
+ref+';ce=3D'+ce+';je=3D'+je+';sr=3D'+sr+';dc=3D'+dc+';dg=3D'+dg+';dst=3D'=
++dst+';et=3D'+d.getTime()+';tzo=3D'+d.getTimezoneOffset()+';a=3D'+_qacct+=
+qo+qm;=0A=
+ _qimg.onload=3Dfunction() {_qpxload();}=0A=
+}=0A=
+quantserve();=0A=
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://s.stats.wordpress.com/w.js?19
+
+function st_go(a){var =
+i,u=3Ddocument.location.protocol+'//stats.wordpress.com/g.gif?host=3D'+es=
+cape(document.location.host)+'&rand=3D'+Math.random();for(i in =
+a){u=3Du+'&'+i+'=3D'+escape(a[i]);}u=3Du+'&ref=3D'+escape(document.referr=
+er);document.open();document.write("<img id=3D\"wpstats\" =
+src=3D\""+u+"\" alt=3D\"\" />");document.close();}=0A=
+function ex_go(a){var =
+i,u=3Ddocument.location.protocol+'//stats.wordpress.com/g.gif?v=3Dwpcom2&=
+rand=3D'+Math.random();for(i in =
+a){u=3Du+'&'+i+'=3D'+escape(a[i]);}document.open();document.write("<img =
+id=3D\"wpstats2\" src=3D\""+u+"\" alt=3D\"\" style=3D\"display:none\" =
+/>");document.close();}=0A=
+function re_go(a){var =
+i,u=3Ddocument.location.protocol+'//stats.wordpress.com/g.gif?rand=3D'+Ma=
+th.random();for(i in =
+a){u=3Du+'&'+i+'=3D'+escape(a[i]);}document.open();document.write("<img =
+id=3D\"wpstats\" src=3D\""+u+"\" alt=3D\"\" style=3D\"display:none\" =
+/>");document.close();}=0A=
+=0A=
+function clicktrack(e){var =
+t;if(e){t=3De.target;}else{t=3Dwindow.event.srcElement;}linktrack(t,500);=
+}=0A=
+function contexttrack(e){var =
+t;if(e){t=3De.target;}else{t=3Dwindow.event.srcElement;}linktrack(t,0);}=0A=
+function linktracker_init(b,p){=0A=
+	_blog=3Db;=0A=
+	_post=3Dp;=0A=
+	=
+_host=3Ddocument.location.host?document.location.host:document.location.t=
+oString().replace(/^[^\/]*\/+([^\/]*)(\/.*)?/,'$1');=0A=
+	=
+if(document.body){document.body.onclick=3Dclicktrack;document.body.oncont=
+extmenu=3Dcontexttrack;}else =
+if(document){document.onclick=3Dclicktrack;document.oncontextmenu=3Dconte=
+xttrack;}else{}=0A=
+}=0A=
+function linktrack(a,d){try{=0A=
+	if (!a||a=3D=3Dnull) return;=0A=
+	while (a.nodeName !=3D "A") {=0A=
+		if ( typeof a.parentNode =3D=3D 'undefined' ) return;=0A=
+		a =3D a.parentNode;=0A=
+		if ( !a ) return;=0A=
+	}=0A=
+	b=3Da;=0A=
+	while (b.nodeName !=3D "BODY") {=0A=
+		if ( typeof a.parentNode =3D=3D 'undefined' ) return;=0A=
+		b =3D b.parentNode;=0A=
+		if ( b.id =3D=3D 'wpcombar' ) return;=0A=
+	}=0A=
+	if(a.href.match(eval('/^(http(s)?:\\/\\/)?'+_host+'/'))) return;=0A=
+	if(a.href.match(eval('/^javascript/'))) return;=0A=
+	var bh=3Da.href;=0A=
+	var pr=3Ddocument.location.protocol||'http:';=0A=
+	var r=3D(typeof a.rel !=3D 'undefined')?escape(a.rel):'0';=0A=
+	var b=3D(typeof _blog !=3D 'undefined')?_blog:'0';=0A=
+	var p=3D(typeof _post !=3D 'undefined')?_post:'0';=0A=
+	//var x=3Ddocument.createElement('IMG');=0A=
+	var =
+src=3Dpr+'//stats.wordpress.com/c.gif?b=3D'+b+'&p=3D'+p+'&r=3D'+r+'&u=3D'=
++escape(bh)+"&rand=3D"+Math.random();=0A=
+	if ( a.className.match('flaptor') ) {=0A=
+		var fx=3Dfunction(c){return c.replace(/flaptor\s*/, '')};=0A=
+		var f=3D'b'+_blog+'p'+_post+' '+fx(a.className);=0A=
+		var links=3Ddocument.getElementsByTagName('A');=0A=
+		for ( i=3D0; i<links.length; i++ ) {=0A=
+			if ( links[i].className.match('flaptor') )=0A=
+				f=3Df+' '+fx(links[i].className);=0A=
+		}=0A=
+		src=3Dsrc+'&f=3D'+f;=0A=
+	}=0A=
+	if ( typeof _acseed !=3D 'undefined' )=0A=
+		src +=3D '&ac=3D' + _acseed;=0A=
+	var x=3Dnew Image(1,1);=0A=
+	x.src =3D src;=0A=
+	if(d){var now=3Dnew Date();var =
+end=3Dnow.getTime()+d;while(true){now=3Dnew =
+Date();if(now.getTime()>end){break}}}=0A=
+}catch(e){}}=0A=
+
+------=_NextPart_000_0000_01CA1AB4.CCEC63C0--

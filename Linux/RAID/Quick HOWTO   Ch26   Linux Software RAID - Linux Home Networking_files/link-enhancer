@@ -1,0 +1,26 @@
+var amazon_retail_url       = "www.amazon.com";
+var amazon_impression_url   = "www.assoc-amazon.com";
+var amazon_popover_org      = 1;
+
+//var amazon_campaign = 15041;
+//var amazon_creative_default = 373517;
+//var amazon_creative_image   = 373497;
+//var amazon_creative_detail  = 373501;
+//var amazon_creative_buy_box = 373509;
+//var amazon_creative_offer_list = 373505;
+//var amazon_creative_title   = 373513;
+
+var amazon_impression_campaign = '211189';
+var amazon_impression_ccmids =  {
+    'as2'  : '374929',
+    '-as2' : '9325',
+    'as3'  : '373489',
+    'am2'  : '374925',
+    '-am2' : '9325',
+    'am3'  : '373493',
+    'ur2'  : '9325'
+    };
+
+document.write("<scr"+"ipt src='"+window.location.protocol+"//" 
+    + amazon_impression_url 
+    + "/s/link-enhancer-common.js' type='text/javascr"+"ipt'></scr"+"ipt>");

@@ -1,0 +1,10 @@
+.trip-search-form input.form-submit {
+ margin-bottom: 1em;
+}
+.trip-search-more-link {
+ font-weight: bold;
+ font-style: italic;
+}
+.trip-search-excerpt {
+ font-weight: bold;
+}

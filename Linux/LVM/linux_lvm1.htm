@@ -1,0 +1,1154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+
+
+<title>A Beginner's Guide To LVM | HowtoForge - Linux Howtos and Tutorials</title>
+<!-- base href="http://www.howtoforge.com/" -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="lvm, guide, disks, volumes, disk, hard, volume, 80gb, debian, etch, space, pdf, physical, fileserver, logical, vmware, fdisk, raid, registered, 25gb, linux, partitions, http, layout, howtoforge, raid-5, device, sdb1, keyboard, pvmove, replace, table, tutorial, sde1, debian etch, hard disks, physical volumes, logical volumes, keyboard layout">
+<meta name="description" content="A Beginner's Guide To LVM">
+<link rel="stylesheet" type="text/css" media="all" href="linux_lvm1_files/drupal.css">
+<link rel="stylesheet" type="text/css" media="all" href="linux_lvm1_files/copyright.css">
+<link rel="stylesheet" type="text/css" media="screen" href="linux_lvm1_files/menuExpandable3.css">
+<script type="text/javascript" src="linux_lvm1_files/menuExpandable3.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="linux_lvm1_files/tripsearch.css">
+<link rel="stylesheet" type="text/css" media="all" href="linux_lvm1_files/userinfo.css">
+<link rel="stylesheet" type="text/css" media="screen" href="linux_lvm1_files/screen.css">
+<link rel="stylesheet" type="text/css" media="all" href="linux_lvm1_files/style.css"><script type="text/javascript" src="linux_lvm1_files/htf.js"></script>
+<script type="text/javascript" src="linux_lvm1_files/jquery-latest.js"></script>
+<script type="text/javascript" src="linux_lvm1_files/thickbox-compressed.js"></script>
+<script type="text/javascript">
+<!--
+document.write('<link rel="stylesheet" type="text/css" media="all" href="http://images.howtoforge.com/jquery/thickbox.css" />');
+//-->
+</script><link rel="stylesheet" type="text/css" media="all" href="linux_lvm1_files/thickbox.css">
+<meta name="verify-v1" content="zcX/aIYg9nclzOvdOVQIp3QrZq39IvEyFGwIoFl9YUQ=">
+<link media="all" href="linux_lvm1_files/widget05.css" type="text/css" rel="stylesheet"></head><body><object type="application/x-shockwave-flash" data="linux_lvm1_files/button1.swf" id="atff" style="width: 1px; height: 1px; position: absolute; z-index: 100000;"><param value="transparent" name="wmode"><param value="always" name="allowScriptAccess"></object>
+<!-- closes #header-->
+<!-- START: HEADER -->
+<div id="wrapper1">
+ <div id="wrapper2">
+  <div class="header" id="header"><h1><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></h1>
+   <div class="headerpadding">
+         <div id="site-name"><a href="" title="Home"><img src="linux_lvm1_files/howtoforge_logo_trans.gif" alt="HowtoForge - Linux Howtos and Tutorials Logo"></a></div>
+    
+    
+    <ul id="primary">
+         <li><a href="http://www.faqforge.com/" target="_blank">FAQForge</a></li>
+         <li><a href="http://www.howtoforge.com/subscription">Subscription</a></li>
+         <li><a href="http://www.howtoforge.com/add_howto">Contribute</a></li>
+         <li><a href="http://www.howtoforge.com/trip_search">Search</a></li>
+         <li><a href="http://lxer.com/" target="_blank">News</a></li>
+         <li><a href="http://www.howtoforge.com/forums">Forums</a></li>
+         <li><a href="http://www.howtoforge.com/howtos">Howtos</a></li>
+     </ul>
+
+     <form action="/trip_search" method="post" id="search">
+      <div><input class="form-text" size="15" name="keys" id="keys" style="margin-bottom: 8px;" type="text"> <input src="linux_lvm1_files/search.gif" type="image">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.howtoforge.com/forums/register.php" rel="nofollow"><img src="linux_lvm1_files/join_small.gif" alt="Join HowtoForge" width="40" border="0" height="24"></a>&nbsp;&nbsp;&nbsp;<a href="http://www.howtoforge.com/index.php?q=user/login" rel="nofollow"><img src="linux_lvm1_files/login_small.gif" alt="Login" width="48" border="0" height="24"></a>
+            &nbsp;&nbsp;&nbsp;<a href="http://www.howtoforge.com/add_howto"><img src="linux_lvm1_files/contribute_small.gif" alt="Contribute" width="84" border="0" height="24"></a>
+            &nbsp;&nbsp;&nbsp;<a href="http://www.howtoforge.com/subscription"><img src="linux_lvm1_files/subscribe_small.gif" alt="Subscribe" width="78" border="0" height="24"></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.howtoforge.com/feed.rss"><img src="linux_lvm1_files/rss.gif" width="24" border="0" height="24"></a></div>
+     </form>
+    </div>
+   </div>
+<!-- END: HEADER-->
+<hr class="hide">
+    <div class="columns">
+            <div class="leftcolumn sidebar" id="sidebar-left">
+        <div class="leftpadding">
+            <div class="block block-block" id="block-block-8">
+<h2 style="font-size: 140%; font-weight: bold;">Survey</h2>
+<div class="content">      <p><a href="http://web5.kinesissurvey.com/idg/html.pro?ID=4&amp;source=33" target="_blank"><img src="linux_lvm1_files/where_are_you_from_125x125.gif" border="0"></a></p> </div>
+</div>
+<div class="block block-sidecontent" id="block-sidecontent-0">
+<h2 style="font-size: 140%; font-weight: bold;">Options For This Howto</h2>
+<div class="content"><table width="140"><tbody><tr><td><ul style="list-style-image: url(images/pointer.gif);">
+<li><a href="http://www.howtoforge.com/forums">Free Support</a><br></li>
+<li><a target="_blank" href="http://www.projektfarm.de/contact_nav.html">Paid Support</a></li>
+</ul></td></tr></tbody></table></div>
+</div>
+<div class="block block-user" id="block-user-1">
+<h2 style="font-size: 140%; font-weight: bold;">Navigation</h2>
+<div class="content"><div class="menu">
+<ul>
+<li class="expanded"><a href="http://www.howtoforge.com/howtos" title="">Howtos</a>
+<ul>
+<li class="expanded"><a href="http://www.howtoforge.com/howtos/linux" title="">Linux</a>
+<ul>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/linux/centos">CentOS</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/linux/debian">Debian</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/linux/fedora">Fedora</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/linux/kernel">Kernel</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/linux/mandriva">Mandriva</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/linux/pclinuxos">PCLinuxOS</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/linux/suse">SuSE</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/linux/ubuntu">Ubuntu</a></li>
+
+</ul>
+</li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/apache">Apache</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/backup">Backup</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/control-panels">Control Panels</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/dns">DNS</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/desktop">Desktop</a></li>
+<li class="expanded"><a href="http://www.howtoforge.com/howtos/email" title="">Email</a>
+<ul>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/email/antispam-antivirus">Anti-Spam/Virus</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/email/postfix">Postfix</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/email/procmail">Procmail</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/email/sendmail">Sendmail</a></li>
+
+</ul>
+</li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/ftp">FTP</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/high-availability">High-Availability</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/lighttpd">Lighttpd</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/monitoring">Monitoring</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/mysql">MySQL</a></li>
+<li class="expanded"><a href="http://www.howtoforge.com/howtos/programming" title="">Programming</a>
+<ul>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/programming/c-cplusplus">C/C++</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/programming/php">PHP</a></li>
+
+</ul>
+</li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/samba">Samba</a></li>
+<li class="expanded"><a href="http://www.howtoforge.com/howtos/security" title="">Security</a>
+<ul>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/security/antispam-antivirus">Anti-Spam/Virus</a></li>
+
+</ul>
+</li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/virtualization">Virtualization</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/other">Other</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/freebsd">FreeBSD</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/howtos/commercial">Commercial</a></li>
+
+</ul>
+</li>
+<li class="collapsed"><a href="http://www.howtoforge.com/mini-howtos" title="">Mini-Howtos</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/forums" title="">Forums</a></li>
+<li class="collapsed"><a href="http://www.howtoforge.com/add_howto" title="">Contribute</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/subscription" title="">Subscription</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/user" title="">Login</a></li>
+<li class="leaf"><a href="http://www.howtoforge.com/sitemap" title="">Site Map/RSS Feeds</a></li>
+
+</ul>
+</div></div>
+</div>
+<div class="block block-user" id="block-user-0">
+<h2 style="font-size: 140%; font-weight: bold;">User login</h2>
+<div class="content"><div class="user-login-block">
+<!-- /index.php?q=user/login -->
+  <form action="/forums/login.php?do=login" method="post" onsubmit="md5hash(vb_login_password,vb_login_md5password,vb_login_md5password_utf)">
+
+  <script type="text/javascript" src="linux_lvm1_files/vbulletin_md5.js"></script>
+
+  <div class="user-login-block">
+
+    <div class="form-item">
+
+    <label for="edit-vb_login_username">Username:</label><br>
+
+    <input maxlength="64" class="form-text" name="vb_login_username" id="navbar_username" size="15" type="text">
+
+    </div>
+
+    <div class="form-item">
+
+    <label for="edit-vb_login_password">Password:</label><br>
+
+    <input class="form-text" maxlength="64" name="vb_login_password" id="edit-vb_login_password" size="15" value="" type="password">
+
+    </div>
+
+    <div class="form-item">
+
+    <label for="cb_cookieuser_navbar"><input name="cookieuser" value="1" tabindex="103" id="cb_cookieuser_navbar" accesskey="c" type="checkbox">Remember Me?</label>
+
+    </div>
+
+    <input class="form-submit" name="op" value="Log in" type="submit">
+
+  </div>
+
+  <input name="s" value="e0e2055a5574f82e54b6a719204177e5" type="hidden">
+	<input name="securitytoken" value="guest" type="hidden">
+
+  <input name="do" value="login" type="hidden">
+
+  <input name="forceredirect" value="1" type="hidden">
+
+  <input name="vb_login_md5password" type="hidden">
+
+  <input name="vb_login_md5password_utf" type="hidden">
+
+  <input name="url" value="/" type="hidden">
+
+  </form>
+
+<div class="item_list">
+
+  <a href="http://www.howtoforge.com/forums/register.php">Create a new account</a><br>
+
+  <a href="http://www.howtoforge.com/forums/login.php?do=lostpw">Request new password</a>
+
+</div>
+
+</div></div>
+</div>
+<script type="text/javascript">
+<!--
+document.write('<div class="block" style="padding-top:15px;padding-left:5px;">');
+//-->
+</script><div class="block" style="padding-top: 15px; padding-left: 5px;"><script type="text/javascript"><!--
+google_ad_client = "pub-3043223216276099";
+google_ad_width = 137;
+google_ad_height = 90;
+google_ad_format = "120x90_0ads_al";
+//2007-02-07: Linkblock Hauptseite Menue
+google_ad_channel = "0347912882";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "003399";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="linux_lvm1_files/show_ads.js">
+</script><script src="linux_lvm1_files/test_domain.js"></script><script>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</script><iframe name="google_ads_frame" src="linux_lvm1_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" width="137" frameborder="0" height="90" scrolling="no"></iframe><script type="text/javascript">
+<!--
+document.write('</div>');
+//-->
+</script></div><div class="block block-user" id="block-user-3">
+<h2 style="font-size: 140%; font-weight: bold;">Who's online</h2>
+<div class="content">There are currently 8 users and 2498 guests online.</div>
+</div>
+<div class="block block-vbforumblocks" id="block-vbforumblocks-1">
+<h2 style="font-size: 140%; font-weight: bold;">HowtoForge Forums</h2>
+<div class="content"><div class="item-list"><ul><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41619&amp;goto=newpost" title="ISPConfig3 Installed/But My Mail Client is rejecting addresses">ISPConfig3<br>Installed/But My<br>Mail Client is ...</a>
+</li><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41618&amp;goto=newpost">Unable to connect<br>to Mysql</a>
+</li><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41615&amp;goto=newpost">Stress Test Server<br>with ISPConfig 3</a>
+</li><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41610&amp;goto=newpost">problem with<br>script</a>
+</li><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41609&amp;goto=newpost" title="ISPConfig 3 - back-res a Backup and Restore script">ISPConfig 3 -<br>back-res a Backup<br>and Restore ...</a>
+</li><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41608&amp;goto=newpost">Tracking sub/alias<br>-domain traffic</a>
+</li><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41603&amp;goto=newpost">Problems with<br>Apache directives</a>
+</li><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41602&amp;goto=newpost">Apache cluster<br>question</a>
+</li><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41601&amp;goto=newpost" title="VPN ERROR while connecting&amp;quot;Connection reset by peer (WSAECONNRESET) (code=10054)&amp;quot;">VPN ERROR while<br>connecting&amp;quo<br>t;Connection ...</a>
+</li><li><a href="http://www.howtoforge.com/forums/showthread.php?t=41600&amp;goto=newpost">How2 setup-<br>provide<br>VPN-TorrentServer-<br>!??</a>
+</li></ul></div></div>
+</div>
+<div class="block block-aggregator" id="block-aggregator-feed-1">
+<h2 style="font-size: 140%; font-weight: bold;">News</h2>
+<div class="content"><div class="item-list"><ul><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129255" target="_blank">Wine 1.1.34</a>
+</li><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129247" target="_blank">Enable/Disable write support for windows NTFS partition with simple click</a>
+</li><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129252" target="_blank">Netbook Makeovers, Cloud Censorship, and a Lucky Backup</a>
+</li><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129251" target="_blank">The Perfect Desktop - OpenSUSE 11.2 (GNOME)</a>
+</li><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129253" target="_blank">10 of the Best Free Linux ERP Software</a>
+</li><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129244" target="_blank">Linux Is Regaining Netbook Market Share Quickly</a>
+</li><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129250" target="_blank">Android-x86 - run Google Android on a netbook</a>
+</li><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129245" target="_blank">Create your own VLC skin with VLC media player Skin Editor</a>
+</li><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129241" target="_blank">Mot invests in acoustic touch technology</a>
+</li><li><a href="http://lxer.com/module/newswire/ext_link.php?rid=129243" target="_blank">Ask the Wi-Fi Guru, Episode XXII</a>
+</li></ul></div><div class="more-link"><a href="http://www.howtoforge.com/aggregator/sources/1" title="View this feed's recent news.">more</a></div></div>
+</div>
+<div class="block block-comment" id="block-comment-0">
+<h2 style="font-size: 140%; font-weight: bold;">Recent comments</h2>
+<div class="content"><div class="item-list"><ul><li><a href="http://www.howtoforge.com/install-and-configure-openldap-on-ubuntu-karmic-koala#comment-21152">Re: Error message when attempting to add db.ldi </a><br>18 hours 55 min ago</li><li><a href="http://www.howtoforge.com/how-to-compile-rtorrent-from-svn-in-ubuntu-9.10-karmic-koala-debian-5-lenny-with-magnet-link-support#comment-21150">Very good post, thanks a lot.</a><br>19 hours 13 min ago</li><li><a href="http://www.howtoforge.com/linux_lvm#comment-21149" class="active">I just wanted to say THANK</a><br>1 day 1 hour ago</li><li><a href="http://www.howtoforge.com/ubuntu_lamp_for_newbies#comment-21146">Thanks</a><br>1 day 12 hours ago</li><li><a href="http://www.howtoforge.com/how-to-enable-adobes-flash-player-in-google-chrome-ubuntu-9.04-p2#comment-21145">Thanks!</a><br>1 day 13 hours ago</li><li><a href="http://www.howtoforge.com/using-ebox-as-windows-primary-domain-controller-p4#comment-21144">Software used in eBox Platform</a><br>1 day 14 hours ago</li><li><a href="http://www.howtoforge.com/perfect-server-ubuntu-9.10-ispconfig-3-p5#comment-21139">What&amp;#039;s the point of</a><br>2 days 9 hours ago</li><li><a href="http://www.howtoforge.com/intrusion_detection_snort_base_postgresql_ubuntu6.06#comment-21138">Re: Snort / PostgreSQL Permissions</a><br>2 days 11 hours ago</li><li><a href="http://www.howtoforge.com/chrooted-ssh-sftp-tutorial-debian-lenny#comment-21137">Re: Re: Re: Re: OpenSSH Patch for magic path chrooting</a><br>2 days 11 hours ago</li><li><a href="http://www.howtoforge.com/perfect-server-debian-lenny-ispconfig3-p4#comment-21136">Re: There&amp;#039;s no inetd service file</a><br>2 days 12 hours ago</li></ul></div></div>
+</div>
+<div class="block block-block" id="block-block-2">
+<h2 style="font-size: 140%; font-weight: bold;">Newsletter</h2>
+<div class="content"><form method="post" action="http://newsletter.howtoforge.com/howtoforge/user/process.php" name="signup" target="_blank">
+<input name="pommo_signup" value="true" type="hidden">
+<table width="136" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td colspan="2">
+<b>Subscribe to HowtoForge Newsletter</b><br>
+and stay informed about our latest HOWTOs and projects.
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<input name="Email" id="email" value="enter email address" size="17" onclick="document.signup.Email.value = ''" style="font-size: 10px;" type="text">
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<input class="form-submit" name="Submit" value="Submit" style="margin-top: 0pt;" border="0" type="submit">
+</td>
+</tr>
+<tr>
+<td colspan="2">
+(To unsubscribe from our newsletter, visit this <a href="http://newsletter.howtoforge.com/howtoforge/user/login.php" target="_blank">link</a>.)
+</td>
+</tr>
+</tbody></table>
+</form></div>
+</div>
+<div class="block block-node" id="block-node-0">
+<h2 style="font-size: 140%; font-weight: bold;">Syndicate</h2>
+<div class="content"><div class="xml-icon" style="border-bottom: 1px none;"><a href="http://www.howtoforge.com/feed.rss"><img src="linux_lvm1_files/rss_black.gif" alt="XML feed" title="XML feed"></a></div><div align="center"><a href="http://apps.facebook.com/htf_feed_reader" target="_blank"><img src="linux_lvm1_files/htf_fb_app_logo_126x75.gif" boder="0" width="126" height="75"></a></div><div align="center"><a href="http://apps.facebook.com/htf_feed_reader" target="_blank">HowtoForge Feed for Facebook®</a></div><div style="font-size: 9px;" align="center">"Facebook" is a registered trademark of Facebook, Inc. All rights reserved.</div></div>
+</div>
+          </div>
+        </div>
+            
+      <hr class="hide">
+
+      <div class="centercolumn">
+        <div class="centerpadding">
+        <div class="additional_links" align="right"><b><img src="linux_lvm1_files/uk_flag.gif" alt="HowtoForge - Linux Howtos in English" width="20" border="0" height="10"> English</b> | <a href="http://www.howtoforge.de/" title="HowtoForge.de - Linux-Howtos auf Deutsch"><img src="linux_lvm1_files/de_flag.gif" alt="HowtoForge.de - Linux-Howtos auf Deutsch" width="20" height="10"> Deutsch</a> | <a href="http://www.howtoforge.com/sitemap">Site Map/RSS Feeds</a> | <a href="http://www.howtoforge.com/advertise">Advertise</a></div>
+          <div class="main-content" id="main">
+
+<div id="adleaderboard" style="height: 90px;"><div id="defer-adleaderboard">
+<script type="text/javascript">
+<!--
+document.write('<div align="center">');
+//-->
+</script><div align="center">
+<!-- begin ad tag Leaderboard -->
+
+<!--/* OpenX Javascript Tag v2.8.2 */-->
+
+<!--/*
+  * The backup image section of this tag has been generated for use on a
+  * non-SSL page. If this tag is to be placed on an SSL page, change the
+  *   'http://http100.howtoforge.com/www/delivery/...'
+  * to
+  *   'https://http100.howtoforge.com/www/delivery/...'
+  *
+  * This noscript section of this tag only shows image banners. There
+  * is no width or height in these banners, so if you want these tags to
+  * allocate space for the ad before it shows, you will need to add this
+  * information to the <img> tag.
+  *
+  * If you do not want to deal with the intricities of the noscript
+  * section, delete the tag (from <noscript>... to </noscript>). On
+  * average, the noscript tag is called from less than 1% of internet
+  * users.
+  */-->
+
+<script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://http100.howtoforge.com/www/delivery/ajs.php':'http://http100.howtoforge.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=4");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="linux_lvm1_files/ajs.php"></script><span><script type="text/javascript"><!--// <![CDATA[
+/* openads=http://http100.howtoforge.com/www/delivery bannerid=10 zoneid=4 source= */
+// ]]> --></script><script type="text/javascript"><!--
+google_ad_client = "pub-3043223216276099";
+/* Leaderboard Howtos 728x90 (howtoforge.com) */
+google_ad_slot = "0316542144";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="linux_lvm1_files/show_ads.js">
+</script><script src="linux_lvm1_files/expansion_embed.js"></script><script>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</script><ins style="border: medium none ; margin: 0pt; padding: 0pt; display: inline-table; height: 90px; position: relative; visibility: visible; width: 728px;"><ins style="border: medium none ; margin: 0pt; padding: 0pt; display: block; height: 90px; position: relative; visibility: visible; width: 728px;"><iframe allowtransparency="true" hspace="0" id="google_ads_frame2" marginheight="0" marginwidth="0" name="google_ads_frame" src="linux_lvm1_files/ads_002.htm" style="left: 0pt; position: absolute; top: 0pt;" vspace="0" width="728" frameborder="0" height="90" scrolling="no"></iframe></ins></ins><script type="text/javascript" src="linux_lvm1_files/ag.js"></script></span><div id="beacon_f466bf49a8" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="linux_lvm1_files/lg.gif" alt="" style="width: 0px; height: 0px;" width="0" height="0"></div>
+<noscript><a
+href='http://http100.howtoforge.com/www/delivery/ck.php?n=a209bfa5&amp;cb=INSERT_RANDOM_NUMBER_HERE'
+target='_blank'><img
+src='http://http100.howtoforge.com/www/delivery/avw.php?zoneid=4&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=a209bfa5'
+border='0' alt='' /></a></noscript>
+
+<!-- End ad tag Leaderboard -->
+<script type="text/javascript">
+<!--
+document.write('</div>');
+//-->
+</script></div>
+</div></div>
+            
+                              <div id="breadcrumbs">
+                  <div class="breadcrumb"><a href="">Home</a> » <a href="http://www.howtoforge.com/howtos" title="">Howtos</a> » <a href="http://www.howtoforge.com/howtos/linux" title="">Linux</a></div> <span class="breadcrumb">  »  A Beginner's Guide To LVM</span>
+                </div>
+                          
+            
+
+
+                          <h1 id="title">A Beginner's Guide To LVM</h1>
+                                                            
+<div style="border: 1px dashed rgb(47, 111, 171); margin: 5px; padding: 0.7em; background-color: rgb(249, 249, 249); font-family: arial,verdana,sans-serif; font-size: 20px; color: rgb(0, 102, 204);">Do you like HowtoForge? Please consider supporting us by <a href="http://www.howtoforge.com/subscription">becoming a subscriber</a>.</div>
+
+            <!-- start main content -->
+            <table width="98%" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr><td>
+            <div id="content">
+            <div id="adrectanglea" style="margin: 10px; height: 250px; width: 300px; float: left;"><div id="defer-adrectanglea">
+<script type="text/javascript">
+<!--
+document.write('<div>');
+//-->
+</script><div>
+<!-- begin ad tag Rectangle A -->
+
+<!--/* OpenX Javascript Tag v2.8.2 */-->
+
+<!--/*
+  * The backup image section of this tag has been generated for use on a
+  * non-SSL page. If this tag is to be placed on an SSL page, change the
+  *   'http://http100.howtoforge.com/www/delivery/...'
+  * to
+  *   'https://http100.howtoforge.com/www/delivery/...'
+  *
+  * This noscript section of this tag only shows image banners. There
+  * is no width or height in these banners, so if you want these tags to
+  * allocate space for the ad before it shows, you will need to add this
+  * information to the <img> tag.
+  *
+  * If you do not want to deal with the intricities of the noscript
+  * section, delete the tag (from <noscript>... to </noscript>). On
+  * average, the noscript tag is called from less than 1% of internet
+  * users.
+  */-->
+
+<script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://http100.howtoforge.com/www/delivery/ajs.php':'http://http100.howtoforge.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=5");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="linux_lvm1_files/ajs_002.php"></script><span><script type="text/javascript"><!--// <![CDATA[
+/* openads=http://http100.howtoforge.com/www/delivery bannerid=11 zoneid=5 source= */
+// ]]> --></script><script type="text/javascript"><!--
+google_ad_client = "pub-3043223216276099";
+/* Rectangle Howtos 300x250 (howtoforge.com) */
+google_ad_slot = "3032949215";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="linux_lvm1_files/show_ads.js">
+</script><script>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</script><ins style="border: medium none ; margin: 0pt; padding: 0pt; display: inline-table; height: 250px; position: relative; visibility: visible; width: 300px;"><ins style="border: medium none ; margin: 0pt; padding: 0pt; display: block; height: 250px; position: relative; visibility: visible; width: 300px;"><iframe allowtransparency="true" hspace="0" id="google_ads_frame3" marginheight="0" marginwidth="0" name="google_ads_frame" src="linux_lvm1_files/ads_003.htm" style="left: 0pt; position: absolute; top: 0pt;" vspace="0" width="300" frameborder="0" height="250" scrolling="no"></iframe></ins></ins><script type="text/javascript" src="linux_lvm1_files/ag.js"></script></span><div id="beacon_7911fe094a" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="linux_lvm1_files/lg_003.gif" alt="" style="width: 0px; height: 0px;" width="0" height="0"></div>
+<noscript><a
+href='http://http100.howtoforge.com/www/delivery/ck.php?n=a10484a7&amp;cb=INSERT_RANDOM_NUMBER_HERE'
+target='_blank'><img
+src='http://http100.howtoforge.com/www/delivery/avw.php?zoneid=5&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=a10484a7'
+border='0' alt='' /></a></noscript>
+
+<!-- End ad tag Rectangle A -->
+<script type="text/javascript">
+<!--
+document.write('</div>');
+//-->
+</script></div>
+</div></div>
+<!-- begin content --><div class="node">
+
+   
+  <div class="info">Submitted by <a href="http://www.howtoforge.com/forums/member.php?u=2" title="View user profile." rel="nofollow">falko</a> (<a href="http://www.howtoforge.com/forums/private.php?do=newpm&amp;u=2" title="Contact author." rel="nofollow">Contact Author</a>) (<a href="http://www.howtoforge.com/forums" title="Forums.">Forums</a>) on Sun, 2007-01-14 18:51.<span class="taxonomy"> :: <a href="http://www.howtoforge.com/sitemap/linux">Linux</a> | <a href="http://www.howtoforge.com/sitemap/other">Other</a></span></div>
+  <div class="content">
+  <span style="margin: 0px 10px 0px 0px; float: left;">
+<script type="text/javascript">
+tweetmeme_url = 'http://www.howtoforge.com/linux_lvm';
+</script>
+<script type="text/javascript" src="linux_lvm1_files/tweetmeme_button.js"></script><iframe src="linux_lvm1_files/widget.htm" width="50" frameborder="0" height="61" scrolling="no"></iframe>
+</span><h2>A Beginner's Guide To LVM </h2>
+<p>Version 1.0 <br>
+Author: Falko Timme &lt;ft [at] falkotimme [dot] com&gt; <br>
+Last edited 01/08/2007</p>
+<p>This guide shows how to work with LVM (Logical Volume Management) on
+Linux. It also describes how to use LVM together with RAID1 in an extra
+chapter. As LVM is a rather abstract topic, this article comes with a
+Debian Etch VMware image that you can download and start, and on that
+Debian Etch system you can run all the commands I execute here and
+compare your results with mine. Through this practical approach you
+should get used to LVM very fast. </p>
+<p>However, I do not issue any guarantee that this tutorial will work for you!</p>
+<p>&nbsp;</p>
+<h3>1 Preliminary Note</h3>
+<p>This tutorial was inspired by two articles I read: </p>
+<ul>
+  <li><a mce_real_href="http://www.linuxdevcenter.com/pub/a/linux/2006/04/27/managing-disk-space-with-lvm.html" href="http://www.linuxdevcenter.com/pub/a/linux/2006/04/27/managing-disk-space-with-lvm.html" target="_blank">http://www.linuxdevcenter.com/pub/a/linux/2006/04/27/managing-disk-space-with-lvm.html</a></li>
+  <li><a mce_real_href="http://www.debian-administration.org/articles/410" href="http://www.debian-administration.org/articles/410" target="_blank">http://www.debian-administration.org/articles/410</a></li>
+</ul>
+<p>These are great articles, but hard to understand if you've never worked with LVM before. That's why I have created <a mce_real_href="http://downloads.howtoforge.com/files/Debian_Etch_LVM.zip" href="http://downloads.howtoforge.com/files/Debian_Etch_LVM.zip" target="_blank">this Debian Etch VMware image</a> that you can download and run in VMware Server or VMware Player (see <a mce_real_href="http://www.howtoforge.com/import_vmware_images" href="http://www.howtoforge.com/import_vmware_images" target="_blank">http://www.howtoforge.com/import_vmware_images</a> to learn how to do that).</p>
+<p>I installed all tools we need during the course of this guide on the Debian Etch system (by running</p>
+<p class="command">apt-get install lvm2 dmsetup mdadm reiserfsprogs xfsprogs</p>
+<p>) so you don't need to worry about that.  </p>
+<p>The Debian Etch system's network is configured through DHCP, so you
+don't have to worry about conflicting IP addresses. The root password
+is <span class="system">howtoforge</span>. You can also connect to that system with an SSH client like <a mce_real_href="http://www.chiark.greenend.org.uk/%7Esgtatham/putty/" href="http://www.chiark.greenend.org.uk/%7Esgtatham/putty/" target="_blank">PuTTY</a>. To find out the IP address of the Debian Etch system, run</p>
+<p class="command">ifconfig</p>
+<p>The system has six SCSI hard disks, <span class="system">/dev/sda</span> - <span class="system">/dev/sdf</span>. <span class="system">/dev/sda</span> is used for the Debian Etch system itself, while we will use <span class="system">/dev/sdb</span> - <span class="system">/dev/sdf</span> for LVM and RAID. <span class="system">/dev/sdb</span> - <span class="system">/dev/sdf</span>
+each have 80GB of disk space. In the beginning we will act as if each
+has only 25GB of disk space (thus using only 25GB on each of them), and
+in the course of the tutorial we will "replace" our 25GB hard disks
+with 80GB hard disks, thus demonstrating how you can replace small hard
+disks with bigger ones in LVM. </p>
+<p>The article <a mce_real_href="http://www.linuxdevcenter.com/pub/a/linux/2006/04/27/managing-disk-space-with-lvm.html" href="http://www.linuxdevcenter.com/pub/a/linux/2006/04/27/managing-disk-space-with-lvm.html" target="_blank">http://www.linuxdevcenter.com/pub/a/linux/2006/04/27/managing-disk-space-with-lvm.html</a> uses hard disks of 250GB and 800GB, but some commands such as <span class="system">pvmove</span>
+take a long time with such hard disk sizes, that's why I decided to use
+hard disks of 25GB and 80GB (that's enough to understand how LVM
+works). </p>
+<p>&nbsp;</p>
+<h4>1.1 Summary</h4>
+<p>Download <a mce_real_href="http://downloads.howtoforge.com/files/Debian_Etch_LVM.zip" href="http://downloads.howtoforge.com/files/Debian_Etch_LVM.zip" target="_blank">this Debian Etch VMware image</a> (~310MB) and start it <a mce_real_href="http://www.howtoforge.com/import_vmware_images" href="http://www.howtoforge.com/import_vmware_images" target="_blank">like this</a>. Log in as root with the password <span class="system">howtoforge</span>.  </p><div id="adrectangleb" style="height: 250px;"><div id="defer-adrectangleb">
+<script type="text/javascript">
+<!--
+document.write('<div align="center">');
+//-->
+</script><div align="center">
+<!-- begin ad tag Rectangle B -->
+
+<!--/* OpenX Javascript Tag v2.8.2 */-->
+
+<!--/*
+  * The backup image section of this tag has been generated for use on a
+  * non-SSL page. If this tag is to be placed on an SSL page, change the
+  *   'http://http100.howtoforge.com/www/delivery/...'
+  * to
+  *   'https://http100.howtoforge.com/www/delivery/...'
+  *
+  * This noscript section of this tag only shows image banners. There
+  * is no width or height in these banners, so if you want these tags to
+  * allocate space for the ad before it shows, you will need to add this
+  * information to the <img> tag.
+  *
+  * If you do not want to deal with the intricities of the noscript
+  * section, delete the tag (from <noscript>... to </noscript>). On
+  * average, the noscript tag is called from less than 1% of internet
+  * users.
+  */-->
+
+<script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://http100.howtoforge.com/www/delivery/ajs.php':'http://http100.howtoforge.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=6");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="linux_lvm1_files/ajs_003.php"></script><span><script type="text/javascript"><!--// <![CDATA[
+/* openads=http://http100.howtoforge.com/www/delivery bannerid=12 zoneid=6 source= */
+// ]]> --></script><script type="text/javascript"><!--
+google_ad_client = "pub-3043223216276099";
+/* Rectangle B Howtos 300x250 (howtoforge.com) */
+google_ad_slot = "5716459207";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="linux_lvm1_files/show_ads.js">
+</script><script>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</script><ins style="border: medium none ; margin: 0pt; padding: 0pt; display: inline-table; height: 250px; position: relative; visibility: visible; width: 300px;"><ins style="border: medium none ; margin: 0pt; padding: 0pt; display: block; height: 250px; position: relative; visibility: visible; width: 300px;"><iframe allowtransparency="true" hspace="0" id="google_ads_frame4" marginheight="0" marginwidth="0" name="google_ads_frame" src="linux_lvm1_files/ads_004.htm" style="left: 0pt; position: absolute; top: 0pt;" vspace="0" width="300" frameborder="0" height="250" scrolling="no"></iframe></ins></ins><script type="text/javascript" src="linux_lvm1_files/ag.js"></script></span><div id="beacon_efaf4dca6a" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="linux_lvm1_files/lg_002.gif" alt="" style="width: 0px; height: 0px;" width="0" height="0"></div>
+<noscript><a
+href='http://http100.howtoforge.com/www/delivery/ck.php?n=aee6bf29&amp;cb=INSERT_RANDOM_NUMBER_HERE'
+target='_blank'><img
+src='http://http100.howtoforge.com/www/delivery/avw.php?zoneid=6&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=aee6bf29'
+border='0' alt='' /></a></noscript>
+
+<!-- End ad tag Rectangle B -->
+<script type="text/javascript">
+<!--
+document.write('</div>');
+//-->
+</script></div>
+</div></div>
+<p>&nbsp;</p>
+<h3>2 LVM Layout</h3>
+<p>Basically LVM looks like this:  </p>
+<p><img mce_real_src="http://images.howtoforge.com/images/lvm/lvm_scheme_full.png" src="linux_lvm1_files/lvm_scheme_full.png" width="550" height="71"></p>
+<p>You have one or more physical volumes (<span class="system">/dev/sdb1</span> - <span class="system">/dev/sde1</span> in our example), and on these physical volumes you create one or more volume groups (e.g. <span class="system">fileserver</span>),
+and in each volume group you can create one or more logical volumes. If
+you use multiple physical volumes, each logical volume can be bigger
+than one of the underlying physical volumes (but of course the sum of
+the logical volumes cannot exceed the total space offered by the
+physical volumes). </p>
+<p>It is a good practice to not allocate the full space to logical
+volumes, but leave some space unused. That way you can enlarge one or
+more logical volumes later on if you feel the need for it.</p>
+<p>In this example we will create a volume group called <span class="system">fileserver</span>, and we will also create the logical volumes <span class="system">/dev/fileserver/share</span>, <span class="system">/dev/fileserver/backup</span>, and <span class="system">/dev/fileserver/media</span>
+(which will use only half of the space offered by our physical volumes
+for now - that way we can switch to RAID1 later on (also described in
+this tutorial)). </p>
+<p>&nbsp;</p>
+<h3>3 Our First LVM Setup</h3>
+<p>Let's find out about our hard disks:</p>
+<p class="command">fdisk -l</p>
+<p>The output looks like this:</p>
+<p class="system">server1:~#&nbsp;fdisk&nbsp;-l<br>
+<br>
+Disk&nbsp;/dev/sda:&nbsp;21.4&nbsp;GB,&nbsp;21474836480&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;2610&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+&nbsp;&nbsp;&nbsp;Device&nbsp;Boot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blocks&nbsp;&nbsp;&nbsp;Id&nbsp;&nbsp;System<br>
+/dev/sda1&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144553+&nbsp;&nbsp;83&nbsp;&nbsp;Linux<br>
+/dev/sda2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2450&nbsp;&nbsp;&nbsp;&nbsp;19535040&nbsp;&nbsp;&nbsp;83&nbsp;&nbsp;Linux<br>
+/dev/sda4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2451&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2610&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1285200&nbsp;&nbsp;&nbsp;82&nbsp;&nbsp;Linux&nbsp;swap&nbsp;/&nbsp;Solaris<br>
+<br>
+Disk&nbsp;/dev/sdb:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+Disk&nbsp;/dev/sdb&nbsp;doesn't&nbsp;contain&nbsp;a&nbsp;valid&nbsp;partition&nbsp;table<br>
+<br>
+Disk&nbsp;/dev/sdc:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+Disk&nbsp;/dev/sdc&nbsp;doesn't&nbsp;contain&nbsp;a&nbsp;valid&nbsp;partition&nbsp;table<br>
+<br>
+Disk&nbsp;/dev/sdd:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+Disk&nbsp;/dev/sdd&nbsp;doesn't&nbsp;contain&nbsp;a&nbsp;valid&nbsp;partition&nbsp;table<br>
+<br>
+Disk&nbsp;/dev/sde:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+Disk&nbsp;/dev/sde&nbsp;doesn't&nbsp;contain&nbsp;a&nbsp;valid&nbsp;partition&nbsp;table<br>
+<br>
+Disk&nbsp;/dev/sdf:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+Disk&nbsp;/dev/sdf&nbsp;doesn't&nbsp;contain&nbsp;a&nbsp;valid&nbsp;partition&nbsp;table<br></p>
+<p>There are no partitions yet on <span class="system">/dev/sdb</span> - <span class="system">/dev/sdf</span>. We will create the partitions <span class="system">/dev/sdb1</span>, <span class="system">/dev/sdc1</span>, <span class="system">/dev/sdd1</span>, and <span class="system">/dev/sde1</span> and leave <span class="system">/dev/sdf</span> untouched for now. We act as if our hard disks had only 25GB of space instead of 80GB for now, therefore we assign 25GB to <span class="system">/dev/sdb1</span>, <span class="system">/dev/sdc1</span>, <span class="system">/dev/sdd1</span>, and <span class="system">/dev/sde1</span>:</p>
+<p class="command">fdisk /dev/sdb</p>
+<p><span class="system">server1:~#&nbsp;fdisk&nbsp;/dev/sdb<br>
+  <br>
+  The&nbsp;number&nbsp;of&nbsp;cylinders&nbsp;for&nbsp;this&nbsp;disk&nbsp;is&nbsp;set&nbsp;to&nbsp;10443.<br>
+  There&nbsp;is&nbsp;nothing&nbsp;wrong&nbsp;with&nbsp;that,&nbsp;but&nbsp;this&nbsp;is&nbsp;larger&nbsp;than&nbsp;1024,<br>
+  and&nbsp;could&nbsp;in&nbsp;certain&nbsp;setups&nbsp;cause&nbsp;problems&nbsp;with:<br>
+  1)&nbsp;software&nbsp;that&nbsp;runs&nbsp;at&nbsp;boot&nbsp;time&nbsp;(e.g.,&nbsp;old&nbsp;versions&nbsp;of&nbsp;LILO)<br>
+  2)&nbsp;booting&nbsp;and&nbsp;partitioning&nbsp;software&nbsp;from&nbsp;other&nbsp;OSs<br>
+&nbsp;&nbsp;&nbsp;(e.g.,&nbsp;DOS&nbsp;FDISK,&nbsp;OS/2&nbsp;FDISK)<br>
+<br>
+Command&nbsp;(m&nbsp;for&nbsp;help):</span>&nbsp;<span class="highlight">&lt;-- m</span><br>
+<span class="system">Command&nbsp;action<br>
+&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;toggle&nbsp;a&nbsp;bootable&nbsp;flag<br>
+&nbsp;&nbsp;&nbsp;b&nbsp;&nbsp;&nbsp;edit&nbsp;bsd&nbsp;disklabel<br>
+&nbsp;&nbsp;&nbsp;c&nbsp;&nbsp;&nbsp;toggle&nbsp;the&nbsp;dos&nbsp;compatibility&nbsp;flag<br>
+&nbsp;&nbsp;&nbsp;d&nbsp;&nbsp;&nbsp;delete&nbsp;a&nbsp;partition<br>
+&nbsp;&nbsp;&nbsp;l&nbsp;&nbsp;&nbsp;list&nbsp;known&nbsp;partition&nbsp;types<br>
+&nbsp;&nbsp;&nbsp;m&nbsp;&nbsp;&nbsp;print&nbsp;this&nbsp;menu<br>
+&nbsp;&nbsp;&nbsp;n&nbsp;&nbsp;&nbsp;add&nbsp;a&nbsp;new&nbsp;partition<br>
+&nbsp;&nbsp;&nbsp;o&nbsp;&nbsp;&nbsp;create&nbsp;a&nbsp;new&nbsp;empty&nbsp;DOS&nbsp;partition&nbsp;table<br>
+&nbsp;&nbsp;&nbsp;p&nbsp;&nbsp;&nbsp;print&nbsp;the&nbsp;partition&nbsp;table<br>
+&nbsp;&nbsp;&nbsp;q&nbsp;&nbsp;&nbsp;quit&nbsp;without&nbsp;saving&nbsp;changes<br>
+&nbsp;&nbsp;&nbsp;s&nbsp;&nbsp;&nbsp;create&nbsp;a&nbsp;new&nbsp;empty&nbsp;Sun&nbsp;disklabel<br>
+&nbsp;&nbsp;&nbsp;t&nbsp;&nbsp;&nbsp;change&nbsp;a&nbsp;partition's&nbsp;system&nbsp;id<br>
+&nbsp;&nbsp;&nbsp;u&nbsp;&nbsp;&nbsp;change&nbsp;display/entry&nbsp;units<br>
+&nbsp;&nbsp;&nbsp;v&nbsp;&nbsp;&nbsp;verify&nbsp;the&nbsp;partition&nbsp;table<br>
+&nbsp;&nbsp;&nbsp;w&nbsp;&nbsp;&nbsp;write&nbsp;table&nbsp;to&nbsp;disk&nbsp;and&nbsp;exit<br>
+&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;extra&nbsp;functionality&nbsp;(experts&nbsp;only)<br>
+<br>
+Command&nbsp;(m&nbsp;for&nbsp;help):</span>&nbsp;<span class="highlight">&lt;-- n</span><br>
+<span class="system">Command&nbsp;action<br>
+&nbsp;&nbsp;&nbsp;e&nbsp;&nbsp;&nbsp;extended<br>
+&nbsp;&nbsp;&nbsp;p&nbsp;&nbsp;&nbsp;primary&nbsp;partition&nbsp;(1-4)</span><br>
+<span class="highlight">&lt;-- p</span><br>
+<span class="system">Partition&nbsp;number&nbsp;(1-4):</span>&nbsp;<span class="highlight">&lt;-- 1</span><br>
+<span class="system">First&nbsp;cylinder&nbsp;(1-10443,&nbsp;default&nbsp;1):</span> <span class="highlight">&lt;-- &lt;ENTER&gt;</span> <br>
+<span class="system">Using&nbsp;default&nbsp;value&nbsp;1<br>
+Last&nbsp;cylinder&nbsp;or&nbsp;+size&nbsp;or&nbsp;+sizeM&nbsp;or&nbsp;+sizeK&nbsp;(1-10443,&nbsp;default&nbsp;10443):</span>&nbsp;<span class="highlight">&lt;-- +25000M</span><br>
+<br>
+<span class="system">Command&nbsp;(m&nbsp;for&nbsp;help):</span>&nbsp;<span class="highlight">&lt;-- t</span><br>
+<span class="system">Selected&nbsp;partition&nbsp;1<br>
+Hex&nbsp;code&nbsp;(type&nbsp;L&nbsp;to&nbsp;list&nbsp;codes):</span>&nbsp;<span class="highlight">&lt;-- L</span><br>
+<br>
+&nbsp;<span class="system">0&nbsp;&nbsp;Empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1e&nbsp;&nbsp;Hidden&nbsp;W95&nbsp;FAT1&nbsp;80&nbsp;&nbsp;Old&nbsp;Minix&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;&nbsp;Solaris&nbsp;boot<br>
+&nbsp;1&nbsp;&nbsp;FAT12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;NEC&nbsp;DOS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81&nbsp;&nbsp;Minix&nbsp;/&nbsp;old&nbsp;Lin&nbsp;bf&nbsp;&nbsp;Solaris<br>
+&nbsp;2&nbsp;&nbsp;XENIX&nbsp;root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;39&nbsp;&nbsp;Plan&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;82&nbsp;&nbsp;Linux&nbsp;swap&nbsp;/&nbsp;So&nbsp;c1&nbsp;&nbsp;DRDOS/sec&nbsp;(FAT-<br>
+&nbsp;3&nbsp;&nbsp;XENIX&nbsp;usr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3c&nbsp;&nbsp;PartitionMagic&nbsp;&nbsp;83&nbsp;&nbsp;Linux&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c4&nbsp;&nbsp;DRDOS/sec&nbsp;(FAT-<br>
+&nbsp;4&nbsp;&nbsp;FAT16&nbsp;&lt;32M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;40&nbsp;&nbsp;Venix&nbsp;80286&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;84&nbsp;&nbsp;OS/2&nbsp;hidden&nbsp;C:&nbsp;&nbsp;c6&nbsp;&nbsp;DRDOS/sec&nbsp;(FAT-<br>
+&nbsp;5&nbsp;&nbsp;Extended&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;41&nbsp;&nbsp;PPC&nbsp;PReP&nbsp;Boot&nbsp;&nbsp;&nbsp;85&nbsp;&nbsp;Linux&nbsp;extended&nbsp;&nbsp;c7&nbsp;&nbsp;Syrinx<br>
+&nbsp;6&nbsp;&nbsp;FAT16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;SFS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;86&nbsp;&nbsp;NTFS&nbsp;volume&nbsp;set&nbsp;da&nbsp;&nbsp;Non-FS&nbsp;data<br>
+&nbsp;7&nbsp;&nbsp;HPFS/NTFS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4d&nbsp;&nbsp;QNX4.x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;87&nbsp;&nbsp;NTFS&nbsp;volume&nbsp;set&nbsp;db&nbsp;&nbsp;CP/M&nbsp;/&nbsp;CTOS&nbsp;/&nbsp;.<br>
+&nbsp;8&nbsp;&nbsp;AIX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4e&nbsp;&nbsp;QNX4.x&nbsp;2nd&nbsp;part&nbsp;88&nbsp;&nbsp;Linux&nbsp;plaintext&nbsp;de&nbsp;&nbsp;Dell&nbsp;Utility<br>
+&nbsp;9&nbsp;&nbsp;AIX&nbsp;bootable&nbsp;&nbsp;&nbsp;&nbsp;4f&nbsp;&nbsp;QNX4.x&nbsp;3rd&nbsp;part&nbsp;8e&nbsp;&nbsp;Linux&nbsp;LVM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;df&nbsp;&nbsp;BootIt<br>
+&nbsp;a&nbsp;&nbsp;OS/2&nbsp;Boot&nbsp;Manag&nbsp;50&nbsp;&nbsp;OnTrack&nbsp;DM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;93&nbsp;&nbsp;Amoeba&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e1&nbsp;&nbsp;DOS&nbsp;access<br>
+&nbsp;b&nbsp;&nbsp;W95&nbsp;FAT32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51&nbsp;&nbsp;OnTrack&nbsp;DM6&nbsp;Aux&nbsp;94&nbsp;&nbsp;Amoeba&nbsp;BBT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e3&nbsp;&nbsp;DOS&nbsp;R/O<br>
+&nbsp;c&nbsp;&nbsp;W95&nbsp;FAT32&nbsp;(LBA)&nbsp;52&nbsp;&nbsp;CP/M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9f&nbsp;&nbsp;BSD/OS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e4&nbsp;&nbsp;SpeedStor<br>
+&nbsp;e&nbsp;&nbsp;W95&nbsp;FAT16&nbsp;(LBA)&nbsp;53&nbsp;&nbsp;OnTrack&nbsp;DM6&nbsp;Aux&nbsp;a0&nbsp;&nbsp;IBM&nbsp;Thinkpad&nbsp;hi&nbsp;eb&nbsp;&nbsp;BeOS&nbsp;fs<br>
+&nbsp;f&nbsp;&nbsp;W95&nbsp;Ext'd&nbsp;(LBA)&nbsp;54&nbsp;&nbsp;OnTrackDM6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a5&nbsp;&nbsp;FreeBSD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ee&nbsp;&nbsp;EFI&nbsp;GPT<br>
+10&nbsp;&nbsp;OPUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;55&nbsp;&nbsp;EZ-Drive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a6&nbsp;&nbsp;OpenBSD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ef&nbsp;&nbsp;EFI&nbsp;(FAT-12/16/<br>
+11&nbsp;&nbsp;Hidden&nbsp;FAT12&nbsp;&nbsp;&nbsp;&nbsp;56&nbsp;&nbsp;Golden&nbsp;Bow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a7&nbsp;&nbsp;NeXTSTEP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f0&nbsp;&nbsp;Linux/PA-RISC&nbsp;b<br>
+12&nbsp;&nbsp;Compaq&nbsp;diagnost&nbsp;5c&nbsp;&nbsp;Priam&nbsp;Edisk&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a8&nbsp;&nbsp;Darwin&nbsp;UFS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f1&nbsp;&nbsp;SpeedStor<br>
+14&nbsp;&nbsp;Hidden&nbsp;FAT16&nbsp;&lt;3&nbsp;61&nbsp;&nbsp;SpeedStor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a9&nbsp;&nbsp;NetBSD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f4&nbsp;&nbsp;SpeedStor<br>
+16&nbsp;&nbsp;Hidden&nbsp;FAT16&nbsp;&nbsp;&nbsp;&nbsp;63&nbsp;&nbsp;GNU&nbsp;HURD&nbsp;or&nbsp;Sys&nbsp;ab&nbsp;&nbsp;Darwin&nbsp;boot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f2&nbsp;&nbsp;DOS&nbsp;secondary<br>
+17&nbsp;&nbsp;Hidden&nbsp;HPFS/NTF&nbsp;64&nbsp;&nbsp;Novell&nbsp;Netware&nbsp;&nbsp;b7&nbsp;&nbsp;BSDI&nbsp;fs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fd&nbsp;&nbsp;Linux&nbsp;raid&nbsp;auto<br>
+18&nbsp;&nbsp;AST&nbsp;SmartSleep&nbsp;&nbsp;65&nbsp;&nbsp;Novell&nbsp;Netware&nbsp;&nbsp;b8&nbsp;&nbsp;BSDI&nbsp;swap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fe&nbsp;&nbsp;LANstep<br>
+1b&nbsp;&nbsp;Hidden&nbsp;W95&nbsp;FAT3&nbsp;70&nbsp;&nbsp;DiskSecure&nbsp;Mult&nbsp;bb&nbsp;&nbsp;Boot&nbsp;Wizard&nbsp;hid&nbsp;ff&nbsp;&nbsp;BBT<br>
+1c&nbsp;&nbsp;Hidden&nbsp;W95&nbsp;FAT3&nbsp;75&nbsp;&nbsp;PC/IX<br>
+Hex&nbsp;code&nbsp;(type&nbsp;L&nbsp;to&nbsp;list&nbsp;codes):</span>&nbsp;<span class="highlight">&lt;-- 8e</span><br>
+<span class="system">Changed&nbsp;system&nbsp;type&nbsp;of&nbsp;partition&nbsp;1&nbsp;to&nbsp;8e&nbsp;(Linux&nbsp;LVM)<br>
+<br>
+Command&nbsp;(m&nbsp;for&nbsp;help):</span>&nbsp;<span class="highlight">&lt;-- w</span><br>
+<span class="system">The&nbsp;partition&nbsp;table&nbsp;has&nbsp;been&nbsp;altered!<br>
+<br>
+Calling&nbsp;ioctl()&nbsp;to&nbsp;re-read&nbsp;partition&nbsp;table.<br>
+Syncing&nbsp;disks.</span><br></p>
+<p>Now we do the same for the hard disks <span class="system">/dev/sdc</span> - <span class="system">/dev/sde</span>:</p>
+<p class="command">fdisk /dev/sdc<br>
+  fdisk /dev/sdd<br>
+fdisk /dev/sde </p>
+<p>Then run</p>
+<p class="command">fdisk -l</p>
+<p>again. The output should look like this:</p>
+<p class="system">server1:~#&nbsp;fdisk&nbsp;-l<br>
+<br>
+Disk&nbsp;/dev/sda:&nbsp;21.4&nbsp;GB,&nbsp;21474836480&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;2610&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+&nbsp;&nbsp;&nbsp;Device&nbsp;Boot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blocks&nbsp;&nbsp;&nbsp;Id&nbsp;&nbsp;System<br>
+/dev/sda1&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144553+&nbsp;&nbsp;83&nbsp;&nbsp;Linux<br>
+/dev/sda2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2450&nbsp;&nbsp;&nbsp;&nbsp;19535040&nbsp;&nbsp;&nbsp;83&nbsp;&nbsp;Linux<br>
+/dev/sda4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2451&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2610&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1285200&nbsp;&nbsp;&nbsp;82&nbsp;&nbsp;Linux&nbsp;swap&nbsp;/&nbsp;Solaris<br>
+<br>
+Disk&nbsp;/dev/sdb:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+&nbsp;&nbsp;&nbsp;Device&nbsp;Boot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blocks&nbsp;&nbsp;&nbsp;Id&nbsp;&nbsp;System<br>
+/dev/sdb1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3040&nbsp;&nbsp;&nbsp;&nbsp;24418768+&nbsp;&nbsp;8e&nbsp;&nbsp;Linux&nbsp;LVM<br>
+<br>
+Disk&nbsp;/dev/sdc:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+&nbsp;&nbsp;&nbsp;Device&nbsp;Boot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blocks&nbsp;&nbsp;&nbsp;Id&nbsp;&nbsp;System<br>
+/dev/sdc1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3040&nbsp;&nbsp;&nbsp;&nbsp;24418768+&nbsp;&nbsp;8e&nbsp;&nbsp;Linux&nbsp;LVM<br>
+<br>
+Disk&nbsp;/dev/sdd:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+&nbsp;&nbsp;&nbsp;Device&nbsp;Boot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blocks&nbsp;&nbsp;&nbsp;Id&nbsp;&nbsp;System<br>
+/dev/sdd1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3040&nbsp;&nbsp;&nbsp;&nbsp;24418768+&nbsp;&nbsp;8e&nbsp;&nbsp;Linux&nbsp;LVM<br>
+<br>
+Disk&nbsp;/dev/sde:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+&nbsp;&nbsp;&nbsp;Device&nbsp;Boot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blocks&nbsp;&nbsp;&nbsp;Id&nbsp;&nbsp;System<br>
+/dev/sde1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3040&nbsp;&nbsp;&nbsp;&nbsp;24418768+&nbsp;&nbsp;8e&nbsp;&nbsp;Linux&nbsp;LVM<br>
+<br>
+Disk&nbsp;/dev/sdf:&nbsp;85.8&nbsp;GB,&nbsp;85899345920&nbsp;bytes<br>
+255&nbsp;heads,&nbsp;63&nbsp;sectors/track,&nbsp;10443&nbsp;cylinders<br>
+Units&nbsp;=&nbsp;cylinders&nbsp;of&nbsp;16065&nbsp;*&nbsp;512&nbsp;=&nbsp;8225280&nbsp;bytes<br>
+<br>
+Disk&nbsp;/dev/sdf&nbsp;doesn't&nbsp;contain&nbsp;a&nbsp;valid&nbsp;partition&nbsp;table<br></p>
+<p>Now we prepare our new partitions for LVM:</p>
+<p class="command">pvcreate /dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1</p>
+<p class="system">server1:~#&nbsp;pvcreate&nbsp;/dev/sdb1&nbsp;/dev/sdc1&nbsp;/dev/sdd1&nbsp;/dev/sde1<br>
+&nbsp;&nbsp;Physical&nbsp;volume&nbsp;"/dev/sdb1"&nbsp;successfully&nbsp;created<br>
+&nbsp;&nbsp;Physical&nbsp;volume&nbsp;"/dev/sdc1"&nbsp;successfully&nbsp;created<br>
+&nbsp;&nbsp;Physical&nbsp;volume&nbsp;"/dev/sdd1"&nbsp;successfully&nbsp;created<br>
+&nbsp;&nbsp;Physical&nbsp;volume&nbsp;"/dev/sde1"&nbsp;successfully&nbsp;created<br></p>
+<p>Let's revert this last action for training purposes:</p>
+<p class="command">pvremove /dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1</p>
+<p class="system">server1:~#&nbsp;pvremove&nbsp;/dev/sdb1&nbsp;/dev/sdc1&nbsp;/dev/sdd1&nbsp;/dev/sde1<br>
+&nbsp;&nbsp;Labels&nbsp;on&nbsp;physical&nbsp;volume&nbsp;"/dev/sdb1"&nbsp;successfully&nbsp;wiped<br>
+&nbsp;&nbsp;Labels&nbsp;on&nbsp;physical&nbsp;volume&nbsp;"/dev/sdc1"&nbsp;successfully&nbsp;wiped<br>
+&nbsp;&nbsp;Labels&nbsp;on&nbsp;physical&nbsp;volume&nbsp;"/dev/sdd1"&nbsp;successfully&nbsp;wiped<br>
+&nbsp;&nbsp;Labels&nbsp;on&nbsp;physical&nbsp;volume&nbsp;"/dev/sde1"&nbsp;successfully&nbsp;wiped<br></p>
+<p>Then run</p>
+<p class="command">pvcreate /dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1</p>
+<p>again:</p>
+<p class="system">server1:~#&nbsp;pvcreate&nbsp;/dev/sdb1&nbsp;/dev/sdc1&nbsp;/dev/sdd1&nbsp;/dev/sde1<br>
+&nbsp;&nbsp;Physical&nbsp;volume&nbsp;"/dev/sdb1"&nbsp;successfully&nbsp;created<br>
+&nbsp;&nbsp;Physical&nbsp;volume&nbsp;"/dev/sdc1"&nbsp;successfully&nbsp;created<br>
+&nbsp;&nbsp;Physical&nbsp;volume&nbsp;"/dev/sdd1"&nbsp;successfully&nbsp;created<br>
+&nbsp;&nbsp;Physical&nbsp;volume&nbsp;"/dev/sde1"&nbsp;successfully&nbsp;created<br></p>
+<p>Now run</p>
+<p class="command">pvdisplay</p>
+<p>to learn about the current state of your physical volumes:</p>
+<p class="system">server1:~#&nbsp;pvdisplay<br>
+&nbsp;&nbsp;---&nbsp;NEW&nbsp;Physical&nbsp;volume&nbsp;---<br>
+&nbsp;&nbsp;PV&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/dev/sdb1<br>
+&nbsp;&nbsp;VG&nbsp;Name<br>
+&nbsp;&nbsp;PV&nbsp;Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23.29&nbsp;GB<br>
+&nbsp;&nbsp;Allocatable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO<br>
+&nbsp;&nbsp;PE&nbsp;Size&nbsp;(KByte)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Total&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Free&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Allocated&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;PV&nbsp;UUID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G8lu2L-Hij1-NVde-sOKc-OoVI-fadg-Jd1vyU<br>
+<br>
+&nbsp;&nbsp;---&nbsp;NEW&nbsp;Physical&nbsp;volume&nbsp;---<br>
+&nbsp;&nbsp;PV&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/dev/sdc1<br>
+&nbsp;&nbsp;VG&nbsp;Name<br>
+&nbsp;&nbsp;PV&nbsp;Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23.29&nbsp;GB<br>
+&nbsp;&nbsp;Allocatable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO<br>
+&nbsp;&nbsp;PE&nbsp;Size&nbsp;(KByte)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Total&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Free&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Allocated&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;PV&nbsp;UUID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;40GJyh-IbsI-pzhn-TDRq-PQ3l-3ut0-AVSE4B<br>
+<br>
+&nbsp;&nbsp;---&nbsp;NEW&nbsp;Physical&nbsp;volume&nbsp;---<br>
+&nbsp;&nbsp;PV&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/dev/sdd1<br>
+&nbsp;&nbsp;VG&nbsp;Name<br>
+&nbsp;&nbsp;PV&nbsp;Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23.29&nbsp;GB<br>
+&nbsp;&nbsp;Allocatable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO<br>
+&nbsp;&nbsp;PE&nbsp;Size&nbsp;(KByte)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Total&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Free&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Allocated&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;PV&nbsp;UUID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4mU63D-4s26-uL00-r0pO-Q0hP-mvQR-2YJN5B<br>
+<br>
+&nbsp;&nbsp;---&nbsp;NEW&nbsp;Physical&nbsp;volume&nbsp;---<br>
+&nbsp;&nbsp;PV&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/dev/sde1<br>
+&nbsp;&nbsp;VG&nbsp;Name<br>
+&nbsp;&nbsp;PV&nbsp;Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23.29&nbsp;GB<br>
+&nbsp;&nbsp;Allocatable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO<br>
+&nbsp;&nbsp;PE&nbsp;Size&nbsp;(KByte)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Total&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Free&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;Allocated&nbsp;PE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;PV&nbsp;UUID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3upcZc-4eS2-h4r4-iBKK-gZJv-AYt3-EKdRK6<br></p><div class="book"><div class="tree"><div class="menu"><ul><li class="leaf"><a href="http://www.howtoforge.com/linux_lvm_p2">A Beginner's Guide To LVM - Page 2</a></li><li class="leaf"><a href="http://www.howtoforge.com/linux_lvm_p3">A Beginner's Guide To LVM - Page 3</a></li><li class="leaf"><a href="http://www.howtoforge.com/linux_lvm_p4">A Beginner's Guide To LVM - Page 4</a></li><li class="leaf"><a href="http://www.howtoforge.com/linux_lvm_p5">A Beginner's Guide To LVM - Page 5</a></li><li class="leaf"><a href="http://www.howtoforge.com/linux_lvm_p6">A Beginner's Guide To LVM - Page 6</a></li><li class="leaf"><a href="http://www.howtoforge.com/linux_lvm_p7">A Beginner's Guide To LVM - Page 7</a></li><li class="leaf"><a href="http://www.howtoforge.com/linux_lvm_p8">A Beginner's Guide To LVM - Page 8</a></li><li class="leaf"><a href="http://www.howtoforge.com/linux_lvm_p9">A Beginner's Guide To LVM - Page 9</a></li></ul></div></div><div class="nav"> <div class="links"><div class="prev">&nbsp;</div><div class="next"><a href="http://www.howtoforge.com/linux_lvm_p2" title="View the next page.">next</a></div></div> <div class="titles"><div class="next">A Beginner's Guide To LVM - Page 2</div></div></div></div><br><div class="copyright-footer">Copyright © 2007 Falko Timme<br>All Rights Reserved.
+</div>  </div>
+      <div class="links"><a href="http://www.howtoforge.com/comment/reply/1820#comment" title="Share your thoughts and opinions related to this posting." rel="nofollow">add comment</a> | <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf."><img src="linux_lvm1_files/pdf.gif" alt="view as pdf" border="0"></a> <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf.">view as pdf</a> | <img src="linux_lvm1_files/print.gif" alt="" border="0"> print: <a href="http://www.howtoforge.com/subscription" title="Print this page.">this</a> | <a href="http://www.howtoforge.com/subscription" title="Print all pages of this book.">all</a> page(s) | <!-- AddThis Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, '', 'http://www.howtoforge.com/linux_lvm', 'A Beginner\'s Guide To LVM')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="linux_lvm1_files/button1-share.gif" alt="" width="125" border="0" height="16"></a><script type="text/javascript" src="linux_lvm1_files/addthis_widget.js"></script>
+<!-- AddThis Button END --></div>
+  
+<div class="relatedlinks" id="relatedlinks">
+<h2 class="title"><span style="margin-top: 5px; font-weight: bold;">Related Tutorials</span></h2>
+<div class="content"><ul class="related-links"><li><a title="How To Resize ext3 Partitions Without Losing Data" href="http://www.howtoforge.com/linux_resizing_ext3_partitions">How To Resize ext3 Partitions Without Losing Data</a></li></ul>
+</div>
+</div>
+</div><a id="comment"></a>
+<table style="border: 1px solid rgb(128, 128, 128); background-color: rgb(255, 244, 183);" width="100%"><tbody><tr><td style="padding: 15px 7px 7px 15px; background-color: rgb(255, 244, 183);"><img src="linux_lvm1_files/please_note.gif" alt="" border="0"></td><td style="padding: 15px 15px 15px 7px; font-size: 12px; font-style: italic; background-color: rgb(255, 244, 183);">Please do not use the comment function to ask for help! If you need help, please use our <a href="http://www.howtoforge.com/forums">forum</a>.<br>Comments will be published after administrator approval.</td></tr></tbody></table><form method="post" action="comment"><div>
+<input name="edit[nid]" value="1820" type="hidden">
+<a id="comment-21149"></a>
+<div class="comment ">
+
+
+ <!--<div class="gravatar">
+  <img src="" alt="tonyg" />
+ </div>//-->
+<div class="title"><a href="http://www.howtoforge.com/linux_lvm#comment-21149" class="active">I just wanted to say THANK</a></div>
+    <div class="author">Submitted by tonyg (not registered) on Sun, 2009-12-06 06:23.</div>
+  <div class="content">I
+just wanted to say THANK YOU for this resource.&nbsp; I've been
+referring back to this article for the past 2 years now, it's saved my
+butt, and my data, a few times now.&nbsp; Thanks!!!<br></div>
+    <div class="links"><a href="http://www.howtoforge.com/comment/reply/1820/21149">reply</a> | <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf."><img src="linux_lvm1_files/pdf.gif" alt="view as pdf" border="0"></a> <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf.">view as pdf</a></div>
+</div><a id="comment-3275"></a>
+<div class="comment ">
+
+
+ <!--<div class="gravatar">
+  <img src="" alt="kneewobbler1" />
+ </div>//-->
+<div class="title"><a href="http://www.howtoforge.com/linux_lvm#comment-3275" class="active">keyboard layout</a></div>
+    <div class="author">Submitted by <a href="http://www.howtoforge.com/forums/member.php?u=9905" title="View user profile." rel="nofollow">kneewobbler1</a> (registered user) on Fri, 2007-01-19 18:00.</div>
+  <div class="content"><p>I'm
+very sorry if I overlooked a note or a posting on this, but how do I
+set the CLI keyboard layout to qwerty (us 101/104) on Debian Etch.</p>
+<p>I immediately ran into problems, it seems your vmware image was made using a german keyboard layout (?)</p>
+<p>&nbsp;</p>
+<p>Thanx!&nbsp;</p></div>
+    <div class="links"><a href="http://www.howtoforge.com/comment/reply/1820/3275">reply</a> | <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf."><img src="linux_lvm1_files/pdf.gif" alt="view as pdf" border="0"></a> <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf.">view as pdf</a></div>
+</div><div style="margin-left: 25px;">
+<a id="comment-3280"></a>
+<div class="comment ">
+
+
+ <!--<div class="gravatar">
+  <img src="" alt="admin" />
+ </div>//-->
+<div class="title"><a href="http://www.howtoforge.com/linux_lvm#comment-3280" class="active">Re: keyboard layout</a></div>
+    <div class="author">Submitted by <a href="http://www.howtoforge.com/forums/member.php?u=1" title="View user profile." rel="nofollow">admin</a> (registered user) on Sat, 2007-01-20 22:11.</div>
+  <div class="content"><p>Run</p>
+<p class="command">apt-get install console-data console-tools debconf<br>dpkg-reconfigure console-data</p>
+<p>or connect ot the virtual machine with an SSH client such as PuTTY. In PuTTY you use your client machine's keymap.</p></div>
+    <div class="links"><a href="http://www.howtoforge.com/comment/reply/1820/3280">reply</a> | <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf."><img src="linux_lvm1_files/pdf.gif" alt="view as pdf" border="0"></a> <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf.">view as pdf</a></div>
+</div></div>
+<a id="comment-3270"></a>
+<div class="comment ">
+
+
+ <!--<div class="gravatar">
+  <img src="" alt="lisicky" />
+ </div>//-->
+<div class="title"><a href="http://www.howtoforge.com/linux_lvm#comment-3270" class="active">Quick way how to create same partitions on more disks</a></div>
+    <div class="author">Submitted by <a href="http://www.howtoforge.com/forums/member.php?u=9830" title="View user profile." rel="nofollow">lisicky</a> (registered user) on Thu, 2007-01-18 10:55.</div>
+  <div class="content"><p>Source /dev/sda, destination /dev/sdb</p>
+<p class="command">&nbsp;sfdisk -d /dev/sda|sfdisk /dev/sdb</p></div>
+    <div class="links"><a href="http://www.howtoforge.com/comment/reply/1820/3270">reply</a> | <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf."><img src="linux_lvm1_files/pdf.gif" alt="view as pdf" border="0"></a> <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf.">view as pdf</a></div>
+</div><a id="comment-3260"></a>
+<div class="comment ">
+
+
+ <!--<div class="gravatar">
+  <img src="" alt="underspell" />
+ </div>//-->
+<div class="title"><a href="http://www.howtoforge.com/linux_lvm#comment-3260" class="active">Reusing disks for other LVMs / RAIDs</a></div>
+    <div class="author">Submitted by <a href="http://www.howtoforge.com/forums/member.php?u=7269" title="View user profile." rel="nofollow">underspell</a> (registered user) on Tue, 2007-01-16 14:06.</div>
+  <div class="content"><p>Be
+aware that when you initialize a device into a Volume or into a md RAID
+some unique IDs are assign and written into the first sector of that
+device. When you do some testing on some virtual enviorment such as
+VMWare you may ran into this problem. So as a part of the initilization
+process you better do a</p>
+<p class="command">#dd if=/dev/zero of=/dev/diskname bs=1k count=1<br>#blockdev --rereadpt /dev/sdc<br></p>
+<p>before everything else.</p>
+<p editor_id="mce_editor_0">&nbsp;</p>
+<p>José Borges Ferreira&nbsp;</p></div>
+    <div class="links"><a href="http://www.howtoforge.com/comment/reply/1820/3260">reply</a> | <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf."><img src="linux_lvm1_files/pdf.gif" alt="view as pdf" border="0"></a> <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf.">view as pdf</a></div>
+</div><a id="comment-3259"></a>
+<div class="comment ">
+
+
+ <!--<div class="gravatar">
+  <img src="" alt="underspell" />
+ </div>//-->
+<div class="title"><a href="http://www.howtoforge.com/linux_lvm#comment-3259" class="active">More eficient usage of storage</a></div>
+    <div class="author">Submitted by <a href="http://www.howtoforge.com/forums/member.php?u=7269" title="View user profile." rel="nofollow">underspell</a> (registered user) on Tue, 2007-01-16 13:59.</div>
+  <div class="content"><p></p>
+<p>First of all i'll shall congratulate you for the great guide.</p>
+<p>I'll rather call it a "Introduction Guide" than a "Beginner Guide" , never than less it's very usefull.<br></p>
+<p>Instead of having LVM on top ou those 2 RAID-1 devices and
+considering the disks capacity, you can use 4 disk RAID-5 system thus
+have more 25% usable space.</p>
+<p>This will make the process more complex but you will be rewarded with more 80GB ;)</p>
+<p>This must be done after you replace the first 2 Harddrives. </p>
+<ul>
+<li>Initilize only one disk, let's say /dev/sdc <br></li>
+<ul>
+<li>pvcreate /dev/sdc</li></ul>
+<li>Add the 80GB disk to the volume <br></li>
+<ul>
+<li>vgextend fileserver /dev/sdc</li></ul>
+<li>pvmove all all volumes from the md[01] devices to the 80GB disk</li>
+<ul>
+<li>pvmove /dev/md0 /dev/md1</li>
+<ul>
+<li>note: this is very slow better use -v for periodic update<br></li></ul></ul>
+<li>Remove all other devices from the volume</li>
+<ul>
+<li>vgreduce fileshare /dev/md0 /dev/md1</li></ul>
+<li>Reboot and replace the disks</li>
+<li>Initialize the new disks for raid</li>
+<ul>
+<li>fdisk /dev/sdb</li>
+<li>fdisk /dev/sdd</li>
+<li>fdisk /dev/sde&nbsp;<br></li></ul>
+<li>create the raid-5 with one missing device</li>
+<ul>
+<li>mdadm --create /dev/md0 -a -l 5 -n 4 /dev/sdb1 /dev/sdd1 /dev/sde1 missing<br></li></ul>
+<li>Add the new md0 device to the Volume</li>
+<ul>
+<li>pvcreate /dev/md0 &amp;&amp; vgextend fileserver /dev/md0</li></ul>
+<li>Move the data from the 80GB disk</li>
+<ul>
+<li>pvmove /dev/sdc</li></ul>
+<li>(wait)</li>
+<li>Remove the 80GB disk from the volume group</li>
+<ul>
+<li>vgreduce fileshare /dev/sdc</li></ul>
+<li>Initialize the disk for RAID</li>
+<ul>
+<li>fdisk /dev/sdc and change the type to fd (Linux raid autodetect)<br></li></ul>
+<li>Add the disk to the RAID md0</li>
+<ul>
+<li>mdadm --manage /dev/md0 -add /dev/sdc1<br></li></ul>
+<li>Wait for full sync</li>
+<ul>
+<li>cat /proc/mdstat<br></li></ul>
+<li>And you are now with a 240GB RAID-5 volume</li>
+<ul>
+<li>df -h</li></ul></ul>
+<p></p>
+<p>A 4 disk RAID-5 is not as performant as the RAID-1 but that's the trade off .</p>
+<p>&nbsp;</p>
+<p>José Borges Ferreira&nbsp;</p></div>
+    <div class="links"><a href="http://www.howtoforge.com/comment/reply/1820/3259">reply</a> | <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf."><img src="linux_lvm1_files/pdf.gif" alt="view as pdf" border="0"></a> <a href="http://www.howtoforge.com/subscription" title="View and print node as pdf.">view as pdf</a></div>
+</div></div></form><!-- end content -->            </div>
+            </td></tr></tbody></table>
+            <!-- end main content -->
+
+
+<!-- BEGIN Sponsored Links-->
+<div style="margin-top: 10px; font-size: 11px;" align="center"><span style="color: rgb(159, 159, 159);">Sponsored Links:</span>
+<b><u>Unified Communications: Thoughts, Strategies and Predictions</u></b><br>
+Join the discussion.<br>
+<a href="http://clk.atdmt.com/M0N/go/182733097/direct/01/" target="_blank">www.seamlessenterprise.com</a>
+<br><br>
+<b><u>IP Convergence</u></b><br>
+Integrate your wireless and wireline networks.<br>
+Learn how from the experts at Sprint.<br>
+<a href="http://clk.atdmt.com/M0N/go/182733097/direct/01/" target="_blank">www.seamlessenterprise.com</a>
+<br><br>
+<b><u>Wireless &amp; Wireline Integration</u></b><br>
+Thoughts, strategies and solutions: join the discussion<br>
+<a href="http://clk.atdmt.com/M0N/go/182733097/direct/01/" target="_blank">www.seamlessenterprise.com</a>
+<br><br>
+<b><u>Unified Communications 2009</u></b><br>
+Join the Discussion. Now.<br>
+<a href="http://clk.atdmt.com/M0N/go/182733097/direct/01/" target="_blank">www.seamlessenterprise.com</a>
+
+<br><br>
+<b><a href="http://ad.doubleclick.net/clk;219031088;41971008;b?http://vs.virtualevents365.com/redhat/pregateway?page=summits/1100/enter/registration.jsp&amp;conf_id=1100&amp;refid=11000007" target="_blank">Red Hat Virtual Experience - a free virtual event.  Dec. 9th</a></b>
+
+<br><br>
+<b><a href="http://ad.doubleclick.net/clk;220090405;42978658;k" target="_blank">Trial: IBM Cognos Express Reporting, Analysis &amp; Planning</a></b>
+
+<!--<a href="http://altfarm.mediaplex.com/ad/ck/11830-70485-1658-2" target="_blank">Request a Novell/Microsoft migration</a>
+<br><br>
+<a href="http://www.raritan.com/supports-APC-Server-Tech-Geist-PDUs/?afftid=70150000000F6cN" target="_blank">Get Free Power IQ Energy Management Software Now</a><br><br>
+<b><u>Unified Communications: Thoughts, Strategies and Predictions</u></b><br>
+Join the discussion.<br>
+<a href="http://clk.atdmt.com/M0N/go/167673424/direct/01/" target="_blank">www.seamlessenterprise.com</a>
+<br><br>
+<b><u>IP Convergence</u></b><br>
+Integrate your wireless and wireline networks.<br>
+Learn how from the experts at Sprint.<br>
+<a href="http://clk.atdmt.com/M0N/go/167673425/direct/01/" target="_blank">www.seamlessenterprise.com</a>
+<br><br>
+<b><u>Wireless & Wireline Integration</u></b><br>
+Thoughts, strategies and solutions: join the discussion<br>
+<a href="http://clk.atdmt.com/M0N/go/167673426/direct/01/" target="_blank">www.seamlessenterprise.com</a>
+<br><br>
+<b><u>Unified Communications 2009</u></b><br>
+Join the Discussion. Now.<br>
+<a href="http://clk.atdmt.com/M0N/go/167673427/direct/01/" target="_blank">www.seamlessenterprise.com</a>
+ <br> <a href="http://www.telx.com/" target="_blank">Learn more about Telx's Colocation & Interconnection Facility Benefits</a> <br> <a href="http://www.solarwinds.com/products/toolsets/index.aspx?CMP-SYN-TAD-IDGTNT-T-DL-Q209" target="_blank">Network Tools Made By Engineers for Engineers</a> <a href="http://www.moreinterop.com/" target="_blank">Request a Novell/Microsoft migration</a>
+<img src="http://adfarm.mediaplex.com/ad/tr/8857-64320-1658-2?mpt=b9d7bbf513b770ef75d7cbe7b3fda74d" border="0">
+<a href="http://www.moreinterop.com/" target="_blank">Request a Novell/Microsoft migration workshop</a>
+<img src="http://adfarm.mediaplex.com/ad/tr/8857-64320-1658-2?mpt=b9d7bbf513b770ef75d7cbe7b3fda74d" border="0">
+<a href="http://www.moreinterop.com/" target="_blank">Request a Novell/Microsoft migration workshop and kit</a>
+<img src="http://adfarm.mediaplex.com/ad/tr/8857-64320-1658-2?mpt=b9d7bbf513b770ef75d7cbe7b3fda74d" border="0">//-->
+</div>
+<div id="adwhitepaperwidget" style="height: 250px; margin-top: 20px;"><div id="defer-adwhitepaperwidget">
+<script type="text/javascript">
+<!--
+document.write('<div align="center">');
+//-->
+</script><div align="center">
+<!-- begin ad tag Whitepaperwidget -->
+<script type="text/javascript" src="linux_lvm1_files/a.js"></script><div style="border: 0px solid rgb(241, 241, 241); padding: 0px; width: 300px; background-color: rgb(255, 255, 255);">  <div style="border-top: 3px solid rgb(241, 241, 241); border-left: 6px solid rgb(241, 241, 241); border-right: 3px solid rgb(241, 241, 241); background-color: rgb(241, 241, 241); width: 286px; text-align: left; color: rgb(47, 63, 113); font-size: 18px; padding-left: 5px;"><strong>     Free White Papers</strong>  </div>    <div style="border-left: 3px solid rgb(241, 241, 241); border-right: 3px solid rgb(241, 241, 241); border-bottom: 3px solid rgb(241, 241, 241); width: 294px; background-color: rgb(255, 255, 255);">  <div style="border-style: solid; border-color: rgb(255, 255, 255); border-width: 3px 3px 4px; width: 288px; background-color: rgb(255, 255, 255);">  <div style="border: 1px solid rgb(241, 241, 241); width: 286px; height: 196px; background-color: rgb(255, 255, 255);"><div style="padding: 3px 5px 3px 7px; width: 270px; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: none; color: rgb(76, 115, 156); text-align: left;">            <a href="http://clk.madisonlogic.com//clk?pub=42&amp;pgr=32&amp;src=329&amp;tgt=357&amp;tstamp=20091207T065340&amp;ast=7192&amp;cmp=1426&amp;crv=5743&amp;pos=1&amp;frm=257" target="_blank" ;="" style="width: 271px; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: underline; color: rgb(0, 0, 213); text-align: left;" onmouseover="this.style.textDecoration = 'underline';this.style.color = '#000033';" onmouseout="this.style.textDecoration = 'underline';this.style.color = '#0000d5';">Free Trial Download from Novell:  Mono Tools for Visual Studio          </a><br>                 <span style="text-align: left; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: none; color: rgb(51, 51, 51); width: 275px;">        Download a free, fully-functional 30-day trial of Mono Tools for Visual Studi... </span></div><div style="padding: 3px 5px 3px 7px; width: 270px; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: none; color: rgb(76, 115, 156); text-align: left;">            <a href="http://clk.madisonlogic.com//clk?pub=42&amp;pgr=32&amp;src=329&amp;tgt=357&amp;tstamp=20091207T065340&amp;ast=7228&amp;cmp=1437&amp;crv=5779&amp;pos=2&amp;frm=257" target="_blank" ;="" style="width: 271px; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: underline; color: rgb(0, 0, 213); text-align: left;" onmouseover="this.style.textDecoration = 'underline';this.style.color = '#000033';" onmouseout="this.style.textDecoration = 'underline';this.style.color = '#0000d5';">F-RAM vs. BBSRAM: Functional and System Design Comparisons          </a><br>                 <span style="text-align: left; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: none; color: rgb(51, 51, 51); width: 275px;">        Today's technological innovation demands high performance coupled with low en... </span></div><div style="padding: 3px 5px 3px 7px; width: 270px; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: none; color: rgb(76, 115, 156); text-align: left;">            <a href="http://clk.madisonlogic.com//clk?pub=42&amp;pgr=32&amp;src=329&amp;tgt=357&amp;tstamp=20091207T065340&amp;ast=6070&amp;cmp=1069&amp;crv=4636&amp;pos=3&amp;frm=257" target="_blank" ;="" style="width: 271px; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: underline; color: rgb(0, 0, 213); text-align: left;" onmouseover="this.style.textDecoration = 'underline';this.style.color = '#000033';" onmouseout="this.style.textDecoration = 'underline';this.style.color = '#0000d5';">Preventing Proxy Abuse in Schools          </a><br>                 <span style="text-align: left; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 12px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: none; color: rgb(51, 51, 51); width: 275px;">        Proxy abuse is an increasingly pervasive problem in schools. It only takes on... </span></div>               </div>        </div>            <div style="text-align: right; padding-right: 5px; width: 289px; background-color: rgb(241, 241, 241);">       <a href="http://idgtechnetwork.directoriesinc.com/" style="font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 15px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; text-decoration: none; color: rgb(153, 32, 47);" onmouseover="this.style.textDecoration = underline;" onmouseout="this.style.textDecoration = none;">           More White Papers</a>      </div>  </div>                        </div>
+<!-- End ad tag Whitepaperwidget -->
+<script type="text/javascript">
+<!--
+document.write('</div>');
+//-->
+</script></div>
+</div></div>
+<div id="adleaderboardb" style="height: 90px; margin-top: 10px;"><div id="defer-adleaderboardb">
+<script type="text/javascript">
+<!--
+document.write('<div align="center">');
+//-->
+</script><div align="center">
+<!-- begin ad tag Leaderboard B -->
+<script language="JavaScript" src="linux_lvm1_files/bottom.js" type="text/javascript"></script><script language="javascript" src="linux_lvm1_files/linux_lvm.js"></script><script type="text/javascript">document.write('<scr'+'ipt language="javascript" src="http://ad.doubleclick.net/adj/idgt.howtoforge.en/bottom;net=idgt;u=,idgt-81957033_1260168823,1158bac06200d88,virtualization,;;ord1=874143;sz=728x90;contx=virtualization;btg=;ord=%5Btimestamp%5D?"></scr'+'ipt>');</script><script language="Javascript">CollectiveMedia.createAndAttachAd("idgt-81957033_1260168823", "http://ad.doubleclick.net/adj/idgt.howtoforge.en/bottom;net=idgt;u=,idgt-81957033_1260168823,1158bac06200d88,virtualization,;;ord1=874143;sz=728x90;contx=virtualization;btg=;ord=%5Btimestamp%5D?","728","90");</script><script language="javascript" src="linux_lvm1_files/bottom_002.js"></script><a target="_blank" href="http://ad.doubleclick.net/click;h=v8/38fc/0/0/%2a/y;44306;0-0;0;38315231;3454-728/90;0/0/0;u=,idgt-81957033_1260168823,1158bac06200d88,virtualization,;%7Eaopt=2/1/53/0;%7Esscs=%3f"><img src="linux_lvm1_files/817-grey.gif" alt="Click here to find out more!" border="0"></a><script language="Javascript">CollectiveMedia.addTrackingImages("http://b.scorecardresearch.com/p?c1=8&c2=6035308&c3=&c4=&c5=&c6=&c10=&c15=&cj=1");</script>
+<noscript><a
+href="http://a.collective-media.net/jump/idgt.howtoforge.en/bottom;sz=728x90;ord=[timestamp]?"
+target="_blank"><img
+src="http://a.collective-media.net/ad/idgt.howtoforge.en/bottom;sz=728x90;ord=[timestamp]?"
+width="728" height="90" border="0" alt=""></a></noscript>
+<!-- End ad tag Leaderboard B -->
+<script type="text/javascript">
+<!--
+document.write('</div>');
+//-->
+</script></div>
+</div></div>
+<!-- END Sponsored Links-->
+
+          </div><!-- main -->
+        </div>
+      </div>
+    </div>
+    <div class="clearing"></div>
+    <hr class="hide">
+<!-- START: FOOTER-->
+    <div id="footer" class="footer">
+
+        <p></p><center><a href="http://www.howtoforge.com/">Howtos</a> | <a href="http://www.howtoforge.com/mini-howtos">Mini-Howtos</a> | <a href="http://www.howtoforge.com/forums">Forums</a> | <a href="http://lxer.com/" target="_blank">News</a> | <a href="http://www.howtoforge.com/trip_search">Search</a> | <a href="http://www.howtoforge.com/add_howto">Contribute</a> | <a href="http://www.howtoforge.com/subscription">Subscription</a><br><a href="http://www.howtoforge.com/sitemap">Site Map/RSS Feeds</a> | <a href="http://www.howtoforge.com/advertise">Advertise</a> | <a href="http://www.howtoforge.com/forums/sendmessage.php">Contact</a> | <a href="http://www.howtoforge.com/disclaimer">Disclaimer</a> | <a href="http://www.howtoforge.com/imprint">Imprint</a></center>
+<div style="margin: 0px 10px; float: right;"><img src="linux_lvm1_files/idg_footer_logo.gif" boder="0" width="149" height="29"></div>
+      <br><div class="copyright-footer">Copyright © 2009 HowtoForge - Linux Howtos and Tutorials<br>All Rights Reserved.
+</div>    </div>
+<!-- END: FOOTER -->
+        </div><!-- wrapper -->
+</div><!-- outer_wrapper -->
+
+<script type="text/javascript">
+<!--
+  function moveads(adspace){
+    $("#defer-ad" + adspace).appendTo('#ad' + adspace)
+  }
+//-->
+</script>
+<div style="display: none;">
+
+</div>
+<script type="text/javascript">
+<!--
+moveads('leaderboard');
+//-->
+</script>
+
+<div style="display: none;">
+
+</div>
+<script type="text/javascript">
+<!--
+moveads('rectanglea');
+//-->
+</script>
+
+<div style="display: none;">
+
+</div>
+<script type="text/javascript">
+<!--
+moveads('rectangleb');
+//-->
+</script>
+
+<div style="display: none;">
+
+</div>
+<script type="text/javascript">
+<!--
+moveads('leaderboardb');
+//-->
+</script>
+
+<div style="display: none;">
+
+</div>
+<script type="text/javascript">
+<!--
+moveads('whitepaperwidget');
+//-->
+</script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="linux_lvm1_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-2155872-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body></html>
