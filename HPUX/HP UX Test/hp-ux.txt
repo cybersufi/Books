@@ -1,0 +1,153 @@
+Official Student Books HP-UX for CSA:
+
+- Fundamentals of the UNIX System
+- HP-UX System and Network Administration I
+- HP-UX System and Network Administration II
+- HP-UX System and Network Administration III
+- HP-UX System Administration Tasks
+- HP-UX 11i Internals
+
+
+Student Guides for CSA and CSE:
+
+- HP-Certified HP-UX System Administration
+- HP-UX CSE: Official Study Guide and Desk Reference 
+- HP-UX11i: Tuning and Performance
+
+
+Pass4Sure:
+
+CSA HP0-095
+CSE HP0-096,HP0-094,HP0-914
+
+
+
+HP-UX CSA
+---------
+Exam: HP0-095 - $60
+
+Courses:
+
+Fundamentals of the UNIX System
+#51434S - Instructor-led (5 days)
+
+-AND-
+
+HP-UX System and Network Administration I
+#H3064S - Instructor-led (5 days)
+
+-AND-
+
+HP-UXSystem and Network
+Administration II
+#H3065S - Instructor-led (5 days)
+
+
+HP-UX CSE
+---------
+Exam: HP0-096 - $60
+Eletives Exams: HP0-914, HP0-094, HP0-090 - $60
+
+Courses:
+
+- HP0-096
+-----------
+
+Hands-on with Logical Volume Manager and Mirrordisk/UX
+#H6285S - Instructor-led (3 days)
+
+-AND-
+
+VERITAS volume manager for HP-UX
+#H7085S - Instructor-led (4 days)
+
+-AND-
+
+HP-UX Partition Management (vPars, nPars) and HP Virtual Machines
+#U5075S - Instructor-led (4 days)
+
+-AND-
+
+Managing software with Ignite-UX
+#H1978S - Instructor-led (3 days)
+
+
+- HP0-914
+----------
+
+HP Serviceguard I
+#H6487S - Instructor-led (5 days)
+
+-AND-
+
+POSIX shell programming
+#H4322S - Instructor-led (5 days)
+
+-AND-
+
+Disaster tolerant architectures with Serviceguard, Oracle 9i, and Oracle 10g RAC
+#U8601S - Instructor-led (3 days
+
+
+- HP0-094
+---------
+
+HP-UX system and network administration I
+#H3064S - Instructor-led (5 days)
+
+-AND-
+
+HP-UX system and network administration II
+#H3065S - Instructor-led (5 days)
+
+-AND-
+
+Practical UNIX and network security
+#H3541S - Instructor-led (5 days)
+
+-AND-
+
+HP-UX system and network troubleshooting
+#H4264S - Instructor-led (5 days)
+
+
+- HP0-090
+----------
+
+HP Virtual Server Environment
+#HB503AAE - Web-based training
+
+-AND-
+
+Using Capacity Advisor to understand HP virtualization
+#HB504S - Remotely assisted instructional learning (2 days)
+
+-AND-
+
+HP-UX partition management with vPars/nPars
+#H5075S - Remotely assisted instructional learning (4 days)
+
+-AND-
+
+HP-UX resource management with PRM & WLM
+#H5447S - Remotely assisted instructional learning (3 days)
+
+-AND-
+
+HP Global Workload Manager (gWLM)
+#HC719S - Remotely assisted instructional learning (1 day)
+
+-AND-
+
+HP Integrity Virtual Machine
+#HB506S - Remotely assisted instructional learning (1 day)
+
+-AND-
+
+HP Systems Insight Manager (SIM) for HP-UX
+#HB508S - Remotely assisted instructional learning (4 days)
+
+-AND-
+
+HP Instant Capacity (iCAP and GiCAP)
+#HC720S - Remotely assisted instructional learning (1 day)	

@@ -1,0 +1,5 @@
+1)http://bizsupport.austin.hp.com/bizsupport/TechSupport/SupportTaskIndex.jsp?lang=en&cc=us&taskId=110&prodSeriesId=3203314&prodTypeId=18964&supportTaskId=23242
+
+2)http://translate.google.co.in/translate?hl=en&sl=zh-CN&u=http://www.cnscn.org/read.php%3Ftid-16196.html&ei=uJP8SeWBCJLItge2zf3DCg&sa=X&oi=translate&resnum=1&ct=result&prev=/search%3Fq%3Dcmcheckconf%2B%252B%2Bhp-ux%26hl%3Den%26sa%3DN%26start%3D70
+
+3)http://translate.google.co.in/translate?hl=en&sl=ja&u=http://www.it-folder.com/indexd.php%3Fdocument%3Dhpux_disk_lvm%26docdir%3D2008&ei=Jbj8SYfRJpGEtwfn_7GSDA&sa=X&oi=translate&resnum=3&ct=result&prev=/search%3Fq%3Dcmcheckconf%2B%252B%2Bhp-ux%26hl%3Den%26sa%3DN%26start%3D130
